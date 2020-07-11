@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# List of apps to create fixtures for
 NAME[1]="eba_portfolio"
 
 source venv/bin/activate

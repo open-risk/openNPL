@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "name": "Uptown Portfolio",
-      "user": 2,
+      "user": 1,
       "creation_date": "2020-07-01T19:40:37.804Z",
       "last_change_date": "2020-07-01T19:40:37.804Z"
     }
@@ -14,7 +14,7 @@
     "pk": 2,
     "fields": {
       "name": "Downtown Portfolio",
-      "user": 3,
+      "user": 1,
       "creation_date": "2020-07-01T19:40:56.465Z",
       "last_change_date": "2020-07-01T19:40:56.465Z"
     }

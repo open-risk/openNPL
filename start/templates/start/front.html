@@ -2,6 +2,10 @@
 
 {% load i18n static admin_modify grp_tags %}
 
+{% block branding %}
+    <div id="grp-branding"><img src="{% static 'start/img/opennpl.png' %}" height="24"/></div>
+{% endblock %}
+
 {% block title %}openNPL{% endblock %}
 
 {% block extrastyle %}

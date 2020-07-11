@@ -8,26 +8,24 @@ The source code is available in the Open Risk Repository `Link <https://github.c
 * Author: `Open Risk <http://www.openriskmanagement.com>`_
 * License: MIT
 * Code Documentation: `Read The Docs <https://opennpl.readthedocs.io/en/latest/>`_
+* Development Website: `Github <https://github.com/open-risk/openNPL>`_
+* Docker Image: `Docker <https://hub.docker.com/repository/docker/openrisk/opencpm_npl_backend>`_
 * Data Documentation: `Open Risk Manual <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
 * Training: `Open Risk Academy <https://www.openriskacademy.com/login/index.php>`_
-* Development Website: `Github <https://github.com/open-risk/openNPL>`_
-* Discussion: Open Risk Gitter Channels
+* Discussion: `Gitter <https://gitter.im/open-risk/Lobby>`_
 
 Functionality
 -------------
-The openNPL platform will typically be used by a combination of regular users, administrators and
-developers
+The openNPL platform will typically be used by a combination of regular users, administrators and developers.
 
 Users can use openNPL to:
+* Log-in into the application with their credentials
+* Inspect the available data sets (tables or relations) that capture the EBA Template recommendations<
+* Insert, Update or Delete records (e.g. new counterparty or loan data)
+* Consult the documentation as to the meaning and requirements of each data element
 
-* Log-in into the application with their credentials</td>
-* Inspect the available data sets (tables or relations) that capture the EBA Template recommendations</td>
-* Insert, Update or Delete records (e.g. new counterparty or loan data)</td>
-* Consult the documentation as to the meaning and requirements of each data element</td>
 
-
-**NB: openNPL is still in active development. Functionality will be significantly enhanced in future
-versions. If you have specific requests / ideas please raise them in our github repository**
+**NB: openNPL is still in active development. Functionality will be significantly enhanced in future versions. If you have specific requests / ideas please raise them in our github repository**
 
 Architecture
 ------------
@@ -62,8 +60,11 @@ The openNPL distribution has the following structure:
 +---------+---------------+------------+---------------------------------------+
 |         | docs          |            | DIR: This documentation               |
 +---------+---------------+------------+---------------------------------------+
-|         | static        |            | DIR: Styling for the front end        |
+|         | static        |            | DIR: Styling assets                   |
 +---------+---------------+------------+---------------------------------------+
+|         | templates     |            | DIR: Template customization           |
++---------+---------------+------------+---------------------------------------+
+
 
 Core Data Models
 ----------------
@@ -79,4 +80,4 @@ The installation page guides with the current installation options
 
 Usage
 -----
-The usage page illustrates using screenshots the currently available functionality
+The usage page illustrates (using screenshots) the currently available functionality

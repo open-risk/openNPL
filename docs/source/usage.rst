@@ -69,7 +69,7 @@ explains the meaning and requirements for this data point
 We can go back to the overview of all data by clicking on the breadcrumb (EBA Portfolio) or pointint the
 browser to http://localhost:8000/admin/eba_portfolio/
 
-Lets take a look now at another important data model, namely the load data. Loans is one of the main
+Lets take a look now at another important data model, namely the loan data. Loans is one of the main
 financial products documented in the templates (others being leases and swaps)
 
 Loan Data

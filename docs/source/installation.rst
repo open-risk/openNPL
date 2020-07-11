@@ -16,7 +16,7 @@ Dependencies / Requirements
 Manual installation from sources
 --------------------------------
 
-A linux based system is recommended but just minor tweaks are required for Windows and it is
+A Linux based system is recommended but just minor tweaks are required for Windows and it is
 in principle also possible to deploy there
 
 Download the github sources to your preferred directory:
@@ -59,7 +59,7 @@ Collect static files (to ensure the interface will render properly)
 
 .. code:: bash
 
-    python3 manage.py collectstatic
+    python3 manage.py collectstatic --no-input
 
 Insert some dummy data (optional)
 
@@ -67,8 +67,8 @@ Insert some dummy data (optional)
 
     bash loadfixtures.sh
 
-Run the server. The default port is 8000 but if by any chance this is used already in your computer
-there will be another assigned. Be sure to note that and use it instead.
+Run the server. The default port is 8000 but if (by any chance) this port is already used in your computer there will be
+another assigned. Be sure to note that and use it instead.
 
 .. code:: bash
 
@@ -77,14 +77,17 @@ there will be another assigned. Be sure to note that and use it instead.
 Finally in your favorite browser (e.g. Firefox from Mozilla), enter the url ``http://localhost:8000``
 
 
-Docker Installation
--------------------
-Coming
-
 Troubleshooting
---------------------------------
+~~~~~~~~~~~~~~~~~~~~~~
+
 The above steps are typical Django project installation steps. If you experience trouble at any point, the
 Django online FAQ should help you out.
 
-We welcome your feedback and support, a raise github ticket if you want to report a bug or need new
-feature.
+We welcome your feedback and support, raise a github ticket if you want to report a bug or need new feature.
+
+
+Docker Installation
+-------------------
+Running openNPL via docker is an alternative option that simplifies the manual process (but a working docker installation is required!)
+
+docker pull docker pull openrisk/opennpl:0.1
