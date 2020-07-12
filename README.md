@@ -1,3 +1,6 @@
+[![Gitter](https://badges.gitter.im/open-risk/concentrationMetrics.svg)](https://gitter.im/open-risk/concentrationMetrics?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Documentation Status](https://readthedocs.org/projects/opennpl/badge/?version=latest)](https://opennpl.readthedocs.io/en/latest/?badge=latest)
+
 # openNPL overview
 ![openNPL Logo](/docs/source/opennpl-logo.png) openNPL is an open source platform for the management of non-performing loans. It implements the detailed European Banking Authority loan templates for NPL data. It thereby enables the collection and easy management of non-performing loan data according to best-practices. The platform is in active development, parties interested in its further development are encouraged to get involved. The project aims to be driven by community needs. We welcome code contributions and feature requests via github.
 
@@ -78,16 +81,16 @@ python manage.py runserver
 
 ## Installation using Docker
 
-* It is possible to also install openNPL using docker, which may simplify the process. Here you can get a ready to run [Docker image of openNPL](https://hub.docker.com/repositories) and instructions are available in the documentation.
+* It is possible to also install openNPL using docker, which may simplify the process. Here you can get a ready to run [Docker Image of openNPL](https://hub.docker.com/repository/docker/openrisk/opennpl_web). Alternatively you can build the Docker image locally, instructions are available in the documentation.
 
 # openNPL Community
 We welcome your feedback and support, raise a github issue if you want to report a bug or request new feature. We are glad to help.
 
-- [Contribute on Issues](<https://github.com/open-riks/openNPL/issues>)
+- [Contribute on Issues](<https://github.com/open-risk/openNPL/issues>)
 - Follow [Open Risk](<https://www.linkedin.com/company/openrisk>) on Linkedin
 - Chat with the community [Gitter](<https://gitter.im/open-risk/Lobby>)
 - For customisations, support or any other collaboration, email <info@openrisk.eu>
-- Need additional commercial support? [Contact](https://www.openriskmanagement.com/contact/)
+- Need commercial support? [Contact](https://www.openriskmanagement.com/contact/)
 
 ## Credits
 * Django

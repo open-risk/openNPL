@@ -5,6 +5,7 @@ EXPOSE 8080
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV DJANGO_SETTINGS_MODULE openNPL.settings
+ENV DJANGO_ALLOWED_HOSTS localhost 127.0.0.1 [::1]
 RUN mkdir /opennpl
 WORKDIR /opennpl
 COPY requirements.txt /opennpl/
@@ -14,4 +15,5 @@ RUN python /opennpl/manage.py makemigrations
 RUN python /opennpl/manage.py migrate
 RUN python /opennpl/createadmin.py
 RUN python /opennpl/manage.py collectstatic --no-input
-RUN /opennpl/dockerfixtures.sh
+RUN python /opennpl/manage.py loaddata --format=json eba_portfolio  /opennpl/eba_portfolio/fixtures/eba_portfolio.json
+CMD [ "python", "./manage.py", "runserver", "0.0.0.0:8080"]

@@ -1,11 +1,10 @@
 ChangeLog
 ===========================
-
 PLEASE NOTE THIS IS ONLY A PLANNING RELEASE
 
-v0.1.1 (11-07-2020)
+v0.1.1 (12-07-2020)
 -------------------
-* Dockerized version
+* First Dockerized Version
 
 v0.1 (02-07-2020)
 -------------------

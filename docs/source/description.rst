@@ -9,14 +9,14 @@ The source code is available in the Open Risk Repository `Link <https://github.c
 * License: MIT
 * Code Documentation: `Read The Docs <https://opennpl.readthedocs.io/en/latest/>`_
 * Development Website: `Github <https://github.com/open-risk/openNPL>`_
-* Docker Image: `Docker <https://hub.docker.com/repository/docker/openrisk/opencpm_npl_backend>`_
+* Docker Image: `Docker <https://hub.docker.com/repository/docker/openrisk/opennpl_web>`_
 * Data Documentation: `Open Risk Manual <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
 * Training: `Open Risk Academy <https://www.openriskacademy.com/login/index.php>`_
 * Discussion: `Gitter <https://gitter.im/open-risk/Lobby>`_
 
 Functionality
 -------------
-The openNPL platform will typically be used by a combination of regular users, administrators and developers.
+The openNPL platform will be used by a combination of regular users (portfolio managers), administrators and developers.
 
 Users can use openNPL to:
 * Log-in into the application with their credentials
@@ -29,7 +29,7 @@ Users can use openNPL to:
 
 Architecture
 ------------
-The following describes the current architecture
+The following describes the current architecture:
 
 * openNPL is built on top of the Python Django framework
 * The non-performing loan template recommendations of the EBA are implemented as distinct models in the database
@@ -76,7 +76,7 @@ Core Data Models
 
 Installation options
 --------------------
-The installation page guides with the current installation options
+The installation page provides guidance with the current installation options
 
 Usage
 -----
