@@ -29,12 +29,13 @@ Portfolio_Snapshot is used to group data into time snapshots
 
 '''
 
-from eba_portfolio.models import Portfolio_Snapshot, Portfolio
+from eba_portfolio.models import PortfolioSnapshot, Portfolio
 from eba_portfolio.models import Counterparty, CounterpartyGroup
 from eba_portfolio.models import Loan
 from eba_portfolio.models import ExternalCollection, Enforcement
 from eba_portfolio.models import NonPropertyCollateral, PropertyCollateral
 from eba_portfolio.models import Forbearance
+
 
 class PortfolioAdmin(admin.ModelAdmin):
     save_as = True
@@ -42,6 +43,7 @@ class PortfolioAdmin(admin.ModelAdmin):
     search_fields = ['name']
     list_display = ('name', 'user', 'creation_date', 'last_change_date')
     list_filter = ('user',)
+
 
 class Portfolio_SnapshotAdmin(admin.ModelAdmin):
     save_as = True
@@ -55,8 +57,11 @@ class CounterpartyAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
     search_fields = ['name']
-    list_display = ('counterparty_identifier', 'legal_type_of_counterparty', 'portfolio_id', 'date_of_entering_into_current_legal_process', 'current_internal_credit_rating', 'legal_fees_accrued')
+    list_display = ('counterparty_identifier', 'legal_type_of_counterparty', 'portfolio_id',
+                    'date_of_entering_into_current_legal_process', 'current_internal_credit_rating',
+                    'legal_fees_accrued')
     list_filter = ('portfolio_id', 'legal_procedure_type',)
+
 
 class CounterpartyGroupAdmin(admin.ModelAdmin):
     save_as = True
@@ -74,6 +79,7 @@ class LoanAdmin(admin.ModelAdmin):
                     'subsidy_amount')
 
     list_filter = ('asset_class', 'loan_purpose')
+
 
 class PropertyCollateralAdmin(admin.ModelAdmin):
     save_as = True
@@ -109,7 +115,7 @@ class ForbearanceAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Portfolio, PortfolioAdmin)
-admin.site.register(Portfolio_Snapshot, Portfolio_SnapshotAdmin)
+admin.site.register(PortfolioSnapshot, Portfolio_SnapshotAdmin)
 admin.site.register(CounterpartyGroup, CounterpartyGroupAdmin)
 admin.site.register(Counterparty, CounterpartyAdmin)
 admin.site.register(Loan, LoanAdmin)

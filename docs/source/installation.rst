@@ -3,23 +3,34 @@ Installation
 You can install and use the openNPL package in any system that supports python or docker
 
 
-Docker Installation
--------------------
-Running openNPL via docker is the installation option that simplifies the manual process (but a working docker installation is required!).
+Installation via Docker
+-----------------------
 
+Install Docker
+~~~~~~~~~~~~~~
 
-Docker Hub
-~~~~~~~~~~
-You can pull the latest image from Docker Hub (This method is recommended if you do not want to mess at all with the source distribution). Start by issuing
+Running openNPL via docker simplifies the installation process (but a working docker installation is required first!). Docker is available for many platforms, follow the installation instructions `here <https://docs.docker.com/engine/install/>`_. Once the installation is complete, make sure the docker service is running and you can run the hello-world application.
+
+.. code:: bash
+
+    sudo service docker start
+    sudo docker run hello-world
+
+Pull the openNPL image from Docker Hub
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can pull and run the latest image from Docker Hub (This method is recommended if you do not want to mess at all with the source distribution). Start by issuing
 
 .. code:: bash
 
     docker pull openrisk/opennpl_web:0.1.1
     docker run -p 8080:8080 openrisk/opennpl_web:0.1.1
 
+Access the running instance of opennpl by pointing your browser to ``http://localhost:8080`` and login with admin/admin credentials
 
-Local Image
-~~~~~~~~~~~
+Building a local docker image
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Alternatively you can build your own local image. After you fetch the distribution from the github repository (as per manual installation instructions above), in the root directory of the distribution issue:
 
 .. code:: bash
@@ -27,7 +38,7 @@ Alternatively you can build your own local image. After you fetch the distributi
     docker build -t opennpl_web:latest .
     docker run -p 8080:8080 opennpl_web:latest
 
-Access the running instance of opennpl by pointing your browser to ``http://localhost:8080`` and login with admin/admin credentials
+Again, access the running instance of opennpl by pointing your browser to ``http://localhost:8080`` and login with admin/admin credentials
 
 
 Manual installation from sources
@@ -103,13 +114,19 @@ another assigned. Be sure to note that and use it instead.
 
     python3 manage.py runserver
 
-Finally in your favorite browser (e.g. Firefox from Mozilla), enter the url ``http://localhost:8000`` and login with admin/admin credentials
+Finally in your favorite browser (e.g. Firefox from Mozilla), enter the url ``http://localhost:8001`` and login with admin/admin credentials.
+
+Note: 8000 is the default port, if that is already in use, you can select an available one:
+
+.. code:: bash
+
+    python3 manage.py runserver localhost:8081
 
 
 Troubleshooting
 ~~~~~~~~~~~~~~~~~~~~~~
 
 The above steps are typical Django project installation steps. If you experience trouble at any point, the
-Django online FAQ should help you out.
+`Django online FAQ <https://docs.djangoproject.com/en/3.1/faq/>`_ should help you out.
 
-We welcome your feedback and support, raise a github ticket if you want to report a bug or need new feature.
+We welcome your feedback and support, raise a github ticket if you want to report a bug or need a new feature.

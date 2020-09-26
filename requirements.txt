@@ -6,6 +6,7 @@ chardet==3.0.4
 Django==3.0.7
 django-debug-toolbar==2.2
 django-grappelli==2.14.2
+djangorestframework==3.11.1
 docutils==0.16
 idna==2.10
 imagesize==1.2.0

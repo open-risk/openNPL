@@ -1,5 +1,5 @@
 """
-This file was generated with the customdashboard management command and
+This file was generated with the custom dashboard management command and
 contains the class for the main dashboard.
 
 To activate your index dashboard add the following to your settings.py::
@@ -7,7 +7,6 @@ To activate your index dashboard add the following to your settings.py::
 """
 
 from django.utils.translation import gettext_lazy as _
-from django.urls import reverse
 
 from grappelli.dashboard import modules, Dashboard
 from grappelli.dashboard.utils import get_admin_site_name

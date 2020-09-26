@@ -18,8 +18,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 from django.urls import reverse
 
 '''
@@ -32,6 +32,7 @@ TODO Missing are the following: the Lease Table and schedule tables (swap cashfl
 In addition there is a Portfolio model and a Portfolio_Snapshot model
 
 '''
+
 
 class Portfolio(models.Model):
     """
@@ -57,7 +58,7 @@ class Portfolio(models.Model):
         verbose_name_plural = "Portfolios"
 
 
-class Portfolio_Snapshot(models.Model):
+class PortfolioSnapshot(models.Model):
     """
     EBA Portfolio_Snapshot object holds EBA Portfolio generated portfolio data
     The object is read/write

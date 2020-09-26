@@ -11,6 +11,8 @@
 Non-Performing loans pose a serious and ongoing challenge that affects many economies. The Covid-19 pandemic will only complicate the management of credit risk and problem loans. Developing tools and methodologies that will reduce the burden and improve the ability to manage problem loans is thus an important objective. For more background and previous work see the [blog post and links therein](https://www.openriskmanagement.com/opennpl-open-source-npl-platform-first-release/).
 
 ## Structure and Functionality Summary
+
+### User Oriented Functionality
 openNPL is a *web application* that works together with a tailored *data schema* to provide easy access to NPL data adhering to the regulatory recommendations. Running the application creates a *web server* that can then be accessed via any regular browser to enable interaction with the underlying database. 
 
 NB: For easy installation and testing, the current preliminary release of openNPL uses a portable sqlite database instead of a larger production database server.  
@@ -22,6 +24,12 @@ Once the platform is up and running:
 * Insert, Update or Delete records
 
 ![Landing](/docs/source/screenshots/filter.png)
+
+### Machine Oriented Functionality
+openNPL aims to be at the same time easy to integrate into automated (computer driven) workflows. For this reason it exposes a REST API that offers both overviews and granular access to individual records
+
+![Landing](/docs/source/API.png)
+
 
 *For more detailed description of structure and functionality please refer to the documentation as explained in the next section* 
 

@@ -34,10 +34,6 @@ class Enforcement(models.Model):
     # CHOICE DICTIONARIES
     #
 
-    JURISDICTION_OF_COURT_CHOICES = [(0, 'REF: ISO 3166 ALPHA-2')]
-
-    CURRENCY_OF_ENFORCEMENT_CHOICES = [(0, 'REF: ISO 4217')]
-
     CURRENT_MARKET_STATUS_CHOICES = [
         (0, '(a) On the market, is when the collateral is advertised and marketed for sale'),
         (1, '(b) Off the market, is when the collateral is not marketed or up for sale')]
@@ -48,134 +44,91 @@ class Enforcement(models.Model):
 
     enforcement_identifier = models.TextField(unique=True)
 
-    amount_of_outstanding_liabilities = models.FloatField(blank=True, null=True,
-                                                          help_text='Amount of accrued costs and fees paid by the receiver and to be invoiced to the Institution. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Amount_of_Outstanding_Liabilities">Documentation</a>')
+    amount_of_outstanding_liabilities = models.FloatField(blank=True, null=True, help_text='Amount of accrued costs and fees paid by the receiver and to be invoiced to the Institution. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Amount_of_Outstanding_Liabilities">Documentation</a>')
 
-    annual_insurance_payment = models.FloatField(blank=True, null=True,
-                                                 help_text='Annual insurance payment to be paid by receiver. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Annual_Insurance_Payment">Documentation</a>')
+    annual_insurance_payment = models.FloatField(blank=True, null=True, help_text='Annual insurance payment to be paid by receiver. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Annual_Insurance_Payment">Documentation</a>')
 
-    contracted_date = models.DateField(blank=True, null=True,
-                                       help_text='Contracted date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Contracted_Date">Documentation</a>')
+    contracted_date = models.DateField(blank=True, null=True, help_text='Contracted date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Contracted_Date">Documentation</a>')
 
-    costs_accrued_to_buyer = models.FloatField(blank=True, null=True,
-                                               help_text='Costs accrued to the buyer. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Costs_Accrued_to_Buyer">Documentation</a>')
+    costs_accrued_to_buyer = models.FloatField(blank=True, null=True, help_text='Costs accrued to the buyer. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Costs_Accrued_to_Buyer">Documentation</a>')
 
-    costs_at_end_of_sale = models.FloatField(blank=True, null=True,
-                                             help_text='Total costs accrued to the seller at end of sale process. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Costs_at_End_of_Sale">Documentation</a>')
+    costs_at_end_of_sale = models.FloatField(blank=True, null=True, help_text='Total costs accrued to the seller at end of sale process. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Costs_at_End_of_Sale">Documentation</a>')
 
-    court_appraisal_amount = models.FloatField(blank=True, null=True,
-                                               help_text='Court appraisal amount of the Property / Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Court_Appraisal_Amount">Documentation</a>')
+    court_appraisal_amount = models.FloatField(blank=True, null=True, help_text='Court appraisal amount of the Property / Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Court_Appraisal_Amount">Documentation</a>')
 
-    court_auction_identifier = models.TextField(blank=True, null=True,
-                                                help_text='Unique identifier for the auction process. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Court_Auction_identifier">Documentation</a>')
+    court_auction_identifier = models.TextField(blank=True, null=True, help_text='Unique identifier for the auction process. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Court_Auction_identifier">Documentation</a>')
 
-    court_auction_reserve_price_for_first_auction = models.FloatField(blank=True, null=True,
-                                                                      help_text='Court set reserve price for first auction, i.e. minimum price required by the court. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Court_Auction_Reserve_Price_for_First_Auction">Documentation</a>')
+    court_auction_reserve_price_for_first_auction = models.FloatField(blank=True, null=True, help_text='Court set reserve price for first auction, i.e. minimum price required by the court. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Court_Auction_Reserve_Price_for_First_Auction">Documentation</a>')
 
-    court_auction_reserve_price_for_last_auction = models.FloatField(blank=True, null=True,
-                                                                     help_text='Court set reserve price for last auction, i.e. minimum price required by the court. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Court_Auction_Reserve_Price_for_Last_Auction">Documentation</a>')
+    court_auction_reserve_price_for_last_auction = models.FloatField(blank=True, null=True, help_text='Court set reserve price for last auction, i.e. minimum price required by the court. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Court_Auction_Reserve_Price_for_Last_Auction">Documentation</a>')
 
-    court_auction_reserve_price_for_next_auction = models.FloatField(blank=True, null=True,
-                                                                     help_text='Court set reserve price for next auction, i.e. minimum price required by the court. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Court_Auction_Reserve_Price_for_Next_Auction">Documentation</a>')
+    court_auction_reserve_price_for_next_auction = models.FloatField(blank=True, null=True, help_text='Court set reserve price for next auction, i.e. minimum price required by the court. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Court_Auction_Reserve_Price_for_Next_Auction">Documentation</a>')
 
-    currency_of_enforcement = models.IntegerField(blank=True, null=True, choices=CURRENCY_OF_ENFORCEMENT_CHOICES,
-                                                  help_text='Currency that the items related to enforcement are expressed in. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Currency_of_Enforcement">Documentation</a>')
+    currency_of_enforcement = models.TextField(blank=True, null=True, help_text='Currency that the items related to enforcement are expressed in. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Currency_of_Enforcement">Documentation</a>')
 
-    current_market_status = models.IntegerField(blank=True, null=True, choices=CURRENT_MARKET_STATUS_CHOICES,
-                                                help_text='Current market status of the Property / Collateral as at cut-off date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Current_Market_Status">Documentation</a>')
+    current_market_status = models.IntegerField(blank=True, null=True, choices=CURRENT_MARKET_STATUS_CHOICES, help_text='Current market status of the Property / Collateral as at cut-off date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Current_Market_Status">Documentation</a>')
 
-    date_next_insurance_payment_is_due = models.DateField(blank=True, null=True,
-                                                          help_text='Date that the next insurance payment is due. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Date_Next_Insurance_Payment_Is_Due">Documentation</a>')
+    date_next_insurance_payment_is_due = models.DateField(blank=True, null=True, help_text='Date that the next insurance payment is due. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Date_Next_Insurance_Payment_Is_Due">Documentation</a>')
 
-    date_of_court_appraisal = models.DateField(blank=True, null=True,
-                                               help_text='Date that the court appraisal happened. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Date_of_Court_Appraisal">Documentation</a>')
+    date_of_court_appraisal = models.DateField(blank=True, null=True, help_text='Date that the court appraisal happened. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Date_of_Court_Appraisal">Documentation</a>')
 
-    date_of_receiver_appointment = models.DateField(blank=True, null=True,
-                                                    help_text='Date that the receiver was appointed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Date_of_Receiver_Appointment">Documentation</a>')
+    date_of_receiver_appointment = models.DateField(blank=True, null=True, help_text='Date that the receiver was appointed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Date_of_Receiver_Appointment">Documentation</a>')
 
-    enforcement_description = models.TextField(blank=True, null=True,
-                                               help_text='Comments or description of the stage of enforcement. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Enforcement_Description">Documentation</a>')
+    enforcement_description = models.TextField(blank=True, null=True, help_text='Comments or description of the stage of enforcement. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Enforcement_Description">Documentation</a>')
 
-    fees_of_receivership = models.FloatField(blank=True, null=True,
-                                             help_text='Annual fees charged by the receiver. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Fees_of_Receivership">Documentation</a>')
+    fees_of_receivership = models.FloatField(blank=True, null=True, help_text='Annual fees charged by the receiver. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Fees_of_Receivership">Documentation</a>')
 
-    first_auction_date = models.DateField(blank=True, null=True,
-                                          help_text='Date that the first auction has been performed in order to sell the Property / Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.First_Auction_Date">Documentation</a>')
+    first_auction_date = models.DateField(blank=True, null=True, help_text='Date that the first auction has been performed in order to sell the Property / Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.First_Auction_Date">Documentation</a>')
 
-    funds_remitted_full_date = models.DateField(blank=True, null=True,
-                                                help_text='Date that the funds were remitted fully. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Funds_Remitted_Full_Date">Documentation</a>')
+    funds_remitted_full_date = models.DateField(blank=True, null=True, help_text='Date that the funds were remitted fully. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Funds_Remitted_Full_Date">Documentation</a>')
 
-    funds_remitted_partial_date = models.DateField(blank=True, null=True,
-                                                   help_text='Date that the funds were remitted partially. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Funds_Remitted_Partial_Date">Documentation</a>')
+    funds_remitted_partial_date = models.DateField(blank=True, null=True, help_text='Date that the funds were remitted partially. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Funds_Remitted_Partial_Date">Documentation</a>')
 
-    gross_sale_proceeds = models.FloatField(blank=True, null=True,
-                                            help_text='Gross sale proceeds, i.e. sales proceeds and costs incurred from the disposal. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Gross_Sale_Proceeds">Documentation</a>')
+    gross_sale_proceeds = models.FloatField(blank=True, null=True, help_text='Gross sale proceeds, i.e. sales proceeds and costs incurred from the disposal. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Gross_Sale_Proceeds">Documentation</a>')
 
-    indicator_of_enforcement = models.NullBooleanField(blank=True, null=True,
-                                                   help_text='Indicator as to whether the Enforcement process has been entered into by a Corporate or Private Individual Counterparty. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Indicator_of_Enforcement">Documentation</a>')
+    indicator_of_enforcement = models.NullBooleanField(blank=True, null=True, help_text='Indicator as to whether the Enforcement process has been entered into by a Corporate or Private Individual Counterparty. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Indicator_of_Enforcement">Documentation</a>')
 
-    indicator_of_receivership = models.NullBooleanField(blank=True, null=True,
-                                                    help_text='Indicator as to whether the Corporate or Private Individual Counterparty is in Receivership. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Indicator_of_Receivership">Documentation</a>')
+    indicator_of_receivership = models.NullBooleanField(blank=True, null=True, help_text='Indicator as to whether the Corporate or Private Individual Counterparty is in Receivership. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Indicator_of_Receivership">Documentation</a>')
 
-    insurance = models.NullBooleanField(blank=True, null=True,
-                                    help_text='Indicator as to whether the receiver has insured the Property / Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Insurance">Documentation</a>')
+    insurance = models.NullBooleanField(blank=True, null=True, help_text='Indicator as to whether the receiver has insured the Property / Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Insurance">Documentation</a>')
 
-    insurance_coverage_amount = models.FloatField(blank=True, null=True,
-                                                  help_text='Amount that the insurance covers. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Insurance_Coverage_Amount">Documentation</a>')
+    insurance_coverage_amount = models.FloatField(blank=True, null=True, help_text='Amount that the insurance covers. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Insurance_Coverage_Amount">Documentation</a>')
 
-    insurance_provider = models.TextField(blank=True, null=True,
-                                          help_text='Name of the insurance provider. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Insurance_Provider">Documentation</a>')
+    insurance_provider = models.TextField(blank=True, null=True, help_text='Name of the insurance provider. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Insurance_Provider">Documentation</a>')
 
-    jurisdiction_of_court = models.IntegerField(blank=True, null=True, choices=JURISDICTION_OF_COURT_CHOICES,
-                                                help_text='Location of the court where the case is being heard in. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Jurisdiction_of_Court">Documentation</a>')
+    jurisdiction_of_court = models.TextField(blank=True, null=True, help_text='Location of the court where the case is being heard in. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Jurisdiction_of_Court">Documentation</a>')
 
-    last_auction_date = models.DateField(blank=True, null=True,
-                                         help_text='Date that the last auction was performed in order to sell the Property / Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Last_Auction_Date">Documentation</a>')
+    last_auction_date = models.DateField(blank=True, null=True, help_text='Date that the last auction was performed in order to sell the Property / Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Last_Auction_Date">Documentation</a>')
 
-    name_of_legal_firm = models.TextField(blank=True, null=True,
-                                          help_text='Name of legal firm acting on behalf of the Institution. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Name_of_Legal_Firm">Documentation</a>')
+    name_of_legal_firm = models.TextField(blank=True, null=True, help_text='Name of legal firm acting on behalf of the Institution. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Name_of_Legal_Firm">Documentation</a>')
 
-    name_of_receiver = models.TextField(blank=True, null=True,
-                                        help_text='Name of the receiver appointed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Name_of_Receiver">Documentation</a>')
+    name_of_receiver = models.TextField(blank=True, null=True, help_text='Name of the receiver appointed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Name_of_Receiver">Documentation</a>')
 
-    net_sale_proceeds = models.FloatField(blank=True, null=True,
-                                          help_text='Net sale proceeds. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Net_Sale_Proceeds">Documentation</a>')
+    net_sale_proceeds = models.FloatField(blank=True, null=True, help_text='Net sale proceeds. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Net_Sale_Proceeds">Documentation</a>')
 
-    next_auction_date = models.DateField(blank=True, null=True,
-                                         help_text='Date that the next intended auction has been performed in order to sell the Property / Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Next_Auction_Date">Documentation</a>')
+    next_auction_date = models.DateField(blank=True, null=True, help_text='Date that the next intended auction has been performed in order to sell the Property / Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Next_Auction_Date">Documentation</a>')
 
-    number_of_failed_auctions = models.FloatField(blank=True, null=True,
-                                                  help_text='Number of failed previous auctions for the Property / Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Number_of_Failed_Auctions">Documentation</a>')
+    number_of_failed_auctions = models.FloatField(blank=True, null=True, help_text='Number of failed previous auctions for the Property / Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Number_of_Failed_Auctions">Documentation</a>')
 
-    offer_price = models.FloatField(blank=True, null=True,
-                                    help_text='The highest price offered by potential buyers. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Offer_Price">Documentation</a>')
+    offer_price = models.FloatField(blank=True, null=True, help_text='The highest price offered by potential buyers. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Offer_Price">Documentation</a>')
 
-    on_market_offer_date = models.DateField(blank=True, null=True,
-                                            help_text='On market offer date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.On_Market_Offer_Date">Documentation</a>')
+    on_market_offer_date = models.DateField(blank=True, null=True, help_text='On market offer date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.On_Market_Offer_Date">Documentation</a>')
 
-    on_market_price = models.FloatField(blank=True, null=True,
-                                        help_text='Price of the Property / Collateral for which it is on the market. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.On_Market_Price">Documentation</a>')
+    on_market_price = models.FloatField(blank=True, null=True, help_text='Price of the Property / Collateral for which it is on the market. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.On_Market_Price">Documentation</a>')
 
-    other_ongoing_enforcement_proceedings = models.TextField(blank=True, null=True,
-                                                             help_text='Further comments / details if there is other proceedings in place. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Other_ongoing_enforcement_proceedings">Documentation</a>')
+    other_ongoing_enforcement_proceedings = models.TextField(blank=True, null=True, help_text='Further comments / details if there is other proceedings in place. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Other_ongoing_enforcement_proceedings">Documentation</a>')
 
-    prepare_property_for_sale_date = models.DateField(blank=True, null=True,
-                                                      help_text='Prepare property for sale date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Prepare_Property_for_Sale_Date">Documentation</a>')
+    prepare_property_for_sale_date = models.DateField(blank=True, null=True, help_text='Prepare property for sale date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Prepare_Property_for_Sale_Date">Documentation</a>')
 
-    property_on_market_date = models.DateField(blank=True, null=True,
-                                               help_text='Property on market date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Property_on_Market_Date">Documentation</a>')
+    property_on_market_date = models.DateField(blank=True, null=True, help_text='Property on market date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Property_on_Market_Date">Documentation</a>')
 
-    protection_identifier = models.TextField(blank=True, null=True,
-                                             help_text='Unique Institution internal identifier for the Property / Collateral as defined in sections "Property Collateral" and "Non-Property Collateral". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Protection_identifier">Documentation</a>')
+    protection_identifier = models.TextField(blank=True, null=True, help_text='Unique Institution internal identifier for the Property / Collateral as defined in sections "Property Collateral" and "Non-Property Collateral". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Protection_identifier">Documentation</a>')
 
-    sale_agreed_date = models.DateField(blank=True, null=True,
-                                        help_text='Sale agreed date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Sale_Agreed_Date">Documentation</a>')
+    sale_agreed_date = models.DateField(blank=True, null=True, help_text='Sale agreed date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Sale_Agreed_Date">Documentation</a>')
 
-    sale_agreed_price = models.FloatField(blank=True, null=True,
-                                          help_text='Agreed price for the disposal of the Property / Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Sale_Agreed_Price">Documentation</a>')
+    sale_agreed_price = models.FloatField(blank=True, null=True, help_text='Agreed price for the disposal of the Property / Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Sale_Agreed_Price">Documentation</a>')
 
-    sold_date = models.DateField(blank=True, null=True,
-                                 help_text='Sold date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Sold_Date">Documentation</a>')
+    sold_date = models.DateField(blank=True, null=True, help_text='Sold date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Sold_Date">Documentation</a>')
 
     # Bookkeeping fields
     creation_date = models.DateTimeField(auto_now_add=True)

@@ -51,60 +51,41 @@ class Forbearance(models.Model):
 
     forbearance_identifier = models.TextField(unique=True)
 
-    amount_of_repayment_step_up = models.FloatField(blank=True, null=True,
-                                                    help_text='Additional amount that the current agreed forbearance amount is increased by. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Amount_of_Repayment_Step_Up">Documentation</a>')
+    amount_of_repayment_step_up = models.FloatField(blank=True, null=True, help_text='Additional amount that the current agreed forbearance amount is increased by. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Amount_of_Repayment_Step_Up">Documentation</a>')
 
-    clause_to_stop_forbearance = models.NullBooleanField(blank=True, null=True,
-                                                         help_text='Indicator as to whether a clause exists to allow the Institution to stop the current forbearance. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Clause_to_Stop_Forbearance">Documentation</a>')
+    clause_to_stop_forbearance = models.NullBooleanField(blank=True, null=True, help_text='Indicator as to whether a clause exists to allow the Institution to stop the current forbearance. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Clause_to_Stop_Forbearance">Documentation</a>')
 
-    date_of_first_forbearance = models.DateField(blank=True, null=True,
-                                                 help_text='Date that the first forbearance happened. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Date_of_First_Forbearance">Documentation</a>')
+    date_of_first_forbearance = models.DateField(blank=True, null=True, help_text='Date that the first forbearance happened. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Date_of_First_Forbearance">Documentation</a>')
 
-    date_of_principal_forgiveness = models.DateField(blank=True, null=True,
-                                                     help_text='Date that the principal forgiveness happened. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Date_of_Principal_Forgiveness">Documentation</a>')
+    date_of_principal_forgiveness = models.DateField(blank=True, null=True, help_text='Date that the principal forgiveness happened. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Date_of_Principal_Forgiveness">Documentation</a>')
 
-    date_of_repayment_step_up = models.DateField(blank=True, null=True,
-                                                 help_text='Date at which the current agreed forbearance amount is increased. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Date_of_Repayment_Step_Up">Documentation</a>')
+    date_of_repayment_step_up = models.DateField(blank=True, null=True, help_text='Date at which the current agreed forbearance amount is increased. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Date_of_Repayment_Step_Up">Documentation</a>')
 
-    description_of_forbearance = models.TextField(blank=True, null=True,
-                                                  help_text='Further comments / details on the current forbearance. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Description_of_Forbearance">Documentation</a>')
+    description_of_forbearance = models.TextField(blank=True, null=True, help_text='Further comments / details on the current forbearance. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Description_of_Forbearance">Documentation</a>')
 
-    description_of_the_forbearance_clause = models.TextField(blank=True, null=True,
-                                                             help_text='Further comments / details on the clause if "Yes" is selected in field "Clause to Stop Forbearance". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Description_of_the_Forbearance_Clause">Documentation</a>')
+    description_of_the_forbearance_clause = models.TextField(blank=True, null=True, help_text='Further comments / details on the clause if "Yes" is selected in field "Clause to Stop Forbearance". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Description_of_the_Forbearance_Clause">Documentation</a>')
 
-    end_date_of_forbearance = models.DateField(blank=True, null=True,
-                                               help_text='Date that the current forbearance arrangement ends. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.End_Date_of_Forbearance">Documentation</a>')
+    end_date_of_forbearance = models.DateField(blank=True, null=True, help_text='Date that the current forbearance arrangement ends. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.End_Date_of_Forbearance">Documentation</a>')
 
-    institutions_internal_identifier_for_the_loan_or_counterparty = models.TextField(blank=True, null=True,
-                                                                                     help_text='Institutions internal identifier for the Counterparty or the Loan.<a class ="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Institutions_internal_identifier_for_the_Loan_or_Counterparty" > Documentation </a>')
+    institutions_internal_identifier_for_the_loan_or_counterparty = models.TextField(blank=True, null=True, help_text='Institutions internal identifier for the Counterparty or the Loan.<a class ="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Institutions_internal_identifier_for_the_Loan_or_Counterparty" > Documentation </a>')
 
-    instrument_identifier = models.TextField(blank=True, null=True,
-                                             help_text='Institutions internal identifier for the Loan part. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Instrument_Identifier">Documentation</a>')
+    instrument_identifier = models.TextField(blank=True, null=True, help_text='Institutions internal identifier for the Loan part. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Instrument_Identifier">Documentation</a>')
 
-    interest_rate_under_forbearance = models.FloatField(blank=True, null=True,
-                                                        help_text='Interest rate that the Institution and Counterparty agreed under the current forbearance terms. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Interest_Rate_Under_Forbearance">Documentation</a>')
+    interest_rate_under_forbearance = models.FloatField(blank=True, null=True, help_text='Interest rate that the Institution and Counterparty agreed under the current forbearance terms. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Interest_Rate_Under_Forbearance">Documentation</a>')
 
-    number_of_historical_forbearance = models.FloatField(blank=True, null=True,
-                                                         help_text='Number of forbearance(s) that happened in the past. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Number_of_Historical_Forbearance">Documentation</a>')
+    number_of_historical_forbearance = models.FloatField(blank=True, null=True, help_text='Number of forbearance(s) that happened in the past. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Number_of_Historical_Forbearance">Documentation</a>')
 
-    principal_forgiveness = models.FloatField(blank=True, null=True,
-                                              help_text='Amount of the principal that was forgiven as part of current forbearance, including principal forgiveness agreed by external collection agencies. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Principal_Forgiveness">Documentation</a>')
+    principal_forgiveness = models.FloatField(blank=True, null=True, help_text='Amount of the principal that was forgiven as part of current forbearance, including principal forgiveness agreed by external collection agencies. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Principal_Forgiveness">Documentation</a>')
 
-    repayment_amount_under_forbearance = models.FloatField(blank=True, null=True,
-                                                           help_text='Periodic repayment amount that the Institution and Counterparty agreed under the current forbearance terms. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Repayment_Amount_Under_Forbearance">Documentation</a>')
+    repayment_amount_under_forbearance = models.FloatField(blank=True, null=True, help_text='Periodic repayment amount that the Institution and Counterparty agreed under the current forbearance terms. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Repayment_Amount_Under_Forbearance">Documentation</a>')
 
-    repayment_frequency_under_forbearance = models.IntegerField(blank=True, null=True,
-                                                                choices=REPAYMENT_FREQUENCY_UNDER_FORBEARANCE_CHOICES,
-                                                                help_text='Frequency that the repayment under current forbearance terms is made. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Repayment_Frequency_Under_Forbearance">Documentation</a>')
+    repayment_frequency_under_forbearance = models.IntegerField(blank=True, null=True, choices=REPAYMENT_FREQUENCY_UNDER_FORBEARANCE_CHOICES, help_text='Frequency that the repayment under current forbearance terms is made. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Repayment_Frequency_Under_Forbearance">Documentation</a>')
 
-    start_date_of_forbearance = models.DateField(blank=True, null=True,
-                                                 help_text='Date that the current forbearance arrangement starts. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Start_Date_of_Forbearance">Documentation</a>')
+    start_date_of_forbearance = models.DateField(blank=True, null=True, help_text='Date that the current forbearance arrangement starts. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Start_Date_of_Forbearance">Documentation</a>')
 
-    type_of_forbearance = models.IntegerField(blank=True, null=True, choices=TYPE_OF_FORBEARANCE_CHOICES,
-                                              help_text='Type of current forbearance. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Type_of_Forbearance">Documentation</a>')
+    type_of_forbearance = models.IntegerField(blank=True, null=True, choices=TYPE_OF_FORBEARANCE_CHOICES, help_text='Type of current forbearance. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Type_of_Forbearance">Documentation</a>')
 
-    type_of_identifier = models.IntegerField(blank=True, null=True, choices=TYPE_OF_IDENTIFIER_CHOICES,
-                                             help_text='Indicator as to whether forbearance has been prepared on a Counterparty level or a Loan level. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Type_of_Identifier">Documentation</a>')
+    type_of_identifier = models.IntegerField(blank=True, null=True, choices=TYPE_OF_IDENTIFIER_CHOICES, help_text='Indicator as to whether forbearance has been prepared on a Counterparty level or a Loan level. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Type_of_Identifier">Documentation</a>')
 
 
     # Bookkeeping fields

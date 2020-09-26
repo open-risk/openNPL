@@ -66,8 +66,8 @@ explains the meaning and requirements for this data point
 
 .. image:: ./screenshots/manual.png
 
-We can go back to the overview of all data by clicking on the breadcrumb (EBA Portfolio) or pointint the
-browser to http://localhost:8000/admin/eba_portfolio/
+We can go back to the overview of all data by clicking on the breadcrumb (EBA Portfolio) or pointing the
+browser to http://localhost:8001/admin/eba_portfolio/
 
 Lets take a look now at another important data model, namely the loan data. Loans is one of the main
 financial products documented in the templates (others being leases and swaps)

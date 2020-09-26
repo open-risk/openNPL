@@ -10,6 +10,7 @@ openNPL Documentation
    description
    installation
    usage
+   api
    changelog
 
 
