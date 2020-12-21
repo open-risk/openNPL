@@ -11,7 +11,7 @@ WORKDIR /opennpl
 COPY requirements.txt /opennpl/
 RUN pip install -r requirements.txt
 COPY . /opennpl/
-RUN rm /opennpl/db.sqlite3
+RUN rm -f /opennpl/db.sqlite3
 RUN python /opennpl/manage.py makemigrations
 RUN python /opennpl/manage.py migrate
 RUN python /opennpl/createadmin.py
