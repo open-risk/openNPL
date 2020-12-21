@@ -21,19 +21,19 @@
 from django.conf.urls import url
 from openNPL import views
 
-app_name = 'eba_portfolio'
+app_name = 'npl_portfolio'
 
 urlpatterns = [
-    # url(r'^$', views.eba_api_root, name='eba_api_root'),
-    url(r'^counterparty_groups$', views.eba_counterparty_group_api, name='eba_counterparty_group_api'),
-    url(r'^counterparties$', views.eba_counterparty_api, name='eba_counterparty_api'),
-    url(r'^counterparties/(?P<pk>[0-9]+)/$', views.eba_counterparty_detail, name='eba_counterparty_detail'),
-    url(r'^property_collateral$', views.eba_property_collateral_api, name='eba_property_collateral_api'),
-    url(r'^property_collateral/(?P<pk>[0-9]+)/$', views.eba_property_collateral_detail, name='eba_property_collateral_detail'),
-    url(r'^loans$', views.eba_loan_api, name='eba_loan_api'),
-    url(r'^loans/(?P<pk>[0-9]+)/$', views.eba_loan_detail, name='eba_loan_detail'),
-    url(r'^enforcements$', views.eba_enforcement_api, name='eba_enforcement_api'),
-    url(r'^forbearance$', views.eba_forbearance_api, name='eba_forbearance_api'),
-    url(r'^nonproperty_collateral$', views.eba_nonproperty_collateral_api, name='eba_nonproperty_collateral_api'),
-    url(r'^external_collections$', views.eba_external_collection_api, name='eba_external_collection_api'),
+    # url(r'^$', views.npl_api_root, name='npl_api_root'),
+    url(r'^counterparty_groups$', views.npl_counterparty_group_api, name='npl_counterparty_group_api'),
+    url(r'^counterparties$', views.npl_counterparty_api, name='npl_counterparty_api'),
+    url(r'^counterparties/(?P<pk>[0-9]+)/$', views.npl_counterparty_detail, name='npl_counterparty_detail'),
+    url(r'^property_collateral$', views.npl_property_collateral_api, name='npl_property_collateral_api'),
+    url(r'^property_collateral/(?P<pk>[0-9]+)/$', views.npl_property_collateral_detail, name='npl_property_collateral_detail'),
+    url(r'^loans$', views.npl_loan_api, name='npl_loan_api'),
+    url(r'^loans/(?P<pk>[0-9]+)/$', views.npl_loan_detail, name='npl_loan_detail'),
+    url(r'^enforcements$', views.npl_enforcement_api, name='npl_enforcement_api'),
+    url(r'^forbearance$', views.npl_forbearance_api, name='npl_forbearance_api'),
+    url(r'^nonproperty_collateral$', views.npl_nonproperty_collateral_api, name='npl_nonproperty_collateral_api'),
+    url(r'^external_collections$', views.npl_external_collection_api, name='npl_external_collection_api'),
 ]

@@ -2,7 +2,9 @@
 [![Documentation Status](https://readthedocs.org/projects/opennpl/badge/?version=latest)](https://opennpl.readthedocs.io/en/latest/?badge=latest)
 
 # openNPL overview
-![openNPL Logo](/docs/source/opennpl-logo.png) openNPL is an open source platform for the management of non-performing loans. It implements the detailed European Banking Authority loan templates for NPL data. It thereby enables the collection and easy management of non-performing loan data according to best-practices. The platform is in active development, parties interested in its further development are encouraged to get involved. The project aims to be driven by community needs. We welcome code contributions and feature requests via github.
+![openNPL Logo](/docs/source/opennpl-logo.png) openNPL is an open source platform for the management of non-performing loans. It implements and builds on the detailed European Banking Authority loan templates for NPL data. It thereby enables the collection and easy management of non-performing loan data according to best-practices. 
+
+The platform is in active development, parties interested in its further development are encouraged to get involved. The project aims to be driven by community needs. We welcome code contributions and feature requests via github.
 
 ![Landing](/docs/source/screenshots/landing.png)
 
@@ -10,12 +12,12 @@
 ## Motivation
 Non-Performing loans pose a serious and ongoing challenge that affects many economies. The Covid-19 pandemic will only complicate the management of credit risk and problem loans. Developing tools and methodologies that will reduce the burden and improve the ability to manage problem loans is thus an important objective. For more background and previous work see the [blog post and links therein](https://www.openriskmanagement.com/opennpl-open-source-npl-platform-first-release/).
 
-## Structure and Functionality Summary
+## Summary of Structure and Functionality
 
 ### User Oriented Functionality
-openNPL is a *web application* that works together with a tailored *data schema* to provide easy access to NPL data adhering to the regulatory recommendations. Running the application creates a *web server* that can then be accessed via any regular browser to enable interaction with the underlying database. 
+openNPL is a *web server application* that works together with a tailored *data schema* to provide easy access to NPL data adhering to the regulatory recommendations. Running the application creates a web server that can then be accessed by any regular browser to enable interaction with the underlying database and data sets. 
 
-NB: For easy installation and testing, the current preliminary release of openNPL uses a portable sqlite database instead of a larger production database server.  
+NB: For easy installation and testing, the current (preliminary) release of openNPL uses a portable sqlite database instead of a larger production database server. In future releases the sqlite option will be retained for lightweight (demo) purposes only  
 
 Once the platform is up and running:
 
@@ -30,11 +32,10 @@ openNPL aims to be at the same time easy to integrate into automated (computer d
 
 ![Landing](/docs/source/API.png)
 
-
 *For more detailed description of structure and functionality please refer to the documentation as explained in the next section* 
 
 **WARNING**
-The current release is a development version that offers no security features. Do **not** use it with real data unless in a secure environment.
+The current release is a development version that offers no security features. Do **not** use it with real data unless operating within a secure environment.
 
 # Documentation
 openNPL includes two broad categories of documentation:
@@ -95,7 +96,6 @@ python manage.py runserver
 We welcome your feedback and support, raise a github issue if you want to report a bug or request new feature. We are glad to help.
 
 - [Contribute on Issues](<https://github.com/open-risk/openNPL/issues>)
-- Follow [Open Risk](<https://www.linkedin.com/company/openrisk>) on Linkedin
 - Chat with the community [Gitter](<https://gitter.im/open-risk/Lobby>)
 - For customisations, support or any other collaboration, email <info@openrisk.eu>
 - Need commercial support? [Contact](https://www.openriskmanagement.com/contact/)

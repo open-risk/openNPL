@@ -29,12 +29,12 @@ Portfolio_Snapshot is used to group data into time snapshots
 
 '''
 
-from eba_portfolio.models import PortfolioSnapshot, Portfolio
-from eba_portfolio.models import Counterparty, CounterpartyGroup
-from eba_portfolio.models import Loan
-from eba_portfolio.models import ExternalCollection, Enforcement
-from eba_portfolio.models import NonPropertyCollateral, PropertyCollateral
-from eba_portfolio.models import Forbearance
+from npl_portfolio.models import PortfolioSnapshot, Portfolio
+from npl_portfolio.models import Counterparty, CounterpartyGroup
+from npl_portfolio.models import Loan
+from npl_portfolio.models import ExternalCollection, Enforcement
+from npl_portfolio.models import NonPropertyCollateral, PropertyCollateral
+from npl_portfolio.models import Forbearance
 
 
 class PortfolioAdmin(admin.ModelAdmin):

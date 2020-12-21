@@ -21,10 +21,10 @@
 
 from django.conf import settings
 
-from openNPL.serializers import EBA_CounterpartySerializer, EBA_CounterpartyDetailSerializer, EBA_LoanSerializer, \
-    EBA_LoanDetailSerializer, EBA_CounterpartyGroupSerializer, \
-    EBA_EnforcementSerializer, EBA_ExternalCollectionSerializer, EBA_NonPropertyCollateralSerializer, \
-    EBA_PropertyCollateralSerializer, EBA_PropertyCollateralDetailSerializer, EBA_ForbearanceSerializer
+from openNPL.serializers import NPL_CounterpartySerializer, NPL_CounterpartyDetailSerializer, NPL_LoanSerializer, \
+    NPL_LoanDetailSerializer, NPL_CounterpartyGroupSerializer, \
+    NPL_EnforcementSerializer, NPL_ExternalCollectionSerializer, NPL_NonPropertyCollateralSerializer, \
+    NPL_PropertyCollateralSerializer, NPL_PropertyCollateralDetailSerializer, NPL_ForbearanceSerializer
 
 from rest_framework import permissions
 from rest_framework import status
@@ -32,7 +32,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 
-from eba_portfolio.models import CounterpartyGroup, Counterparty, Loan, \
+from npl_portfolio.models import CounterpartyGroup, Counterparty, Loan, \
     Enforcement, Forbearance, NonPropertyCollateral, PropertyCollateral, \
     ExternalCollection
 
@@ -49,19 +49,19 @@ def api_root(request, format=None):
     """
 
     data = [
-        {'EBA Template Endpoints':
+        {'NPL Template Endpoints':
             [
-                {'eba_counterparty_group': reverse('eba_portfolio:eba_counterparty_group_api', request=request,
+                {'npl_counterparty_group': reverse('npl_portfolio:npl_counterparty_group_api', request=request,
                                                    format=format)},
-                {'eba_counterparty': reverse('eba_portfolio:eba_counterparty_api', request=request, format=format)},
-                {'eba_loan': reverse('eba_portfolio:eba_loan_api', request=request, format=format)},
-                {'eba_enforcement': reverse('eba_portfolio:eba_enforcement_api', request=request, format=format)},
-                {'eba_forbearance': reverse('eba_portfolio:eba_forbearance_api', request=request, format=format)},
-                {'eba_nonproperty_collateral': reverse('eba_portfolio:eba_nonproperty_collateral_api', request=request,
+                {'npl_counterparty': reverse('npl_portfolio:npl_counterparty_api', request=request, format=format)},
+                {'npl_loan': reverse('npl_portfolio:npl_loan_api', request=request, format=format)},
+                {'npl_enforcement': reverse('npl_portfolio:npl_enforcement_api', request=request, format=format)},
+                {'npl_forbearance': reverse('npl_portfolio:npl_forbearance_api', request=request, format=format)},
+                {'npl_nonproperty_collateral': reverse('npl_portfolio:npl_nonproperty_collateral_api', request=request,
                                                        format=format)},
-                {'eba_property_collateral': reverse('eba_portfolio:eba_property_collateral_api', request=request,
+                {'npl_property_collateral': reverse('npl_portfolio:npl_property_collateral_api', request=request,
                                                     format=format)},
-                {'eba_external_collection': reverse('eba_portfolio:eba_external_collection_api', request=request,
+                {'npl_external_collection': reverse('npl_portfolio:npl_external_collection_api', request=request,
                                                     format=format)},
             ]},
     ]
@@ -74,7 +74,7 @@ def api_root(request, format=None):
 #
 
 @api_view(['GET'])
-def eba_api_root(request, format=None):
+def npl_api_root(request, format=None):
     """
     Returns a list of all active API endpoints for EBA Template Data
 
@@ -83,33 +83,33 @@ def eba_api_root(request, format=None):
     data = [
         {'EBA Template Endpoints':
             [
-                {'eba_counterparty_group': reverse('eba_counterparty_group_api', request=request, format=format)},
-                {'eba_counterparty': reverse('eba_counterparty_api', request=request, format=format)},
-                {'eba_loan': reverse('eba_loan_api', request=request, format=format)},
-                {'eba_enforcement': reverse('eba_enforcement_api', request=request, format=format)},
-                {'eba_forbearance': reverse('eba_forbearance_api', request=request, format=format)},
-                {'eba_nonproperty_collateral': reverse('eba_nonproperty_collateral_api', request=request,
+                {'npl_counterparty_group': reverse('npl_counterparty_group_api', request=request, format=format)},
+                {'npl_counterparty': reverse('npl_counterparty_api', request=request, format=format)},
+                {'npl_loan': reverse('npl_loan_api', request=request, format=format)},
+                {'npl_enforcement': reverse('npl_enforcement_api', request=request, format=format)},
+                {'npl_forbearance': reverse('npl_forbearance_api', request=request, format=format)},
+                {'npl_nonproperty_collateral': reverse('npl_nonproperty_collateral_api', request=request,
                                                        format=format)},
-                {'eba_property_collateral': reverse('eba_property_collateral_api', request=request, format=format)},
-                {'eba_external_collection': reverse('eba_external_collection_api', request=request, format=format)},
+                {'npl_property_collateral': reverse('npl_property_collateral_api', request=request, format=format)},
+                {'npl_external_collection': reverse('npl_external_collection_api', request=request, format=format)},
             ]}
     ]
     return Response(data)
 
 
 @api_view(['GET'])
-def eba_counterparty_api(request):
+def npl_counterparty_api(request):
     """
     List Counterparties (EBA Template)
     """
     if request.method == 'GET':
         counterparty = Counterparty.objects.all()
-        serializer = EBA_CounterpartySerializer(counterparty, many=True, context={'request': request})
+        serializer = NPL_CounterpartySerializer(counterparty, many=True, context={'request': request})
         return Response(serializer.data)
 
 
 @api_view(['GET'])
-def eba_counterparty_detail(request, pk):
+def npl_counterparty_detail(request, pk):
     """
     List the data a specific EBA Counterparty
     """
@@ -118,23 +118,23 @@ def eba_counterparty_detail(request, pk):
     except Counterparty.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    serializer = EBA_CounterpartyDetailSerializer(counterparty)
+    serializer = NPL_CounterpartyDetailSerializer(counterparty)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
-def eba_loan_api(request):
+def npl_loan_api(request):
     """
     List Loans (EBA Template)
     """
     if request.method == 'GET':
         loan = Loan.objects.all()
-        serializer = EBA_LoanSerializer(loan, many=True, context={'request': request})
+        serializer = NPL_LoanSerializer(loan, many=True, context={'request': request})
         return Response(serializer.data)
 
 
 @api_view(['GET'])
-def eba_loan_detail(request, pk):
+def npl_loan_detail(request, pk):
     """
     List the data a specific EBA Loan
     """
@@ -143,24 +143,24 @@ def eba_loan_detail(request, pk):
     except Loan.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    serializer = EBA_LoanDetailSerializer(loan)
+    serializer = NPL_LoanDetailSerializer(loan)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
-def eba_property_collateral_api(request):
+def npl_property_collateral_api(request):
     """
     List Property Collateral (EBA Template)
     """
     if request.method == 'GET':
         property_collateral = PropertyCollateral.objects.all()
-        serializer = EBA_PropertyCollateralSerializer(property_collateral, many=True,
+        serializer = NPL_PropertyCollateralSerializer(property_collateral, many=True,
                                                       context={'request': request})
         return Response(serializer.data)
 
 
 @api_view(['GET'])
-def eba_property_collateral_detail(request, pk):
+def npl_property_collateral_detail(request, pk):
     """
     List the data a specific EBA Property Collateral
     """
@@ -169,64 +169,64 @@ def eba_property_collateral_detail(request, pk):
     except PropertyCollateral.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    serializer = EBA_PropertyCollateralDetailSerializer(property_collateral)
+    serializer = NPL_PropertyCollateralDetailSerializer(property_collateral)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
-def eba_counterparty_group_api(request):
+def npl_counterparty_group_api(request):
     """
     List Counterparty Groups (EBA Template)
     """
     if request.method == 'GET':
         counterparty_group = CounterpartyGroup.objects.all()
-        serializer = EBA_CounterpartyGroupSerializer(counterparty_group, many=True, context={'request': request})
+        serializer = NPL_CounterpartyGroupSerializer(counterparty_group, many=True, context={'request': request})
         return Response(serializer.data)
 
 
 @api_view(['GET'])
-def eba_enforcement_api(request):
+def npl_enforcement_api(request):
     """
     List Enforcements (EBA Template)
     """
     if request.method == 'GET':
         enforcement = Enforcement.objects.all()
-        serializer = EBA_EnforcementSerializer(enforcement, many=True, context={'request': request})
+        serializer = NPL_EnforcementSerializer(enforcement, many=True, context={'request': request})
         return Response(serializer.data)
 
 
 @api_view(['GET'])
-def eba_forbearance_api(request):
+def npl_forbearance_api(request):
     """
     List Forbearance (EBA Template)
     """
     if request.method == 'GET':
         forbearance = Forbearance.objects.all()
-        serializer = EBA_ForbearanceSerializer(forbearance, many=True, context={'request': request})
+        serializer = NPL_ForbearanceSerializer(forbearance, many=True, context={'request': request})
         return Response(serializer.data)
 
 
 @api_view(['GET'])
-def eba_nonproperty_collateral_api(request):
+def npl_nonproperty_collateral_api(request):
     """
     List NonProperty Collateral (EBA Template)
     """
     if request.method == 'GET':
         nonproperty_collateral = NonPropertyCollateral.objects.all()
-        serializer = EBA_NonPropertyCollateralSerializer(nonproperty_collateral, many=True,
+        serializer = NPL_NonPropertyCollateralSerializer(nonproperty_collateral, many=True,
                                                          context={'request': request})
         return Response(serializer.data)
 
 
 
 @api_view(['GET'])
-def eba_external_collection_api(request):
+def npl_external_collection_api(request):
     """
     List External Collections (EBA Template)
     """
     if request.method == 'GET':
         external_collection = ExternalCollection.objects.all()
-        serializer = EBA_ExternalCollectionSerializer(external_collection, many=True,
+        serializer = NPL_ExternalCollectionSerializer(external_collection, many=True,
                                                       context={'request': request})
         return Response(serializer.data)
 

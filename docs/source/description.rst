@@ -46,7 +46,7 @@ The openNPL distribution has the following structure:
 +=========+===============+============+=======================================+
 | openNPL |               |            | The root                              |
 +---------+---------------+------------+---------------------------------------+
-|         | eba_portfolio |            | DIR: The core python files            |
+|         | npl_portfolio |            | DIR: The core python files            |
 +---------+---------------+------------+---------------------------------------+
 |         |               | models.py  | Portfolio level models                |
 +---------+---------------+------------+---------------------------------------+
@@ -71,7 +71,7 @@ Core Data Models
 
 - Portfolio (Segments the data into distinct portfolios)
 - Portfolio_Snapshot (Segments the data into temporal snapshots / cutoff dates)
-- 8 EBA Tables (Implementing the core EBA template specification)
+- 8 NPL Tables (Implementing the core European Banking Authority NPL template specification)
 - User (Inheriting from Django User model)
 
 Installation options

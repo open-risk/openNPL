@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NAME[1]="eba_portfolio"
+NAME[1]="npl_portfolio"
 
 source venv/bin/activate
 for i in ${NAME[@]}

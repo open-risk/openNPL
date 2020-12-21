@@ -45,7 +45,7 @@ urlpatterns = [
     path('grappelli/grp_doc/', include('grappelli.urls_docs')),  # grappelli URLS
     path('', include('start.urls')),  # start URLS
     path(r'api/', views.api_root, name='api_root'), # API root
-    path(r'api/eba_data/', include(('eba_portfolio.urls', 'eba_portfolio'), namespace='eba_portfolio')), # NPL data
+    path(r'api/npl_data/', include(('npl_portfolio.urls', 'npl_portfolio'), namespace='npl_portfolio')), # NPL data
 ]
 
 if settings.DEBUG:

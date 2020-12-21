@@ -19,7 +19,7 @@
 # SOFTWARE.
 
 # TODO Lease (non-SME)
-from eba_portfolio.models import CounterpartyGroup, Counterparty, Loan, \
+from npl_portfolio.models import CounterpartyGroup, Counterparty, Loan, \
     Enforcement, Forbearance, NonPropertyCollateral, PropertyCollateral, \
     ExternalCollection
 from rest_framework import serializers
@@ -28,12 +28,12 @@ from openNPL.settings import ROOT_VIEW
 
 
 #
-#  EBA TEMPLATE ENDPOINTS
+#  NPL TEMPLATE ENDPOINTS
 #
 
-class EBA_ExternalCollectionSerializer(serializers.ModelSerializer):
+class NPL_ExternalCollectionSerializer(serializers.ModelSerializer):
     """
-    Serialize EBA ExternalCollection Data
+    Serialize NPL ExternalCollection Data
     """
 
     class Meta:
@@ -41,9 +41,9 @@ class EBA_ExternalCollectionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class EBA_NonPropertyCollateralSerializer(serializers.ModelSerializer):
+class NPL_NonPropertyCollateralSerializer(serializers.ModelSerializer):
     """
-    Serialize EBA NonPropertyCollateral Data
+    Serialize NPL NonPropertyCollateral Data
     """
 
     class Meta:
@@ -51,9 +51,9 @@ class EBA_NonPropertyCollateralSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class EBA_ForbearanceSerializer(serializers.ModelSerializer):
+class NPL_ForbearanceSerializer(serializers.ModelSerializer):
     """
-    Serialize EBA Forbearance Data
+    Serialize NPL Forbearance Data
     """
 
     class Meta:
@@ -61,9 +61,9 @@ class EBA_ForbearanceSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class EBA_EnforcementSerializer(serializers.ModelSerializer):
+class NPL_EnforcementSerializer(serializers.ModelSerializer):
     """
-    Serialize EBA Enforcement Data
+    Serialize NPL Enforcement Data
     """
 
     class Meta:
@@ -71,9 +71,9 @@ class EBA_EnforcementSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class EBA_CounterpartyGroupSerializer(serializers.ModelSerializer):
+class NPL_CounterpartyGroupSerializer(serializers.ModelSerializer):
     """
-    Serialize EBA CounterpartyGroups Data
+    Serialize NPL CounterpartyGroups Data
     """
 
     class Meta:
@@ -81,9 +81,9 @@ class EBA_CounterpartyGroupSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class EBA_CounterpartySerializer(serializers.ModelSerializer):
+class NPL_CounterpartySerializer(serializers.ModelSerializer):
     """
-    Serialize EBA Counterparty Data
+    Serialize NPL Counterparty Data
     """
     link = serializers.SerializerMethodField()
 
@@ -92,19 +92,19 @@ class EBA_CounterpartySerializer(serializers.ModelSerializer):
         fields = ('id', 'counterparty_identifier', 'link')
 
     def get_link(self, obj):
-        link = ROOT_VIEW + "/api/eba_data/counterparties/" + str(obj.pk)
+        link = ROOT_VIEW + "/api/npl_data/counterparties/" + str(obj.pk)
         return link
 
 
-class EBA_CounterpartyDetailSerializer(serializers.ModelSerializer):
+class NPL_CounterpartyDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Counterparty
         fields = '__all__'
 
 
-class EBA_LoanSerializer(serializers.ModelSerializer):
+class NPL_LoanSerializer(serializers.ModelSerializer):
     """
-    Serialize EBA Loan Data
+    Serialize NPL Loan Data
     """
     link = serializers.SerializerMethodField()
 
@@ -113,19 +113,19 @@ class EBA_LoanSerializer(serializers.ModelSerializer):
         fields = ('id', 'contract_identifier', 'link')
 
     def get_link(self, obj):
-        link = ROOT_VIEW + "/api/eba_data/loans/" + str(obj.pk)
+        link = ROOT_VIEW + "/api/npl_data/loans/" + str(obj.pk)
         return link
 
 
-class EBA_LoanDetailSerializer(serializers.ModelSerializer):
+class NPL_LoanDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Loan
         fields = '__all__'
 
 
-class EBA_PropertyCollateralSerializer(serializers.ModelSerializer):
+class NPL_PropertyCollateralSerializer(serializers.ModelSerializer):
     """
-    Serialize EBA Property Collateral Data
+    Serialize NPL Property Collateral Data
     """
     link = serializers.SerializerMethodField()
 
@@ -134,11 +134,11 @@ class EBA_PropertyCollateralSerializer(serializers.ModelSerializer):
         fields = ('id', 'protection_identifier', 'link')
 
     def get_link(self, obj):
-        link = ROOT_VIEW + "/api/eba_data/property_collateral/" + str(obj.pk)
+        link = ROOT_VIEW + "/api/npl_data/property_collateral/" + str(obj.pk)
         return link
 
 
-class EBA_PropertyCollateralDetailSerializer(serializers.ModelSerializer):
+class NPL_PropertyCollateralDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = PropertyCollateral
         fields = '__all__'

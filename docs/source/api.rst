@@ -7,14 +7,14 @@ openNPL exposes a standard REST API via the Django DRF framework. (The current i
 
 API Root
 -----------------------
-The root of the openNPL API is accessed by by pointing your browser to ``http://localhost:8001``
+The root of the openNPL API is accessed by by pointing your browser to ``http://localhost:8001/api``
 
 .. image:: ./screenshots/api1.png
 
 We see here the available API endpoints, which enumerate the different portfolio data categories that are being exposed
 
 
- Lets click at that "eba_counterparty" collection: ``http://127.0.0.1:8001/api/eba_data/counterparties``
+ Lets click at that "eba_counterparty" collection: ``http://127.0.0.1:8001/api/npl_data/counterparties``
 
 Collections
 -----------

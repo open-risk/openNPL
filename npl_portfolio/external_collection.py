@@ -80,7 +80,7 @@ class ExternalCollection(models.Model):
         return self.external_collection_identifier
 
     def get_absolute_url(self):
-        return reverse('eba_portfolio:eba_external_collection_edit', kwargs={'pk': self.pk})
+        return reverse('npl_portfolio:eba_external_collection_edit', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "External Collection"

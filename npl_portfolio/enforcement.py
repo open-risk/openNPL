@@ -138,7 +138,7 @@ class Enforcement(models.Model):
         return self.enforcement_identifier
 
     def get_absolute_url(self):
-        return reverse('eba_portfolio:eba_enforcement_edit', kwargs={'pk': self.pk})
+        return reverse('npl_portfolio:eba_enforcement_edit', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Enforcement"

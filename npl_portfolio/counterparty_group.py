@@ -78,7 +78,7 @@ class CounterpartyGroup(models.Model):
         return self.counterparty_group_identifier
 
     def get_absolute_url(self):
-        return reverse('eba_portfolio:eba_counterparty_group_edit', kwargs={'pk': self.pk})
+        return reverse('npl_portfolio:npl_counterparty_group_edit', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Counterparty Group"

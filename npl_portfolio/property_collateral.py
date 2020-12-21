@@ -22,7 +22,7 @@
 from django.db import models
 from django.urls import reverse
 
-from eba_portfolio.loan import Loan
+from npl_portfolio.loan import Loan
 
 """
 Data object holds Property Collateral data conforming to the EBA NPL Template specification
@@ -218,7 +218,7 @@ class PropertyCollateral(models.Model):
         return self.protection_identifier
 
     def get_absolute_url(self):
-        return reverse('eba_portfolio:eba_property_collateral_edit', kwargs={'pk': self.pk})
+        return reverse('npl_portfolio:eba_property_collateral_edit', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Property Collateral"

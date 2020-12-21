@@ -21,7 +21,7 @@
 from django.db import models
 from django.urls import reverse
 
-from eba_portfolio.counterparty import Counterparty
+from npl_portfolio.counterparty import Counterparty
 
 """
 Data object holds Loan Portfolio data conforming to the EBA NPL Template specification
@@ -314,7 +314,7 @@ class Loan(models.Model):
         return self.contract_identifier
 
     def get_absolute_url(self):
-        return reverse('eba_portfolio:eba_loan_edit', kwargs={'pk': self.pk})
+        return reverse('npl_portfolio:eba_loan_edit', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Loan"

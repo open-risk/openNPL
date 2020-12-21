@@ -11,9 +11,10 @@ WORKDIR /opennpl
 COPY requirements.txt /opennpl/
 RUN pip install -r requirements.txt
 COPY . /opennpl/
+RUN rm /opennpl/db.sqlite3
 RUN python /opennpl/manage.py makemigrations
 RUN python /opennpl/manage.py migrate
 RUN python /opennpl/createadmin.py
 RUN python /opennpl/manage.py collectstatic --no-input
-RUN python /opennpl/manage.py loaddata --format=json eba_portfolio  /opennpl/eba_portfolio/fixtures/eba_portfolio.json
+RUN python /opennpl/manage.py loaddata --format=json npl_portfolio  /opennpl/npl_portfolio/fixtures/npl_portfolio.json
 CMD [ "python", "./manage.py", "runserver", "0.0.0.0:8080"]

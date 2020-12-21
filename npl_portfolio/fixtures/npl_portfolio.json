@@ -1,6 +1,6 @@
 [
   {
-    "model": "eba_portfolio.portfolio",
+    "model": "npl_portfolio.portfolio",
     "pk": 1,
     "fields": {
       "name": "Uptown Portfolio",
@@ -10,7 +10,7 @@
     }
   },
   {
-    "model": "eba_portfolio.portfolio",
+    "model": "npl_portfolio.portfolio",
     "pk": 2,
     "fields": {
       "name": "Downtown Portfolio",
@@ -20,7 +20,7 @@
     }
   },
   {
-    "model": "eba_portfolio.portfolio_snapshot",
+    "model": "npl_portfolio.portfoliosnapshot",
     "pk": 1,
     "fields": {
       "creation_date": "2018-07-18T10:55:56Z",
@@ -31,7 +31,7 @@
     }
   },
   {
-    "model": "eba_portfolio.portfolio_snapshot",
+    "model": "npl_portfolio.portfoliosnapshot",
     "pk": 2,
     "fields": {
       "creation_date": "2020-07-01T21:26:00Z",
@@ -42,7 +42,7 @@
     }
   },
   {
-    "model": "eba_portfolio.counterparty",
+    "model": "npl_portfolio.counterparty",
     "pk": 66,
     "fields": {
       "counterparty_identifier": "CP_AECV4711080721370",
@@ -123,7 +123,7 @@
     }
   },
   {
-    "model": "eba_portfolio.counterparty",
+    "model": "npl_portfolio.counterparty",
     "pk": 67,
     "fields": {
       "counterparty_identifier": "CP_ZXUE3291371240246",
@@ -204,7 +204,7 @@
     }
   },
   {
-    "model": "eba_portfolio.counterparty",
+    "model": "npl_portfolio.counterparty",
     "pk": 68,
     "fields": {
       "counterparty_identifier": "CP_OMFS2569427054255",
@@ -285,7 +285,7 @@
     }
   },
   {
-    "model": "eba_portfolio.counterparty",
+    "model": "npl_portfolio.counterparty",
     "pk": 69,
     "fields": {
       "counterparty_identifier": "CP_HCYO1340487760836",
@@ -366,7 +366,7 @@
     }
   },
   {
-    "model": "eba_portfolio.counterparty",
+    "model": "npl_portfolio.counterparty",
     "pk": 70,
     "fields": {
       "counterparty_identifier": "CP_DTEQ7790382426460",
@@ -447,7 +447,7 @@
     }
   },
   {
-    "model": "eba_portfolio.counterparty",
+    "model": "npl_portfolio.counterparty",
     "pk": 71,
     "fields": {
       "counterparty_identifier": "CP_VZJP5999466329204",
@@ -528,7 +528,7 @@
     }
   },
   {
-    "model": "eba_portfolio.counterparty",
+    "model": "npl_portfolio.counterparty",
     "pk": 72,
     "fields": {
       "counterparty_identifier": "CP_BQZM3423262165400",
@@ -609,7 +609,7 @@
     }
   },
   {
-    "model": "eba_portfolio.counterparty",
+    "model": "npl_portfolio.counterparty",
     "pk": 73,
     "fields": {
       "counterparty_identifier": "CP_VVOO8851734121041",
@@ -690,7 +690,7 @@
     }
   },
   {
-    "model": "eba_portfolio.counterparty",
+    "model": "npl_portfolio.counterparty",
     "pk": 74,
     "fields": {
       "counterparty_identifier": "CP_XNCK0355215345363",
@@ -771,7 +771,7 @@
     }
   },
   {
-    "model": "eba_portfolio.counterparty",
+    "model": "npl_portfolio.counterparty",
     "pk": 75,
     "fields": {
       "counterparty_identifier": "CP_AWXO2871989089964",
@@ -852,7 +852,7 @@
     }
   },
   {
-    "model": "eba_portfolio.loan",
+    "model": "npl_portfolio.loan",
     "pk": 74,
     "fields": {
       "contract_identifier": "Loan_Vr0cr4E2Vt",
@@ -963,7 +963,7 @@
     }
   },
   {
-    "model": "eba_portfolio.loan",
+    "model": "npl_portfolio.loan",
     "pk": 75,
     "fields": {
       "contract_identifier": "Loan_w7ktEYihEm",
@@ -1074,7 +1074,7 @@
     }
   },
   {
-    "model": "eba_portfolio.loan",
+    "model": "npl_portfolio.loan",
     "pk": 76,
     "fields": {
       "contract_identifier": "Loan_9rszXlu720",
@@ -1185,7 +1185,7 @@
     }
   },
   {
-    "model": "eba_portfolio.loan",
+    "model": "npl_portfolio.loan",
     "pk": 77,
     "fields": {
       "contract_identifier": "Loan_q4osg92KER",
@@ -1296,7 +1296,7 @@
     }
   },
   {
-    "model": "eba_portfolio.loan",
+    "model": "npl_portfolio.loan",
     "pk": 78,
     "fields": {
       "contract_identifier": "Loan_VKMb3cEfxq",
@@ -1407,7 +1407,7 @@
     }
   },
   {
-    "model": "eba_portfolio.loan",
+    "model": "npl_portfolio.loan",
     "pk": 79,
     "fields": {
       "contract_identifier": "Loan_yUjXzLreBi",
@@ -1518,7 +1518,7 @@
     }
   },
   {
-    "model": "eba_portfolio.propertycollateral",
+    "model": "npl_portfolio.propertycollateral",
     "pk": 6,
     "fields": {
       "protection_identifier": "Coll_0jpGVaJzBk",
@@ -1585,7 +1585,7 @@
     }
   },
   {
-    "model": "eba_portfolio.propertycollateral",
+    "model": "npl_portfolio.propertycollateral",
     "pk": 7,
     "fields": {
       "protection_identifier": "Coll_F43uc17ugE",
@@ -1652,7 +1652,7 @@
     }
   },
   {
-    "model": "eba_portfolio.propertycollateral",
+    "model": "npl_portfolio.propertycollateral",
     "pk": 8,
     "fields": {
       "protection_identifier": "Coll_F43fg17ugE",

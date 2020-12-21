@@ -51,7 +51,7 @@ class Portfolio(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('eba_portfolio:Portfolio_edit', kwargs={'pk': self.pk})
+        return reverse('npl_portfolio:Portfolio_edit', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Portfolio"
@@ -60,7 +60,7 @@ class Portfolio(models.Model):
 
 class PortfolioSnapshot(models.Model):
     """
-    EBA Portfolio_Snapshot object holds EBA Portfolio generated portfolio data
+    NPL Portfolio_Snapshot object holds NPL Portfolio generated portfolio data
     The object is read/write
     Includes reference to user creating the data set
     Snapshot is named to facilitate recognition
@@ -86,18 +86,19 @@ class PortfolioSnapshot(models.Model):
         return str(self.creation_date)
 
     def get_absolute_url(self):
-        return reverse('eba_portfolio:EBA Portfolio_Snapshot_edit', kwargs={'pk': self.pk})
+        return reverse('npl_portfolio:NPL Portfolio_Snapshot_edit', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Portfolio Snapshot"
         verbose_name_plural = "Portfolio Snapshots"
 
+# ATTN Those imports MUST be placed after loading the Portfolio / PortfolioSnapshot classes
 
-from eba_portfolio.counterparty import Counterparty
-from eba_portfolio.loan import Loan
-from eba_portfolio.counterparty_group import CounterpartyGroup
-from eba_portfolio.external_collection import ExternalCollection
-from eba_portfolio.forbearance import Forbearance
-from eba_portfolio.non_property_collateral import NonPropertyCollateral
-from eba_portfolio.property_collateral import PropertyCollateral
-from eba_portfolio.enforcement import Enforcement
+from npl_portfolio.counterparty import Counterparty
+from npl_portfolio.loan import Loan
+from npl_portfolio.counterparty_group import CounterpartyGroup
+from npl_portfolio.external_collection import ExternalCollection
+from npl_portfolio.forbearance import Forbearance
+from npl_portfolio.non_property_collateral import NonPropertyCollateral
+from npl_portfolio.property_collateral import PropertyCollateral
+from npl_portfolio.enforcement import Enforcement

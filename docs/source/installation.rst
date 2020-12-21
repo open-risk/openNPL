@@ -24,9 +24,9 @@ You can pull and run the latest image from Docker Hub (This method is recommende
 .. code:: bash
 
     docker pull openrisk/opennpl_web:0.1.1
-    docker run -p 8080:8080 openrisk/opennpl_web:0.1.1
+    docker run -p 8001:8080 openrisk/opennpl_web:0.1.1
 
-Access the running instance of opennpl by pointing your browser to ``http://localhost:8080`` and login with admin/admin credentials
+Access the running instance of opennpl by pointing your browser to ``http://localhost:8001`` and login with admin/admin credentials. The API endpoints are accessible at ``http://localhost:8001/api``
 
 Building a local docker image
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -36,9 +36,9 @@ Alternatively you can build your own local image. After you fetch the distributi
 .. code:: bash
 
     docker build -t opennpl_web:latest .
-    docker run -p 8080:8080 opennpl_web:latest
+    docker run -p 8080:8001 opennpl_web:latest
 
-Again, access the running instance of opennpl by pointing your browser to ``http://localhost:8080`` and login with admin/admin credentials
+Again, access the running instance of opennpl by pointing your browser to ``http://localhost:8080`` and login with the default admin/admin credentials
 
 
 Manual installation from sources
@@ -53,7 +53,7 @@ A Linux based system is recommended but with minor tweaks it is in principle als
 - Django >= 3.0
 - The precise python library dependencies are listed in the requirements.txt file.
 - The current User Interface (UI) is desktop oriented and will not work properly via mobile
-- openNPL may work with earlier versions of these packages but this has not been tested.
+- openNPL may work with earlier versions of these packages but this has not been tested
 
 
 Procedure

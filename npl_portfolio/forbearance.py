@@ -96,7 +96,7 @@ class Forbearance(models.Model):
         return self.forbearance_identifier
 
     def get_absolute_url(self):
-        return reverse('eba_portfolio:eba_forbearance_edit', kwargs={'pk': self.pk})
+        return reverse('npl_portfolio:npl_forbearance_edit', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Forbearance"

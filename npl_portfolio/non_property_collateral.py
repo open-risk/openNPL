@@ -137,7 +137,7 @@ class NonPropertyCollateral(models.Model):
         return self.non_property_collateral_identifier
 
     def get_absolute_url(self):
-        return reverse('eba_portfolio:eba_non_property_collateral_edit', kwargs={'pk': self.pk})
+        return reverse('npl_portfolio:eba_non_property_collateral_edit', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Non-Property Collateral"

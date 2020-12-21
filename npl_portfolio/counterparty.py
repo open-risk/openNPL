@@ -21,7 +21,7 @@
 from django.db import models
 from django.urls import reverse
 
-from eba_portfolio.models import PortfolioSnapshot, Portfolio
+from npl_portfolio.models import PortfolioSnapshot, Portfolio
 
 """
 Data object holds Counterparty data conforming to the EBA NPL Template specification
@@ -252,7 +252,7 @@ class Counterparty(models.Model):
         return self.counterparty_identifier
 
     def get_absolute_url(self):
-        return reverse('eba_portfolio:eba_counterparty_edit', kwargs={'pk': self.pk})
+        return reverse('npl_portfolio:eba_counterparty_edit', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Counterparty"
