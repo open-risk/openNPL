@@ -1,16 +1,15 @@
-Getting Started
+Usage
 ==============================
 The openNPL platform offers a lot of functionality. Here we break down some of the main workflows for
-those just getting started. More will follow as the platform develops!
+those just getting started. More will detailed tutorials will follow as the platform develops!
 
-* An online available demo will be available soon for those who don't want to go through the local installation step
+* An online demo will be available soon for those who don't want to go through the local installation steps
 * For more in depth studies on using python for credit portfolio management check-out: `Open Risk Academy <https://www.openriskacademy.com/login/index.php>`_
-* For Non-performing loan domain knowledge check out: `Open Risk Manual <https://www.openriskmanual.org/wiki/Category:NPL>`_
+* For Non-performing loan data domain knowledge check out the relevant entries at the: `Open Risk Manual <https://www.openriskmanual.org/wiki/Category:NPL>`_
 
 
 The landing page
 ---------------------
-
 If everything went well with the installation, upon pointing your browser to localhost:8000 (or whatever port you
 are using) you will meet the landing page
 

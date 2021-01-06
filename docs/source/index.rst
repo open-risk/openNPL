@@ -9,6 +9,8 @@ openNPL Documentation
 
    description
    installation
+   requirements
+   loading_sample_data
    usage
    api
    changelog

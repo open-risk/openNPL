@@ -2,10 +2,12 @@ ChangeLog
 ===========================
 PLEASE NOTE THIS IS ONLY A PLANNING RELEASE
 
-v0.3 (XX-XX-2020)
+v0.3 (06-01-2021)
 -----------------
 * Refactored globally eba -> npl
 * Dockerfile adjusted to remove pre-existing sqlite at setup
+* Dockerfile adjusted to load given fixtures file at end of installation
+* Documentation update
 
 v0.2 (26-09-2020)
 -----------------

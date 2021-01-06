@@ -62,10 +62,15 @@ There are several options, check out the details below
 Manual installation requires some familiarity with python, django and web applications
 
 ### Prerequisites
-* a working python installation (3.6 or higher)
-* a linux based system is recommended. some tweaks are required for Windows but is in principle also possible to deploy there
+- openNPL requires a working Python 3 installation (including pip)
+- Python >= 3.6
+- Django >= 3.0
+- The precise python library dependencies are listed in the :doc:`requirements`.txt file.
+- Note: The current User Interface (UI) is desktop oriented and might not work properly in smaller mobile screens
+- openNPL may work with earlier versions of these packages but this has not been tested
+- A linux based system is recommended. Some tweaks are required for Windows but is in principle also possible to deploy there
 
-### Steps
+### Summary of Steps
 * Step 1. Clone the openNPL repository from github
 * Step 2. Create a virtual environment
 * Step 3. Install the dependencies
