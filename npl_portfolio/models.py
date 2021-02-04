@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Open Risk (https://www.openriskmanagement.com)
+# Copyright (c) 2020 - 2021 Open Risk (https://www.openriskmanagement.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -18,32 +18,32 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
 '''
-Models are core Relations (Tables) of the EBA Portfolio Template
+openNPL models implement the core relations (Tables) of the EBA Portfolio Template
 `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
 
-Each model is implemented in a separate file EBA_TABLE_NAME.py
-TODO Missing are the following: the Lease Table and schedule tables (swap cashflows and repayments)
+Each model is implemented in a separate file TABLE_NAME.py in the npl_portfolio directory. In addition there is a Portfolio model and a Portfolio_Snapshot model in this (models.py) file.
 
-In addition there is a Portfolio model and a Portfolio_Snapshot model
+.. TODO:: Missing are the following: the Lease Table and schedule tables (swap cashflows and repayments)
+
+.. NOTE:: The Relation Tables of the EBA Specification are not implemented 
+
+
 
 '''
 
 
 class Portfolio(models.Model):
-    """
-    Data object holds workflow oriented entity data
-    The object is read/write
-    Includes reference to user creating the data set
-    Portfolio is named to facilitate recognition
 
     """
-    name = models.CharField(max_length=200)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    The portfolio data object is useful to aggregate datasets belonging to the same actual credit portfolio
+    A portfolio is named to facilitate recognition
+
+    """
+    name = models.CharField(max_length=200, null=True, blank=True)
     creation_date = models.DateTimeField(auto_now_add=True)
     last_change_date = models.DateTimeField(auto_now=True)
 
@@ -60,45 +60,42 @@ class Portfolio(models.Model):
 
 class PortfolioSnapshot(models.Model):
     """
-    NPL Portfolio_Snapshot object holds NPL Portfolio generated portfolio data
-    The object is read/write
-    Includes reference to user creating the data set
-    Snapshot is named to facilitate recognition
-    Actual Snapshot data stored in the EBA Portfolio Models (with foreign key to snapshot)
+    The NPL Portfolio_Snapshot object groups NPL Portfolio generated portfolio data for a given date
+    The Snapshot may be named to facilitate recognition
+    The actual Snapshot data stored in the Portfolio Models (with foreign key to snapshot)
 
     """
 
-    creation_date = models.DateTimeField(
+    creation_date = models.DateTimeField(auto_now_add=True,
         help_text="Date at which the snapshot has been created. Different from the cutoff date")
+    last_change_date = models.DateTimeField(auto_now=True)
 
     cutoff_date = models.DateTimeField(blank=True, null=True,
                                        help_text="Portfolio Cutoff Date (If available). Different from the creation date")
 
-    name = models.CharField(max_length=200, help_text="An assigned name to help identify the snapshot")
+    name = models.CharField(blank=True, null=True, max_length=200, help_text="An assigned name to help identify the snapshot")
 
     notes = models.CharField(max_length=300, blank=True, null=True,
                              help_text="Description of the purpose or other relevant information about the portfolio")
-    # user_name = models.CharField(max_length=200)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True,
-                             help_text="The user that created the portfolio")
 
     def __str__(self):
-        return str(self.creation_date)
+        return str(self.name)
 
     def get_absolute_url(self):
-        return reverse('npl_portfolio:NPL Portfolio_Snapshot_edit', kwargs={'pk': self.pk})
+        return reverse('npl_portfolio:PortfolioSnapshot_edit', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Portfolio Snapshot"
         verbose_name_plural = "Portfolio Snapshots"
 
+
 # ATTN Those imports MUST be placed after loading the Portfolio / PortfolioSnapshot classes
 
+from npl_portfolio.counterparty_group import CounterpartyGroup
 from npl_portfolio.counterparty import Counterparty
 from npl_portfolio.loan import Loan
-from npl_portfolio.counterparty_group import CounterpartyGroup
-from npl_portfolio.external_collection import ExternalCollection
-from npl_portfolio.forbearance import Forbearance
 from npl_portfolio.non_property_collateral import NonPropertyCollateral
 from npl_portfolio.property_collateral import PropertyCollateral
+from npl_portfolio.external_collection import ExternalCollection
+from npl_portfolio.forbearance import Forbearance
 from npl_portfolio.enforcement import Enforcement

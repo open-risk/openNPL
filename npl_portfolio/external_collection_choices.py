@@ -18,19 +18,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""
-WSGI config for openNPL project.
 
-It exposes the WSGI callable as a module-level variable named ``application``.
 
-For more information on this file, see
-https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/
-"""
+#
+# CHOICE DICTIONARIES EXTERNAL COLLECTION
+#
 
-import os
-
-from django.core.wsgi import get_wsgi_application
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'openNPL.settings')
-
-application = get_wsgi_application()
+TYPE_OF_IDENTIFIER_CHOICES = [(0, '(a) Counterparty'), (1, '(b) Loan')]

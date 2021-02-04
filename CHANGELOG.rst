@@ -1,6 +1,15 @@
 ChangeLog
 ===========================
-PLEASE NOTE THIS IS ONLY A PLANNING RELEASE
+PLEASE NOTE THIS IS ONLY A PLANNING RELEASE.
+THE OPENNPL API IS STILL UNSTABLE
+
+v0.3.1 (04-02-2021)
+-------------------
+* Expanded implemented fields / streamlined FK structure
+* Split model choice attributes into separate files for improved readability / maintenance
+* Removed User field from portfolio models (to simplify demo instance setup)
+* Expanded module documentation (sphinx autodoc for all models)
+
 
 v0.3 (06-01-2021)
 -----------------

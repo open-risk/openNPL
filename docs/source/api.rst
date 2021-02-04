@@ -1,9 +1,10 @@
-The API
-=============
+NPL REST API
+================
 
 .. image:: ./API.png
 
-openNPL exposes a standard REST API via the Django DRF framework. (The current implementation is a demo and only permits GET operations)
+openNPL exposes a standard REST API via the Django DRF framework.
+
 
 API Root
 -----------------------

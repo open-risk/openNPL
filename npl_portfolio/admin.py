@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Open Risk (https://www.openriskmanagement.com)
+# Copyright (c) 2020 - 2021 Open Risk (https://www.openriskmanagement.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -27,6 +27,8 @@ The 8 Relations (Tables) of the EBA Portfolio Template currently implemented
 Portfolio is used to group obligor data into portfolios
 Portfolio_Snapshot is used to group data into time snapshots
 
+.. note:: Lease, Swap and History Tables not implemented (TODO). Relation tables between entities implemented differently (not normalized)
+
 '''
 
 from npl_portfolio.models import PortfolioSnapshot, Portfolio
@@ -41,23 +43,21 @@ class PortfolioAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
     search_fields = ['name']
-    list_display = ('name', 'user', 'creation_date', 'last_change_date')
-    list_filter = ('user',)
+    list_display = ('name', 'creation_date', 'last_change_date')
 
 
 class Portfolio_SnapshotAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
     search_fields = ['name']
-    list_display = ('name', 'user', 'creation_date', 'cutoff_date', 'notes')
-    list_filter = ('user',)
+    list_display = ('name', 'creation_date', 'cutoff_date', 'notes')
 
 
 class CounterpartyAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
     search_fields = ['name']
-    list_display = ('counterparty_identifier', 'legal_type_of_counterparty', 'portfolio_id',
+    list_display = ('counterparty_identifier', 'snapshot_id', 'portfolio_id',
                     'date_of_entering_into_current_legal_process', 'current_internal_credit_rating',
                     'legal_fees_accrued')
     list_filter = ('portfolio_id', 'legal_procedure_type',)

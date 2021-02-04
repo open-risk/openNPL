@@ -10,9 +10,10 @@ The source code is available in the Open Risk Repository `Link <https://github.c
 * Code Documentation: `Read The Docs <https://opennpl.readthedocs.io/en/latest/>`_
 * Domain Documentation: `Open Risk Manual Loan Data <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
 * Development Website: `Github <https://github.com/open-risk/openNPL>`_
+* Project Discussion: `Gitter <https://gitter.im/open-risk/openNPL>`_
 * Docker Image: `Docker <https://hub.docker.com/repository/docker/openrisk/opennpl_web>`_
 * Training: `Open Risk Academy <https://www.openriskacademy.com/login/index.php>`_
-* Discussion: `Gitter <https://gitter.im/open-risk/Lobby>`_
+
 
 Functionality
 -------------
@@ -35,35 +36,37 @@ The current *architecture* is summarized:
 * The non-performing loan template recommendations of the EBA are implemented as distinct models in the database
 * Additional models are introduced to bind the data together with relations
 * The user interface uses built-in Django forms as those are rendered by the Grappelli skin
-* The backend database is currently sqlite
+* The backend database is currently sqlite3
 
 File structure
 -----------------
 The openNPL distribution has the following structure:
 
-+---------+---------------+------------+---------------------------------------+
-| Level 1 | Level 2       | Level 3    |  Description                          |
-+=========+===============+============+=======================================+
-| openNPL |               |            | The root                              |
-+---------+---------------+------------+---------------------------------------+
-|         | npl_portfolio |            | DIR: The core python files            |
-+---------+---------------+------------+---------------------------------------+
-|         |               | models.py  | Portfolio level models                |
-+---------+---------------+------------+---------------------------------------+
-|         |               | loan.py    | The Loan model                        |
-+---------+---------------+------------+---------------------------------------+
-|         |               | ...        | The other EBA models                  |
-+---------+---------------+------------+---------------------------------------+
-|         | start         |            | DIR: Templates for the front end      |
-+---------+---------------+------------+---------------------------------------+
-|         | openNPL       |            | DIR: Application configuration files  |
-+---------+---------------+------------+---------------------------------------+
-|         | docs          |            | DIR: This documentation               |
-+---------+---------------+------------+---------------------------------------+
-|         | static        |            | DIR: Styling assets                   |
-+---------+---------------+------------+---------------------------------------+
-|         | templates     |            | DIR: Template customization           |
-+---------+---------------+------------+---------------------------------------+
++---------+---------------+--------------------+---------------------------------------+
+| Level 1 | Level 2       | Level 3            |  Description                          |
++=========+===============+====================+=======================================+
+| openNPL |               |                    | The root directory                    |
++---------+---------------+--------------------+---------------------------------------+
+|         | npl_portfolio |                    | DIR: The core python files            |
++---------+---------------+--------------------+---------------------------------------+
+|         |               | models.py          | Portfolio level models                |
++---------+---------------+--------------------+---------------------------------------+
+|         |               | counterparty.py    | The Counterparty model                |
++---------+---------------+--------------------+---------------------------------------+
+|         |               | loan.py            | The Loan model                        |
++---------+---------------+--------------------+---------------------------------------+
+|         |               | ...                | The other EBA models                  |
++---------+---------------+--------------------+---------------------------------------+
+|         | start         |                    | DIR: Templates for the front end      |
++---------+---------------+--------------------+---------------------------------------+
+|         | openNPL       |                    | DIR: Application configuration files  |
++---------+---------------+--------------------+---------------------------------------+
+|         | docs          |                    | DIR: This documentation               |
++---------+---------------+--------------------+---------------------------------------+
+|         | static        |                    | DIR: Styling assets                   |
++---------+---------------+--------------------+---------------------------------------+
+|         | templates     |                    | DIR: Template customization           |
++---------+---------------+--------------------+---------------------------------------+
 
 
 Core Data Models

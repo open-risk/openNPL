@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Open Risk (https://www.openriskmanagement.com)
+# Copyright (c) 2020 - 2021 Open Risk (https://www.openriskmanagement.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,8 @@ urlpatterns = [
     url(r'^counterparties$', views.npl_counterparty_api, name='npl_counterparty_api'),
     url(r'^counterparties/(?P<pk>[0-9]+)/$', views.npl_counterparty_detail, name='npl_counterparty_detail'),
     url(r'^property_collateral$', views.npl_property_collateral_api, name='npl_property_collateral_api'),
-    url(r'^property_collateral/(?P<pk>[0-9]+)/$', views.npl_property_collateral_detail, name='npl_property_collateral_detail'),
+    url(r'^property_collateral/(?P<pk>[0-9]+)/$', views.npl_property_collateral_detail,
+        name='npl_property_collateral_detail'),
     url(r'^loans$', views.npl_loan_api, name='npl_loan_api'),
     url(r'^loans/(?P<pk>[0-9]+)/$', views.npl_loan_detail, name='npl_loan_detail'),
     url(r'^enforcements$', views.npl_enforcement_api, name='npl_enforcement_api'),

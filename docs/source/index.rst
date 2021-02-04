@@ -12,7 +12,9 @@ openNPL Documentation
    requirements
    loading_sample_data
    usage
+   modules
    api
+   api_docs
    changelog
 
 

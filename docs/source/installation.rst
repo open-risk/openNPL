@@ -136,4 +136,7 @@ Troubleshooting
 The above steps are typical Django project installation steps. If you experience trouble at any point, the
 `Django online FAQ <https://docs.djangoproject.com/en/3.1/faq/>`_ should help you out.
 
+.. Note:: The project uses an sqlite3 database for good reason! If things go pear-shaped with your database simply remove the file and start again.
+
+
 We welcome your feedback and support, raise a `github ticket <https://github.com/open-risk/openNPL/issues>`_ if you want to report a bug or need a new feature.

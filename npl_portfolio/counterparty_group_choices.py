@@ -18,19 +18,20 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""
-WSGI config for openNPL project.
+#
+# CHOICE DICTIONARIES COUNTERPARTY GROUP
+#
 
-It exposes the WSGI callable as a module-level variable named ``application``.
+TYPE_OF_SPONSOR_CHOICES = [
+    (0, '(a) Listed Corporate is a Corporate entity whose shares are quoted and traded on a Stock Exchange'),
+    (1,
+     '(b) Unlisted Corporate is a Corporate entity whose shares are not quoted and traded on a stock exchange, however an unlisted corporate may have an unlimited number of shareholders to raise capital for any commercial venture'),
+    (2, '(c) Listed Fund is a fund whose shares are quoted and traded on a Stock exchange'),
+    (3, '(d) Unlisted Fund is a fund whose shares are not quoted and traded on a Stock exchange'),
+    (4,
+     '(e) Partnership is where the Sponsor constitutes a group of individuals who form a legal partnership, where profits and liabilities are shared; or,'),
+    (5, '(f) Private Individual')]
 
-For more information on this file, see
-https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/
-"""
+CROSS_DEFAULT_IN_COUNTERPARTY_GROUP_CHOICES = [(0, '(a) Full'), (1, '(b) Partial'), (2, '(c) None')]
 
-import os
-
-from django.core.wsgi import get_wsgi_application
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'openNPL.settings')
-
-application = get_wsgi_application()
+CROSS_COLLATERALISATION_IN_COUNTERPARTY_GROUP_CHOICES = [(0, '(a) Full'), (1, '(b) Partial'), (2, '(c) None')]

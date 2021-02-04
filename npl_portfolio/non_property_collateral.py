@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Open Risk (https://www.openriskmanagement.com)
+# Copyright (c) 2020 - 2021 Open Risk (https://www.openriskmanagement.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -21,123 +21,125 @@
 from django.db import models
 from django.urls import reverse
 
-"""
-Data object holds Non-Property Collateral data conforming to the EBA NPL Template specification
-`EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
-
-"""
+from npl_portfolio.non_property_collateral_choices import *
+from npl_portfolio.loan import Loan
 
 
 class NonPropertyCollateral(models.Model):
-    #
-    # CHOICE DICTIONARIES
-    #
+    """
+    Data object holds Non-Property Collateral data conforming to the EBA NPL Template specification
+    `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
 
-    TYPE_OF_LEGAL_OWNER_CHOICES = [
-        (0, '(a) Listed Corporate is a Corporate entity whose shares are quoted and traded on a Stock Exchange'),
-        (1,
-         '(b) Unlisted Corporate is a Corporate entity whose shares are not quoted and traded on a stock exchange, however an unlisted corporate may have an unlimited number of shareholders to raise capital for any commercial venture'),
-        (2, '(c) Listed Fund is a fund whose shares are quoted and traded on a Stock exchange'),
-        (3, '(d) Unlisted Fund is a fund whose shares are not quoted and traded on a Stock exchange'),
-        (4,
-         '(e) Partnership is where the Sponsor constitutes a group of individuals who form a legal partnership, where profits and liabilities are shared; or,'),
-        (5, '(f) Private Individual')]
-
-    COLLATERAL_TYPE_CHOICES = [(0, '(a) Auto Mobile Vehicles'), (1, '(b) Industrial Vehicles'),
-                               (2, '(c) Commercial Trucks'), (3, '(d) Rail Vehicles'),
-                               (4, '(e) Nautical Commercial Vehicles'), (5, '(f) Nautical Leisure Vehicles'),
-                               (6, '(g) Aeroplanes'), (7, '(h) Machine Tools'), (8, '(i) Industrial Equipment'),
-                               (9, '(j) Office Equipment'), (10, '(k) Medical Equipment'),
-                               (11, '(l) Energy Related Equipment'), (12, '(m) Other Vehicles'),
-                               (13, '(n) Other Equipment'), (14, '(o) Other goods/inventory '), (15, '(p) Securities'),
-                               (16, '(q) Guarantee'), (17, '(r) Life insurance'), (18, '(s) Deposit'),
-                               (19, '(t) Floating Charge'), (20, '(u) Other financial asset')]
-
-    TYPE_OF_INITIAL_VALUATION_CHOICES = [(0, '(a) Full Appraisal'), (1, '(b) Drive-by'),
-                                         (2, '(c) Automated Valuation Model'), (3, '(d) Indexed'), (4, '(e) Desktop'),
-                                         (5, '(f) Managing or Estate Agent'), (6, '(g) Purchase Price'),
-                                         (7, '(h) Hair Cut'), (8, '(i) Mark to market'),
-                                         (9, '(j) Counterparties Valuation'), (10, '(k) Other')]
-
-    TYPE_OF_LATEST_VALUATION_CHOICES = [(0, '(a) Full Appraisal'), (1, '(b) Drive-by'),
-                                        (2, '(c) Automated Valuation Model'), (3, '(d) Indexed'), (4, '(e) Desktop'),
-                                        (5, '(f) Managing or Estate Agent'), (6, '(g) Purchase Price'),
-                                        (7, '(h) Hair Cut'), (8, '(i) Mark to market'),
-                                        (9, '(j) Counterparties Valuation'), (10, '(k) Other')]
-
-    NEW_OR_USED_CHOICES = [(0, '(a) New'), (1, '(b) Used')]
+    """
 
     #
-    # FIELDS
+    # IDENTIFICATION FIELDS
     #
 
-    non_property_collateral_identifier = models.TextField(unique=True)
+    protection_identifier = models.TextField(blank=True, null=True,
+                                             help_text='Institution internal identifier for the Non-Property Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.14.0.Protection_identifier">Documentation</a>')
 
-    activation_of_guarantee = models.NullBooleanField(blank=True, null=True, help_text='Indicator as to whether the guarantee has been activated when "Guarantee" is selected in field "Collateral Type". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Activation_of_Guarantee">Documentation</a>')
+    #
+    # FOREIGN KEYS
+    #
 
-    collateral_insurance = models.NullBooleanField(blank=True, null=True, help_text='Indicator as to whether there is an insurance on the Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Collateral_Insurance">Documentation</a>')
+    loan_identifier = models.ForeignKey(Loan, on_delete=models.CASCADE, null=True, blank=True)
 
-    collateral_insurance_coverage_amount = models.FloatField(blank=True, null=True, help_text='Amount that the collateral insurance covers. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Collateral_Insurance_Coverage_Amount">Documentation</a>')
+    #
+    # DATA PROPERTIES
+    #
 
-    collateral_insurance_provider = models.TextField(blank=True, null=True, help_text='Name of the collateral insurance provider. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Collateral_Insurance_Provider">Documentation</a>')
+    activation_of_guarantee = models.NullBooleanField(blank=True, null=True,
+                                                      help_text='Indicator as to whether the guarantee has been activated when "Guarantee" is selected in field "Collateral Type". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Activation_of_Guarantee">Documentation</a>')
 
-    collateral_type = models.IntegerField(blank=True, null=True, choices=COLLATERAL_TYPE_CHOICES, help_text='Physical type of the Collateral, e.g. Guarantee and Machinery. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Collateral_Type">Documentation</a>')
+    collateral_insurance = models.NullBooleanField(blank=True, null=True,
+                                                   help_text='Indicator as to whether there is an insurance on the Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Collateral_Insurance">Documentation</a>')
 
-    currency_of_collateral = models.TextField(blank=True, null=True, help_text='Currency that the valuation and cash flows related to the Collateral are expressed in. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Currency_of_Collateral">Documentation</a>')
+    collateral_insurance_coverage_amount = models.FloatField(blank=True, null=True,
+                                                             help_text='Amount that the collateral insurance covers. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Collateral_Insurance_Coverage_Amount">Documentation</a>')
 
-    current_opex_and_overheads = models.FloatField(blank=True, null=True, help_text='Current annual operational expenses and overheads of running the Collateral as at cut-off date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Current_Opex_And_Overheads">Documentation</a>')
+    collateral_insurance_provider = models.TextField(blank=True, null=True,
+                                                     help_text='Name of the collateral insurance provider. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Collateral_Insurance_Provider">Documentation</a>')
 
-    date_of_initial_valuation = models.DateField(blank=True, null=True, help_text='Date at which the initial valuation was assessed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.14.01.Date_of_Initial_Valuation">Documentation</a>')
+    collateral_type = models.IntegerField(blank=True, null=True, choices=COLLATERAL_TYPE_CHOICES,
+                                          help_text='Physical type of the Collateral, e.g. Guarantee and Machinery. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Collateral_Type">Documentation</a>')
 
-    date_of_latest_valuation = models.DateField(blank=True, null=True, help_text='Date that the latest valuation took place. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Date_of_Latest_Valuation">Documentation</a>')
+    currency_of_collateral = models.TextField(blank=True, null=True,
+                                              help_text='Currency that the valuation and cash flows related to the Collateral are expressed in. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Currency_of_Collateral">Documentation</a>')
 
-    description = models.TextField(blank=True, null=True, help_text='Detailed description of the collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Description">Documentation</a>')
+    current_opex_and_overheads = models.FloatField(blank=True, null=True,
+                                                   help_text='Current annual operational expenses and overheads of running the Collateral as at cut-off date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Current_Opex_And_Overheads">Documentation</a>')
 
-    enforcement_description = models.TextField(blank=True, null=True, help_text='Comments/Description of the stage of Enforcement that the Property Collateral is in as at cut-off date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Enforcement_Description">Documentation</a>')
+    date_of_initial_valuation = models.DateField(blank=True, null=True,
+                                                 help_text='Date at which the initial valuation was assessed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.14.01.Date_of_Initial_Valuation">Documentation</a>')
 
-    enforcement_status = models.NullBooleanField(blank=True, null=True, help_text='Status of the enforcement process that the Collateral is currently in as at cut-off date, e.g. if it is in receivership. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Enforcement_Status">Documentation</a>')
+    date_of_latest_valuation = models.DateField(blank=True, null=True,
+                                                help_text='Date that the latest valuation took place. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Date_of_Latest_Valuation">Documentation</a>')
 
-    enforcement_status_third_parties = models.NullBooleanField(blank=True, null=True, help_text='Indicator as to whether any other secured creditors have taken steps to enforce security over the asset? (Y/N). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Enforcement_Status_Third_Parties">Documentation</a>')
+    description = models.TextField(blank=True, null=True,
+                                   help_text='Detailed description of the collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Description">Documentation</a>')
 
-    engine_size = models.FloatField(blank=True, null=True, help_text='Engine size (litres) of the Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.14.03.Engine_Size">Documentation</a>')
+    enforcement_description = models.TextField(blank=True, null=True,
+                                               help_text='Comments/Description of the stage of Enforcement that the Property Collateral is in as at cut-off date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Enforcement_Description">Documentation</a>')
 
-    guarantee_amount = models.FloatField(blank=True, null=True, help_text='Claim amount of the guarantee when "Guarantee" is selected in field "Collateral Type". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Guarantee_Amount">Documentation</a>')
+    enforcement_status = models.NullBooleanField(blank=True, null=True,
+                                                 help_text='Status of the enforcement process that the Collateral is currently in as at cut-off date, e.g. if it is in receivership. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Enforcement_Status">Documentation</a>')
 
-    initial_valuation_amount = models.FloatField(blank=True, null=True, help_text='Value of the Collateral assessed at loan origination. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Initial_Valuation_Amount">Documentation</a>')
+    enforcement_status_third_parties = models.NullBooleanField(blank=True, null=True,
+                                                               help_text='Indicator as to whether any other secured creditors have taken steps to enforce security over the asset? (Y/N). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Enforcement_Status_Third_Parties">Documentation</a>')
 
-    latest_valuation_amount = models.FloatField(blank=True, null=True, help_text='Value of the Collateral when last assessed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Latest_Valuation_Amount">Documentation</a>')
+    engine_size = models.FloatField(blank=True, null=True,
+                                    help_text='Engine size (litres) of the Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.14.03.Engine_Size">Documentation</a>')
 
-    legal_owner = models.TextField(blank=True, null=True, help_text='Legal owner of the Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Legal_Owner">Documentation</a>')
+    guarantee_amount = models.FloatField(blank=True, null=True,
+                                         help_text='Claim amount of the guarantee when "Guarantee" is selected in field "Collateral Type". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Guarantee_Amount">Documentation</a>')
 
-    manufacturer_of_collateral = models.TextField(blank=True, null=True, help_text='Name used to refer to the manufacturer of the Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Manufacturer_of_Collateral">Documentation</a>')
+    initial_valuation_amount = models.FloatField(blank=True, null=True,
+                                                 help_text='Value of the Collateral assessed at loan origination. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Initial_Valuation_Amount">Documentation</a>')
 
-    name_or_model_of_collateral = models.TextField(blank=True, null=True, help_text='Name / model of the Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Name_or_Model_of_Collateral">Documentation</a>')
+    latest_valuation_amount = models.FloatField(blank=True, null=True,
+                                                help_text='Value of the Collateral when last assessed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Latest_Valuation_Amount">Documentation</a>')
 
-    new_or_used = models.IntegerField(blank=True, null=True, choices=NEW_OR_USED_CHOICES, help_text='Condition of the Collateral at loan origination. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.New_Or_Used">Documentation</a>')
+    legal_owner = models.TextField(blank=True, null=True,
+                                   help_text='Legal owner of the Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Legal_Owner">Documentation</a>')
 
-    protection_identifier = models.TextField(blank=True, null=True, help_text='Institution internal identifier for the Non-Property Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.14.0.Protection_identifier">Documentation</a>')
+    manufacturer_of_collateral = models.TextField(blank=True, null=True,
+                                                  help_text='Name used to refer to the manufacturer of the Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Manufacturer_of_Collateral">Documentation</a>')
 
-    registration_number = models.TextField(blank=True, null=True, help_text='Registration number of the Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Registration_Number">Documentation</a>')
+    name_or_model_of_collateral = models.TextField(blank=True, null=True,
+                                                   help_text='Name / model of the Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Name_or_Model_of_Collateral">Documentation</a>')
 
-    type_of_initial_valuation = models.IntegerField(blank=True, null=True, choices=TYPE_OF_INITIAL_VALUATION_CHOICES, help_text='Type of the initial valuation. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Type_of_Initial_Valuation">Documentation</a>')
+    new_or_used = models.IntegerField(blank=True, null=True, choices=NEW_OR_USED_CHOICES,
+                                      help_text='Condition of the Collateral at loan origination. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.New_Or_Used">Documentation</a>')
 
-    type_of_latest_valuation = models.IntegerField(blank=True, null=True, choices=TYPE_OF_LATEST_VALUATION_CHOICES, help_text='Type of the latest valuation for the Collateral, i.e. Full Appraisal, Drive-by, Automated Valuation Model, Indexed, Desktop, Managing / Estate Agent, Purchase Price, Hair Cut, Mark to market and Borrowers Valuation. <a class ="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Type_of_Latest_Valuation" > Documentation </a> ')
 
-    type_of_legal_owner = models.IntegerField(blank=True, null=True, choices=TYPE_OF_LEGAL_OWNER_CHOICES, help_text='Type of the legal owner, i.e. Private Individual, Listed Corporate, Unlisted Corporate and Partnership. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Type_of_Legal_Owner">Documentation</a>')
+    registration_number = models.TextField(blank=True, null=True,
+                                           help_text='Registration number of the Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Registration_Number">Documentation</a>')
 
-    year_of_manufacture = models.DateField(blank=True, null=True, help_text='Year that the Collateral was manufactured / first sold. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Year_of_Manufacture">Documentation</a>')
+    type_of_initial_valuation = models.IntegerField(blank=True, null=True, choices=TYPE_OF_INITIAL_VALUATION_CHOICES,
+                                                    help_text='Type of the initial valuation. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Type_of_Initial_Valuation">Documentation</a>')
 
-    year_of_registration = models.DateField(blank=True, null=True, help_text='Year that the Collateral was registered. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Year_of_Registration">Documentation</a>')
+    type_of_latest_valuation = models.IntegerField(blank=True, null=True, choices=TYPE_OF_LATEST_VALUATION_CHOICES,
+                                                   help_text='Type of the latest valuation for the Collateral, i.e. Full Appraisal, Drive-by, Automated Valuation Model, Indexed, Desktop, Managing / Estate Agent, Purchase Price, Hair Cut, Mark to market and Borrowers Valuation. <a class ="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Type_of_Latest_Valuation" > Documentation </a> ')
+
+    type_of_legal_owner = models.IntegerField(blank=True, null=True, choices=TYPE_OF_LEGAL_OWNER_CHOICES,
+                                              help_text='Type of the legal owner, i.e. Private Individual, Listed Corporate, Unlisted Corporate and Partnership. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Type_of_Legal_Owner">Documentation</a>')
+
+    year_of_manufacture = models.DateField(blank=True, null=True,
+                                           help_text='Year that the Collateral was manufactured / first sold. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Year_of_Manufacture">Documentation</a>')
+
+    year_of_registration = models.DateField(blank=True, null=True,
+                                            help_text='Year that the Collateral was registered. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Year_of_Registration">Documentation</a>')
 
     # Bookkeeping fields
     creation_date = models.DateTimeField(auto_now_add=True)
     last_change_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.non_property_collateral_identifier
+        return self.protection_identifier
 
     def get_absolute_url(self):
-        return reverse('npl_portfolio:eba_non_property_collateral_edit', kwargs={'pk': self.pk})
+        return reverse('npl_portfolio:non_property_collateral_edit', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Non-Property Collateral"

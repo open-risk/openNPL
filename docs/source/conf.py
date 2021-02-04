@@ -14,15 +14,20 @@
 #
 import sys
 import os
-
 sys.path.insert(0, os.path.abspath('../../'))
 
-__version__ = '0.1.1'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'openNPL.settings'
+import django
+django.setup()
+
+
+
+__version__ = '0.3'
 
 # -- Project information -----------------------------------------------------
 
 project = 'openNPL'
-copyright = '2020, Open Risk'
+copyright = '2020 - 2021, Open Risk'
 author = 'Open Risk'
 
 # The short X.Y version

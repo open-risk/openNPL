@@ -18,19 +18,19 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""
-WSGI config for openNPL project.
 
-It exposes the WSGI callable as a module-level variable named ``application``.
+#
+# CHOICE DICTIONARIES FORBEARANCE
+#
 
-For more information on this file, see
-https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/
-"""
+TYPE_OF_IDENTIFIER_CHOICES = [(0, '(a) Counterparty'), (1, '(b) Loan')]
 
-import os
+TYPE_OF_FORBEARANCE_CHOICES = [(0, '(a) Loan maturity date extension'), (1, '(b) Amortisation change'),
+                               (2, '(c) Principal write-off'), (3, '(d) Temporary rate reduction'),
+                               (4, '(e) Capitalisation of interest'),
+                               (5, '(f) Capitalisation of costs advanced: which is insurance and ground rent'),
+                               (6, '(g) Combination '), (7, '(h) Other')]
 
-from django.core.wsgi import get_wsgi_application
+REPAYMENT_FREQUENCY_UNDER_FORBEARANCE_CHOICES = [(0, '(a) Monthly'), (1, '(b) Quarterly'), (2, '(c) Semi-Annually'),
+                                                 (3, '(d) Annually'), (4, '(e) Daily'), (5, '(f) Other')]
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'openNPL.settings')
-
-application = get_wsgi_application()

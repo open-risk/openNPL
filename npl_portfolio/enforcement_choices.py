@@ -18,19 +18,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-"""
-WSGI config for openNPL project.
 
-It exposes the WSGI callable as a module-level variable named ``application``.
+#
+# CHOICE DICTIONARIES ENFORCEMENT
+#
 
-For more information on this file, see
-https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/
-"""
-
-import os
-
-from django.core.wsgi import get_wsgi_application
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'openNPL.settings')
-
-application = get_wsgi_application()
+CURRENT_MARKET_STATUS_CHOICES = [
+    (0, '(a) On the market, is when the collateral is advertised and marketed for sale'),
+    (1, '(b) Off the market, is when the collateral is not marketed or up for sale')]

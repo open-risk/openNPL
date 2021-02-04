@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Open Risk (https://www.openriskmanagement.com)
+# Copyright (c) 2020 - 2021 Open Risk (https://www.openriskmanagement.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -21,81 +21,47 @@
 from django.db import models
 from django.urls import reverse
 
+from npl_portfolio.counterparty_choices import *
+from npl_portfolio.counterparty_group import CounterpartyGroup
 from npl_portfolio.models import PortfolioSnapshot, Portfolio
-
-"""
-Data object holds Counterparty data conforming to the EBA NPL Template specification
-`EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
-
-
-"""
 
 
 class Counterparty(models.Model):
-    #
-    # CHOICE DICTIONARIES
-    #
+    """
+    Data object holds Counterparty data conforming to the EBA NPL Template specification
+    `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
 
-    COUNTERPARTY_ROLE_CHOICES = [(0, '(a) Guarantor'), (1, '(b) Borrower'), (2, '(c) Tenant')]
 
-    LEGAL_TYPE_OF_COUNTERPARTY_CHOICES = [
-        (0, '(a) Listed Corporate is a Corporate entity whose shares are quoted and traded on a Stock Exchange'),
-        (1, '(b) Unlisted Corporate is a Corporate entity whose shares are not quoted and traded on a stock exchange, '
-            'however an unlisted corporate may have an unlimited number of shareholders to raise capital for any '
-            'commercial venture'),
-        (2, '(c) Listed Fund is a fund whose shares are quoted and traded on a Stock exchange'),
-        (3, '(d) Unlisted Fund is a fund whose shares are not quoted and traded on a Stock exchange'),
-        (4, '(e) Partnership is where the Sponsor constitutes a group of individuals who form a legal partnership, '
-            'where profits and liabilities are shared; or,'),
-        (5, '(f) Private Individual')]
-
-    TYPE_OF_PERSONAL_IDENTITY_NUMBER_CHOICES = [(0, '(a) Passport Number'), (1, '(b) National Insurance Number'),
-                                                (2, '(c) National tax number'), (3, '(d) Other')]
-
-    GEOGRAPHIC_REGION_CLASSIFICATION_CHOICES = [(0, '(a) NUTS3 2013'), (1, '(b) NUTS3 2010'), (2, '(c) NUTS3 2006'),
-                                                (3, '(d) NUTS3 2003'), (4, '(e) Other')]
-
-    EMPLOYMENT_STATUS_CHOICES = [(0, '(a) Employed'), (1, '(b) Employed with partial support (company subsidy)'),
-                                 (2, '(c) Protected life-time employment (civil servant)'), (3, '(d) Self-employed'),
-                                 (4, '(e) Unemployed'), (5, '(f) Student'), (6, '(g) Pensioner'), (7, '(h) Other')]
-
-    BASIS_OF_FINANCIAL_STATEMENTS_CHOICES = [(0, '(a) IFRS'), (1, '(b) National GAAP '), (2, '(c) Other')]
-
-    FINANCIAL_STATEMENTS_TYPE_CHOICES = [(0, '(a) Consolidated'), (1, '(b) Counterparty level')]
-
-    ENTERPRISE_SIZE_CHOICES = [(0, '(a) Micro-enterprise'), (1, '(b) Small enterprise'), (2, '(c) Medium enterprise'),
-                               (3, '(d) Large enterprise')]
-
-    CROSS_DEFAULT_FOR_COUNTERPARTY_CHOICES = [(0, '(a) Full'), (1, '(b) Partial'), (2, '(c) None')]
-
-    CROSS_COLLATERALISATION_FOR_COUNTERPARTY_CHOICES = [(0, '(a) Full'), (1, '(b) Partial'), (2, '(c) None')]
-
-    LEGAL_STATUS_CHOICES = [
-        (0, '(a) Listed Corporate is a Corporate entity whose shares are quoted and traded on a Stock Exchange'),
-        (1, '(b) Unlisted Corporate is a Corporate entity whose shares are not quoted and traded on a stock exchange, '
-            'however an unlisted corporate may have an unlimited number of shareholders to raise capital for any '
-            'commercial venture'),
-        (2, '(c) Listed Fund is a fund whose shares are quoted and traded on a Stock exchange'),
-        (3, '(d) Unlisted Fund is a fund whose shares are not quoted and traded on a Stock exchange'),
-        (4, '(e) Partnership is where the Sponsor constitutes a group of individuals who form a legal partnership, '
-            'where profits and liabilities are shared; or,'),
-        (5, '(f) Private Individual')]
-
-    LEGAL_PROCEDURE_TYPE_CHOICES = [(0, '(a) Corporate Restructuring Procedures, which also include funds'),
-                                    (1, '(b) Corporate Insolvency Procedures, which also include funds'),
-                                    (2, '(c) Private Individual Counterparty Debt Compromise Procedures'),
-                                    (3, '(d) Private Individual Counterparty Insolvency Procedures'),
-                                    (4, '(e) Partnership Restructuring Procedures'),
-                                    (5, '(f) Partnership Insolvency Procedures')]
-
-    LEGAL_PROCEDURE_NAME_CHOICES = [(0, 'Country Specific: Annex I')]
+    """
 
     #
-    # EBA TEMPLATE FIELDS
+    # IDENTIFICATION FIELDS
     #
 
-    counterparty_identifier = models.TextField(unique=True,
+    counterparty_identifier = models.TextField(blank=True, null=True,
                                                help_text='Unique internal identifier for the Counterparty. One or multiple Counterparties can be part of a Counterparty. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Counterparty_Identifier">Documentation</a>')
+
+    # counterparty_group_identifier = models.TextField(blank=True, null=True, help_text='Institutions internal identifier for the Counterparty Group. Where Counterparty Group is defined as a group of related Counterparties. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Counterparty_Group_Identifier">Documentation</a>')
+
+    #
+    # FOREIGN KEYS
+    #
+
+    # ATTN Promoted to Foreign Key
+    counterparty_group_identifier = models.ForeignKey(CounterpartyGroup, on_delete=models.CASCADE, null=True,
+                                                      blank=True)
+
+    # Portfolio ID Foreign Key
+    portfolio_id = models.ForeignKey(Portfolio, on_delete=models.CASCADE, blank=True, null=True,
+                                     help_text="The portfolio ID to which the Counterparty belongs (can be more than one)")
+
+    # Snapshot ID  Foreign Key
+    snapshot_id = models.ForeignKey(PortfolioSnapshot, on_delete=models.CASCADE, blank=True, null=True,
+                                       help_text="The snapshot ID to which the Counterparty belongs")
+
+    #
+    # DATA PROPERTIES
+    #
 
     address_of_registered_location = models.TextField(blank=True, null=True,
                                                       help_text='Address where the Corporate Counterparty is registered, including flat / house number. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Address_of_Registered_Location">Documentation</a>')
@@ -124,9 +90,6 @@ class Counterparty(models.Model):
 
     contingent_obligations = models.TextField(blank=True, null=True,
                                               help_text='Indicator as to whether the Corporate Counterparty has contingent obligations which will be part of the sale, e.g. the Institution provided a guarantee to a real estate developer on their development. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Contingent_Obligations">Documentation</a>')
-
-    counterparty_group_identifier = models.TextField(blank=True, null=True,
-                                                     help_text='Institutions internal identifier for the Counterparty Group. Where Counterparty Group is defined as a group of related Counterparties. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Counterparty_Group_Identifier">Documentation</a>')
 
     counterparty_role = models.IntegerField(blank=True, null=True, choices=COUNTERPARTY_ROLE_CHOICES,
                                             help_text='Type of the Counterparty i.e. Guarantor, Borrower, Tenant. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Counterparty_Role">Documentation</a>')
@@ -311,15 +274,9 @@ class Counterparty(models.Model):
     total_liabilities = models.BigIntegerField(blank=True, null=True,
                                                help_text='Amount of total liabilities held by the Corporate Counterparty on the balance sheet as defined by the applicable accounting standard as per the latest available financial statements. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Total_Liabilities">Documentation</a>')
 
-    # Portfolio ID Foreign Key
-    portfolio_id = models.ForeignKey(Portfolio, on_delete=models.CASCADE, blank=True, null=True,
-                                     help_text="The portfolio ID to which the Counterparty belongs (can be more than one)")
-
-    # Snapshot ID  Foreign Key
-    snapshot_id = models.OneToOneField(PortfolioSnapshot, on_delete=models.CASCADE, blank=True, null=True,
-                                       help_text="The snapshot ID to which the Counterparty belongs (must be unique)")
-
-    # Bookkeeping Fields
+    #
+    # BOOKKEEPING FIELDS
+    #
     creation_date = models.DateTimeField(auto_now_add=True)
     last_change_date = models.DateTimeField(auto_now=True)
 
@@ -327,7 +284,7 @@ class Counterparty(models.Model):
         return self.counterparty_identifier
 
     def get_absolute_url(self):
-        return reverse('npl_portfolio:eba_counterparty_edit', kwargs={'pk': self.pk})
+        return reverse('npl_portfolio:Counterparty_edit', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Counterparty"
