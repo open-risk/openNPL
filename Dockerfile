@@ -9,6 +9,7 @@ ENV DJANGO_ALLOWED_HOSTS localhost 127.0.0.1 [::1]
 RUN mkdir /opennpl
 WORKDIR /opennpl
 COPY requirements.txt /opennpl/
+RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 COPY . /opennpl/
 RUN rm -f /opennpl/db.sqlite3

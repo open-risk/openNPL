@@ -1,11 +1,14 @@
 Loading Sample Data
 ==============================
-A new openNPL instance will have no data. To get a feel for the platform it is advisable to load some of the datasets included in the distribution. Here is how to do this for a docker based or local installation
+A new openNPL instance will have no data. To get a feel for the platform it is advisable to load some of the datasets included in the distribution.
+
+
+Here is how to do this for a docker based / local installation:
 
 
 Loading Data into local instance
 ---------------------------------
-Inside your django venv issue
+Inside your virtualenv issue
 
 .. code:: bash
 

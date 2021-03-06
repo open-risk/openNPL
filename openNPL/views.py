@@ -36,6 +36,14 @@ from npl_portfolio.models import CounterpartyGroup, Counterparty, Loan, \
     Enforcement, Forbearance, NonPropertyCollateral, PropertyCollateral, \
     ExternalCollection
 
+"""
+
+
+
+.. TODO:: Some models only implement collective views
+
+
+"""
 
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))

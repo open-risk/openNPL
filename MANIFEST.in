@@ -1,0 +1,10 @@
+
+include LICENSE
+include description_short.rst
+include CHANGELOG.rst
+include CODE_OF_CONDUCT.rst
+include CONTRIBUTING.rst
+recursive-include npl_portfolio *.py
+recursive-include docs *
+recursive-exclude * *.py[co]
+recursive-exclude * *.scssc

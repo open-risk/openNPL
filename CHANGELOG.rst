@@ -3,6 +3,12 @@ ChangeLog
 PLEASE NOTE THIS IS ONLY A PLANNING RELEASE.
 THE OPENNPL API IS STILL UNSTABLE
 
+v0.3.2 (XX-XX-2021)
+-------------------
+* Introduce explicit corporate/individual flags
+* fine grained NACE/ISCO fields
+* Docker data initialization documentation
+
 v0.3.1 (04-02-2021)
 -------------------
 * Expanded implemented fields / streamlined FK structure

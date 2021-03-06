@@ -39,8 +39,7 @@ Each model is implemented in a separate file TABLE_NAME.py in the npl_portfolio 
 class Portfolio(models.Model):
 
     """
-    The portfolio data object is useful to aggregate datasets belonging to the same actual credit portfolio
-    A portfolio is named to facilitate recognition
+    The Portfolio Data object is useful to aggregate datasets belonging to the same credit portfolio. A portfolio is named to facilitate recognition. At present there is not much additional information stored here.
 
     """
     name = models.CharField(max_length=200, null=True, blank=True)
@@ -60,9 +59,8 @@ class Portfolio(models.Model):
 
 class PortfolioSnapshot(models.Model):
     """
-    The NPL Portfolio_Snapshot object groups NPL Portfolio generated portfolio data for a given date
-    The Snapshot may be named to facilitate recognition
-    The actual Snapshot data stored in the Portfolio Models (with foreign key to snapshot)
+    The Portfolio Snapshot object groups NPL Portfolio generated portfolio data for a given date.
+    The Snapshot may be named to facilitate recognition. The actual Snapshot data are stored in the Portfolio Model (with foreign key to snapshot)
 
     """
 
@@ -87,7 +85,6 @@ class PortfolioSnapshot(models.Model):
     class Meta:
         verbose_name = "Portfolio Snapshot"
         verbose_name_plural = "Portfolio Snapshots"
-
 
 # ATTN Those imports MUST be placed after loading the Portfolio / PortfolioSnapshot classes
 

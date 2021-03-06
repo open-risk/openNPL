@@ -1,11 +1,14 @@
 API Documentation
 ============================
 
-This page documents the current views implementing the REST endpoints of the openNPL server
+This page documents the current views implementing the REST endpoints of the openNPL server. The overall structure is as follows:
 
-.. TODO:: Missing are the following: the Lease Table and the Schedule tables (Swap cashflows and Historical Repayments)
+* api_root (overall API root)
+* npl_api_root (npl data API root)
+    * npl_DATA_MODEL_api collections of DATA_MODEL
+    * npl_DATA_MODEL_detail instances of DATA_MODEL
 
-.. TODO:: The current implementation is a demo and only permits GET operations. POST operations will be added
+.. TODO:: Some models only implement collective views
 
 
 .. automodule:: openNPL.views

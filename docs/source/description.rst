@@ -7,8 +7,8 @@ The source code is available in the Open Risk Repository `Link <https://github.c
 
 * Author: `Open Risk <http://www.openriskmanagement.com>`_
 * License: MIT
-* Code Documentation: `Read The Docs <https://opennpl.readthedocs.io/en/latest/>`_
-* Domain Documentation: `Open Risk Manual Loan Data <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
+* Online Code Documentation: `Read The Docs <https://opennpl.readthedocs.io/en/latest/>`_
+* NPL Data Documentation: `Open Risk Manual Loan Data <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
 * Development Website: `Github <https://github.com/open-risk/openNPL>`_
 * Project Discussion: `Gitter <https://gitter.im/open-risk/openNPL>`_
 * Docker Image: `Docker <https://hub.docker.com/repository/docker/openrisk/opennpl_web>`_
@@ -17,33 +17,35 @@ The source code is available in the Open Risk Repository `Link <https://github.c
 
 Functionality
 -------------
-The openNPL platform may be used by a combination of regular financial industry users (portfolio managers, business analysts), data engineers and risk model developers.
+The openNPL platform may be useful to financial industry users (portfolio managers, business analysts), data engineers and/or risk model developers.
 
 Users can use openNPL to:
+
 * Log-in into the application with their credentials
-* Inspect the available loan data sets (tables or relations) conforming to the European Banking Authority Template recommendations<
+* Inspect the available loan data sets (tables or relations) conforming to the European Banking Authority Template recommendations
 * Insert, Update or Delete loan records (e.g. new counterparty, loan or collateral data)
 * Consult the documentation as to the meaning and requirements of each data element
 
 
-**NB: openNPL is still in active development. The functionality of the platform will be significantly enhanced in future versions. If you have specific requests / ideas please raise them in our github repository**
+.. note:: openNPL is still in active development. The functionality of the platform will be significantly enhanced in future versions. If you have specific requests / ideas please raise them in our github repository**
 
 Architecture
 ------------
-The current *architecture* is summarized:
+The current *architecture* of openNPL is summarized as follows:
 
 * openNPL is built on top of the **Python Django framework**
-* The non-performing loan template recommendations of the EBA are implemented as distinct models in the database
-* Additional models are introduced to bind the data together with relations
-* The user interface uses built-in Django forms as those are rendered by the Grappelli skin
-* The backend database is currently sqlite3
+* The non-performing loan template recommendations of the EBA are implemented as distinct **models** in the database
+* The backend database is currently **sqlite3**
+* Additional models are introduced to bind the data together in relations (e.g. portfolio snapshot)
+* The user interface uses built-in Django forms as those are rendered by the **Grappelli** skin
+
 
 File structure
 -----------------
 The openNPL distribution has the following structure:
 
 +---------+---------------+--------------------+---------------------------------------+
-| Level 1 | Level 2       | Level 3            |  Description                          |
+| Level 1 | Level 2       | Level 3            |  File or Directory Description        |
 +=========+===============+====================+=======================================+
 | openNPL |               |                    | The root directory                    |
 +---------+---------------+--------------------+---------------------------------------+
@@ -57,6 +59,8 @@ The openNPL distribution has the following structure:
 +---------+---------------+--------------------+---------------------------------------+
 |         |               | ...                | The other EBA models                  |
 +---------+---------------+--------------------+---------------------------------------+
+|         |               | fixtures           | DIR: Sample data in JSON format       |
++---------+---------------+--------------------+---------------------------------------+
 |         | start         |                    | DIR: Templates for the front end      |
 +---------+---------------+--------------------+---------------------------------------+
 |         | openNPL       |                    | DIR: Application configuration files  |
@@ -67,17 +71,20 @@ The openNPL distribution has the following structure:
 +---------+---------------+--------------------+---------------------------------------+
 |         | templates     |                    | DIR: Template customization           |
 +---------+---------------+--------------------+---------------------------------------+
+|         | tests         |                    | DIR: Testing scrips                   |
++---------+---------------+--------------------+---------------------------------------+
 
 
 Core Data Models
 ----------------
+The core data models currently implemented are:
 
-- Portfolio (Segments the data into distinct portfolios)
-- Portfolio_Snapshot (Segments the data into temporal snapshots / cutoff dates)
-- 8 NPL Tables (Implementing the core European Banking Authority NPL template specification)
-- User (Inheriting from Django User model)
+- **Portfolio** (Segments the loan level data into distinct portfolios)
+- **Portfolio_Snapshot** (Segments the loan level data into temporal snapshots / cutoff dates)
+- **8 NPL Tables** (Implementing the core European Banking Authority NPL template specification)
+- **User** (Inheriting from Django User model)
 
-Installation options
+Installation Options
 --------------------
 The :doc:`/installation` page provides guidance with the current installation options
 
