@@ -85,3 +85,5 @@ LOAN_COVENANTS_CHOICES = [
     (2, '(c) Debt Service Coverage Ratio (DSCR) is the ratio of annual net operating income to debt '
         'obligations owed in the last 12m'),
     (3, '(d) Other')]
+
+MARP_STATUS_CHOICES = [(0, '(a) Not in MARP'), (1, '(b) Exited MARP'), (2, '(c) Provision 23 - 31 days in arrears'), (3, '(d) Provision 24 - Financial difficulty'), (4, '(e) Provision 28 - Not co-operating warning'), (5, '(f) Provision 29 - Not co-operating'), (6, '(g) Provision 42 - Restructure offer'), (7, '(h) Provision 45 - Restructure declined by seller'), (8, '(i) Provision 47 - Restructure declined by borrower'), (9, '(j) Self-Cure'), (10, '(k) Alternative Repayment Arrangement (ARA)')]

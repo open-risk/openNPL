@@ -24,15 +24,15 @@ from django.urls import reverse
 from npl_portfolio.loan_choices import *
 from npl_portfolio.counterparty import Counterparty
 
-
 class Loan(models.Model):
     """
-    Data object holds Loan Portfolio data conforming to the EBA NPL Template specification
-    `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
+    The Loan model holds Loan Portfolio data conforming to the EBA NPL Template specification
+    `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Loan_Table>`_
 
     .. note:: The EBA Templates make a distinction between instrument and contract. At present this is not fully implemented
 
     """
+
 
     #
     # IDENTIFICATION FIELDS
@@ -68,6 +68,9 @@ class Loan(models.Model):
 
     asset_class = models.IntegerField(blank=True, null=True, choices=ASSET_CLASS_CHOICES,
                                       help_text='Asset class of the Loan, i.e. Resi, CRE, SME/Corp, etc.. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Asset_Class">Documentation</a>')
+
+    balance_at_default = models.BigIntegerField(blank=True, null=True,
+                                                help_text='Balance of the Loan when the Loan has defaulted (CRR Art.178). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Balance_at_default">Documentation</a>')
 
     capitalised_pastdue_amount = models.BigIntegerField(blank=True, null=True,
                                                         help_text='Total capitalised past-due balance as recognised on balance sheet at NPL Portfolio Cut-Off Date i.e. Interest and Legal Fees. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Capitalised_PastDue_Amount">Documentation</a>')
@@ -227,6 +230,19 @@ class Loan(models.Model):
     loan_status = models.IntegerField(blank=True, null=True, choices=LOAN_STATUS_CHOICES,
                                       help_text='Loan status, e.g. performing and non-performing. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Loan_Status">Documentation</a>')
 
+
+    marp_applicable = models.NullBooleanField(blank=True, null=True,
+                                                               help_text='Indicator as to whether the Institution operates a Mortgage Arrears Resolution Process when dealing with Corporates or Private Individual Counterparties in Mortgage Arrears. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.MARP_Applicable">Documentation</a>')
+
+
+    marp_entry = models.DateField(blank=True, null=True,
+                                                help_text='Date loan entered current MARP status. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.MARP_Entry">Documentation</a>')
+
+    marp_status = models.IntegerField(blank=True, null=True, choices=MARP_STATUS_CHOICES,
+                                      help_text='The status of the current Mortgage Arrears Resolution Process; Not in MARP, Exited MARP, Provision 23,24,28,29,42,45,47,Self Cure, Alternative Repayment Arrangement (ARA). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.MARP_Status">Documentation</a>')
+
+
+
     next_interest_reset_date = models.DateField(blank=True, null=True,
                                                 help_text='Date that the next interest reset event happened. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Next_Interest_Reset_Date">Documentation</a>')
 
@@ -301,6 +317,9 @@ class Loan(models.Model):
 
     relevant_schemes = models.TextField(blank=True, null=True,
                                         help_text='Indicator as to whether the Loan is involved with any relevant schemes, e.g. Right to Buy Scheme in UK. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Relevant_Schemes">Documentation</a>')
+
+    recourse_to_other_assets = models.NullBooleanField(blank=True, null=True,
+                                                       help_text='Indicator as to whether the Institution has the legal right to access other assets of the Borrower. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Recourse_to_Other_Assets">Documentation</a>')
 
     securitised = models.TextField(blank=True, null=True,
                                    help_text='Indicator as to whether the Loan has been securitised or within covered bond pool. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Securitised">Documentation</a>')

@@ -27,8 +27,8 @@ from npl_portfolio.loan import Loan
 
 class NonPropertyCollateral(models.Model):
     """
-    Data object holds Non-Property Collateral data conforming to the EBA NPL Template specification
-    `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
+    The NonPropertyCollateral model holds Non-Property Collateral data conforming to the EBA NPL Template specification
+    `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Non-Property_Collateral_Table>`_
 
     """
 
@@ -64,6 +64,18 @@ class NonPropertyCollateral(models.Model):
     collateral_type = models.IntegerField(blank=True, null=True, choices=COLLATERAL_TYPE_CHOICES,
                                           help_text='Physical type of the Collateral, e.g. Guarantee and Machinery. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Collateral_Type">Documentation</a>')
 
+    estimated_useful_life = models.IntegerField(blank=True, null=True,
+                                                help_text='Estimated remaining useful life as at cut-off date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty_Collateral.Estimated_Useful_Life">Documentation</a>')
+
+    configuration = models.TextField(blank=True, null=True,
+                                     help_text='Specification and option list of the Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty_Collateral.Configuration">Documentation</a>')
+
+    original_country_of_registration = models.TextField(blank=True, null=True,
+                                                        help_text='Country that the Collateral was originally registered in. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty_Collateral.Original_Country_of_Registration">Documentation</a>')
+
+    current_country_of_registration = models.TextField(blank=True, null=True,
+                                                       help_text='Country that the Collateral is currently registered in as at cut-off date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty_Collateral.Current_Country_of_Registration">Documentation</a>')
+
     currency_of_collateral = models.TextField(blank=True, null=True,
                                               help_text='Currency that the valuation and cash flows related to the Collateral are expressed in. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Currency_of_Collateral">Documentation</a>')
 
@@ -97,6 +109,18 @@ class NonPropertyCollateral(models.Model):
     initial_valuation_amount = models.FloatField(blank=True, null=True,
                                                  help_text='Value of the Collateral assessed at loan origination. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Initial_Valuation_Amount">Documentation</a>')
 
+    initial_residual_value = models.FloatField(blank=True, null=True,
+                                               help_text='Estimated residual value of the Collateral at loan origination, residual value refers to how much the Collateral will be worth at end of the loan term . <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty_Collateral.Initial_Residual_Value">Documentation</a>')
+
+    date_of_the_latest_residual_valuation = models.DateField(blank=True, null=True,
+                                                             help_text='Date that the latest residual value of the Collateral was assessed, residual value refers to how much the Collateral will be worth at end of the loan term. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty_Collateral.Date_of_the_Latest_Residual_Valuation">Documentation</a>')
+
+    initial_residual_valuation_date = models.DateField(blank=True, null=True,
+                                                       help_text='Date at which the initial residual value of the Collateral was assessed, residual value refers to how much the Collateral will be worth at end of the loan term. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty_Collateral.Initial_Residual_Valuation_Date">Documentation</a>')
+
+    latest_residual_value = models.FloatField(blank=True, null=True,
+                                              help_text='Estimated residual value of the Collateral when last assessed, residual value refers to how much the Collateral will be worth at end of the loan term. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty_Collateral.Latest_Residual_Value">Documentation</a>')
+
     latest_valuation_amount = models.FloatField(blank=True, null=True,
                                                 help_text='Value of the Collateral when last assessed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Latest_Valuation_Amount">Documentation</a>')
 
@@ -112,7 +136,6 @@ class NonPropertyCollateral(models.Model):
     new_or_used = models.IntegerField(blank=True, null=True, choices=NEW_OR_USED_CHOICES,
                                       help_text='Condition of the Collateral at loan origination. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.New_Or_Used">Documentation</a>')
 
-
     registration_number = models.TextField(blank=True, null=True,
                                            help_text='Registration number of the Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Registration_Number">Documentation</a>')
 
@@ -124,6 +147,12 @@ class NonPropertyCollateral(models.Model):
 
     type_of_legal_owner = models.IntegerField(blank=True, null=True, choices=TYPE_OF_LEGAL_OWNER_CHOICES,
                                               help_text='Type of the legal owner, i.e. Private Individual, Listed Corporate, Unlisted Corporate and Partnership. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Type_of_Legal_Owner">Documentation</a>')
+
+    asset_purchase_obligation = models.NullBooleanField(blank=True, null=True,
+                                                        help_text='Indicator as to whether there is an obligation for the Borrower to purchase the Collateral at the end of the lease. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty_Collateral.Asset_Purchase_Obligation">Documentation</a>')
+
+    option_to_buy_price = models.FloatField(blank=True, null=True,
+                                            help_text='Amount the Borrower will pay at the end of the lease in order to take ownership of the Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty_Collateral.Option_to_Buy_Price">Documentation</a>')
 
     year_of_manufacture = models.DateField(blank=True, null=True,
                                            help_text='Year that the Collateral was manufactured / first sold. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Year_of_Manufacture">Documentation</a>')

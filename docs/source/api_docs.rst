@@ -8,7 +8,7 @@ This page documents the current views implementing the REST endpoints of the ope
     * npl_DATA_MODEL_api collections of DATA_MODEL
     * npl_DATA_MODEL_detail instances of DATA_MODEL
 
-.. TODO:: Some models only implement collective views
+.. TODO:: Some models only implement collective (list) views, detailed views to be implemented in due course
 
 
 .. automodule:: openNPL.views

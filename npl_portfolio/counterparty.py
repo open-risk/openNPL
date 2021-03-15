@@ -28,11 +28,13 @@ from npl_portfolio.models import PortfolioSnapshot, Portfolio
 
 class Counterparty(models.Model):
     """
-    Data object holds Counterparty data conforming to the EBA NPL Template specification
-    `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
+    The Counterparty model holds Counterparty data conforming to the EBA NPL Template specification
+    `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Counterparty_Table>`_
 
+    .. note:: The EBA Templates make a distinction between corporate borrowers and individual borrowers. The Counterparty model holds data for either type
 
     """
+
 
     #
     # IDENTIFICATION FIELDS
@@ -57,10 +59,18 @@ class Counterparty(models.Model):
 
     # Snapshot ID  Foreign Key
     snapshot_id = models.ForeignKey(PortfolioSnapshot, on_delete=models.CASCADE, blank=True, null=True,
-                                       help_text="The snapshot ID to which the Counterparty belongs")
+                                    help_text="The snapshot ID to which the Counterparty belongs")
 
     #
-    # DATA PROPERTIES
+    # ADDITIONAL DATA PROPERTIES
+    #
+
+    borrower_type = models.IntegerField(blank=True, null=True,
+                                        choices=BORROWER_TYPE_CHOICES,
+                                        help_text='The borrower type (individual or corporate')
+
+    #
+    # EBA DATA PROPERTIES
     #
 
     address_of_registered_location = models.TextField(blank=True, null=True,
@@ -88,6 +98,9 @@ class Counterparty(models.Model):
     comments_on_other_litigation_related_process = models.TextField(blank=True, null=True,
                                                                     help_text='Further comments / details if there is other litigation processes in place. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Comments_on_Other_Litigation_Related_Process">Documentation</a>')
 
+    commencement_date_of_insolvency_or_restructuring_proceedings = models.DateField(blank=True, null=True,
+                                                                                    help_text='Date that the Counterparty commenced Insolvency / Restructuring Proceedings <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Commencement_Date_of_Insolvency_or_Restructuring_Proceedings">Documentation</a>')
+
     contingent_obligations = models.TextField(blank=True, null=True,
                                               help_text='Indicator as to whether the Corporate Counterparty has contingent obligations which will be part of the sale, e.g. the Institution provided a guarantee to a real estate developer on their development. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Contingent_Obligations">Documentation</a>')
 
@@ -96,6 +109,21 @@ class Counterparty(models.Model):
 
     country_of_registered_location = models.TextField(blank=True, null=True,
                                                       help_text='Country where the Corporate Counterparty is registered. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Country_of_Registered_Location">Documentation</a>')
+
+    correspondence_address_of_appointed_insolvency_practitioner = models.TextField(blank=True, null=True,
+                                                                                   help_text='https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Correspondence_address_of_appointed_insolvency_practitioner. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Country_of_Registered_Location">Documentation</a>')
+
+    insolvency_practitioner_reference = models.TextField(blank=True, null=True,
+                                                         help_text='Insolvency Practitioner Reference" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Insolvency_Practitioner_Reference">Documentation</a>')
+
+    proof_of_claim_filed_by_the_seller = models.NullBooleanField(blank=True, null=True,
+                                                                 help_text='Proof of Claim Filed by the seller. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Proof_of_Claim_Filed_by_the_seller">Documentation</a>')
+
+    distribution_made_to_the_seller = models.NullBooleanField(blank=True, null=True,
+                                                              help_text='https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Distribution_made_to_the_Seller. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Country_of_Registered_Location">Documentation</a>')
+
+    notice_for_procedure_termination = models.NullBooleanField(blank=True, null=True,
+                                                               help_text='Indicator as to whether the notice of the end of the procedure has been given to the seller. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Notice_for_Procedure_Termination">Documentation</a>')
 
     cross_collateralisation_for_counterparty = models.IntegerField(blank=True, null=True,
                                                                    choices=CROSS_COLLATERALISATION_FOR_COUNTERPARTY_CHOICES,
@@ -123,8 +151,9 @@ class Counterparty(models.Model):
     date_of_appointment = models.DateField(blank=True, null=True,
                                            help_text='Date that the insolvency practitioner was appointed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Date_of_Appointment">Documentation</a>')
 
-    date_of_entering_into_current_legal_process = models.DateField(blank=True, null=True,
-                                                                   help_text='Date that the Counterparty entered into their current legal status. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Date_of_Entering_Into_Current_Legal_Process">Documentation</a>')
+    # Previous EBA Version
+    # date_of_entering_into_current_legal_process = models.DateField(blank=True, null=True,
+    #                                                                help_text='Date that the Counterparty entered into their current legal status. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Date_of_Entering_Into_Current_Legal_Process">Documentation</a>')
 
     date_of_external_demand_issuance = models.DateField(blank=True, null=True,
                                                         help_text='Date that a demand notice was sent by solicitors who act on behalf of the Institution. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Date_of_External_Demand_Issuance">Documentation</a>')
@@ -205,8 +234,9 @@ class Counterparty(models.Model):
     jurisdiction_of_court = models.TextField(blank=True, null=True,
                                              help_text='Location of the court where the case is being heard. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Jurisdiction_of_Court">Documentation</a>')
 
-    legal_actions_completed = models.TextField(blank=True, null=True,
-                                               help_text='Description of the legal actions completed for the Counterparty. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Legal_Actions_Completed">Documentation</a>')
+    # deprecated
+    # legal_actions_completed = models.TextField(blank=True, null=True,
+    #                                            help_text='Description of the legal actions completed for the Counterparty. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Legal_Actions_Completed">Documentation</a>')
 
     legal_entity_identifier = models.TextField(blank=True, null=True,
                                                help_text='Global standard 20-character corporate identifier of the Corporate Counterparty. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Legal_entity_identifier">Documentation</a>')
@@ -214,14 +244,19 @@ class Counterparty(models.Model):
     legal_fees_accrued = models.BigIntegerField(blank=True, null=True,
                                                 help_text='Total amount of legal fees accrued at the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Legal_Fees_Accrued">Documentation</a>')
 
-    legal_procedure_name = models.IntegerField(blank=True, null=True, choices=LEGAL_PROCEDURE_NAME_CHOICES,
-                                               help_text='Name of the legal procedure which provides an indication of how advanced the relevant procedure has become, depending on the country where the Counterparty is located. choice fields indicate country specifics features). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Legal_Procedure_Name">Documentation</a>')
+    # deprecated
+    # legal_procedure_name = models.IntegerField(blank=True, null=True, choices=LEGAL_PROCEDURE_NAME_CHOICES,
+    #                                            help_text='Name of the legal procedure which provides an indication of how advanced the relevant procedure has become, depending on the country where the Counterparty is located. choice fields indicate country specifics features). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Legal_Procedure_Name">Documentation</a>')
 
     legal_procedure_type = models.IntegerField(blank=True, null=True, choices=LEGAL_PROCEDURE_TYPE_CHOICES,
                                                help_text='Type of the insolvency process the Counterparty is currently in. Choice fields are provided indicating per country the possible procedures. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Legal_Procedure_Type">Documentation</a>')
 
-    legal_status = models.IntegerField(blank=True, null=True, choices=LEGAL_STATUS_CHOICES,
-                                       help_text='The type of legal status of the Counterparty. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Legal_status">Documentation</a>')
+    description_of_legal_procedure_type = models.TextField(blank=True, null=True, choices=LEGAL_PROCEDURE_TYPE_CHOICES,
+                                                           help_text='Type of the insolvency process the Counterparty is currently in. Choice fields are provided indicating per country the possible procedures. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Description_of_Legal_Procedure_Type">Documentation</a>')
+
+    # deprecated
+    # legal_status = models.IntegerField(blank=True, null=True, choices=LEGAL_STATUS_CHOICES,
+    #                                    help_text='The type of legal status of the Counterparty. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Legal_status">Documentation</a>')
 
     legal_type_of_counterparty = models.IntegerField(blank=True, null=True, choices=LEGAL_TYPE_OF_COUNTERPARTY_CHOICES,
                                                      help_text='Type of the Counterparty i.e. Private Individual, Listed Corporate, Unlisted Corporate and Partnership. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Legal_Type_of_Counterparty">Documentation</a>')
@@ -235,6 +270,12 @@ class Counterparty(models.Model):
     name_of_insolvency_practitioner = models.TextField(blank=True, null=True,
                                                        help_text='Name of the insolvency practitioner. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Name_of_Insolvency_Practitioner">Documentation</a>')
 
+    name_of_insolvency_or_restructuring_proceedings = models.TextField(blank=True, null=True,
+                                                                       help_text='Name of the insolvency or restructuring proceedings. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Name_of_InsolvencyorRestructuring_Proceedings">Documentation</a>')
+
+    additional_name_of_insolvency_or_restructuring_proceedings = models.TextField(blank=True, null=True,
+                                                                                  help_text='Name of the insolvency or restructuring proceedings. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Additional_Name_of_InsolvencyorRestructuring_Proceedings">Documentation</a>')
+
     net_assets = models.BigIntegerField(blank=True, null=True,
                                         help_text='Amount of net assets held by the Corporate Counterparty as per the latest available financial statements. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Net_Assets">Documentation</a>')
 
@@ -243,6 +284,12 @@ class Counterparty(models.Model):
 
     number_of_joint_counterparties = models.BigIntegerField(blank=True, null=True,
                                                             help_text='Number of joint Counterparties who jointly own parts of the Loan.. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Number_of_Joint_Counterparties">Documentation</a>')
+
+    occupation_type = models.TextField(blank=True, null=True,
+                                       help_text='Main occupation of the Private Individual Counterparty, where (a), (b), (c) or (d) is selected in the field Employment Status. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Occupation_Type">Documentation</a>')
+
+    occupation_description = models.TextField(blank=True, null=True,
+                                              help_text='Description of the occupation of the Private Individual Counterparty, providing more detail for field Occupation Type. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Occupation_Description">Documentation</a>')
 
     other_products_with_institution = models.TextField(blank=True, null=True,
                                                        help_text='Other products that the Counterparty holds with the Institution that are not included in the NPL Portfolio. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Other_Products_with_Institution">Documentation</a>')
@@ -264,6 +311,13 @@ class Counterparty(models.Model):
 
     source_of_external_credit_rating_at_origination = models.TextField(blank=True, null=True,
                                                                        help_text='From which agency the external credit rating at the point in time when the Counterparty became a customer. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Source_of_External_Credit_Rating_at_Origination">Documentation</a>')
+
+    stage_reached_in_insolvency_or_restructuring_procedure = models.IntegerField(blank=True, null=True,
+                                                                                 choices=STAGE_REACHED_IN_INSOLVENCY_OR_RESTRUCTURING_PROCEDURE_CHOICES,
+                                                                                 help_text='Stage Reached in Insolvency/Restructuring procedure  <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Stage_Reached_in_InsolvencyorRestructuring_procedure">Documentation</a>')
+
+    additional_stage_reached_in_insolvency_procedure = models.TextField(blank=True, null=True,
+                                                                        help_text='Additional indication of how advanced the relevant procedure has become as a result of various legal steps in the legal procedure having been completeted. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Additional_Stage_Reached_in_InsolvencyorRestructuring_procedure">Documentation</a>')
 
     total_assets = models.BigIntegerField(blank=True, null=True,
                                           help_text='Amount of total assets held by the Corporate Counterparty as per the latest available financial statements. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Total_Assets">Documentation</a>')

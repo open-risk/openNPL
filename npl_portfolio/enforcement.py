@@ -29,8 +29,8 @@ from npl_portfolio.counterparty import Counterparty
 
 class Enforcement(models.Model):
     """
-    Data object holds Enforcement data conforming to the EBA NPL Template specification
-    `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
+    The Enforcement model holds Enforcement data conforming to the EBA NPL Template specification
+    `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Enforcement_Table>`_
 
     """
 
@@ -67,6 +67,9 @@ class Enforcement(models.Model):
 
     contracted_date = models.DateField(blank=True, null=True,
                                        help_text='Contracted date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Contracted_Date">Documentation</a>')
+
+    collateral_repossessed_date = models.DateField(blank=True, null=True,
+                                                   help_text='Date that the collateral is repossessed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Collateral_Repossessed_Date">Documentation</a>')
 
     costs_accrued_to_buyer = models.FloatField(blank=True, null=True,
                                                help_text='Costs accrued to the buyer. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Costs_Accrued_to_Buyer">Documentation</a>')

@@ -1,8 +1,7 @@
 Usage
 ==============================
-The openNPL platform offers a lot of functionality. Here we break down some of the main workflows for those just getting started. More will detailed tutorials will follow as the platform develops!
+The openNPL platform offers a lot of functionality. Here we break down some of the main workflows for those just getting started with the platform. More will detailed tutorials will follow as the platform develops!
 
-An online demo will be available for those who don't want to go through the local installation steps
 
 .. seealso:: For more in-depth studies on using python for credit portfolio management check-out: `Open Risk Academy <https://www.openriskacademy.com/login/index.php>`_. For Non-performing loan data domain knowledge check out the relevant entries at the: `Open Risk Manual <https://www.openriskmanual.org/wiki/Category:NPL>`_
 

@@ -25,11 +25,10 @@ from django.urls import reverse
 from npl_portfolio.property_collateral_choices import *
 from npl_portfolio.loan import Loan
 
-
 class PropertyCollateral(models.Model):
     """
-    Data object holds Property Collateral data conforming to the EBA NPL Template specification
-    `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
+    The PropertyCollateral model object holds Property Collateral data conforming to the EBA NPL Template specification
+    `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Property_Collateral_Table>`_
 
     """
 
@@ -115,7 +114,7 @@ class PropertyCollateral(models.Model):
                                                            help_text='NUTS3 classification used for the field "Geographic Region of Property", i.e. NUTS3 2013 (1), NUTS3 2010 (2), NUTS3 2006 (3), NUTS3 2003 (4), Other (5). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Geographic_Region_Classification">Documentation</a>')
 
     geographic_region_of_property = models.TextField(blank=True, null=True,
-                                                     help_text='Province / Region where the Property is located at. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.11.01.Geographic_Region_of_Property">Documentation</a>')
+                                                     help_text='Province / Region where the Property is located at. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.11.01.Property Collateral.Geographic_Region_of_Property">Documentation</a>')
 
     initial_estimated_rental_value = models.FloatField(blank=True, null=True,
                                                        help_text='Estimated annual gross rental value of the Unit assessed at loan origination. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Initial_Estimated_Rental_Value">Documentation</a>')

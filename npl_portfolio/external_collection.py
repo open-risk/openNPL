@@ -28,8 +28,8 @@ from npl_portfolio.counterparty import Counterparty
 
 class ExternalCollection(models.Model):
     """
-    Data object holds External Collection data conforming to the EBA NPL Template specification
-    `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
+    The ExternalCollection model holds External Collection data conforming to the EBA NPL Template specification
+    `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_External_Collection_Table>`_
 
     .. note:: The EBA Templates make a distinction between collections at loan and counterparty level. At present this is not implemented
 

@@ -25,11 +25,10 @@ from npl_portfolio.forbearance_choices import *
 from npl_portfolio.loan import Loan
 from npl_portfolio.counterparty import Counterparty
 
-
 class Forbearance(models.Model):
     """
-    Data object holds Forbearance data conforming to the EBA NPL Template specification
-    `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
+    The Forbearance model holds Forbearance data conforming to the EBA NPL Template specification
+    `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Forbearance_Table>`_
 
     .. note:: Forbearance can be either the Counterparty of Loan level. At present only Loan Level is implemented
 

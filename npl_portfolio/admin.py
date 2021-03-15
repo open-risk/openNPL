@@ -50,17 +50,19 @@ class Portfolio_SnapshotAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
     search_fields = ['name']
-    list_display = ('name', 'creation_date', 'cutoff_date', 'notes')
+    list_display = ('name', 'creation_date', 'cutoff_date')
 
 
 class CounterpartyAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
-    search_fields = ['name']
+    search_fields = ['counterparty_identifier']
     list_display = ('counterparty_identifier', 'snapshot_id', 'portfolio_id',
-                    'date_of_entering_into_current_legal_process', 'current_internal_credit_rating',
+                    'current_internal_credit_rating',
+                    'occupation_description',
+                    'business_description',
                     'legal_fees_accrued')
-    list_filter = ('portfolio_id', 'legal_procedure_type',)
+    list_filter = ('portfolio_id', 'snapshot_id', 'borrower_type')
 
 
 class CounterpartyGroupAdmin(admin.ModelAdmin):
@@ -97,21 +99,28 @@ class PropertyCollateralAdmin(admin.ModelAdmin):
 class ExternalCollectionAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
-
+    list_display = ('counterparty_identifier', 'name_of_external_debt_collection_agent')
 
 class EnforcementAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
+    list_display = ('counterparty_identifier', 'name_of_receiver')
 
 
 class NonPropertyCollateralAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
+    search_fields = ['protection_identifier']
+    list_display = ('protection_identifier', 'loan_identifier', 'collateral_type')
+
+    list_filter = ('collateral_type',)
 
 
 class ForbearanceAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
+    list_display = ('counterparty_identifier', 'type_of_forbearance')
+    list_filter = ('type_of_forbearance',)
 
 
 admin.site.register(Portfolio, PortfolioAdmin)

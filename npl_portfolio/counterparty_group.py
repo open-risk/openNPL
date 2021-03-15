@@ -25,8 +25,8 @@ from npl_portfolio.counterparty_group_choices import *
 
 class CounterpartyGroup(models.Model):
     """
-    Data object holds Counterparty Group data conforming to the EBA NPL Template specification
-    `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
+    The CounterpartyGroup model holds Counterparty Group data conforming to the EBA NPL Template specification
+    `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Counterparty_Group_Table>`_
 
     """
 

@@ -5,12 +5,12 @@ You can install and use the openNPL package in any system that supports *python*
 
 Installation via Docker
 -----------------------
-Installation via docker is recommended as it provides a streamlined and fast setup of an openNPL instance. Scroll further down for :ref:`Manual installation from sources`
+Installation via docker is recommended as it provides a streamlined and fast setup of an openNPL instance. If you do not want to use docker scroll further down for :ref:`Manual installation from sources`
 
 Install Docker
 ~~~~~~~~~~~~~~
 
-.. note:: A working docker installation is required first! Docker is available for many platforms (Windows, MacOS, Linux), follow the installation instructions `here <https://docs.docker.com/engine/install/>`_.
+.. note:: A working docker installation is required! Docker is available for many operating systems and platforms (Windows, MacOS, Linux, running on Intel/AMD or ARM chipsets among others). Follow the installation instructions `here <https://docs.docker.com/engine/install/>`_.
 
 Once the installation is complete, make sure the docker service is running by testing that you can run the docker *'hello-world'* application.
 
@@ -26,7 +26,7 @@ Pull the openNPL image from Docker Hub
 
 You can pull and run the latest image from Docker Hub (This method is recommended if you do not want to mess at all with the source distribution).
 
-.. note:: We will be providing images also for ARM architectures. Check the root of our docker hub for what is `currently available <https://hub.docker.com/u/openrisk>`_
+.. note:: We are also providing images also for the ARM/v7 architecture (Raspberry Pi). Check the root of our docker hub for what is `currently available <https://hub.docker.com/u/openrisk>`_
 
 Start by issuing a docker pull command:
 
@@ -56,7 +56,7 @@ Again, access the running instance of openNPL by pointing your browser to ``http
 
 Manual installation from sources
 --------------------------------
-This path is recommended if you want to dig into and inspect the openNPL code base.
+The manual installation path is recommended if you want to dig into and inspect the openNPL code base or if you want to contribute to openNPL.
 
 Dependencies / Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -67,12 +67,12 @@ Dependencies / Requirements
 - Python >= 3.6
 - Django >= 3.0
 - The precise python library dependencies are listed in the :doc:`requirements`.txt file.
-- Note: The current User Interface (UI) is desktop oriented and might not work properly in smaller mobile screens
 - openNPL may work with earlier versions of these packages but this has not been tested
 - A linux based system is recommended. Some tweaks are required for Windows but is in principle also possible to deploy there
 
+.. note:: The current User Interface (UI) of openNPL is desktop oriented and might not work properly in smaller (mobile) screens
 
-Procedure
+Manual installation procedure
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Step 1. Download the github sources to your preferred directory:
@@ -88,13 +88,13 @@ Step 2. Create a virtualenv. It is advisable to install the platform in a virtua
     virtualenv -p python3 venv
     source venv/bin/activate
 
-Step 3. Install the dependencies (The core dependency is Django and its own dependencies, in addition the Grappelli skin as the admin interface)
+Step 3. Install the required dependencies (The core dependency is Django and its own dependencies, in addition the Grappelli skin as the admin interface)
 
 .. code:: bash
 
     pip3 install -r requirements.txt
 
-Step 4. Make the required migrations. The project is setup to use sqlite3. This step will ensure the database has the right tables.
+Step 4. Make the required django migrations. The project is setup to use sqlite3. This step will ensure the database has the right tables.
 
 .. code:: bash
 
@@ -102,7 +102,7 @@ Step 4. Make the required migrations. The project is setup to use sqlite3. This 
     python manage.py makemigrations
     python manage.py migrate
 
-Step 5. Create a superuser. Use admin/admin as login/password as a reminder that this instance of openNPL should NOT be used for anything remotely sensitive!
+Step 5. Create a superuser. Suggestion: Use admin/admin as login/password as a reminder that this instance of openNPL should NOT be used for anything remotely sensitive!
 
 .. code:: bash
 
@@ -120,7 +120,7 @@ Step 7. Insert some dummy data (optional). Without this the database will be emp
 
     bash loadfixtures.sh
 
-Step 8. Run the server. The default port is 8000 but if (by any chance) this port is already used in your computer there will be another assigned. Be sure to note that and use it instead.
+Step 8. Run the server. The default port is 8000 but if (by any chance) this port is already used in your computer there will be another assigned. Be sure to note the assigned port and use it instead.
 
 .. code:: bash
 
@@ -128,8 +128,7 @@ Step 8. Run the server. The default port is 8000 but if (by any chance) this por
 
 Step 9. Login with your browser. Finally in your favorite browser (e.g. Firefox from Mozilla), enter the url ``http://localhost:8001`` and login with admin/admin credentials.
 
-.. note:: 8000 is the default port, if that is already in use, you can select an alternative one
-
+.. note:: 8000 is the default port, if that is already in use, you can select an alternative one as follows:
 
 
 .. code:: bash

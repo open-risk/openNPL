@@ -22,14 +22,14 @@ from django.db import models
 from django.urls import reverse
 
 '''
-openNPL models implement the core relations (Tables) of the EBA Portfolio Template
+The openNPL models implement the core relations (Tables) of the EBA Portfolio Template
 `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
 
-Each model is implemented in a separate file TABLE_NAME.py in the npl_portfolio directory. In addition there is a Portfolio model and a Portfolio_Snapshot model in this (models.py) file.
+Each model is implemented in a separate file using the convention **TABLE_NAME.py** in the npl_portfolio directory. In addition there is a Portfolio model and a Portfolio_Snapshot model in this (models.py) file. Choice lists for categorical attributes are collected in separate fiels using the convention **TABLE_NAME_CHOICES.py**. 
 
 .. TODO:: Missing are the following: the Lease Table and schedule tables (swap cashflows and repayments)
 
-.. NOTE:: The Relation Tables of the EBA Specification are not implemented 
+.. NOTE:: The Relation Tables of the EBA Specification are not implemented (different schema)
 
 
 
@@ -39,10 +39,14 @@ Each model is implemented in a separate file TABLE_NAME.py in the npl_portfolio 
 class Portfolio(models.Model):
 
     """
-    The Portfolio Data object is useful to aggregate datasets belonging to the same credit portfolio. A portfolio is named to facilitate recognition. At present there is not much additional information stored here.
+    The portfolio data object is useful to aggregate datasets belonging to the same actual credit portfolio. A portfolio may be optionally named to facilitate recognition and a longer description provides further details.
+
+    .. note:: The actual Portfolio data are stored in the various NPL models (with foreign key to Portfolio)
 
     """
     name = models.CharField(max_length=200, null=True, blank=True)
+    description = models.TextField(blank=True, null=True, help_text='Description of the portfolio')
+
     creation_date = models.DateTimeField(auto_now_add=True)
     last_change_date = models.DateTimeField(auto_now=True)
 
@@ -59,8 +63,9 @@ class Portfolio(models.Model):
 
 class PortfolioSnapshot(models.Model):
     """
-    The Portfolio Snapshot object groups NPL Portfolio generated portfolio data for a given date.
-    The Snapshot may be named to facilitate recognition. The actual Snapshot data are stored in the Portfolio Model (with foreign key to snapshot)
+    The NPL Portfolio_Snapshot object groups NPL Portfolio generated portfolio data for a given cutoff date. The Snapshot may be named to facilitate recognition.
+
+    .. note:: The actual Snapshot data are stored in the various NPL Models (with foreign key to a snapshot)
 
     """
 
@@ -71,10 +76,8 @@ class PortfolioSnapshot(models.Model):
     cutoff_date = models.DateTimeField(blank=True, null=True,
                                        help_text="Portfolio Cutoff Date (If available). Different from the creation date")
 
-    name = models.CharField(blank=True, null=True, max_length=200, help_text="An assigned name to help identify the snapshot")
+    name = models.CharField(blank=True, null=True, max_length=200, help_text="An assigned name to help identify the snapshot. By convention the name of the portfolio plus the cutoff date")
 
-    notes = models.CharField(max_length=300, blank=True, null=True,
-                             help_text="Description of the purpose or other relevant information about the portfolio")
 
     def __str__(self):
         return str(self.name)
@@ -86,7 +89,11 @@ class PortfolioSnapshot(models.Model):
         verbose_name = "Portfolio Snapshot"
         verbose_name_plural = "Portfolio Snapshots"
 
+
 # ATTN Those imports MUST be placed after loading the Portfolio / PortfolioSnapshot classes
+#
+#   NPL Models
+#
 
 from npl_portfolio.counterparty_group import CounterpartyGroup
 from npl_portfolio.counterparty import Counterparty

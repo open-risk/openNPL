@@ -27,7 +27,7 @@ Users can use openNPL to:
 * Consult the documentation as to the meaning and requirements of each data element
 
 
-.. note:: openNPL is still in active development. The functionality of the platform will be significantly enhanced in future versions. If you have specific requests / ideas please raise them in our github repository**
+.. note:: openNPL is still in active development. The functionality of the platform will be significantly enhanced in future versions. If you have specific requests / ideas please raise them in our github repository.
 
 Architecture
 ------------
@@ -40,8 +40,8 @@ The current *architecture* of openNPL is summarized as follows:
 * The user interface uses built-in Django forms as those are rendered by the **Grappelli** skin
 
 
-File structure
------------------
+Directory structure
+--------------------
 The openNPL distribution has the following structure:
 
 +---------+---------------+--------------------+---------------------------------------+
