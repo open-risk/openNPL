@@ -70,7 +70,7 @@ class PropertyCollateral(models.Model):
     city_of_property = models.TextField(blank=True, null=True,
                                         help_text='City where the Property is located at. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.City_of_Property">Documentation</a>')
 
-    completion_of_property = models.NullBooleanField(blank=True, null=True,
+    completion_of_property = models.BooleanField(blank=True, null=True,
                                                      help_text='Indicator as to whether the construction of the Unit is complete. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Completion_of_Property">Documentation</a>')
 
     condition_of_property = models.IntegerField(blank=True, null=True, choices=CONDITION_OF_PROPERTY_CHOICES,
@@ -97,10 +97,10 @@ class PropertyCollateral(models.Model):
     enforcement_description = models.TextField(blank=True, null=True,
                                                help_text='Comments/Description of the stage of Enforcement that the Property Collateral is in as at cut-off date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Enforcement_Description">Documentation</a>')
 
-    enforcement_status = models.NullBooleanField(blank=True, null=True,
+    enforcement_status = models.BooleanField(blank=True, null=True,
                                                  help_text='Indicator as to whether the property collateral has entered into the enforcement process as at cut-off date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Enforcement_Status">Documentation</a>')
 
-    enforcement_status_third_parties = models.NullBooleanField(blank=True, null=True,
+    enforcement_status_third_parties = models.BooleanField(blank=True, null=True,
                                                                help_text='Indicator as to whether any other secured creditors have taken steps to enforce security over the asset? (Y/N). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Enforcement_Status_Third_Parties">Documentation</a>')
 
     estimated_annual_void_cost = models.FloatField(blank=True, null=True,
@@ -215,7 +215,7 @@ class PropertyCollateral(models.Model):
                                                                   choices=VALUE_OF_ENERGY_PERFORMANCE_CERTIFICATE_CHOICES,
                                                                   help_text='Value stated on Energy Performance Certificate, i.e. A,B,C,D,E,F and G. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Value_of_Energy_Performance_Certificate">Documentation</a>')
 
-    vat_payable = models.NullBooleanField(blank=True, null=True,
+    vat_payable = models.BooleanField(blank=True, null=True,
                                           help_text='Indicator as to whether the VAT is payable on the disposal of the Unit. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.VAT_Payable">Documentation</a>')
 
     year_of_construction = models.DateField(blank=True, null=True,

@@ -125,13 +125,13 @@ class Enforcement(models.Model):
     gross_sale_proceeds = models.FloatField(blank=True, null=True,
                                             help_text='Gross sale proceeds, i.e. sales proceeds and costs incurred from the disposal. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Gross_Sale_Proceeds">Documentation</a>')
 
-    indicator_of_enforcement = models.NullBooleanField(blank=True, null=True,
+    indicator_of_enforcement = models.BooleanField(blank=True, null=True,
                                                        help_text='Indicator as to whether the Enforcement process has been entered into by a Corporate or Private Individual Counterparty. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Indicator_of_Enforcement">Documentation</a>')
 
-    indicator_of_receivership = models.NullBooleanField(blank=True, null=True,
+    indicator_of_receivership = models.BooleanField(blank=True, null=True,
                                                         help_text='Indicator as to whether the Corporate or Private Individual Counterparty is in Receivership. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Indicator_of_Receivership">Documentation</a>')
 
-    insurance = models.NullBooleanField(blank=True, null=True,
+    insurance = models.BooleanField(blank=True, null=True,
                                         help_text='Indicator as to whether the receiver has insured the Property / Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Insurance">Documentation</a>')
 
     insurance_coverage_amount = models.FloatField(blank=True, null=True,

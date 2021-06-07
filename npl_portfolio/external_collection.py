@@ -92,7 +92,7 @@ class ExternalCollection(models.Model):
     registration_number = models.TextField(blank=True, null=True,
                                            help_text='Company registration number of the external collection agent according to the registration with the country specific registration office. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.External Collection.Registration_number">Documentation</a>')
 
-    repayment_plan = models.NullBooleanField(blank=True, null=True,
+    repayment_plan = models.BooleanField(blank=True, null=True,
                                              help_text='Indicator as to whether a repayment plan has been agreed with the external collection agency. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.External Collection.Repayment_Plan">Documentation</a>')
 
     repayment_plan_description = models.TextField(blank=True, null=True,

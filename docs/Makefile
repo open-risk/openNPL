@@ -1,4 +1,4 @@
-# Minimal makefile for Sphinx documentation
+# Minimal makefile for Sphinx documentation of the openNPL platform
 #
 
 # You can set these variables from the command line.

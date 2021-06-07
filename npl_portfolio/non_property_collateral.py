@@ -49,10 +49,10 @@ class NonPropertyCollateral(models.Model):
     # DATA PROPERTIES
     #
 
-    activation_of_guarantee = models.NullBooleanField(blank=True, null=True,
+    activation_of_guarantee = models.BooleanField(blank=True, null=True,
                                                       help_text='Indicator as to whether the guarantee has been activated when "Guarantee" is selected in field "Collateral Type". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Activation_of_Guarantee">Documentation</a>')
 
-    collateral_insurance = models.NullBooleanField(blank=True, null=True,
+    collateral_insurance = models.BooleanField(blank=True, null=True,
                                                    help_text='Indicator as to whether there is an insurance on the Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Collateral_Insurance">Documentation</a>')
 
     collateral_insurance_coverage_amount = models.FloatField(blank=True, null=True,
@@ -94,10 +94,10 @@ class NonPropertyCollateral(models.Model):
     enforcement_description = models.TextField(blank=True, null=True,
                                                help_text='Comments/Description of the stage of Enforcement that the Property Collateral is in as at cut-off date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Enforcement_Description">Documentation</a>')
 
-    enforcement_status = models.NullBooleanField(blank=True, null=True,
+    enforcement_status = models.BooleanField(blank=True, null=True,
                                                  help_text='Status of the enforcement process that the Collateral is currently in as at cut-off date, e.g. if it is in receivership. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Enforcement_Status">Documentation</a>')
 
-    enforcement_status_third_parties = models.NullBooleanField(blank=True, null=True,
+    enforcement_status_third_parties = models.BooleanField(blank=True, null=True,
                                                                help_text='Indicator as to whether any other secured creditors have taken steps to enforce security over the asset? (Y/N). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Enforcement_Status_Third_Parties">Documentation</a>')
 
     engine_size = models.FloatField(blank=True, null=True,
@@ -148,7 +148,7 @@ class NonPropertyCollateral(models.Model):
     type_of_legal_owner = models.IntegerField(blank=True, null=True, choices=TYPE_OF_LEGAL_OWNER_CHOICES,
                                               help_text='Type of the legal owner, i.e. Private Individual, Listed Corporate, Unlisted Corporate and Partnership. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Type_of_Legal_Owner">Documentation</a>')
 
-    asset_purchase_obligation = models.NullBooleanField(blank=True, null=True,
+    asset_purchase_obligation = models.BooleanField(blank=True, null=True,
                                                         help_text='Indicator as to whether there is an obligation for the Borrower to purchase the Collateral at the end of the lease. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty_Collateral.Asset_Purchase_Obligation">Documentation</a>')
 
     option_to_buy_price = models.FloatField(blank=True, null=True,

@@ -182,7 +182,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     (master_doc, 'openNPL', 'openNPL Documentation',
-     author, 'openNPL', 'One line description of project.',
+     author, 'Open Risk', 'Portfolio Management Platform.',
      'Miscellaneous'),
 ]
 

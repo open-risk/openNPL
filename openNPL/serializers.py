@@ -33,6 +33,21 @@ from openNPL.settings import ROOT_VIEW
 
 class NPL_ExternalCollectionSerializer(serializers.ModelSerializer):
     """
+    Serialize NPL External Collection Data (List)
+    """
+    link = serializers.SerializerMethodField()
+
+    class Meta:
+        model = ExternalCollection
+        fields = ('id', 'link')
+
+    def get_link(self, obj):
+        link = ROOT_VIEW + "/api/npl_data/external_collection/" + str(obj.pk)
+        return link
+
+
+class NPL_ExternalCollectionDetailSerializer(serializers.ModelSerializer):
+    """
     Serialize NPL ExternalCollection Data
     """
 
@@ -43,7 +58,22 @@ class NPL_ExternalCollectionSerializer(serializers.ModelSerializer):
 
 class NPL_NonPropertyCollateralSerializer(serializers.ModelSerializer):
     """
-    Serialize NPL NonPropertyCollateral Data
+    Serialize NPL Non Property Collateral Data (List)
+    """
+    link = serializers.SerializerMethodField()
+
+    class Meta:
+        model = NonPropertyCollateral
+        fields = ('id', 'protection_identifier', 'link')
+
+    def get_link(self, obj):
+        link = ROOT_VIEW + "/api/npl_data/nonproperty_collateral/" + str(obj.pk)
+        return link
+
+
+class NPL_NonPropertyCollateralDetailSerializer(serializers.ModelSerializer):
+    """
+    Serialize NPL NonPropertyCollateral Data (Detail)
     """
 
     class Meta:
@@ -53,7 +83,22 @@ class NPL_NonPropertyCollateralSerializer(serializers.ModelSerializer):
 
 class NPL_ForbearanceSerializer(serializers.ModelSerializer):
     """
-    Serialize NPL Forbearance Data
+    Serialize NPL Forbearance Data (List)
+    """
+    link = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Forbearance
+        fields = ('id', 'link')
+
+    def get_link(self, obj):
+        link = ROOT_VIEW + "/api/npl_data/forbearance/" + str(obj.pk)
+        return link
+
+
+class NPL_ForbearanceDetailSerializer(serializers.ModelSerializer):
+    """
+    Serialize NPL Forbearance Data (Detail)
     """
 
     class Meta:
@@ -63,7 +108,22 @@ class NPL_ForbearanceSerializer(serializers.ModelSerializer):
 
 class NPL_EnforcementSerializer(serializers.ModelSerializer):
     """
-    Serialize NPL Enforcement Data
+    Serialize NPL Enforcement Data (List)
+    """
+    link = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Enforcement
+        fields = ('id', 'link')
+
+    def get_link(self, obj):
+        link = ROOT_VIEW + "/api/npl_data/enforcement/" + str(obj.pk)
+        return link
+
+
+class NPL_EnforcementDetailSerializer(serializers.ModelSerializer):
+    """
+    Serialize NPL Enforcement Data (Detail)
     """
 
     class Meta:
@@ -73,7 +133,22 @@ class NPL_EnforcementSerializer(serializers.ModelSerializer):
 
 class NPL_CounterpartyGroupSerializer(serializers.ModelSerializer):
     """
-    Serialize NPL CounterpartyGroups Data
+    Serialize NPL Counterparty Group Data (List)
+    """
+    link = serializers.SerializerMethodField()
+
+    class Meta:
+        model = CounterpartyGroup
+        fields = ('id', 'link')
+
+    def get_link(self, obj):
+        link = ROOT_VIEW + "/api/npl_data/counterparty_groups/" + str(obj.pk)
+        return link
+
+
+class NPL_CounterpartyGroupDetailSerializer(serializers.ModelSerializer):
+    """
+    Serialize NPL CounterpartyGroups Data (Detail)
     """
 
     class Meta:

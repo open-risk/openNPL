@@ -64,7 +64,7 @@ class Forbearance(models.Model):
     amount_of_repayment_step_up = models.FloatField(blank=True, null=True,
                                                     help_text='Additional amount that the current agreed forbearance amount is increased by. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Amount_of_Repayment_Step_Up">Documentation</a>')
 
-    clause_to_stop_forbearance = models.NullBooleanField(blank=True, null=True,
+    clause_to_stop_forbearance = models.BooleanField(blank=True, null=True,
                                                          help_text='Indicator as to whether a clause exists to allow the Institution to stop the current forbearance. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Clause_to_Stop_Forbearance">Documentation</a>')
 
     date_of_first_forbearance = models.DateField(blank=True, null=True,

@@ -231,7 +231,7 @@ class Loan(models.Model):
                                       help_text='Loan status, e.g. performing and non-performing. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Loan_Status">Documentation</a>')
 
 
-    marp_applicable = models.NullBooleanField(blank=True, null=True,
+    marp_applicable = models.BooleanField(blank=True, null=True,
                                                                help_text='Indicator as to whether the Institution operates a Mortgage Arrears Resolution Process when dealing with Corporates or Private Individual Counterparties in Mortgage Arrears. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.MARP_Applicable">Documentation</a>')
 
 
@@ -318,7 +318,7 @@ class Loan(models.Model):
     relevant_schemes = models.TextField(blank=True, null=True,
                                         help_text='Indicator as to whether the Loan is involved with any relevant schemes, e.g. Right to Buy Scheme in UK. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Relevant_Schemes">Documentation</a>')
 
-    recourse_to_other_assets = models.NullBooleanField(blank=True, null=True,
+    recourse_to_other_assets = models.BooleanField(blank=True, null=True,
                                                        help_text='Indicator as to whether the Institution has the legal right to access other assets of the Borrower. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Recourse_to_Other_Assets">Documentation</a>')
 
     securitised = models.TextField(blank=True, null=True,

@@ -3,6 +3,12 @@ ChangeLog
 PLEASE NOTE THIS IS ONLY A PLANNING RELEASE.
 THE OPENNPL API IS STILL UNSTABLE
 
+v0.4 (07-06-2021)
+-------------------
+* Functionality: Completed POST verbs for all current REST endpoints
+* Documentation: Added Swagger/Redoc API documentation endpoints
+* Bugs: Remove deprecated NullBooleanField
+
 v0.3.2 (15-02-2021)
 -------------------
 * Functionality: Added some missing Fields in the counterparty and collateral models

@@ -19,31 +19,25 @@
 # SOFTWARE.
 
 
-from django.conf import settings
-
-from openNPL.serializers import NPL_CounterpartySerializer, NPL_CounterpartyDetailSerializer, NPL_LoanSerializer, \
-    NPL_LoanDetailSerializer, NPL_CounterpartyGroupSerializer, \
-    NPL_EnforcementSerializer, NPL_ExternalCollectionSerializer, NPL_NonPropertyCollateralSerializer, \
-    NPL_PropertyCollateralSerializer, NPL_PropertyCollateralDetailSerializer, NPL_ForbearanceSerializer
-
 from rest_framework import permissions
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
+from rest_framework.parsers import JSONParser
 from rest_framework.reverse import reverse
 
 from npl_portfolio.models import CounterpartyGroup, Counterparty, Loan, \
     Enforcement, Forbearance, NonPropertyCollateral, PropertyCollateral, \
     ExternalCollection
+from openNPL.serializers import NPL_CounterpartyGroupSerializer, NPL_CounterpartyGroupDetailSerializer
+from openNPL.serializers import NPL_CounterpartySerializer, NPL_CounterpartyDetailSerializer
+from openNPL.serializers import NPL_EnforcementSerializer, NPL_EnforcementDetailSerializer
+from openNPL.serializers import NPL_ExternalCollectionSerializer, NPL_ExternalCollectionDetailSerializer
+from openNPL.serializers import NPL_ForbearanceSerializer, NPL_ForbearanceDetailSerializer
+from openNPL.serializers import NPL_LoanSerializer, NPL_LoanDetailSerializer
+from openNPL.serializers import NPL_NonPropertyCollateralSerializer, NPL_NonPropertyCollateralDetailSerializer
+from openNPL.serializers import NPL_PropertyCollateralSerializer, NPL_PropertyCollateralDetailSerializer
 
-"""
-
-
-
-.. TODO:: Some models only implement collective views
-
-
-"""
 
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
@@ -84,7 +78,7 @@ def api_root(request, format=None):
 @api_view(['GET'])
 def npl_api_root(request, format=None):
     """
-    Returns a list of all active API endpoints for EBA Template Data
+    Returns a list of all active API endpoints for EBA NPL Template Data
 
     """
 
@@ -105,7 +99,8 @@ def npl_api_root(request, format=None):
     return Response(data)
 
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
+@permission_classes((permissions.AllowAny,))
 def npl_counterparty_api(request):
     """
     List Counterparties (EBA Template)
@@ -114,23 +109,35 @@ def npl_counterparty_api(request):
         counterparty = Counterparty.objects.all()
         serializer = NPL_CounterpartySerializer(counterparty, many=True, context={'request': request})
         return Response(serializer.data)
+    elif request.method == 'POST':
+        """
+        Create a new Counterparty
+        """
+        data = JSONParser().parse(request)
+        serializer = NPL_CounterpartyDetailSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET'])
 def npl_counterparty_detail(request, pk):
-    """
-    List the data a specific EBA Counterparty
-    """
-    try:
-        counterparty = Counterparty.objects.get(pk=pk)
-    except Counterparty.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'GET':
+        """
+        List the data a specific Counterparty
+        """
+        try:
+            counterparty = Counterparty.objects.get(pk=pk)
+        except Counterparty.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
-    serializer = NPL_CounterpartyDetailSerializer(counterparty)
-    return Response(serializer.data)
+        serializer = NPL_CounterpartyDetailSerializer(counterparty)
+        return Response(serializer.data)
 
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
+@permission_classes((permissions.AllowAny,))
 def npl_loan_api(request):
     """
     List Loans (EBA Template)
@@ -139,6 +146,16 @@ def npl_loan_api(request):
         loan = Loan.objects.all()
         serializer = NPL_LoanSerializer(loan, many=True, context={'request': request})
         return Response(serializer.data)
+    elif request.method == 'POST':
+        """
+        Create a new Loan
+        """
+        data = JSONParser().parse(request)
+        serializer = NPL_LoanDetailSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET'])
@@ -155,7 +172,8 @@ def npl_loan_detail(request, pk):
     return Response(serializer.data)
 
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
+@permission_classes((permissions.AllowAny,))
 def npl_property_collateral_api(request):
     """
     List Property Collateral (EBA Template)
@@ -165,6 +183,16 @@ def npl_property_collateral_api(request):
         serializer = NPL_PropertyCollateralSerializer(property_collateral, many=True,
                                                       context={'request': request})
         return Response(serializer.data)
+    elif request.method == 'POST':
+        """
+        Create new property collateral
+        """
+        data = JSONParser().parse(request)
+        serializer = NPL_PropertyCollateralDetailSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET'])
@@ -181,7 +209,8 @@ def npl_property_collateral_detail(request, pk):
     return Response(serializer.data)
 
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
+@permission_classes((permissions.AllowAny,))
 def npl_counterparty_group_api(request):
     """
     List Counterparty Groups (EBA Template)
@@ -190,9 +219,34 @@ def npl_counterparty_group_api(request):
         counterparty_group = CounterpartyGroup.objects.all()
         serializer = NPL_CounterpartyGroupSerializer(counterparty_group, many=True, context={'request': request})
         return Response(serializer.data)
+    elif request.method == 'POST':
+        """
+        Create new counterparty group
+        """
+        data = JSONParser().parse(request)
+        serializer = NPL_CounterpartyGroupDetailSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET'])
+def npl_counterparty_group_detail(request, pk):
+    """
+    List the data a specific EBA Counterparty Group
+    """
+    try:
+        counterparty_group = CounterpartyGroup.objects.get(pk=pk)
+    except CounterpartyGroup.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = NPL_CounterpartyGroupDetailSerializer(counterparty_group)
+    return Response(serializer.data)
+
+
+@api_view(['GET', 'POST'])
+@permission_classes((permissions.AllowAny,))
 def npl_enforcement_api(request):
     """
     List Enforcements (EBA Template)
@@ -201,9 +255,34 @@ def npl_enforcement_api(request):
         enforcement = Enforcement.objects.all()
         serializer = NPL_EnforcementSerializer(enforcement, many=True, context={'request': request})
         return Response(serializer.data)
+    elif request.method == 'POST':
+        """
+        Create new Enforcement entry
+        """
+        data = JSONParser().parse(request)
+        serializer = NPL_EnforcementDetailSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET'])
+def npl_enforcement_detail(request, pk):
+    """
+    List the data a specific EBA Enforcement entry
+    """
+    try:
+        enforcement = Enforcement.objects.get(pk=pk)
+    except Enforcement.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = NPL_EnforcementDetailSerializer(enforcement)
+    return Response(serializer.data)
+
+
+@api_view(['GET', 'POST'])
+@permission_classes((permissions.AllowAny,))
 def npl_forbearance_api(request):
     """
     List Forbearance (EBA Template)
@@ -212,9 +291,34 @@ def npl_forbearance_api(request):
         forbearance = Forbearance.objects.all()
         serializer = NPL_ForbearanceSerializer(forbearance, many=True, context={'request': request})
         return Response(serializer.data)
+    elif request.method == 'POST':
+        """
+        Create new Forbearance entry
+        """
+        data = JSONParser().parse(request)
+        serializer = NPL_ForbearanceDetailSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET'])
+def npl_forbearance_detail(request, pk):
+    """
+    List the data a specific EBA Forbearance entry
+    """
+    try:
+        forbearance = Forbearance.objects.get(pk=pk)
+    except Forbearance.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = NPL_ForbearanceDetailSerializer(forbearance)
+    return Response(serializer.data)
+
+
+@api_view(['GET', 'POST'])
+@permission_classes((permissions.AllowAny,))
 def npl_nonproperty_collateral_api(request):
     """
     List NonProperty Collateral (EBA Template)
@@ -224,10 +328,34 @@ def npl_nonproperty_collateral_api(request):
         serializer = NPL_NonPropertyCollateralSerializer(nonproperty_collateral, many=True,
                                                          context={'request': request})
         return Response(serializer.data)
-
+    elif request.method == 'POST':
+        """
+        Create new Non Property Collateral entry
+        """
+        data = JSONParser().parse(request)
+        serializer = NPL_NonPropertyCollateralSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET'])
+def npl_nonproperty_collateral_detail(request, pk):
+    """
+    List the data a specific EBA Non Property Collateral
+    """
+    try:
+        nonproperty_collateral = NonPropertyCollateral.objects.get(pk=pk)
+    except NonPropertyCollateral.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = NPL_NonPropertyCollateralDetailSerializer(nonproperty_collateral)
+    return Response(serializer.data)
+
+
+@api_view(['GET', 'POST'])
+@permission_classes((permissions.AllowAny,))
 def npl_external_collection_api(request):
     """
     List External Collections (EBA Template)
@@ -237,4 +365,28 @@ def npl_external_collection_api(request):
         serializer = NPL_ExternalCollectionSerializer(external_collection, many=True,
                                                       context={'request': request})
         return Response(serializer.data)
+    elif request.method == 'POST':
+        """
+        Create a new External Collection data
+        """
+        data = JSONParser().parse(request)
+        serializer = NPL_ExternalCollectionDetailSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+@api_view(['GET'])
+def npl_external_collection_detail(request, pk):
+    if request.method == 'GET':
+        """
+        List the data of an external collection
+        """
+        try:
+            external_collection = ExternalCollection.objects.get(pk=pk)
+        except ExternalCollection.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = NPL_ExternalCollectionSerializer(external_collection)
+        return Response(serializer.data)
