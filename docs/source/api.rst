@@ -33,7 +33,15 @@ Individual Entries
 
 .. TODO:: Missing are the following: the Lease Table and the Schedule tables (Swap cashflows and Historical Repayments)
 
-.. warning:: At present only GET actions are implemented
+.. warning:: At present only GET and POST actions are implemented
 
+
+API Docs
+---------
+
+Two different API doc generators are included on an experimental basis:
+
+* Swagger Style: ``http://localhost:8001/api/swagger``
+* Redoc Style: ``http://localhost:8001/api/redoc``
 
 
