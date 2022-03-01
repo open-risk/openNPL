@@ -3,6 +3,10 @@ ChangeLog
 PLEASE NOTE THIS IS ONLY A PLANNING RELEASE.
 THE OPENNPL API IS STILL UNSTABLE
 
+v0.5 (01-03-2022)
+------------------
+* Upgrade to Python 3.9 and Django 4.0
+
 v0.4 (07-06-2021)
 -------------------
 * Functionality: Completed POST verbs for all current REST endpoints

@@ -1,4 +1,3 @@
-[![Gitter](https://badges.gitter.im/open-risk/openNPL.svg)](https://gitter.im/open-risk/openNPL?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Documentation Status](https://readthedocs.org/projects/opennpl/badge/?version=latest)](https://opennpl.readthedocs.io/en/latest/?badge=latest)
 
 # openNPL overview
@@ -63,8 +62,8 @@ Manual installation from the repository source files requires some familiarity w
 
 ### Prerequisites
 - openNPL requires a working Python 3 installation (including pip)
-- Python >= 3.6
-- Django >= 3.0
+- Python >= 3.9
+- Django >= 4.0
 - The precise python library dependencies are listed in the :doc:`requirements`.txt file.
 - Note: The current User Interface (UI) is desktop oriented and might not work properly in smaller mobile screens
 - openNPL may work with earlier versions of these packages but this has not been tested
@@ -104,7 +103,7 @@ At the Docker Hub you can get a ready to run [Docker Image of openNPL](https://h
 We welcome your feedback and support, raise a github issue if you want to report a bug or request a new feature. We are glad to help.
 
 - [Contribute on Issues](<https://github.com/open-risk/openNPL/issues>)
-- Chat with the community [Gitter](<https://gitter.im/open-risk/Lobby>)
+- Chat with the community [Open Risk Commons](<https://www.openriskcommons.org/c/open-source/opennpl/13>)
 - For customisations, support or any other collaboration, email <info@openrisk.eu>
 - Need commercial support? [Contact](https://www.openriskmanagement.com/contact/)
 

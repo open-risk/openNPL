@@ -1,4 +1,4 @@
-# Copyright (c) 2020 - 2021 Open Risk (https://www.openriskmanagement.com)
+# Copyright (c) 2020 - 2022 Open Risk (https://www.openriskmanagement.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,7 @@ from codecs import open
 
 from setuptools import setup
 
-__version__ = '0.3.2'
+__version__ = '0.5'
 
 ver = __version__
 
@@ -33,6 +33,7 @@ setup(name='openNPL',
       version=ver,
       description='An open source platform for the management of non-performing loan portfolio data',
       long_description=long_descr,
+      long_description_content_type='text/x-rst',
       author='Open Risk',
       author_email='info@openrisk.eu',
       packages=['openNPL'],
@@ -53,9 +54,7 @@ setup(name='openNPL',
           'License :: OSI Approved :: Apache Software License',
           'Operating System :: OS Independent',
           'Programming Language :: Python :: 3 :: Only',
-          'Programming Language :: Python :: 3.5',
-          'Programming Language :: Python :: 3.6',
-          'Programming Language :: Python :: 3.7',
+          'Programming Language :: Python :: 3.9',
           'Topic :: Scientific/Engineering',
           'Topic :: Scientific/Engineering :: Information Analysis'
       ]

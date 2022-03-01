@@ -1,4 +1,4 @@
-# Copyright (c) 2020 - 2021 Open Risk (https://www.openriskmanagement.com)
+# Copyright (c) 2020 - 2022 Open Risk (https://www.openriskmanagement.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,6 @@ Django settings for the openNPL platform.
 """
 
 import os
-
 import grappelli
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -96,7 +95,6 @@ TEMPLATE_LOADERS = (
 )
 
 WSGI_APPLICATION = 'openNPL.wsgi.application'
-
 
 DATABASES = {
     'default': {
