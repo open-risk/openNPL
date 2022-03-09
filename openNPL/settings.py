@@ -26,6 +26,7 @@ Django settings for the openNPL platform.
 
 import os
 import grappelli
+from django.utils.translation import gettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -120,7 +121,20 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'nl'
+LANGUAGE_CODE = 'el'
+
+LANGUAGES = [
+    ('nl', _('Dutch')),
+    ('en', _('English')),
+    ('es', _('Spanish')),
+    ('el', _('Greek')),
+]
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 
 TIME_ZONE = 'UTC'
 
