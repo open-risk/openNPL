@@ -25,6 +25,7 @@ from django.urls import reverse
 from npl_portfolio.property_collateral_choices import *
 from npl_portfolio.loan import Loan
 
+
 class PropertyCollateral(models.Model):
     """
     The PropertyCollateral model object holds Property Collateral data conforming to the EBA NPL Template specification
@@ -71,7 +72,7 @@ class PropertyCollateral(models.Model):
                                         help_text='City where the Property is located at. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.City_of_Property">Documentation</a>')
 
     completion_of_property = models.BooleanField(blank=True, null=True,
-                                                     help_text='Indicator as to whether the construction of the Unit is complete. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Completion_of_Property">Documentation</a>')
+                                                 help_text='Indicator as to whether the construction of the Unit is complete. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Completion_of_Property">Documentation</a>')
 
     condition_of_property = models.IntegerField(blank=True, null=True, choices=CONDITION_OF_PROPERTY_CHOICES,
                                                 help_text='Quality classification of the property, e.g. Excellent, Good, Fair, Poor. and include explanation of the category, and please provide the internal methodology used to decide the categories as a part of the transaction documents. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Condition_of_Property">Documentation</a>')
@@ -98,10 +99,10 @@ class PropertyCollateral(models.Model):
                                                help_text='Comments/Description of the stage of Enforcement that the Property Collateral is in as at cut-off date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Enforcement_Description">Documentation</a>')
 
     enforcement_status = models.BooleanField(blank=True, null=True,
-                                                 help_text='Indicator as to whether the property collateral has entered into the enforcement process as at cut-off date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Enforcement_Status">Documentation</a>')
+                                             help_text='Indicator as to whether the property collateral has entered into the enforcement process as at cut-off date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Enforcement_Status">Documentation</a>')
 
     enforcement_status_third_parties = models.BooleanField(blank=True, null=True,
-                                                               help_text='Indicator as to whether any other secured creditors have taken steps to enforce security over the asset? (Y/N). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Enforcement_Status_Third_Parties">Documentation</a>')
+                                                           help_text='Indicator as to whether any other secured creditors have taken steps to enforce security over the asset? (Y/N). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Enforcement_Status_Third_Parties">Documentation</a>')
 
     estimated_annual_void_cost = models.FloatField(blank=True, null=True,
                                                    help_text='Additional costs to "Current Opex And Overheads" when the Units are vacant. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Estimated_Annual_Void_Cost">Documentation</a>')
@@ -216,7 +217,7 @@ class PropertyCollateral(models.Model):
                                                                   help_text='Value stated on Energy Performance Certificate, i.e. A,B,C,D,E,F and G. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Value_of_Energy_Performance_Certificate">Documentation</a>')
 
     vat_payable = models.BooleanField(blank=True, null=True,
-                                          help_text='Indicator as to whether the VAT is payable on the disposal of the Unit. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.VAT_Payable">Documentation</a>')
+                                      help_text='Indicator as to whether the VAT is payable on the disposal of the Unit. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.VAT_Payable">Documentation</a>')
 
     year_of_construction = models.DateField(blank=True, null=True,
                                             help_text='Year that the Property was completed and refurbished. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Year_of_Construction">Documentation</a>')

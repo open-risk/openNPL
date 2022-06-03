@@ -20,9 +20,9 @@ NB: For easy installation and testing, the current (preliminary) release of open
 
 Once the openNPL platform is up and running:
 
-* A user can log-in into the application
+* A user can login into the application
 * Inspect the available data sets (tables or relations), apply filters etc.
-* Insert, Update or Delete records
+* Insert, Update or Delete NPL records
 
 ![Landing](/docs/source/screenshots/filter.png)
 

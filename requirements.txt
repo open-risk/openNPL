@@ -1,6 +1,6 @@
 Django
 django-debug-toolbar
-django-grappelli
+django-jazzmin
 djangorestframework
 Sphinx
 sphinx-rtd-theme
