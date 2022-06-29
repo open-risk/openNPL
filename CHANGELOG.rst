@@ -3,8 +3,8 @@ ChangeLog
 PLEASE NOTE THIS IS ONLY A PLANNING RELEASE.
 THE OPENNPL API IS STILL UNSTABLE
 
-v0.5.1 (XX-XX-2022)
-------------------
+v0.5.1 (29-06-2022)
+-------------------
 * Switch to Jazzmin UI
 
 v0.5 (01-03-2022)

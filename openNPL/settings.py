@@ -25,7 +25,7 @@ Django settings for the openNPL platform.
 """
 
 import os
-import grappelli
+# import grappelli
 from django.utils.translation import gettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,7 +43,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'jazzmin',
     # 'grappelli',
-    'grappelli.dashboard',
+    # 'grappelli.dashboard',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -75,8 +75,9 @@ ROOT_VIEW = "http://localhost:8001"
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'templates/admin'),
-                 os.path.dirname(grappelli.__file__)],
+        # 'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'templates/admin'),
+        #          os.path.dirname(grappelli.__file__)],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'templates/admin')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
