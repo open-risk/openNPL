@@ -19,7 +19,7 @@
 # SOFTWARE.
 
 from django.urls import re_path
-from openNPL import views
+from openNPL import npl_views as views
 
 app_name = 'npl_portfolio'
 

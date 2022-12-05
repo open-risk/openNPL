@@ -29,23 +29,24 @@ from rest_framework.reverse import reverse
 from npl_portfolio.models import CounterpartyGroup, Counterparty, Loan, \
     Enforcement, Forbearance, NonPropertyCollateral, PropertyCollateral, \
     ExternalCollection
-from openNPL.serializers import NPL_CounterpartyGroupSerializer, NPL_CounterpartyGroupDetailSerializer
-from openNPL.serializers import NPL_CounterpartySerializer, NPL_CounterpartyDetailSerializer
-from openNPL.serializers import NPL_EnforcementSerializer, NPL_EnforcementDetailSerializer
-from openNPL.serializers import NPL_ExternalCollectionSerializer, NPL_ExternalCollectionDetailSerializer
-from openNPL.serializers import NPL_ForbearanceSerializer, NPL_ForbearanceDetailSerializer
-from openNPL.serializers import NPL_LoanSerializer, NPL_LoanDetailSerializer
-from openNPL.serializers import NPL_NonPropertyCollateralSerializer, NPL_NonPropertyCollateralDetailSerializer
-from openNPL.serializers import NPL_PropertyCollateralSerializer, NPL_PropertyCollateralDetailSerializer
+from openNPL.npl_serializers import NPL_CounterpartyGroupSerializer, NPL_CounterpartyGroupDetailSerializer
+from openNPL.npl_serializers import NPL_CounterpartySerializer, NPL_CounterpartyDetailSerializer
+from openNPL.npl_serializers import NPL_EnforcementSerializer, NPL_EnforcementDetailSerializer
+from openNPL.npl_serializers import NPL_ExternalCollectionSerializer, NPL_ExternalCollectionDetailSerializer
+from openNPL.npl_serializers import NPL_ForbearanceSerializer, NPL_ForbearanceDetailSerializer
+from openNPL.npl_serializers import NPL_LoanSerializer, NPL_LoanDetailSerializer
+from openNPL.npl_serializers import NPL_NonPropertyCollateralSerializer, NPL_NonPropertyCollateralDetailSerializer
+from openNPL.npl_serializers import NPL_PropertyCollateralSerializer, NPL_PropertyCollateralDetailSerializer
 
 
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
-def api_root(request, format=None):
+def npl_api_root(request, format=None):
     """
     Returns a list of all active API endpoints in the OpenNPL installation, grouped by functionality:
 
     - **NPL Data Endpoints** implements a REST CRUD interface to EBA Templated NPL Data
+    - **SFLP Data Endpoints** implements a REST CRUD interface to US Agency Single Family Loan Performance Data
 
 
     """
@@ -76,7 +77,7 @@ def api_root(request, format=None):
 #
 
 @api_view(['GET'])
-def npl_api_root(request, format=None):
+def api_root(request, format=None):
     """
     Returns a list of all active API endpoints for EBA NPL Template Data
 

@@ -3,13 +3,17 @@ ChangeLog
 PLEASE NOTE THIS IS ONLY A PLANNING RELEASE.
 THE OPENNPL API IS STILL UNSTABLE
 
+v0.5.2 (05-12-2022)
+-------------------
+* Functionality: Integrate Agency Single Family Loan Performance Template (Core Design)
+
 v0.5.1 (29-06-2022)
 -------------------
-* Switch to Jazzmin UI
+* User Interface: Switch to Jazzmin UI
 
 v0.5 (01-03-2022)
 ------------------
-* Upgrade to Python 3.9 and Django 4.0
+* Dependencies: Upgrade to Python 3.9 and Django 4.0
 
 v0.4 (07-06-2021)
 -------------------

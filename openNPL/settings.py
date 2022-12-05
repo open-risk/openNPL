@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'start',
     'npl_portfolio',
+    'sflp_portfolio',
     'debug_toolbar'
 ]
 

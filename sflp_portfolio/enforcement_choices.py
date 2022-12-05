@@ -19,14 +19,10 @@
 # SOFTWARE.
 
 
-from django.shortcuts import render
-from django.views.generic import TemplateView
+#
+# CHOICE DICTIONARIES ENFORCEMENT
+#
 
-
-# Front View
-class Front(TemplateView):
-    template_name = 'start/front.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(TemplateView, self).get_context_data(**kwargs)
-        return context
+CURRENT_MARKET_STATUS_CHOICES = [
+    (0, '(a) On the market, is when the collateral is advertised and marketed for sale'),
+    (1, '(b) Off the market, is when the collateral is not marketed or up for sale')]

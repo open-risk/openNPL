@@ -19,14 +19,18 @@
 # SOFTWARE.
 
 
-from django.shortcuts import render
-from django.views.generic import TemplateView
+#
+# CHOICE DICTIONARIES FORBEARANCE
+#
 
+TYPE_OF_IDENTIFIER_CHOICES = [(0, '(a) Counterparty'), (1, '(b) Loan')]
 
-# Front View
-class Front(TemplateView):
-    template_name = 'start/front.html'
+TYPE_OF_FORBEARANCE_CHOICES = [(0, '(a) Loan maturity date extension'), (1, '(b) Amortisation change'),
+                               (2, '(c) Principal write-off'), (3, '(d) Temporary rate reduction'),
+                               (4, '(e) Capitalisation of interest'),
+                               (5, '(f) Capitalisation of costs advanced: which is insurance and ground rent'),
+                               (6, '(g) Combination '), (7, '(h) Other')]
 
-    def get_context_data(self, **kwargs):
-        context = super(TemplateView, self).get_context_data(**kwargs)
-        return context
+REPAYMENT_FREQUENCY_UNDER_FORBEARANCE_CHOICES = [(0, '(a) Monthly'), (1, '(b) Quarterly'), (2, '(c) Semi-Annually'),
+                                                 (3, '(d) Annually'), (4, '(e) Daily'), (5, '(f) Other')]
+

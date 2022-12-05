@@ -19,10 +19,20 @@
 # SOFTWARE.
 
 from django.urls import re_path
-from . import views
+from openNPL import sflp_views as views
 
-app_name = 'start'
+app_name = 'sflp_portfolio'
 
 urlpatterns = [
-    re_path(r'^$', views.Front.as_view(), name='Front'),
+    re_path(r'^counterparties$', views.sflp_counterparty_api, name='sflp_counterparty_api'),
+    re_path(r'^counterparties/(?P<pk>[0-9]+)/$', views.sflp_counterparty_detail, name='sflp_counterparty_detail'),
+    re_path(r'^property_collateral$', views.sflp_property_collateral_api, name='sflp_property_collateral_api'),
+    re_path(r'^property_collateral/(?P<pk>[0-9]+)/$', views.sflp_property_collateral_detail,
+            name='sflp_property_collateral_detail'),
+    re_path(r'^loans$', views.sflp_loan_api, name='sflp_loan_api'),
+    re_path(r'^loans/(?P<pk>[0-9]+)/$', views.sflp_loan_detail, name='sflp_loan_detail'),
+    re_path(r'^enforcement$', views.sflp_enforcement_api, name='sflp_enforcement_api'),
+    re_path(r'^enforcement/(?P<pk>[0-9]+)/$', views.sflp_enforcement_detail, name='sflp_enforcement_detail'),
+    re_path(r'^forbearance$', views.sflp_forbearance_api, name='sflp_forbearance_api'),
+    re_path(r'^forbearance/(?P<pk>[0-9]+)/$', views.sflp_forbearance_detail, name='sflp_forbearance_detail'),
 ]
