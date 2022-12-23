@@ -27,6 +27,7 @@ from django.views.generic import TemplateView
 class Front(TemplateView):
     template_name = 'start/front.html'
 
-    def get_context_data(self, **kwargs):
+    def get(self, request, *args, **kwargs):
+        request.current_app = 'opennpl'
         context = super(TemplateView, self).get_context_data(**kwargs)
-        return context
+        return self.render_to_response(context)
