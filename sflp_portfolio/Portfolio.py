@@ -19,50 +19,14 @@
 # SOFTWARE.
 
 from django.db import models
-from django.urls import reverse
-
-from sflp_portfolio.forbearance_choices import *
-from sflp_portfolio.loan import Loan
-
-class Forbearance(models.Model):
-    """
-    The Forbearance model holds Forbearance related data
-
-    .. note:: The Agency Single Family Loan Performance Template does not explicitly segment data attributes into Counterparty, Loan etc. The assignment into tables (models) in openNPL is based on the interpretation and main function of different data fields
-
-    """
-
-    #
-    # IDENTIFICATION FIELDS
-    #
 
 
-    #
-    # FOREIGN KEYS
-    #
+class Portfolio(models.Model):
+    deal_name = models.TextField(blank=True, null=True,
+                                 help_text='The title of the series issuance.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    loan_identifier = models.ForeignKey(Loan, on_delete=models.CASCADE, null=True, blank=True)
-
-
-    #
-    # DATA PROPERTIES
-    #
-
-
-
-    #
-    # BOOKKEEPING FIELDS
-    #
+    reference_pool_id = models.TextField(blank=True, null=True,
+                                         help_text='A unique identifier for the reference pool.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     creation_date = models.DateTimeField(auto_now_add=True)
     last_change_date = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.forbearance_identifier
-
-    def get_absolute_url(self):
-        return reverse('sflp_portfolio:forbearance_edit', kwargs={'pk': self.pk})
-
-    class Meta:
-        verbose_name = "Forbearance"
-        verbose_name_plural = "Forbearances"

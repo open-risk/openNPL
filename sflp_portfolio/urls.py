@@ -29,6 +29,8 @@ urlpatterns = [
     re_path(r'^property_collateral$', views.sflp_property_collateral_api, name='sflp_property_collateral_api'),
     re_path(r'^property_collateral/(?P<pk>[0-9]+)/$', views.sflp_property_collateral_detail,
             name='sflp_property_collateral_detail'),
+    re_path(r'^repayment_schedules$', views.sflp_repayment_schedule_api, name='sflp_repayment_schedule_api'),
+    re_path(r'^repayment_schedules/(?P<pk>[0-9]+)/$', views.sflp_repayment_schedule_detail, name='sflp_repayment_schedule_detail'),
     re_path(r'^loans$', views.sflp_loan_api, name='sflp_loan_api'),
     re_path(r'^loans/(?P<pk>[0-9]+)/$', views.sflp_loan_detail, name='sflp_loan_detail'),
     re_path(r'^enforcement$', views.sflp_enforcement_api, name='sflp_enforcement_api'),

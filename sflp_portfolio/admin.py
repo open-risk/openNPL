@@ -35,6 +35,7 @@ from sflp_portfolio.models import Loan
 from sflp_portfolio.models import Enforcement
 from sflp_portfolio.models import PropertyCollateral
 from sflp_portfolio.models import Forbearance
+from sflp_portfolio.models import RepaymentSchedule
 
 
 class PortfolioAdmin(admin.ModelAdmin):
@@ -56,15 +57,16 @@ class CounterpartyAdmin(admin.ModelAdmin):
     view_on_site = False
 
 
-
 class LoanAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
     search_fields = ['loan_identifier']
 
+
 class PropertyCollateralAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
+
 
 class ExternalCollectionAdmin(admin.ModelAdmin):
     save_as = True
@@ -81,6 +83,11 @@ class ForbearanceAdmin(admin.ModelAdmin):
     view_on_site = False
 
 
+class RepaymentScheduleAdmin(admin.ModelAdmin):
+    save_as = True
+    view_on_site = False
+
+
 admin.site.register(Portfolio, PortfolioAdmin)
 admin.site.register(PortfolioSnapshot, Portfolio_SnapshotAdmin)
 admin.site.register(Counterparty, CounterpartyAdmin)
@@ -88,3 +95,4 @@ admin.site.register(Loan, LoanAdmin)
 admin.site.register(Enforcement, EnforcementAdmin)
 admin.site.register(PropertyCollateral, PropertyCollateralAdmin)
 admin.site.register(Forbearance, ForbearanceAdmin)
+admin.site.register(RepaymentSchedule, RepaymentScheduleAdmin)

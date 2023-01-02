@@ -29,26 +29,21 @@ Each model is implemented in a separate file using the convention **TABLE_NAME.p
 In addition there is a Portfolio model and a Portfolio_Snapshot model in this (models.py) file. 
 Choice lists for categorical attributes are collected in separate fields using the convention **TABLE_NAME_CHOICES.py**. 
 
-
 .. NOTE:: CAS, CIRT and Single-Family (SF) Loan Performance share a common vocabulary with some differences currently not highlighted
-
 
 '''
 
+from common.models import Portfolio as _Portfolio
+from common.models import PortfolioSnapshot as _PortfolioSnapshot
 
-class Portfolio(models.Model):
 
+class Portfolio(_Portfolio):
     """
     The portfolio data object is useful to aggregate datasets belonging to the same actual credit portfolio. A portfolio may be optionally named to facilitate recognition and a longer description provides further details.
 
     .. note:: The actual Portfolio data are stored in the various NPL models (with foreign key to Portfolio)
 
     """
-    name = models.CharField(max_length=200, null=True, blank=True)
-    description = models.TextField(blank=True, null=True, help_text='Description of the portfolio')
-
-    creation_date = models.DateTimeField(auto_now_add=True)
-    last_change_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -56,12 +51,8 @@ class Portfolio(models.Model):
     def get_absolute_url(self):
         return reverse('sflp_portfolio:Portfolio_edit', kwargs={'pk': self.pk})
 
-    class Meta:
-        verbose_name = "Portfolio"
-        verbose_name_plural = "Portfolios"
 
-
-class PortfolioSnapshot(models.Model):
+class PortfolioSnapshot(_PortfolioSnapshot):
     """
     The SFLP Portfolio_Snapshot object groups Portfolio generated portfolio data for a given cutoff date. The Snapshot may be named to facilitate recognition.
 
@@ -69,25 +60,11 @@ class PortfolioSnapshot(models.Model):
 
     """
 
-    creation_date = models.DateTimeField(auto_now_add=True,
-        help_text="Date at which the snapshot has been created. Different from the cutoff date")
-    last_change_date = models.DateTimeField(auto_now=True)
-
-    cutoff_date = models.DateTimeField(blank=True, null=True,
-                                       help_text="Portfolio Cutoff Date (If available). Different from the creation date")
-
-    name = models.CharField(blank=True, null=True, max_length=200, help_text="An assigned name to help identify the snapshot. By convention the name of the portfolio plus the cutoff date")
-
-
     def __str__(self):
         return str(self.name)
 
     def get_absolute_url(self):
         return reverse('sflp_portfolio:PortfolioSnapshot_edit', kwargs={'pk': self.pk})
-
-    class Meta:
-        verbose_name = "Portfolio Snapshot"
-        verbose_name_plural = "Portfolio Snapshots"
 
 
 # ATTN Those imports MUST be placed after loading the Portfolio / PortfolioSnapshot classes
@@ -95,8 +72,9 @@ class PortfolioSnapshot(models.Model):
 #   SFLP Models
 #
 
-from sflp_portfolio.counterparty import Counterparty
-from sflp_portfolio.loan import Loan
-from sflp_portfolio.property_collateral import PropertyCollateral
-from sflp_portfolio.forbearance import Forbearance
-from sflp_portfolio.enforcement import Enforcement
+from sflp_portfolio.Counterparty import Counterparty
+from sflp_portfolio.Loan import Loan
+from sflp_portfolio.PropertyCollateral import PropertyCollateral
+from sflp_portfolio.Forbearance import Forbearance
+from sflp_portfolio.Enforcement import Enforcement
+from sflp_portfolio.RepaymentSchedule import RepaymentSchedule

@@ -27,14 +27,14 @@ from rest_framework.parsers import JSONParser
 from rest_framework.reverse import reverse
 
 from sflp_portfolio.models import Counterparty, Loan, \
-    Enforcement, Forbearance, PropertyCollateral
+    Enforcement, Forbearance, PropertyCollateral, RepaymentSchedule
 
 from openNPL.sflp_serializers import SFLP_CounterpartySerializer, SFLP_CounterpartyDetailSerializer
 from openNPL.sflp_serializers import SFLP_EnforcementSerializer, SFLP_EnforcementDetailSerializer
 from openNPL.sflp_serializers import SFLP_ForbearanceSerializer, SFLP_ForbearanceDetailSerializer
 from openNPL.sflp_serializers import SFLP_LoanSerializer, SFLP_LoanDetailSerializer
 from openNPL.sflp_serializers import SFLP_PropertyCollateralSerializer, SFLP_PropertyCollateralDetailSerializer
-
+from openNPL.sflp_serializers import SFLP_RepaymentScheduleSerializer, SFLP_RepaymentScheduleDetailSerializer
 
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
@@ -50,17 +50,13 @@ def api_root(request, format=None):
     data = [
         {'SFPL Template Endpoints':
             [
-                {'sflp_counterparty_group': reverse('sflp_portfolio:sflp_counterparty_group_api', request=request,
-                                                   format=format)},
                 {'sflp_counterparty': reverse('sflp_portfolio:sflp_counterparty_api', request=request, format=format)},
                 {'sflp_loan': reverse('sflp_portfolio:sflp_loan_api', request=request, format=format)},
                 {'sflp_enforcement': reverse('sflp_portfolio:sflp_enforcement_api', request=request, format=format)},
                 {'sflp_forbearance': reverse('sflp_portfolio:sflp_forbearance_api', request=request, format=format)},
-                {'sflp_nonproperty_collateral': reverse('sflp_portfolio:sflp_nonproperty_collateral_api', request=request,
-                                                       format=format)},
                 {'sflp_property_collateral': reverse('sflp_portfolio:sflp_property_collateral_api', request=request,
                                                     format=format)},
-                {'sflp_external_collection': reverse('sflp_portfolio:sflp_external_collection_api', request=request,
+                {'sflp_repayment_schedule': reverse('sflp_portfolio:sflp_repayment_schedule_api', request=request,
                                                     format=format)},
             ]},
     ]
@@ -82,15 +78,12 @@ def sflp_api_root(request, format=None):
     data = [
         {'EBA Template Endpoints':
             [
-                {'sflp_counterparty_group': reverse('sflp_counterparty_group_api', request=request, format=format)},
                 {'sflp_counterparty': reverse('sflp_counterparty_api', request=request, format=format)},
                 {'sflp_loan': reverse('sflp_loan_api', request=request, format=format)},
                 {'sflp_enforcement': reverse('sflp_enforcement_api', request=request, format=format)},
                 {'sflp_forbearance': reverse('sflp_forbearance_api', request=request, format=format)},
-                {'sflp_nonproperty_collateral': reverse('sflp_nonproperty_collateral_api', request=request,
-                                                       format=format)},
                 {'sflp_property_collateral': reverse('sflp_property_collateral_api', request=request, format=format)},
-                {'sflp_external_collection': reverse('sflp_external_collection_api', request=request, format=format)},
+                {'sflp_repayment_schedule': reverse('sflp_repayment_schedule_api', request=request, format=format)},
             ]}
     ]
     return Response(data)
@@ -276,4 +269,40 @@ def sflp_forbearance_detail(request, pk):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     serializer = SFLP_ForbearanceDetailSerializer(forbearance)
+    return Response(serializer.data)
+
+
+@api_view(['GET', 'POST'])
+@permission_classes((permissions.AllowAny,))
+def sflp_repayment_schedule_api(request):
+    """
+    List repayment_schedule (EBA Template)
+    """
+    if request.method == 'GET':
+        repayment_schedule = RepaymentSchedule.objects.all()
+        serializer = SFLP_RepaymentScheduleSerializer(repayment_schedule, many=True, context={'request': request})
+        return Response(serializer.data)
+    elif request.method == 'POST':
+        """
+        Create new repayment_schedule entry
+        """
+        data = JSONParser().parse(request)
+        serializer = SFLP_RepaymentScheduleDetailSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def sflp_repayment_schedule_detail(request, pk):
+    """
+    List the data a specific EBA repayment_schedule entry
+    """
+    try:
+        repayment_schedule = RepaymentSchedule.objects.get(pk=pk)
+    except repayment_schedule.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = SFLP_RepaymentScheduleDetailSerializer(repayment_schedule)
     return Response(serializer.data)

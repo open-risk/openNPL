@@ -11,8 +11,12 @@ This page documents the current views implementing the REST endpoints of the ope
 .. TODO:: Some models only implement collective (list) views, detailed views to be implemented in due course
 
 
-.. automodule:: openNPL.views
+.. automodule:: openNPL.npl_views
    :members:
    :undoc-members:
    :noindex:
 
+.. automodule:: openNPL.sflp_views
+   :members:
+   :undoc-members:
+   :noindex:
