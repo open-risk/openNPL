@@ -18,7 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from sflp_portfolio.models import Counterparty, Loan, \
+from sflp_portfolio.models.models import Counterparty, Loan, \
     Enforcement, Forbearance, PropertyCollateral, RepaymentSchedule
 from rest_framework import serializers
 

@@ -26,7 +26,7 @@ from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from rest_framework.reverse import reverse
 
-from sflp_portfolio.models import Counterparty, Loan, \
+from sflp_portfolio.models.models import Counterparty, Loan, \
     Enforcement, Forbearance, PropertyCollateral, RepaymentSchedule
 
 from openNPL.sflp_serializers import SFLP_CounterpartySerializer, SFLP_CounterpartyDetailSerializer

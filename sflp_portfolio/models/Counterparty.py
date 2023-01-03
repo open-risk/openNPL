@@ -21,8 +21,8 @@
 from django.db import models
 from django.urls import reverse
 
-from sflp_portfolio.Loan import Loan
-from sflp_portfolio.model_choices import *
+from sflp_portfolio.models.Loan import Loan
+from sflp_portfolio.models.model_choices import *
 
 
 class Counterparty(models.Model):

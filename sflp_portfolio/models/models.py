@@ -44,6 +44,14 @@ class Portfolio(_Portfolio):
     .. note:: The actual Portfolio data are stored in the various NPL models (with foreign key to Portfolio)
 
     """
+    deal_name = models.TextField(blank=True, null=True,
+                                 help_text='The title of the series issuance.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    reference_pool_id = models.TextField(blank=True, null=True,
+                                         help_text='A unique identifier for the reference pool.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    creation_date = models.DateTimeField(auto_now_add=True)
+    last_change_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -59,6 +67,11 @@ class PortfolioSnapshot(_PortfolioSnapshot):
     .. note:: The actual Snapshot data are stored in the various Data Models (with foreign key to a Snapshot)
 
     """
+    monthly_reporting_period = models.DateField(blank=True, null=True,
+                                                help_text='The month and year that pertains to the servicer’s cut-off period for mortgage loan information.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    creation_date = models.DateTimeField(auto_now_add=True)
+    last_change_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return str(self.name)
@@ -72,9 +85,9 @@ class PortfolioSnapshot(_PortfolioSnapshot):
 #   SFLP Models
 #
 
-from sflp_portfolio.Counterparty import Counterparty
-from sflp_portfolio.Loan import Loan
-from sflp_portfolio.PropertyCollateral import PropertyCollateral
-from sflp_portfolio.Forbearance import Forbearance
-from sflp_portfolio.Enforcement import Enforcement
-from sflp_portfolio.RepaymentSchedule import RepaymentSchedule
+from sflp_portfolio.models.Counterparty import Counterparty
+from sflp_portfolio.models.Loan import Loan
+from sflp_portfolio.models.PropertyCollateral import PropertyCollateral
+from sflp_portfolio.models.Forbearance import Forbearance
+from sflp_portfolio.models.Enforcement import Enforcement
+from sflp_portfolio.models.RepaymentSchedule import RepaymentSchedule

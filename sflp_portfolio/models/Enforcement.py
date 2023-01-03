@@ -21,8 +21,8 @@
 from django.db import models
 from django.urls import reverse
 
-from sflp_portfolio.Loan import Loan
-from sflp_portfolio.PropertyCollateral import PropertyCollateral
+from sflp_portfolio.models.Loan import Loan
+from sflp_portfolio.models.PropertyCollateral import PropertyCollateral
 
 
 class Enforcement(models.Model):

@@ -1,7 +1,7 @@
-Django
-djangorestframework
+Django~=4.1.5
+djangorestframework~=3.14.0
 drf-yasg
-django-debug-toolbar
+django-debug-toolbar~=3.8.1
 django-jazzmin
 Sphinx
 sphinx-rtd-theme
@@ -19,4 +19,7 @@ pandas
 scipy
 jsonfield
 Markdown
-Pillow
+Pillow==9.4.0
+tablib~=3.3.0
+setuptools~=65.6.3
+django-model-utils~=4.3.1

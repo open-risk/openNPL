@@ -28,14 +28,14 @@ Portfolio_Snapshot is used to group data into time snapshots
 
 '''
 
-from sflp_portfolio.models import PortfolioSnapshot
-from sflp_portfolio.models import Portfolio
-from sflp_portfolio.models import Counterparty
-from sflp_portfolio.models import Loan
-from sflp_portfolio.models import Enforcement
-from sflp_portfolio.models import PropertyCollateral
-from sflp_portfolio.models import Forbearance
-from sflp_portfolio.models import RepaymentSchedule
+from sflp_portfolio.models.models import PortfolioSnapshot
+from sflp_portfolio.models.models import Portfolio
+from sflp_portfolio.models.models import Counterparty
+from sflp_portfolio.models.models import Loan
+from sflp_portfolio.models.models import Enforcement
+from sflp_portfolio.models.models import PropertyCollateral
+from sflp_portfolio.models.models import Forbearance
+from sflp_portfolio.models.models import RepaymentSchedule
 
 
 class PortfolioAdmin(admin.ModelAdmin):
