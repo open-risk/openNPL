@@ -41,15 +41,15 @@ from sflp_portfolio.models.models import RepaymentSchedule
 class PortfolioAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
-    search_fields = ['name']
-    list_display = ('name', 'creation_date', 'last_change_date')
+    # search_fields = ['name']
+    # list_display = ('name', 'creation_date', 'last_change_date')
 
 
 class Portfolio_SnapshotAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
-    search_fields = ['name']
-    list_display = ('name', 'creation_date', 'cutoff_date')
+    # search_fields = ['name']
+    # list_display = ('name', 'creation_date', 'cutoff_date')
 
 
 class CounterpartyAdmin(admin.ModelAdmin):

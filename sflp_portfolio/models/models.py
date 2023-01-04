@@ -67,14 +67,14 @@ class PortfolioSnapshot(_PortfolioSnapshot):
     .. note:: The actual Snapshot data are stored in the various Data Models (with foreign key to a Snapshot)
 
     """
-    monthly_reporting_period = models.DateField(blank=True, null=True,
+    monthly_reporting_period = models.TextField(blank=True, null=True,
                                                 help_text='The month and year that pertains to the servicer’s cut-off period for mortgage loan information.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     creation_date = models.DateTimeField(auto_now_add=True)
     last_change_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return str(self.name)
+        return str(self.monthly_reporting_period)
 
     def get_absolute_url(self):
         return reverse('sflp_portfolio:PortfolioSnapshot_edit', kwargs={'pk': self.pk})

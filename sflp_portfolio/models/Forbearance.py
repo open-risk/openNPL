@@ -42,7 +42,7 @@ class Forbearance(models.Model):
     # FOREIGN KEYS
     #
 
-    loan_identifier = models.ForeignKey(Loan, on_delete=models.CASCADE, null=True, blank=True)
+    loan_id = models.ForeignKey(Loan, on_delete=models.CASCADE, null=True, blank=True)
 
 
     #

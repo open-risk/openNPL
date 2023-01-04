@@ -47,13 +47,13 @@ class RepaymentSchedule(models.Model):
     loan_payment_history = models.TextField(blank=True, null=True,
                                             help_text='The coded string of values that describes the payment performance of the loan over the most recent 24 months.  The most recent month is located to the right.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    months_to_amortization = models.FloatField(blank=True, null=True,
+    months_to_amortization = models.IntegerField(blank=True, null=True,
                                                help_text='For interest-only loans, the number of months from the current month to the first scheduled principal and interest payment date.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    remaining_months_to_legal_maturity = models.FloatField(blank=True, null=True,
+    remaining_months_to_legal_maturity = models.IntegerField(blank=True, null=True,
                                                            help_text='The number of calendar months remaining until the mortgage loan is due to be paid in full based on the maturity date as defined in the mortgage documents.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    remaining_months_to_maturity = models.FloatField(blank=True, null=True,
+    remaining_months_to_maturity = models.IntegerField(blank=True, null=True,
                                                      help_text='The number of calendar months remaining until the outstanding unpaid principal balance of the mortgage loan amortizes to a zero balance, taking into account any additional prepayments, which could lead to the loan paying off earlier than its maturity date.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     repurchase_date = models.DateField(blank=True, null=True,
