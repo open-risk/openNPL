@@ -2,7 +2,6 @@ Installation
 =======================
 You can install and use the openNPL package in any system that supports *python* **or** *docker*
 
-
 Installation via Docker
 -----------------------
 Installation via docker is recommended as it provides a streamlined and fast setup of an openNPL instance. If you do not want to use docker scroll further down for :ref:`Manual installation from sources`

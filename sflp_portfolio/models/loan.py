@@ -201,7 +201,7 @@ class Loan(models.Model):
 
     special_eligibility_program = models.IntegerField(blank=True, null=True,
                                                       choices=SPECIAL_ELIGIBILITY_PROGRAM_CHOICES,
-                                                      help_text='A mortgage program with expanded eligibility criteria designed to increase and maintain home ownership. Home; Ready - An; affordable; mortgage; program; designedfor eligible, creditworthy borrowers. • HFA Preferred - An affordable, conventional mortgage program available exclusively to housing financing agencies (HFAs) to maximize financing to low-to moderate-income borrowers.• RefiNow - An affordable refinance program designed for eligible, creditworthy borrowers with an existing Fannie Mae-owned mortgage.• Other - A special eligibility program not provided within the other enumerations.• Not Applicable - The special eligibility program disclosure is not applicable to the related loan.• Not Available - The special eligibility program disclosure is not available for the related loan<a class ="risk_manual_url" href="https://www.openriskmanual.org/wiki" > Documentation < / a > ')
+                                                      help_text='A mortgage program with expanded eligibility criteria designed to increase and maintain home ownership.<a class ="risk_manual_url" href="https://www.openriskmanual.org/wiki" > Documentation < / a > ')
 
     upb_at_issuance = models.FloatField(blank=True, null=True,
                                         help_text='The unpaid principal balance of the loan as of the cut-off date of the reference pool.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')

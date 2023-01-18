@@ -1,4 +1,4 @@
-Forbearance
+NPL Forbearance
 ------------------------------
 
 .. automodule:: npl_portfolio.forbearance

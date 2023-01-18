@@ -28,7 +28,9 @@ LOAN_PURPOSE_DICT = {'C': 0, 'R': 1, 'P': 2, 'U': 3}
 LOAN_PURPOSE_CHOICES = [(0, '(C) Cash-Out Refinance'), (1, '(R) Refinance'), (2, '(P) Purchase'),
                         (3, '(U) Refinance-Not Specified')]
 
-FIRST_TIME_DICT = {'Y': 0, 'N': 1, 'Null': 2}
+# FIRST_TIME_DICT = {'Y': 0, 'N': 1, 'Null': 2}
+FIRST_TIME_DICT = {True: 0, False: 1, 'Null': 2}
+
 FIRST_TIME_HOME_BUYER_INDICATOR_CHOICES = [(0, '(Y) Yes'), (1, '(N) No'), (2, '(Null) Unknown')]
 
 PROPERTY_DICT = {'CO': 0, 'CP': 1, 'PU': 2, 'MH': 3, 'SF': 4}
@@ -58,16 +60,16 @@ LOAN_HOLDBACK_INDICATOR_CHOICES = [(0, '(Y) Yes (current)'),
                                    (1, '(N) No (previously in loan hold but no longer in loan hold status)'),
                                    (2, '(Null) Has not been classified under loan hold status')]
 
-PROPERTY_VALUATION_DICT = {'A': 0, 'P': 1, 'R': 2, 'W': 3, 'O': 4}
+PROPERTY_VALUATION_DICT = {'A': 0, 'P': 1, 'R': 2, 'W': 3, 'O': 4, None:4}
 PROPERTY_VALUATION_METHOD_CHOICES = [(0, '(A) Appraisal'), (1, '(P) Onsite Property Data Collection'),
                                      (2, '(R) GSE Targeted Refinance'), (3, '(W) Appraisal Waiver'), (4, '(O) Other')]
 
-BORROWER_PLAN_DICT = {'F': 0, 'R': 1, 'T': 2, 'O': 3, 'N': 4, '7': 5, '9': 6}
+BORROWER_PLAN_DICT = {'F': 0, 'R': 1, 'T': 2, 'O': 3, 'N': 4, '7': 5, '9': 6, None:6}
 BORROWER_ASSISTANCE_PLAN_CHOICES = [(0, '(F) Forbearance Plan'), (1, '(R) Repayment Plan'),
                                     (2, '(T) Trial Period Plan'), (3, '(O) Other Workout Plan'),
                                     (4, '(N) No Workout Plan'), (5, '(7) Not Applicable'), (6, '(9) Not Available')]
 
-DELINQUENCY_DICT = {'P': 0, 'C': 1, 'D': 2, 7: 3, 9: 4}
+DELINQUENCY_DICT = {'P': 0, 'C': 1, 'D': 2, 7: 3, 9: 4, None:4}
 ALTERNATIVE_DELINQUENCY_RESOLUTION_CHOICES = [(0, '(P) payment deferral option'),
                                               (1, '(C) payment deferral option specific to COVID-19'), (2,
                                                                                                         '(D) payment deferral option specific to certain natural disaster related events'),

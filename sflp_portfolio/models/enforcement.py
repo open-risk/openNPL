@@ -21,8 +21,8 @@
 from django.db import models
 from django.urls import reverse
 
-from sflp_portfolio.models.Loan import Loan
-from sflp_portfolio.models.PropertyCollateral import PropertyCollateral
+from sflp_portfolio.models.loan import Loan
+from sflp_portfolio.models.property_collateral import PropertyCollateral
 
 
 class Enforcement(models.Model):
@@ -80,7 +80,7 @@ class Enforcement(models.Model):
                                            help_text='Total cash received from the sale of the property net of any applicable selling expenses, such as fees and commissions, allowable for inclusion under the terms of the property sale, as currently reported on the HUD-1 or other settlement statement.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     original_list_price = models.FloatField(blank=True, null=True,
-                                            help_text='The initial price at which a real property is offered for sale by the property seller.  ..<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                            help_text='The initial price at which a real property is offered for sale by the property seller. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     original_list_start_date = models.DateField(blank=True, null=True,
                                                 help_text='The agreed upon date, between a property seller and a broker, authorizing the broker to begin the process to procure a buyer or tenant for the property seller’s real property.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')

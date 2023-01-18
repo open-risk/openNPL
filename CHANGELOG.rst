@@ -3,6 +3,10 @@ ChangeLog
 PLEASE NOTE THIS IS ONLY A PLANNING RELEASE.
 THE OPENNPL API IS STILL UNSTABLE
 
+v0.5.3 (18-01-2023)
+-------------------
+* Functionality: Importing Single Family Loan Performance Data (Testing Load Robustness / Performance)
+
 v0.5.2 (05-12-2022)
 -------------------
 * Functionality: Integrate Agency Single Family Loan Performance Template (Core Design)

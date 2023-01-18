@@ -1,4 +1,4 @@
-Loan
+NPL Loan
 ------------------------------
 
 .. automodule:: npl_portfolio.loan

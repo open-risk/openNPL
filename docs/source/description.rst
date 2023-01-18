@@ -10,19 +10,19 @@ The source code is available in the Open Risk Repository `Link <https://github.c
 * Online Code Documentation: `Read The Docs <https://opennpl.readthedocs.io/en/latest/>`_
 * NPL Data Documentation: `Open Risk Manual Loan Data <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
 * Development Website: `Github <https://github.com/open-risk/openNPL>`_
-* Project Discussion: `Gitter <https://gitter.im/open-risk/openNPL>`_
+* Project Discussion: `Open Risk Commons <https://www.openriskcommons.org/c/open-source/opennpl/13>`_
 * Docker Image: `Docker <https://hub.docker.com/repository/docker/openrisk/opennpl_web>`_
 * Training: `Open Risk Academy <https://www.openriskacademy.com/login/index.php>`_
 
 
 Functionality
 -------------
-The openNPL platform may be useful to financial industry users (portfolio managers, business analysts), data engineers and/or risk model developers.
+The openNPL platform may be useful to financial industry users (portfolio managers, business analysts), data engineers and/or risk model developers. The loan data templates currently covered are in particular relevant for EU countries and the US.
 
 Users can use openNPL to:
 
 * Log-in into the application with their credentials
-* Inspect the available loan data sets (tables or relations) conforming to the European Banking Authority Template recommendations
+* Inspect the available loan data sets (tables or relations) conforming to the European Banking Authority Template recommendations of US Agency Loan Performance Data schemas
 * Insert, Update or Delete loan records (e.g. new counterparty, loan or collateral data)
 * Consult the documentation as to the meaning and requirements of each data element
 
@@ -35,9 +35,10 @@ The current *architecture* of openNPL is summarized as follows:
 
 * openNPL is built on top of the **Python Django framework**
 * The non-performing loan template recommendations of the EBA are implemented as distinct **models** in the database
+* A similar but distinct model structure is implemented for US Agency mortgage data
 * The backend database is currently **sqlite3**
 * Additional models are introduced to bind the data together in relations (e.g. portfolio snapshot)
-* The user interface uses built-in Django forms as those are rendered by the **Grappelli** skin
+* The user interface uses built-in Django forms as those are rendered by the **Jazzmin** skin
 
 
 Directory structure

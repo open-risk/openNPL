@@ -1,9 +1,9 @@
 .. openNPL code documentation
 
-openNPL Data Models
+EBA NPL Data Models
 ==============================
 
-The next pages document in detail the openNPL data models. openNPL models implement the core relations (Tables) of the EBA Portfolio Template `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
+The pages in this section document in detail the EBA NPL data models. openNPL implements the core relations (Tables) of the EBA Portfolio Template `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
 
 Each data model is implemented in a separate file TABLE_NAME.py in the npl_portfolio directory. In addition there is a **Portfolio Model** and a **Portfolio Snapshot Model** implemented in the (models.py) file. These models extend the EBA recommendation to enable and/or improve the usability of the openNPL platform.
 
@@ -15,11 +15,11 @@ Each data model is implemented in a separate file TABLE_NAME.py in the npl_portf
    :maxdepth: 4
 
    NPL_Portfolio
-   CounterpartyGroup
-   Counterparty
-   Loan
-   PropertyCollateral
-   NonPropertyCollateral
-   ExternalCollection
-   Forbearance
-   Enforcement
+   NPL_CounterpartyGroup
+   NPL_Counterparty
+   NPL_Loan
+   NPL_PropertyCollateral
+   NPL_NonPropertyCollateral
+   NPL_ExternalCollection
+   NPL_Forbearance
+   NPL_Enforcement

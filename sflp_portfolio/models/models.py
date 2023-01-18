@@ -85,9 +85,9 @@ class PortfolioSnapshot(_PortfolioSnapshot):
 #   SFLP Models
 #
 
-from sflp_portfolio.models.Counterparty import Counterparty
-from sflp_portfolio.models.Loan import Loan
-from sflp_portfolio.models.PropertyCollateral import PropertyCollateral
-from sflp_portfolio.models.Forbearance import Forbearance
-from sflp_portfolio.models.Enforcement import Enforcement
-from sflp_portfolio.models.RepaymentSchedule import RepaymentSchedule
+from sflp_portfolio.models.counterparty import Counterparty
+from sflp_portfolio.models.loan import Loan
+from sflp_portfolio.models.property_collateral import PropertyCollateral
+from sflp_portfolio.models.forbearance import Forbearance
+from sflp_portfolio.models.enforcement import Enforcement
+from sflp_portfolio.models.repayment_schedule import RepaymentSchedule

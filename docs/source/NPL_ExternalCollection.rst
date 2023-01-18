@@ -1,4 +1,4 @@
-External Collection
+NPL External Collection
 ------------------------------
 
 .. automodule:: npl_portfolio.external_collection

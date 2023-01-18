@@ -21,7 +21,7 @@
 from django.db import models
 from django.urls import reverse
 
-from sflp_portfolio.models.Loan import Loan
+from sflp_portfolio.models.loan import Loan
 from sflp_portfolio.models.model_choices import *
 
 

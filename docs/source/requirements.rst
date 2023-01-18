@@ -1,13 +1,31 @@
 Requirements
 =======================
-List of python requirements. At this point the main dependencies are related to django and sphinx
+List of python package requirements. At this point the main dependencies are related to django and sphinx and the scipy stack
 
 ::
 
-    Django>=3.1.9
-    django-debug-toolbar>=2.2.1
-    django-grappelli>=2.14.2
-    djangorestframework>=3.11.2
-    drf-yasg>=1.20.0
-    Sphinx>=3.1.1
-    sphinx-rtd-theme>=0.5.0
+        Django
+        djangorestframework
+        drf-yasg
+        django-debug-toolbar
+        django-jazzmin
+        Sphinx==6.1.3
+        sphinx-rtd-theme==1.1.1
+        django-leaflet
+        django-json-widget
+        django-markdownfield
+        django-treebeard
+        django-import-export
+        django-prettyjson
+        django-countries
+        django-model-utils
+        behave-django
+        numpy
+        pandas
+        scipy
+        jsonfield
+        Markdown
+        Pillow
+        tablib
+        setuptools
+

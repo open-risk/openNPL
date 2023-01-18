@@ -1,4 +1,4 @@
-Counterparty
+NPL Counterparty
 ------------------------------
 
 .. automodule:: npl_portfolio.counterparty

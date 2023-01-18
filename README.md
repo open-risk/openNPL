@@ -1,7 +1,7 @@
 [![Documentation Status](https://readthedocs.org/projects/opennpl/badge/?version=latest)](https://opennpl.readthedocs.io/en/latest/?badge=latest)
 
 # openNPL overview
-![openNPL Logo](/docs/source/opennpl-logo.png) openNPL is an open source platform for the management of loan portfolio data with a particular focus on credit portfolis / non-performing loans. 
+![openNPL Logo](/docs/source/opennpl-logo.png) openNPL is an open source platform for the management of loan portfolio data with a particular focus on credit portfolios / non-performing loans. 
 
 openNPL implements and builds on 
 * the detailed European Banking Authority loan templates for NPL data. It thereby enables the collection and easy management of non-performing loan data according to best-practices.
@@ -28,12 +28,12 @@ Once the openNPL platform is up and running:
 * Inspect the available data sets (tables or relations), apply filters etc.
 * Insert, Update or Delete NPL records
 
-![Landing](/docs/source/screenshots/filter.png)
+![Filter](/docs/source/screenshots/filter.png)
 
 ### Machine Oriented Functionality
 openNPL aims to be at the same time easy to integrate into automated (computer driven) workflows. For this reason it exposes a *REST API* that offers both overviews and granular access to individual loan records.
 
-![Landing](/docs/source/API.png)
+![API](/docs/source/API.png)
 
 *For more detailed description of structure and functionality please refer to the documentation as explained in the next section* 
 
@@ -55,6 +55,7 @@ The domain knowledge and detailed data documentation is provided via the **Open 
 
 * [EBA NPL Templates](https://www.openriskmanual.org/wiki/EBA_NPL_Template)
 * [NPL Concepts](https://www.openriskmanual.org/wiki/Category:NPL)
+* [FM SFLP Templates](https://www.openriskmanual.org/wiki/FM_SFLP_Template)
 
 The Open Risk Manual articles further connect the specific NPL knowledge base to more general *credit portfolio* and *risk management* concepts, procedures and overall knowledge bases.
 
@@ -113,5 +114,6 @@ We welcome your feedback and support, raise a github issue if you want to report
 
 ## Credits
 * Django
-* Grappelli
+* Jazzmin
 * European Banking Authority
+* US Agencies (Fannie Mae)

@@ -1,4 +1,4 @@
-Property Collateral
+NPL Property Collateral
 ------------------------------
 
 .. automodule:: npl_portfolio.property_collateral
