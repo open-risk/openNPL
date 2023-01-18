@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class EbaPortfolioConfig(AppConfig):
+class SFLPPortfolioConfig(AppConfig):
     name = 'sflp_portfolio'

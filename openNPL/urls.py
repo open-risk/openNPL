@@ -34,6 +34,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
 
@@ -58,8 +59,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('grappelli/', include('grappelli.urls')),  # grappelli URLS
-    # path('grappelli/grp_doc/', include('grappelli.urls_docs')),  # grappelli URLS
+    path('admin/doc/', include('django.contrib.admindocs.urls')),  #
     path('', include('start.urls')),  # start URLS
     path(r'api/', npl_views.api_root, name='api_root'),  # Overall API root
     path(r'api/npl_data/', include(('npl_portfolio.urls', 'npl_portfolio'), namespace='npl_portfolio')),  # NPL data
@@ -67,7 +67,8 @@ urlpatterns = [
     re_path(r'^api/swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     re_path(r'^api/swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     re_path(r'^api/redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 if settings.DEBUG:
     import debug_toolbar

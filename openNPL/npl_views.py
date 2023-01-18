@@ -22,8 +22,8 @@
 from rest_framework import permissions
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
+from rest_framework.response import Response
 from rest_framework.reverse import reverse
 
 from npl_portfolio.models import CounterpartyGroup, Counterparty, Loan, \

@@ -1,0 +1,14 @@
+{% extends 'admin/base_site.html' %}
+
+{% load i18n static %}
+
+{% block extrahead %}
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'start/img/opennpl.png' %}"/>
+    <script type="text/javascript" charset="utf-8" src="{% static 'start/js/jquery.js' %}"></script>jquery.js
+{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+        <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}">
+{% endblock %}
