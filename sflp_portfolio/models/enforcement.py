@@ -31,6 +31,8 @@ class Enforcement(models.Model):
 
      note:: The Agency Single Family Loan Performance Template does not explicitly segment data attributes into Counterparty, Loan etc. The assignment into tables (models) in openNPL is based on the interpretation and main function of different data fields
 
+     .. note:: Fields are currently segmented into static and dynamic. In the future dynamic attributes may move to new models. The distinction is not always clear and may depend on the availability of updated date
+
     """
 
     #
@@ -49,7 +51,7 @@ class Enforcement(models.Model):
                                 help_text="The portfolio ID to which the Counterparty belongs (can be more than one)")
 
     #
-    # DATA PROPERTIES
+    # DYNAMIC DATA PROPERTIES
     #
 
     asset_recovery_costs = models.FloatField(blank=True, null=True,

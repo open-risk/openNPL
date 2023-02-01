@@ -31,6 +31,8 @@ class Forbearance(models.Model):
 
     .. note:: The Agency Single Family Loan Performance Template does not explicitly segment data attributes into Counterparty, Loan etc. The assignment into tables (models) in openNPL is based on the interpretation and main function of different data fields
 
+    .. note:: Fields are currently segmented into static and dynamic. In the future dynamic attributes may move to new models. The distinction is not always clear and may depend on the availability of updated date
+
     """
 
     #
@@ -46,7 +48,7 @@ class Forbearance(models.Model):
 
 
     #
-    # DATA PROPERTIES
+    # DYNAMIC DATA PROPERTIES
     #
     alternative_delinquency_resolution = models.IntegerField(blank=True, null=True,
                                                              choices=ALTERNATIVE_DELINQUENCY_RESOLUTION_CHOICES,

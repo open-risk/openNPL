@@ -26,6 +26,15 @@ from sflp_portfolio.models.model_choices import *
 
 
 class RepaymentSchedule(models.Model):
+    """
+    The RepaymentSchedule model holds Repayment Schedule data
+
+    .. note:: The Agency Single Family Loan Performance Template does not explicitly segment data attributes into Counterparty, Loan etc. The assignment into tables (models) in openNPL is based on the interpretation and main function of different data fields
+
+    .. note:: Fields are currently segmented into static and dynamic. In the future dynamic attributes may move to new models. The distinction is not always clear and may depend on the availability of updated date
+
+    """
+
     #
     # IDENTIFICATION FIELDS
     #
@@ -78,7 +87,7 @@ class RepaymentSchedule(models.Model):
                                                      help_text='The most recent date in which a loan status change was identified, resulting from corresponding change to the Zero Balance Code.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     zero_balance_effective_date = models.DateField(blank=True, null=True,
-                                                   help_text='Date on which the mortgage loan balance was reduced to zero...<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                   help_text='Date on which the mortgage loan balance was reduced to zero.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     #
     # BOOKKEEPING FIELDS

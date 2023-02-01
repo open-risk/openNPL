@@ -31,6 +31,8 @@ class PropertyCollateral(models.Model):
 
     .. note:: The Agency Single Family Loan Performance Template does not explicitly segment data attributes into Counterparty, Loan etc. The assignment into tables (models) in openNPL is based on the interpretation and main function of different data fields
 
+    .. note:: Fields are currently segmented into static and dynamic. In the future dynamic attributes may move to new models. The distinction is not always clear and may depend on the availability of updated date
+
     """
 
     #
@@ -44,17 +46,10 @@ class PropertyCollateral(models.Model):
     loan_id = models.ForeignKey(Loan, on_delete=models.CASCADE, null=True, blank=True)
 
     #
-    # DATA PROPERTIES
+    # STATIC DATA PROPERTIES
     #
-
-    associated_taxes_for_holding_property = models.FloatField(blank=True, null=True,
-                                                              help_text='Payment of taxes associated with holding the property.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
     metropolitan_statistical_area = models.TextField(blank=True, null=True,
                                                      help_text='The numeric Metropolitan Statistical Area Code for the property securing the mortgage loan. MSAs are established by the US Office of Management and Budget. An area usually qualifies as an MSA if it is defined by the Bureau of the Census as an urbanized area and has a population of 50,000 or more in a total metropolitan area of at least 100,000. An MSA may consist of one or more counties.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    miscellaneous_holding_expenses_and_credits = models.FloatField(blank=True, null=True,
-                                                                   help_text='Expenses and credits associated with preserving the property, including Homeowners Association and other dues; flood, hazard, and MI premiums and refunds; rental income; and title insurance costs.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     number_of_units = models.FloatField(blank=True, null=True,
                                         help_text='The number of units comprising the related mortgaged property (one, two, three, or four).<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -62,20 +57,38 @@ class PropertyCollateral(models.Model):
     occupancy_status = models.IntegerField(blank=True, null=True, choices=OCCUPANCY_STATUS_CHOICES,
                                            help_text='The classification describing the property occupancy status at the time the loan was originated.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    property_preservation_and_repair_costs = models.FloatField(blank=True, null=True,
-                                                               help_text='The expenses associated with securing and preserving the property including two major categories:  maintenance and repairs. Maintenance costs are associated with preserving the property through normal upkeep, while repairs are associated with either avoiding deterioration of the asset or a marketing decision to help maximize sales proceeds upon final disposition.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
     property_state = models.TextField(blank=True, null=True,
                                       help_text='A two-letter abbreviation indicating the state or territory within which the property securing the mortgage loan is located.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     property_type = models.IntegerField(blank=True, null=True, choices=PROPERTY_TYPE_CHOICES,
                                         help_text='An indicator that denotes whether the property type secured by the mortgage loan is a condominium, co-operative, planned urban development (PUD), manufactured home, or single-family home.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
+    zip_code_short = models.TextField(blank=True, null=True,
+                                      help_text='Limited to the first three digits of the code designated by the U.S. Postal Service where the subject property is located.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    #
+    # DYNAMIC DATA PROPERTIES
+    #
+    associated_taxes_for_holding_property = models.FloatField(blank=True, null=True,
+                                                              help_text='Payment of taxes associated with holding the property.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+
+
+    miscellaneous_holding_expenses_and_credits = models.FloatField(blank=True, null=True,
+                                                                   help_text='Expenses and credits associated with preserving the property, including Homeowners Association and other dues; flood, hazard, and MI premiums and refunds; rental income; and title insurance costs.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+
+
+
+
+    property_preservation_and_repair_costs = models.FloatField(blank=True, null=True,
+                                                               help_text='The expenses associated with securing and preserving the property including two major categories:  maintenance and repairs. Maintenance costs are associated with preserving the property through normal upkeep, while repairs are associated with either avoiding deterioration of the asset or a marketing decision to help maximize sales proceeds upon final disposition.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+
     property_valuation_method = models.IntegerField(blank=True, null=True, choices=PROPERTY_VALUATION_METHOD_CHOICES,
                                                     help_text='An indicator that denotes the method by which the value of the subject property was obtained. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    zip_code_short = models.TextField(blank=True, null=True,
-                                      help_text='Limited to the first three digits of the code designated by the U.S. Postal Service where the subject property is located.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
 
     # Bookkeeping fields
     creation_date = models.DateTimeField(auto_now_add=True)

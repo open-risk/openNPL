@@ -22,12 +22,14 @@ from django.db import models
 from django.urls import reverse
 
 '''
-openNPL models implement the core relations (Tables) of the Single Family Loan Performance Template
-`Single Family Loan Performance Templates <https://www.openriskmanual.org/wiki/AGENCY_SFLP_Template>`_
+openNPL implements the core relations (Tables) of the Single Family Loan Performance Template
+`Single Family Loan Performance Templates <https://www.openriskmanual.org/wiki/FM_SFLP_Template>`_. 
 
-Each model is implemented in a separate file using the convention **TABLE_NAME.py** in the sflp_portfolio directory. 
-In addition there is a Portfolio model and a Portfolio_Snapshot model in this (models.py) file. 
-Choice lists for categorical attributes are collected in separate fields using the convention **TABLE_NAME_CHOICES.py**. 
+.. NOTE:: The SFLP data template is distinct from the EBA NPL template. While the EBA NPL template is formally defined and is a legal requirement, the SFLP template is merely reflecting the current data structures of published mortgage data. You can learn more about similarities and differences here. (TODO)
+
+Each data model is implemented in a separate file using the convention **TABLE_NAME.py** in the sflp_portfolio directory. In addition there is a Portfolio model and a Portfolio Snapshot model in this (models.py) file. 
+
+Choice lists for categorical attributes are collected in separate files using the convention **TABLE_NAME_CHOICES.py**. 
 
 .. NOTE:: CAS, CIRT and Single-Family (SF) Loan Performance share a common vocabulary with some differences currently not highlighted
 
@@ -39,9 +41,9 @@ from common.models import PortfolioSnapshot as _PortfolioSnapshot
 
 class Portfolio(_Portfolio):
     """
-    The portfolio data object is useful to aggregate datasets belonging to the same actual credit portfolio. A portfolio may be optionally named to facilitate recognition and a longer description provides further details.
+    The portfolio data object is useful to aggregate datasets belonging to the same actual credit portfolio. A portfolio may be (optionally) named to facilitate recognition and a longer description provides further details.
 
-    .. note:: The actual Portfolio data are stored in the various NPL models (with foreign key to Portfolio)
+    .. note:: The actual Portfolio data are stored in the various specific data models (with foreign key to Portfolio)
 
     """
     deal_name = models.TextField(blank=True, null=True,
@@ -64,7 +66,7 @@ class PortfolioSnapshot(_PortfolioSnapshot):
     """
     The SFLP Portfolio_Snapshot object groups Portfolio generated portfolio data for a given cutoff date. The Snapshot may be named to facilitate recognition.
 
-    .. note:: The actual Snapshot data are stored in the various Data Models (with foreign key to a Snapshot)
+    .. note:: The actual Snapshot data are stored in the various specific Data Models (with foreign key to a Snapshot)
 
     """
     monthly_reporting_period = models.TextField(blank=True, null=True,

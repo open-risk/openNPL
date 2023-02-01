@@ -26,9 +26,20 @@ from sflp_portfolio.models.model_choices import *
 
 
 class Counterparty(models.Model):
+    """
+    The Counterparty model holds Portfolio Counterparty data
+
+    .. note:: The Agency Single Family Loan Performance Template does not explicitly segment data attributes into Counterparty, Loan etc. The assignment into tables (models) in openNPL is based on the interpretation and main function of different data fields
+
+    .. note:: Fields are currently segmented into static and dynamic. In the future dynamic attributes may move to new models. The distinction is not always clear and may depend on the availability of updated date
+
+    """
+
     #
     # IDENTIFICATION FIELDS
     #
+    # NOTE: There is no separate counterparty ID in the FM SFLP dataset
+
 
     #
     # FOREIGN KEYS
@@ -36,32 +47,14 @@ class Counterparty(models.Model):
 
     # Loan ID Foreign Key
     loan_id = models.ForeignKey(Loan, on_delete=models.CASCADE, blank=True, null=True,
-                                help_text="The portfolio ID to which the Counterparty belongs (can be more than one)")
+                                help_text="The loan ID to which the Counterparty corresponds.")
 
     #
-    # DATA PROPERTIES
+    # STATIC DATA PROPERTIES
     #
-
-    borrower_credit_score_at_issuance = models.FloatField(blank=True, null=True,
-                                                          help_text='A numerical value used by the financial services industry to evaluate the quality of borrower credit. Credit scores are typically based on a proprietary statistical model that is developed for use by credit data repositories. These credit repositories apply the model to borrower credit information to arrive at a credit score. When this term is used by Fannie Mae, it is referring to FICO Score 5(1) developed by Fair Isaac Corporation and provided by Equifax Inc. and is distinct from the FICO Score referenced in Fannie Maes Selling Guide, which may be provided by any of the three major credit repositories..<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    borrower_credit_score_at_origination = models.FloatField(blank=True, null=True,
-                                                             help_text='A numerical value used by the financial services industry to evaluate the quality of borrower’s credit. Credit scores are typically based on a proprietary statistical model that is developed for use by credit data repositories. These credit repositories apply the model to borrower credit information to arrive at a credit score. When this term is used by Fannie Mae, it is referring to the "Classic" FICO score developed by Fair Isaac Corporation.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    borrower_credit_score_current = models.FloatField(blank=True, null=True,
-                                                      help_text='A numerical value used by the financial services industry to evaluate the quality of borrower credit. Credit scores are typically based on a proprietary statistical model that is developed for use by credit data repositories. These credit repositories apply the model to borrower credit information to arrive at a credit score. When this term is used by Fannie Mae, it is referring to FICO Score 5(1) developed by Fair Isaac Corporation and provided by Equifax Inc and is distinct from the FICO Score referenced in Fannie Maes Selling Guide, which may be provided by any of the three major credit repositories.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    coborrower_credit_score_at_issuance = models.TextField(blank=True, null=True,
-                                                           help_text='A numerical value used by the financial services industry to evaluate the quality of borrower credit. Credit scores are typically based on a proprietary statistical model that is developed for use by credit data repositories. These credit repositories apply the model to borrower credit information to arrive at a credit score. When this term is used by Fannie Mae, it is referring to FICO Score 5(1) developed by Fair Isaac Corporation and provided by Equifax Inc and is distinct from the FICO Score referenced in Fannie Maes Selling Guide.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    coborrower_credit_score_at_origination = models.FloatField(blank=True, null=True,
-                                                               help_text='A numerical value used by the financial services industry to evaluate the quality of borrower’s credit. Credit scores are typically based on a proprietary statistical model that is developed for use by credit data repositories. These credit repositories apply the model to borrower credit information to arrive at a credit score. When this term is used by Fannie Mae, it is referring to the "Classic" FICO score developed by Fair Isaac Corporation.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-
-    coborrower_credit_score_current = models.FloatField(blank=True, null=True,
-                                                        help_text='A numerical value used by the financial services industry to evaluate the quality of borrower credit. Credit scores are typically based on a proprietary statistical model that is developed for use by credit data repositories. These credit repositories apply the model to borrower credit information to arrive at a credit score. When this term is used by Fannie Mae, it is referring to FICO Score 5(1) developed by Fair Isaac Corporation and provided by Equifax Inc and is distinct from the FICO Score referenced in Fannie Maes Selling Guide.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     debt_to_income = models.FloatField(blank=True, null=True,
-                                       help_text='DTI. The ratio obtained by dividing the total monthly debt expense by the total monthly income of the borrower at the time the loan was originated.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                       help_text='Debt-To-Income (DTI). The (initial) ratio obtained by dividing the total monthly debt expense by the total monthly income of the borrower at the time the loan was originated.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     first_time_home_buyer_indicator = models.IntegerField(blank=True, null=True,
                                                           choices=FIRST_TIME_HOME_BUYER_INDICATOR_CHOICES,
@@ -69,6 +62,33 @@ class Counterparty(models.Model):
 
     number_of_borrowers = models.FloatField(blank=True, null=True,
                                             help_text='The number of individuals obligated to repay the mortgage loan.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    borrower_credit_score_at_issuance = models.FloatField(blank=True, null=True,
+                                                          help_text='A numerical value used by the financial services industry to evaluate the quality of borrower credit. Credit scores are typically based on a proprietary statistical model that is developed for use by credit data repositories. These credit repositories apply the model to borrower credit information to arrive at a credit score. When this term is used by Fannie Mae, it is referring to FICO Score developed by Fair Isaac Corporation and provided by Equifax Inc. and is distinct from the FICO Score referenced in Fannie Mae Selling Guide, which may be provided by any of the three major credit repositories.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    borrower_credit_score_at_origination = models.FloatField(blank=True, null=True,
+                                                             help_text='A numerical value used by the financial services industry to evaluate the quality of borrower’s credit. Credit scores are typically based on a proprietary statistical model that is developed for use by credit data repositories. These credit repositories apply the model to borrower credit information to arrive at a credit score. When this term is used by Fannie Mae, it is referring to the "Classic" FICO score developed by Fair Isaac Corporation.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    coborrower_credit_score_at_issuance = models.TextField(blank=True, null=True,
+                                                           help_text='A numerical value used by the financial services industry to evaluate the quality of borrower credit. Credit scores are typically based on a proprietary statistical model that is developed for use by credit data repositories. These credit repositories apply the model to borrower credit information to arrive at a credit score. When this term is used by Fannie Mae, it is referring to FICO Score developed by Fair Isaac Corporation and provided by Equifax Inc and is distinct from the FICO Score referenced in Fannie Mae Selling Guide.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+    coborrower_credit_score_at_origination = models.FloatField(blank=True, null=True,
+                                                               help_text='A numerical value used by the financial services industry to evaluate the quality of borrower’s credit. Credit scores are typically based on a proprietary statistical model that is developed for use by credit data repositories. These credit repositories apply the model to borrower credit information to arrive at a credit score. When this term is used by Fannie Mae, it is referring to the "Classic" FICO score developed by Fair Isaac Corporation.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+
+    #
+    # DYNAMIC DATA PROPERTIES
+    #
+
+
+    borrower_credit_score_current = models.FloatField(blank=True, null=True,
+                                                      help_text='A numerical value used by the financial services industry to evaluate the quality of borrower credit. Credit scores are typically based on a proprietary statistical model that is developed for use by credit data repositories. These credit repositories apply the model to borrower credit information to arrive at a credit score. When this term is used by Fannie Mae, it is referring to FICO Score developed by Fair Isaac Corporation and provided by Equifax Inc and is distinct from the FICO Score referenced in Fannie Mae Selling Guide, which may be provided by any of the three major credit repositories.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+
+    coborrower_credit_score_current = models.FloatField(blank=True, null=True,
+                                                        help_text='A numerical value used by the financial services industry to evaluate the quality of borrower credit. Credit scores are typically based on a proprietary statistical model that is developed for use by credit data repositories. These credit repositories apply the model to borrower credit information to arrive at a credit score. When this term is used by Fannie Mae, it is referring to FICO Score developed by Fair Isaac Corporation and provided by Equifax Inc and is distinct from the FICO Score referenced in Fannie Mae Selling Guide.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
+
 
     #
     # BOOKKEEPING FIELDS
