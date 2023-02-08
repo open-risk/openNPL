@@ -38,8 +38,11 @@ class Counterparty(models.Model):
     #
     # IDENTIFICATION FIELDS
     #
-    # NOTE: There is no separate counterparty ID in the FM SFLP dataset
+    # NOTE: There is no separate counterparty ID in the FM SFLP dataset, despite the
+    # name, what we are using is simply the loan id
 
+    counterparty_id = models.TextField(blank=True, null=True,
+                                         help_text='A unique identifier for the counterparty.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
     #
     # FOREIGN KEYS
@@ -95,6 +98,9 @@ class Counterparty(models.Model):
     #
     creation_date = models.DateTimeField(auto_now_add=True)
     last_change_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.counterparty_id)
 
     def get_absolute_url(self):
         return reverse('sflp_portfolio:Counterparty_edit', kwargs={'pk': self.pk})

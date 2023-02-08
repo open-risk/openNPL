@@ -45,7 +45,7 @@ class RepaymentSchedule(models.Model):
 
     # Loan ID Foreign Key
     loan_id = models.ForeignKey(Loan, on_delete=models.CASCADE, blank=True, null=True,
-                                help_text="The portfolio ID to which the Counterparty belongs (can be more than one)")
+                                help_text="The load ID to which the repayment schedule refers")
 
     #
     # DATA PROPERTIES

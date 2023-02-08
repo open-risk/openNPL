@@ -47,11 +47,16 @@ class Loan(models.Model):
 
     # Portfolio ID Foreign Key
     portfolio = models.ForeignKey(Portfolio, on_delete=models.CASCADE, blank=True, null=True,
-                                     help_text="The portfolio ID to which the Counterparty belongs (can be more than one)")
+                                     help_text="The portfolio ID to which the Loan belongs")
+
+    # NOTE: Seller is captured in Portfolio name
+    # seller_name = models.TextField(blank=True, null=True,
+    #                                help_text='The name of the entity that delivered the mortgage loan to Fannie Mae.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
 
     # Snapshot ID  Foreign Key
     snapshot = models.ForeignKey(PortfolioSnapshot, on_delete=models.CASCADE, blank=True, null=True,
-                                    help_text="The snapshot ID to which the Counterparty belongs")
+                                    help_text="The snapshot ID to which the Loan belongs")
 
     #
     # STATIC DATA PROPERTIES
@@ -60,8 +65,7 @@ class Loan(models.Model):
     channel = models.IntegerField(blank=True, null=True, choices=CHANNEL_CHOICES,
                                   help_text='The origination channel used by the party that delivered the loan to the issuer.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
-    seller_name = models.TextField(blank=True, null=True,
-                                   help_text='The name of the entity that delivered the mortgage loan to Fannie Mae.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
 
     original_interest_rate = models.FloatField(blank=True, null=True,
                                                help_text='The original interest rate on a mortgage loan as identified in the original mortgage note.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')

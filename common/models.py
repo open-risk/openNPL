@@ -61,8 +61,7 @@ class Portfolio(models.Model):
 
 class PortfolioSnapshot(models.Model):
     """
-    The Portfolio_Snapshot object groups Portfolio generated portfolio data for a given cutoff date.
-    The Snapshot may be named to facilitate recognition.
+    The Portfolio_Snapshot object groups Portfolio generated portfolio data for a given cutoff date. The Snapshot may be named to facilitate recognition.
 
     .. note:: The actual Snapshot data are stored in the various Data Models (with foreign key to a Snapshot)
 
