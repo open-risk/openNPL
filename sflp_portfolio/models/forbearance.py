@@ -90,4 +90,4 @@ class Forbearance(models.Model):
 
     class Meta:
         verbose_name = "Forbearance"
-        verbose_name_plural = "Forbearances"
+        verbose_name_plural = "Forbearance"

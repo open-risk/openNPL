@@ -30,12 +30,15 @@ Portfolio_Snapshot is used to group data into time snapshots
 
 from sflp_portfolio.models.models import PortfolioSnapshot
 from sflp_portfolio.models.models import Portfolio
-from sflp_portfolio.models.models import Counterparty
-from sflp_portfolio.models.models import Loan
-from sflp_portfolio.models.models import Enforcement
-from sflp_portfolio.models.models import PropertyCollateral
-from sflp_portfolio.models.models import Forbearance
-from sflp_portfolio.models.models import RepaymentSchedule
+from sflp_portfolio.models.counterparty import Counterparty
+from sflp_portfolio.models.counterparty_state import CounterpartyState
+from sflp_portfolio.models.loan import Loan
+from sflp_portfolio.models.loan_state import LoanState
+from sflp_portfolio.models.property_collateral import PropertyCollateral
+from sflp_portfolio.models.property_collateral_state import PropertyCollateralState
+from sflp_portfolio.models.enforcement import Enforcement
+from sflp_portfolio.models.forbearance import Forbearance
+from sflp_portfolio.models.repayment_schedule import RepaymentSchedule
 
 
 class PortfolioAdmin(admin.ModelAdmin):
@@ -57,13 +60,28 @@ class CounterpartyAdmin(admin.ModelAdmin):
     view_on_site = False
 
 
+class CounterpartyStateAdmin(admin.ModelAdmin):
+    save_as = True
+    view_on_site = False
+
+
 class LoanAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
     search_fields = ['loan_identifier']
 
 
+class LoanStateAdmin(admin.ModelAdmin):
+    save_as = True
+    view_on_site = False
+    list_display = ('loan_id', 'portfolio_snapshot_id')
+
 class PropertyCollateralAdmin(admin.ModelAdmin):
+    save_as = True
+    view_on_site = False
+
+
+class PropertyCollateralStateAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
 
@@ -91,8 +109,11 @@ class RepaymentScheduleAdmin(admin.ModelAdmin):
 admin.site.register(Portfolio, PortfolioAdmin)
 admin.site.register(PortfolioSnapshot, Portfolio_SnapshotAdmin)
 admin.site.register(Counterparty, CounterpartyAdmin)
+admin.site.register(CounterpartyState, CounterpartyStateAdmin)
 admin.site.register(Loan, LoanAdmin)
-admin.site.register(Enforcement, EnforcementAdmin)
+admin.site.register(LoanState, LoanStateAdmin)
 admin.site.register(PropertyCollateral, PropertyCollateralAdmin)
+admin.site.register(PropertyCollateralState, PropertyCollateralStateAdmin)
+admin.site.register(Enforcement, EnforcementAdmin)
 admin.site.register(Forbearance, ForbearanceAdmin)
 admin.site.register(RepaymentSchedule, RepaymentScheduleAdmin)

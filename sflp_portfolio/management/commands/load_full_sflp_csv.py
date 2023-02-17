@@ -18,20 +18,18 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import pandas as pd
 import numpy as np
+import pandas as pd
 from django.core.management.base import BaseCommand
 
+from sflp_portfolio.models.counterparty import Counterparty
+from sflp_portfolio.models.enforcement import Enforcement
+from sflp_portfolio.models.forbearance import Forbearance
+from sflp_portfolio.models.loan import Loan
 from sflp_portfolio.models.models import Portfolio
 from sflp_portfolio.models.models import PortfolioSnapshot
-from sflp_portfolio.models.loan import Loan
-from sflp_portfolio.models.counterparty import Counterparty
 from sflp_portfolio.models.property_collateral import PropertyCollateral
 from sflp_portfolio.models.repayment_schedule import RepaymentSchedule
-from sflp_portfolio.models.forbearance import Forbearance
-from sflp_portfolio.models.enforcement import Enforcement
-
-from sflp_portfolio.models.model_choices import *
 
 
 class Command(BaseCommand):

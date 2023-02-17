@@ -93,6 +93,9 @@ class Enforcement(models.Model):
     repurchase_make_whole_proceeds = models.FloatField(blank=True, null=True,
                                                        help_text='Amounts received by Fannie Mae under the terms of our representation and warranty arrangements for the repurchase of the mortgage loan or the subject property or loss reimbursement subsequent to property disposition.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
+    repurchase_date = models.DateField(blank=True, null=True,
+                                       help_text='The date on which a Reversed Credit Event Reference Obligation occurs with respect to a loan.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+
     # Bookkeeping fields
     creation_date = models.DateTimeField(auto_now_add=True)
     last_change_date = models.DateTimeField(auto_now=True)
@@ -102,4 +105,4 @@ class Enforcement(models.Model):
 
     class Meta:
         verbose_name = "Enforcement"
-        verbose_name_plural = "Enforcements"
+        verbose_name_plural = "Enforcement"

@@ -17,7 +17,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
+import pandas as pd
 
 AMORTIZATION_TYPE_CHOICES = [(0, '(ARM) Adjustable Rate Mortgage'), (1, '(FRM) Fixed Rate Mortgages')]
 CHANNEL_CHOICES = [(0, '(R) Retail'), (1, '(C) Correspondent'), (2, '(B) Broker')]
@@ -31,7 +31,7 @@ ZERO_BALANCE_CODE_CHOICES = [(0, '(01) Prepaid or Matured'), (1, '(02) Third Par
                              (3, '(06) Repurchased'), (4, '(09) Deed-in-Lieu; REO Disposition'),
                              (5, '(15) Notes Sales'), (6, '(16) Reperforming Loan Sale'),
                              (7, '(96) Removal (non-credit event)'), (8, '(97) Delinquency (credit event due to D180)'),
-                             (9, '(98) Other Credit Event')]
+                             (9, '(98) Other Credit Event'), (999, 'Performing')]
 MORTGAGE_INSURANCE_TYPE_CHOICES = [(0, '(1) Borrower Paid'), (1, '(2) Lender Paid'), (2, '(3) Enterprise Paid'),
                                    (3, '(Null) No Mortgage Insurance')]
 SPECIAL_ELIGIBILITY_PROGRAM_CHOICES = [(0, '(F) HFA Preferred'), (1, '(H) HomeReady'), (2, '(R) RefiNow'),
