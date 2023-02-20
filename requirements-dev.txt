@@ -1,0 +1,4 @@
+django-debug-toolbar
+django-extensions
+Sphinx
+sphinx-rtd-theme

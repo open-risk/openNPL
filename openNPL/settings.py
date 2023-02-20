@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'npl_portfolio',
     'sflp_portfolio',
     'debug_toolbar',
+    'django_extensions',
     'behave_django'
 ]
 
