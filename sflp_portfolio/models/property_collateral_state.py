@@ -21,7 +21,7 @@
 from django.db import models
 from django.urls import reverse
 
-from sflp_portfolio.models.loan import Loan
+from sflp_portfolio.models.property_collateral import PropertyCollateral
 from sflp_portfolio.models.model_choices import *
 from sflp_portfolio.models.models import PortfolioSnapshot
 
@@ -40,10 +40,12 @@ class PropertyCollateralState(models.Model):
 
     # Portfolio Snapshot ID Foreign Key
     portfolio_snapshot_id = models.ForeignKey(PortfolioSnapshot, on_delete=models.CASCADE, blank=True, null=True,
-                                              help_text="The portfolio snapshot ID to which the Loan State belongs")
+                                              help_text="The portfolio snapshot ID to which the Property Collateral State belongs")
 
-    loan_id = models.ForeignKey(Loan, on_delete=models.CASCADE, blank=True, null=True,
+    # Portfolio ID Foreign Key
+    property_collateral_id = models.ForeignKey(PropertyCollateral, on_delete=models.CASCADE, blank=True, null=True,
                                 help_text="The loan ID to which the Property Collateral corresponds.")
+
 
     #
     # DYNAMIC DATA PROPERTIES

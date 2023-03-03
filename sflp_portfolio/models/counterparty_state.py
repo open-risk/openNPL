@@ -36,12 +36,14 @@ class CounterpartyState(models.Model):
     # FOREIGN KEYS
     #
 
+    # Portfolio Snapshot ID Foreign Key
+    portfolio_snapshot_id = models.ForeignKey(PortfolioSnapshot, on_delete=models.CASCADE, blank=True, null=True,
+                                              help_text="The portfolio snapshot ID to which the Counterparty State corresponds.")
+
     # counterparty ID Foreign Key
     counterparty_id = models.ForeignKey(Counterparty, on_delete=models.CASCADE, blank=True, null=True,
                                         help_text="The counterparty ID to which the Counterparty State corresponds.")
 
-    portoflio_snapshot_id = models.ForeignKey(PortfolioSnapshot, on_delete=models.CASCADE, blank=True, null=True,
-                                              help_text="The portfolio snapshot ID to which the Counterparty State corresponds.")
 
     #
     # DYNAMIC DATA PROPERTIES

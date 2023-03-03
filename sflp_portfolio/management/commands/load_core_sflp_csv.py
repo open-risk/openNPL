@@ -46,8 +46,8 @@ class Command(BaseCommand):
     # Clean up the database
     Portfolio.objects.all().delete()
     PortfolioSnapshot.objects.all().delete()
-    Counterparty.objects.all().delete()
     Loan.objects.all().delete()
+    Counterparty.objects.all().delete()
     PropertyCollateral.objects.all().delete()
 
     #
@@ -56,6 +56,7 @@ class Command(BaseCommand):
     portfolio_data = pd.read_csv("./sflp_portfolio/fixtures/portfolio.csv", sep='|', index_col=None, low_memory=False,
                                  na_values=None,
                                  true_values=['Y'], false_values=['N'])
+    print('Loaded Portfolio Data')
 
     portfolio_dict = {}
     for index, entry in portfolio_data.iterrows():
@@ -66,6 +67,7 @@ class Command(BaseCommand):
         portfolio.save()
         portfolio_dict[entry[0]] = portfolio
 
+    print('Created Portfolio Entities')
     #
     # Portfolio snapshot data
     #
@@ -73,6 +75,7 @@ class Command(BaseCommand):
                                           low_memory=False, na_values=None,
                                           true_values=['Y'], false_values=['N'])
 
+    print('Loaded Portfolio Snapshots')
     portfolio_snapshot_dict = {}
     for index, entry in portfolio_snapshot_data.iterrows():
         portfolio_snapshot, _ = PortfolioSnapshot.objects.update_or_create(
@@ -81,6 +84,7 @@ class Command(BaseCommand):
         portfolio_snapshot.save()
         portfolio_snapshot_dict[entry[0]] = portfolio_snapshot
 
+    print('Created Portfolio Snapshots')
     #
     # Static Loan Data
     #
@@ -88,11 +92,12 @@ class Command(BaseCommand):
                             na_values=None,
                             true_values=['Y'], false_values=['N'])
 
+    print('Loaded Static Loan Data')
     loan_data_list = []
     i = 0
     loan_dict = {}
     for index, entry in loan_data.iterrows():
-        print('Loan: ', i)
+        # print('Loan: ', i)
         loan = Loan(
             id=i,
             loan_identifier=entry[0],
@@ -121,6 +126,7 @@ class Command(BaseCommand):
         i += 1
 
     Loan.objects.bulk_create(loan_data_list)
+    print('Created Static Loan Entries')
     #
     # Dynamic Loan Data
     #
@@ -133,10 +139,12 @@ class Command(BaseCommand):
 
     loan_state_data = loan_state_data.replace({np.nan: None})
 
+    print("Loaded Dynamic Loan Data")
+
     loan_state_data_list = []
     i = 0
     for index, entry in loan_state_data.iterrows():
-        print('LoanState: ', i)
+        # print('LoanState: ', i)
         loan_state = LoanState(
             id=i,
             loan_id=loan_dict[entry[0]],
@@ -166,53 +174,124 @@ class Command(BaseCommand):
             servicing_activity_indicator=entry[24]
         )
         loan_state_data_list.append(loan_state)
-        # loan_state.save()
         i += 1
 
     LoanState.objects.bulk_create(loan_state_data_list)
+    print("Created Dynamic Loan Data")
 
-    # #
-    # # Static Counterparty data
-    # #
-    # counterparty_data = pd.read_csv("./sflp_portfolio/fixtures/counterparty.csv", sep='|', index_col=None,
-    #                                 low_memory=False, na_values=None,
-    #                                 true_values=['Y'], false_values=['N'])
-    # i = 0
-    # for index, entry in counterparty_data.iterrows():
-    #     counterparty = Counterparty.objects.create(
-    #         id=i,
-    #         loan_id=loan_dict[entry[0]],  # loan FK reference
-    #         counterparty_id=entry[0],  # counterparty ID identical to loan ID
-    #         number_of_borrowers=entry[1],
-    #         debt_to_income=entry[2],
-    #         borrower_credit_score_at_origination=entry[3],
-    #         coborrower_credit_score_at_origination=entry[4],
-    #         first_time_home_buyer_indicator=entry[5],
-    #     )
-    #     counterparty.save()
-    #     i += 1
     #
-    # #
-    # # Static Property collateral data
-    # #
-    # property_collateral_data = pd.read_csv("./sflp_portfolio/fixtures/property_collateral.csv", sep='|', index_col=None,
-    #                                        low_memory=False, na_values=None,
-    #                                        true_values=['Y'], false_values=['N'])
+    # Static Counterparty data
     #
-    # i = 0
-    # for index, entry in property_collateral_data.iterrows():
-    #     property_collateral = PropertyCollateral.objects.create(
-    #         id=i,
-    #         loan_id=loan_dict[entry[0]],  # loan FK reference
-    #         property_type=entry[1],
-    #         number_of_units=entry[2],
-    #         occupancy_status=entry[3],
-    #         property_state=entry[4],
-    #         metropolitan_statistical_area=entry[5],
-    #         zip_code_short=entry[6]
-    #     )
-    #     property_collateral.save()
-    #     i += 1
+    counterparty_data = pd.read_csv("./sflp_portfolio/fixtures/counterparty.csv", sep='|', index_col=None,
+                                    low_memory=False, na_values=None,
+                                    true_values=['Y'], false_values=['N'])
+
+    print("Loaded Static Counterparty Data")
+
+    counterparty_data_list = []
+    i = 0
+    counterparty_dict = {}
+    for index, entry in counterparty_data.iterrows():
+        counterparty = Counterparty(
+            id=i,
+            loan_id=loan_dict[entry[0]],  # loan FK reference
+            counterparty_id=entry[0],  # counterparty ID is identical to loan ID
+            number_of_borrowers=entry[1],
+            debt_to_income=entry[2],
+            borrower_credit_score_at_origination=entry[3],
+            coborrower_credit_score_at_origination=entry[4],
+            first_time_home_buyer_indicator=entry[5],
+        )
+        counterparty_data_list.append(counterparty)
+        counterparty_dict[entry[0]] = counterparty
+        i += 1
+
+    Counterparty.objects.bulk_create(counterparty_data_list)
+    print("Created Static Counterparty Data")
+
+    #
+    # Counterparty State data
+    #
+    counterparty_state_data = pd.read_csv("./sflp_portfolio/fixtures/counterparty_state.csv", sep='|', index_col=None,
+                                    low_memory=False, na_values=None,
+                                    true_values=['Y'], false_values=['N'])
+    counterparty_state_data = counterparty_state_data.replace({np.nan: None})
+
+    print("Loaded Counterparty State Data")
+
+    counterparty_state_data_list = []
+    i = 0
+    for index, entry in counterparty_state_data.iterrows():
+        counterparty_state = CounterpartyState(
+            id=i,
+            counterparty_id=counterparty_dict[entry[0]],
+            portfolio_snapshot_id=portfolio_snapshot_dict[entry[1]],
+            borrower_credit_score_current=entry[2],
+            coborrower_credit_score_current=entry[3],
+        )
+        counterparty_state_data_list.append(counterparty_state)
+        i += 1
+
+    CounterpartyState.objects.bulk_create(counterparty_state_data_list)
+    print("Created Counterparty State Data")
+
+
+    #
+    # Static Property collateral data
+    #
+    property_collateral_data = pd.read_csv("./sflp_portfolio/fixtures/property_collateral.csv", sep='|', index_col=None,
+                                           low_memory=False, na_values=None,
+                                           true_values=['Y'], false_values=['N'])
+
+    print("Loaded Static Collateral Data")
+
+    property_collateral_data_list = []
+    i = 0
+    property_collateral_dict = {}
+    for index, entry in property_collateral_data.iterrows():
+        property_collateral = PropertyCollateral(
+            id=i,
+            loan_id=loan_dict[entry[0]],  # loan FK reference
+            property_type=entry[1],
+            number_of_units=entry[2],
+            occupancy_status=entry[3],
+            property_state=entry[4],
+            metropolitan_statistical_area=entry[5],
+            zip_code_short=entry[6]
+        )
+        property_collateral_data_list.append(property_collateral)
+        i += 1
+        property_collateral_dict[entry[0]] = property_collateral
+    PropertyCollateral.objects.bulk_create(property_collateral_data_list)
+    print("Created Property Collateral Static Data")
+
+    #
+    # Property Collateral State data
+    #
+    property_collateral_state_data = pd.read_csv("./sflp_portfolio/fixtures/property_collateral_state.csv", sep='|', index_col=None,
+                                    low_memory=False, na_values=None,
+                                    true_values=['Y'], false_values=['N'])
+    property_collateral_state_data = property_collateral_state_data.replace({np.nan: None})
+    print("Loaded Property Collateral State Data")
+
+    property_collateral_state_data_list = []
+    i = 0
+    for index, entry in property_collateral_state_data.iterrows():
+        property_collateral_state = PropertyCollateralState(
+            id=i,
+            property_collateral_id=property_collateral_dict[entry[0]],
+            portfolio_snapshot_id=portfolio_snapshot_dict[entry[1]],
+            property_preservation_and_repair_costs=entry[2],
+            miscellaneous_holding_expenses_and_credits=entry[3],
+            associated_taxes_for_holding_property=entry[4],
+            property_valuation_method=entry[5],
+        )
+        property_collateral_state_data_list.append(property_collateral_state)
+        i += 1
+
+    PropertyCollateralState.objects.bulk_create(property_collateral_state_data_list)
+    print("Created Property Collateral State Data")
+
 
     def handle(self, *args, **options):
-        self.stdout.write(self.style.SUCCESS('Successfully inserted Core SFLP data into db'))
+        self.stdout.write(self.style.SUCCESS('Successfully inserted Core SFLP data into database'))
