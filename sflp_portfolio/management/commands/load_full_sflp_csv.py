@@ -74,7 +74,6 @@ class Command(BaseCommand):
         if entry[78] is None:
             entry[78] = 'N'
 
-
         portfolio, _ = Portfolio.objects.update_or_create(
             name='test.csv',
             description='Test Portfolio',

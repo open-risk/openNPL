@@ -29,9 +29,6 @@ class Loan(models.Model):
     """
     The Loan model holds Loan Portfolio data
 
-    .. note:: The Agency Single Family Loan Performance Template does not explicitly segment data attributes into Counterparty, Loan etc. The assignment into tables (models) in openNPL is based on the interpretation and main function of different data fields
-
-    .. note:: Fields are currently segmented into static and dynamic. In the future dynamic attributes may move to new models. The distinction is not always clear and may depend on the availability of updated date
 
     """
 
@@ -40,7 +37,9 @@ class Loan(models.Model):
     #
 
     loan_identifier = models.TextField(blank=True, null=True,
-                                       help_text='A unique identifier for the mortgage loan.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                       help_text='A unique identifier for the mortgage loan.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Loan_Identifier">Documentation</a>')
+    "A unique identifier for the mortgage loan"
+
     #
     # FOREIGN KEYS
     #

@@ -2,7 +2,8 @@
 /db.sqlite3
 /static/
 /start/migrations/
-/eba_portfolio/migrations/
+/npl_portfolio/migrations/
+/sflp_portfolio/migrations/
 /docs/build/
 /.idea/
 /openNPL/__pycache__/

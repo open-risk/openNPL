@@ -1,4 +1,6 @@
 """
+ATTN: Deprecated
+
 This file was generated with the custom dashboard management command and
 contains the class for the main dashboard.
 

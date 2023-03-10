@@ -27,11 +27,8 @@ from sflp_portfolio.models.model_choices import *
 
 class PropertyCollateral(models.Model):
     """
-    The PropertyCollateral model object holds Property Collateral data
+    The PropertyCollateral model object holds Real Estate Property Collateral data
 
-    .. note:: The Agency Single Family Loan Performance Template does not explicitly segment data attributes into Counterparty, Loan etc. The assignment into tables (models) in openNPL is based on the interpretation and main function of different data fields
-
-    .. note:: Fields are currently segmented into static and dynamic. In the future dynamic attributes may move to new models. The distinction is not always clear and may depend on the availability of updated date
 
     """
 
@@ -44,7 +41,9 @@ class PropertyCollateral(models.Model):
     #
 
     loan_id = models.ForeignKey(Loan, on_delete=models.CASCADE, blank=True, null=True,
-                                help_text="The loan ID to which the Property Collateral corresponds.")
+                                help_text='The loan ID to which the property collateral links.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Loan_Identifier">Documentation</a>')
+    """The loan ID to which the property collateral links."""
+
     #
     # STATIC DATA PROPERTIES
     #

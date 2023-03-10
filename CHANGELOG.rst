@@ -1,7 +1,11 @@
 ChangeLog
 ===========================
-PLEASE NOTE THIS IS ONLY A PLANNING RELEASE.
-THE OPENNPL API IS STILL UNSTABLE
+PLEASE NOTE THIS IS ONLY A PLANNING RELEASE. THE OPENNPL API IS STILL UNSTABLE
+
+v0.6.0 (12-03-2023)
+-------------------
+* Functionality: Single Family Loan Performance Templates
+* Documentation:
 
 v0.5.3 (18-01-2023)
 -------------------

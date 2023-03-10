@@ -17,21 +17,18 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-import sys
 
 import numpy as np
 import pandas as pd
 from django.core.management.base import BaseCommand
 
+from sflp_portfolio.models.counterparty import Counterparty
+from sflp_portfolio.models.counterparty_state import CounterpartyState
+from sflp_portfolio.models.loan import Loan
+from sflp_portfolio.models.loan_state import LoanState
 from sflp_portfolio.models.models import Portfolio
 from sflp_portfolio.models.models import PortfolioSnapshot
-
-from sflp_portfolio.models.counterparty import Counterparty
-from sflp_portfolio.models.loan import Loan
 from sflp_portfolio.models.property_collateral import PropertyCollateral
-
-from sflp_portfolio.models.counterparty_state import CounterpartyState
-from sflp_portfolio.models.loan_state import LoanState
 from sflp_portfolio.models.property_collateral_state import PropertyCollateralState
 
 """
@@ -135,7 +132,8 @@ class Command(BaseCommand):
         'zero_balance_code': pd.Int64Dtype(),
         'loan_holdback_indicator': pd.Int64Dtype()
     }
-    loan_state_data = pd.read_csv("./sflp_portfolio/fixtures/loan_state.csv", sep='|', index_col=None, true_values=['Y'], false_values=['N'], dtype=column_datatypes)
+    loan_state_data = pd.read_csv("./sflp_portfolio/fixtures/loan_state.csv", sep='|', index_col=None,
+                                  true_values=['Y'], false_values=['N'], dtype=column_datatypes)
 
     loan_state_data = loan_state_data.replace({np.nan: None})
 
@@ -213,8 +211,8 @@ class Command(BaseCommand):
     # Counterparty State data
     #
     counterparty_state_data = pd.read_csv("./sflp_portfolio/fixtures/counterparty_state.csv", sep='|', index_col=None,
-                                    low_memory=False, na_values=None,
-                                    true_values=['Y'], false_values=['N'])
+                                          low_memory=False, na_values=None,
+                                          true_values=['Y'], false_values=['N'])
     counterparty_state_data = counterparty_state_data.replace({np.nan: None})
 
     print("Loaded Counterparty State Data")
@@ -234,7 +232,6 @@ class Command(BaseCommand):
 
     CounterpartyState.objects.bulk_create(counterparty_state_data_list)
     print("Created Counterparty State Data")
-
 
     #
     # Static Property collateral data
@@ -268,9 +265,10 @@ class Command(BaseCommand):
     #
     # Property Collateral State data
     #
-    property_collateral_state_data = pd.read_csv("./sflp_portfolio/fixtures/property_collateral_state.csv", sep='|', index_col=None,
-                                    low_memory=False, na_values=None,
-                                    true_values=['Y'], false_values=['N'])
+    property_collateral_state_data = pd.read_csv("./sflp_portfolio/fixtures/property_collateral_state.csv", sep='|',
+                                                 index_col=None,
+                                                 low_memory=False, na_values=None,
+                                                 true_values=['Y'], false_values=['N'])
     property_collateral_state_data = property_collateral_state_data.replace({np.nan: None})
     print("Loaded Property Collateral State Data")
 
@@ -291,7 +289,6 @@ class Command(BaseCommand):
 
     PropertyCollateralState.objects.bulk_create(property_collateral_state_data_list)
     print("Created Property Collateral State Data")
-
 
     def handle(self, *args, **options):
         self.stdout.write(self.style.SUCCESS('Successfully inserted Core SFLP data into database'))

@@ -27,30 +27,30 @@ from sflp_portfolio.models.model_choices import *
 
 class Counterparty(models.Model):
     """
-    The Counterparty model holds Portfolio Counterparty data
+    The Counterparty model holds static Counterparty data.
 
-    .. note:: The Agency Single Family Loan Performance Template does not explicitly segment data attributes into Counterparty, Loan etc. The assignment into tables (models) in openNPL is based on the interpretation and main function of different data fields
+    .. note:: There is no separate counterparty ID in the FM SFLP dataset, despite the
+     name, what we are using is simply the loan id
 
-    .. note:: Fields are currently segmented into static and dynamic. In the future dynamic attributes may move to new models. The distinction is not always clear and may depend on the availability of updated date
 
     """
 
     #
     # IDENTIFICATION FIELDS
     #
-    # NOTE: There is no separate counterparty ID in the FM SFLP dataset, despite the
-    # name, what we are using is simply the loan id
 
     counterparty_id = models.TextField(blank=True, null=True,
-                                         help_text='A unique identifier for the counterparty.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                         help_text='A unique identifier for the counterparty.')
+    """A unique identifier for the counterparty."""
 
     #
     # FOREIGN KEYS
     #
 
-    # Loan ID Foreign Key
+
     loan_id = models.ForeignKey(Loan, on_delete=models.CASCADE, blank=True, null=True,
-                                help_text="The loan ID to which the Counterparty corresponds.")
+                                help_text='The loan ID to which the Counterparty links.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Loan_Identifier">Documentation</a>')
+    """The loan ID to which the Counterparty links."""
 
     #
     # STATIC DATA PROPERTIES

@@ -1,10 +1,6 @@
 SFLP Counterparty
-------------------------------
+============================
 
-.. automodule:: sflp_portfolio.models.counterparty
-   :members:
-   :undoc-members:
-   :noindex:
-   :show-inheritance:
+.. automodule:: sflp_portfolio.models
 
-   .. automethod:: sflp_portfolio.models.counterparty.Counterparty
+   .. autoclass:: sflp_portfolio.models.counterparty.Counterparty

@@ -43,7 +43,8 @@ class LoanState(models.Model):
 
     # Loan ID Foreign Key
     loan_id = models.ForeignKey(Loan, on_delete=models.CASCADE, blank=True, null=True,
-                                help_text="The loan ID to which the Loan State corresponds.")
+                                help_text='The loan ID to which the loan state links.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Loan_Identifier">Documentation</a>')
+    """The loan ID to which the loan state links."""
 
     #
     # DYNAMIC DATA PROPERTIES

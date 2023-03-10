@@ -21,7 +21,6 @@
 from django.urls import re_path
 
 from openNPL import sflp_views as api_views
-from sflp_portfolio.views.csv_import import *
 
 app_name = 'sflp_portfolio'
 
@@ -38,12 +37,6 @@ urlpatterns = [
     re_path(r'^property_collateral/(?P<pk>[0-9]+)/$',
             api_views.sflp_property_collateral_detail,
             name='sflp_property_collateral_detail'),
-    re_path(r'^repayment_schedules$',
-            api_views.sflp_repayment_schedule_api,
-            name='sflp_repayment_schedule_api'),
-    re_path(r'^repayment_schedules/(?P<pk>[0-9]+)/$',
-            api_views.sflp_repayment_schedule_detail,
-            name='sflp_repayment_schedule_detail'),
     re_path(r'^loans$',
             api_views.sflp_loan_api,
             name='sflp_loan_api'),
@@ -65,24 +58,24 @@ urlpatterns = [
     #
     #  DATA IMPORT URL's
     #
-    re_path(
-        r"^import/",
-        CreateImportView.as_view(),
-        name="import_create"
-    ),
-    re_path(
-        r"^import/<str:uuid>/setup/",
-        SetupImportView.as_view(),
-        name="import_setup",
-    ),
-    re_path(
-        r"^import/<str:uuid>/dry-run/",
-        DryRunImportView.as_view(),
-        name="import_dry_run",
-    ),
-    re_path(
-        r"^import/<str:uuid>/run/",
-        ExecuteImportView.as_view(),
-        name="import_execute",
-    ),
+    # re_path(
+    #     r"^import/",
+    #     CreateImportView.as_view(),
+    #     name="import_create"
+    # ),
+    # re_path(
+    #     r"^import/<str:uuid>/setup/",
+    #     SetupImportView.as_view(),
+    #     name="import_setup",
+    # ),
+    # re_path(
+    #     r"^import/<str:uuid>/dry-run/",
+    #     DryRunImportView.as_view(),
+    #     name="import_dry_run",
+    # ),
+    # re_path(
+    #     r"^import/<str:uuid>/run/",
+    #     ExecuteImportView.as_view(),
+    #     name="import_execute",
+    # ),
 ]

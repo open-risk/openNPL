@@ -38,7 +38,6 @@ from sflp_portfolio.models.property_collateral import PropertyCollateral
 from sflp_portfolio.models.property_collateral_state import PropertyCollateralState
 from sflp_portfolio.models.enforcement import Enforcement
 from sflp_portfolio.models.forbearance import Forbearance
-from sflp_portfolio.models.repayment_schedule import RepaymentSchedule
 
 
 class PortfolioAdmin(admin.ModelAdmin):
@@ -76,6 +75,7 @@ class LoanStateAdmin(admin.ModelAdmin):
     view_on_site = False
     list_display = ('loan_id', 'portfolio_snapshot_id')
 
+
 class PropertyCollateralAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
@@ -101,10 +101,6 @@ class ForbearanceAdmin(admin.ModelAdmin):
     view_on_site = False
 
 
-class RepaymentScheduleAdmin(admin.ModelAdmin):
-    save_as = True
-    view_on_site = False
-
 
 admin.site.register(Portfolio, PortfolioAdmin)
 admin.site.register(PortfolioSnapshot, Portfolio_SnapshotAdmin)
@@ -116,4 +112,3 @@ admin.site.register(PropertyCollateral, PropertyCollateralAdmin)
 admin.site.register(PropertyCollateralState, PropertyCollateralStateAdmin)
 admin.site.register(Enforcement, EnforcementAdmin)
 admin.site.register(Forbearance, ForbearanceAdmin)
-admin.site.register(RepaymentSchedule, RepaymentScheduleAdmin)

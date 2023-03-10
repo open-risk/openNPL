@@ -1,12 +1,7 @@
-SFLP Portfolio Data Models
+SFLP Portfolio
 ============================
 
-
-.. automodule:: sflp_portfolio.models.models
-   :members:
-   :undoc-members:
+.. automodule:: sflp_portfolio.models
    :noindex:
 
-   .. automethod:: sflp_portfolio.models.models.Portfolio
-
-   .. automethod:: sflp_portfolio.models.models.PortfolioSnapshot
+   .. autoclass:: sflp_portfolio.models.models.Portfolio

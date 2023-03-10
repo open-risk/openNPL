@@ -1,5 +1,6 @@
 .. openNPL documentation master file
 
+==============================
 openNPL Documentation
 ==============================
 
@@ -36,6 +37,7 @@ openNPL implements closely 1) the recommended European Banking Authority templat
    api_docs
    changelog
    contributing
+   code_of_conduct
 
 
 

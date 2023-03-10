@@ -1,6 +1,8 @@
+==============================
 Requirements
-=======================
-List of python package requirements. At this point the main dependencies are related to django and sphinx and the scipy stack
+==============================
+
+List of python package requirements. At this point the main dependencies are related to django, sphinx and the scipy stack.
 
 ::
 

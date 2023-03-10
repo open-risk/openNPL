@@ -22,7 +22,7 @@ django.setup()
 
 
 
-__version__ = '0.3'
+__version__ = '0.6'
 
 # -- Project information -----------------------------------------------------
 
@@ -55,6 +55,18 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.napoleon',
 ]
+
+autosummary_generate = True  # Turn on sphinx.ext.autosummary
+
+autodoc_default_options = {
+    'show-inheritance': False,
+    'members': True,
+    'member-order': 'bysource',
+    'special-members': '__init__',
+    'undoc-members': True,
+    'exclude-members': '__weakref__'
+}
+autoclass_content = 'both'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

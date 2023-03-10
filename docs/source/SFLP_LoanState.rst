@@ -1,4 +1,4 @@
-SFLP Enforcement
+SFLP Loan State
 ============================
 
 .. automodule:: sflp_portfolio.models
@@ -7,4 +7,4 @@ SFLP Enforcement
    :noindex:
    :show-inheritance:
 
-   .. automethod:: sflp_portfolio.models.enforcement.Enforcement
+   .. automethod:: sflp_portfolio.models.loan_state.LoanState

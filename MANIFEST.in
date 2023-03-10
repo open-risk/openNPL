@@ -1,4 +1,3 @@
-
 include LICENSE
 include description_short.rst
 include CHANGELOG.rst

@@ -18,8 +18,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from sflp_portfolio.models.models import Counterparty, Loan, \
-    Enforcement, Forbearance, PropertyCollateral, RepaymentSchedule
+from sflp_portfolio.models.models import Counterparty, CounterpartyState, Loan, \
+    LoanState, Enforcement, Forbearance, PropertyCollateral, PropertyCollateralState
 from rest_framework import serializers
 
 from openNPL.settings import ROOT_VIEW
@@ -142,22 +142,4 @@ class SFLP_PropertyCollateralDetailSerializer(serializers.ModelSerializer):
         model = PropertyCollateral
         fields = '__all__'
 
-class SFLP_RepaymentScheduleSerializer(serializers.ModelSerializer):
-    """
-    Serialize SFLP_RepaymentSchedule Data
-    """
-    link = serializers.SerializerMethodField()
 
-    class Meta:
-        model = RepaymentSchedule
-        fields = '__all__'
-
-    def get_link(self, obj):
-        link = ROOT_VIEW + "/api/SFLP_data/counterparties/" + str(obj.pk)
-        return link
-
-
-class SFLP_RepaymentScheduleDetailSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = RepaymentSchedule
-        fields = '__all__'

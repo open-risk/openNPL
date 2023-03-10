@@ -3,28 +3,29 @@
 # openNPL overview
 ![openNPL Logo](/docs/source/opennpl-logo.png) openNPL is an open source platform for the management of loan portfolio data with a particular focus on credit portfolios / non-performing loans. 
 
-openNPL implements and builds on 
+openNPL implements and builds on public standards around loan-level templates:
+
 * the detailed European Banking Authority loan templates for NPL data. It thereby enables the collection and easy management of non-performing loan data according to best-practices.
-* US Agency (Fannie Mae) Mortgage Reporting templates
+* US Agency (Fannie Mae) Mortgage Reporting templates (SFLP)
 
 The platform is in active development, parties interested in its further development are encouraged to get involved. The project aims to be driven by community needs. We welcome code contributions and feature requests via github.
 
 ![Landing](/docs/source/screenshots/landing.png)
 
-
 ## Motivation
-Non-Performing loans pose a serious and ongoing challenge that affects many economies. The Covid-19 pandemic will only complicate the management of credit risk and problem loans. Developing tools and methodologies that will reduce the burden and improve the ability to manage problem loans is thus an important objective. For more background and previous work see the [blog post and links therein](https://www.openriskmanagement.com/opennpl-open-source-npl-platform-first-release/).
+Non-Performing loans pose a serious and ongoing challenge that affects many economies. Developing tools and methodologies that reduce the burden and improve the ability to manage problem loans is thus an important objective. For more background and previous work and references see the [blog post and links therein](https://www.openriskmanagement.com/opennpl-open-source-npl-platform-first-release/).
 
 ## Summary of Structure and Functionality
 
 ### User Oriented Functionality
+
 openNPL is a *web server application* that works together with a tailored *data schema* and backend database to provide easy access to NPL data adhering to the regulatory recommendations. Running the application creates a web server that can then be accessed by any regular browser to enable interaction with the underlying database and data sets. 
 
-NB: For easy installation and testing, the current (preliminary) release of openNPL uses a portable sqlite database instead of a larger production database server. In future releases the sqlite option will be retained for lightweight (demo) purposes only  
+NB: For easy installation and testing, the current (preliminary) release of openNPL uses a portable sqlite database instead of a larger production database server. In future releases the sqlite option will be retained for lightweight (demo) purposes only.  
 
 Once the openNPL platform is up and running:
 
-* A user can login into the application
+* A user can log in into the application
 * Inspect the available data sets (tables or relations), apply filters etc.
 * Insert, Update or Delete NPL records
 
@@ -42,6 +43,7 @@ The current release is a development version that offers no security features. D
 
 # Documentation
 openNPL includes two broad categories of documentation:
+
 * **Platform Documentation** pertaining to the platform itself. This includes both Technical (Code) Documentation
  and Administrator / User Documentation
 * **Domain Documentation** covering the required knowledge base around *non-performing loans* and in 
@@ -53,11 +55,11 @@ The technical / user documentation is included in this distribution and is hoste
 ## Data Documentation
 The domain knowledge and detailed data documentation is provided via the **Open Risk Manual**. The following links are good starting points:
 
-* [EBA NPL Templates](https://www.openriskmanual.org/wiki/EBA_NPL_Template)
 * [NPL Concepts](https://www.openriskmanual.org/wiki/Category:NPL)
+* [EBA NPL Templates](https://www.openriskmanual.org/wiki/EBA_NPL_Template)
 * [FM SFLP Templates](https://www.openriskmanual.org/wiki/FM_SFLP_Template)
 
-The Open Risk Manual articles further connect the specific NPL knowledge base to more general *credit portfolio* and *risk management* concepts, procedures and overall knowledge bases.
+The Open Risk Manual articles further connect specific NPL knowledge bases to more general *credit portfolio* and *risk management* concepts, procedures and overall knowledge bases.
 
 # Installation 
 There are several options to install openNPL, check out the details below
@@ -76,7 +78,7 @@ Manual installation from the repository source files requires some familiarity w
 
 ### Summary of Steps
 Conceptually the required steps are as follows:
-* Step 1. Clone the openNPL repository from github
+* Step 1. Clone the openNPL repository from GitHub
 * Step 2. Create a virtual environment
 * Step 3. Install the dependencies
 * Step 4. Create the database
@@ -86,33 +88,34 @@ Conceptually the required steps are as follows:
 
 In summary the required commands are as follows (more details in the documentation)
 ``` python
-git clone https://github.com/open-risk/openNPL
-virtualenv -p python3 venv
-source venv/bin/activate
-pip install -r requirements.txt
-python3 manage.py makemigrations npl_portfolio
-python manage.py migrate
-python manage.py createsuperuser
-python manage.py collectstatic
-bash loadfixtures.sh
-python manage.py runserver
+ git clone https://github.com/open-risk/openNPL
+ virtualenv -p python3 venv
+ source venv/bin/activate
+ pip install -r requirements.txt
+ python3 manage.py makemigrations npl_portfolio
+ python manage.py migrate
+ python manage.py createsuperuser
+ python manage.py collectstatic
+ bash loadfixtures.sh
+ python manage.py runserver
 ```
 
 ## Installation using Docker
 
-* It is also possible to install openNPL using docker. This option may simplify the process for some purposes as it encapsulates all the installation procedures inside a docker container. 
+* It is also possible to install openNPL using docker. This option may simplify the process for some purposes as it encapsulates all the installation procedures inside a docker container. It will also be the preferred option when installing a database server as backend.
   
 At the Docker Hub you can get a ready to run [Docker Image of openNPL](https://hub.docker.com/repository/docker/openrisk/opennpl_web). Alternatively, you can build the Docker image locally from the Dockerfile (instructions are available in the documentation).
 
 # openNPL Community
-We welcome your feedback and support, raise a github issue if you want to report a bug or request a new feature. We are glad to help.
+We welcome your feedback and support, raise a GitHub issue if you want to report a bug or request a new feature. We are glad to help.
 
 - [Contribute on Issues](<https://github.com/open-risk/openNPL/issues>)
-- Chat with the community [Open Risk Commons](<https://www.openriskcommons.org/c/open-source/opennpl/13>)
-- For customisations, support or any other collaboration, email <info@openrisk.eu>
-- Need commercial support? [Contact](https://www.openriskmanagement.com/contact/)
+- Chat with the community at the [Open Risk Commons](<https://www.openriskcommons.org/c/open-source/opennpl/13>)
+- For customisations, support or any other collaboration, email us as <info@openrisk.eu>
+- Need commercial support for projects using openNPL? [Contact](https://www.openriskmanagement.com/contact/)
 
 ## Credits
+
 * Django
 * Jazzmin
 * European Banking Authority

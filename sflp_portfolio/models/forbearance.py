@@ -27,11 +27,8 @@ from sflp_portfolio.models.model_choices import *
 
 class Forbearance(models.Model):
     """
-    The Forbearance model holds Forbearance related data
+    The Forbearance model holds Forbearance related data. Forbearance is contingent action linked to a Loan.
 
-    .. note:: The Agency Single Family Loan Performance Template does not explicitly segment data attributes into Counterparty, Loan etc. The assignment into tables (models) in openNPL is based on the interpretation and main function of different data fields
-
-    .. note:: Fields are currently segmented into static and dynamic. In the future dynamic attributes may move to new models. The distinction is not always clear and may depend on the availability of updated date
 
     """
 
@@ -44,8 +41,9 @@ class Forbearance(models.Model):
     # FOREIGN KEYS
     #
 
-    loan_id = models.ForeignKey(Loan, on_delete=models.CASCADE, null=True, blank=True)
-
+    loan_id = models.ForeignKey(Loan, on_delete=models.CASCADE, blank=True, null=True,
+                                help_text='The loan ID to which the Forbearance activity links.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Loan_Identifier">Documentation</a>')
+    """The loan ID to which the Forbearance activity links."""
 
     #
     # DYNAMIC DATA PROPERTIES

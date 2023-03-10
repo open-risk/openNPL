@@ -1,5 +1,6 @@
+==============================
 The openNPL platform
-=====================
+==============================
 
 **openNPL** is a Python / Django powered platform for working with detailed (*loan level*) data with a particular emphasis on capturing non-performing loan information.
 
