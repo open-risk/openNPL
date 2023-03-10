@@ -1,0 +1,31 @@
+{% extends "admin/base_site.html" %}
+
+{% load i18n static admin_modify %}
+
+{% block extrahead %}
+    <script type="text/javascript" charset="utf-8" src="{% static 'start/js/htmx.js' %}"></script>
+{% endblock %}
+
+{% block branding %}
+    <div id="grp-branding"><img src="{% static 'start/img/opennpl.png' %}" height="24"/></div>
+{% endblock %}
+
+{% block title %}Test Page{% endblock %}
+
+{% block extrastyle %}
+    <link href="{% static 'start/css/styling.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ul>
+        <li><a href="/admin">Home</a></li>
+        <li>Test Page</li>
+    </ul>
+{% endblock %}
+
+
+{% block content %}
+
+    <h1>A Test Page</h1>
+
+{% endblock %}

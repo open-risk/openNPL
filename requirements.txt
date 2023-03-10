@@ -4,6 +4,7 @@ drf-yasg
 django-model-utils
 django-jazzmin
 django-leaflet
+django-countries
 django-json-widget
 django-prettyjson
 jsonfield
@@ -11,8 +12,8 @@ Markdown
 django-markdownfield
 django-treebeard
 django-import-export
-django-countries
 behave-django
+django-htmx
 numpy
 pandas
 scipy

@@ -19,15 +19,16 @@
 # SOFTWARE.
 
 from django.urls import re_path
-from django.urls import path
+
 from . import views
 
 app_name = 'start'
 
-""" Custom URL's in addition to the admin url's
+""" Custom URL's in addition to the django admin url's
 
 """
 
 urlpatterns = [
     re_path(r'^$', views.Front.as_view(), name='Front'),
+    re_path(r'Test', views.Test.as_view(), name='Test'),
 ]

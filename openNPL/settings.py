@@ -54,11 +54,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'import_export',
     'rest_framework',
+    'django_htmx',
     'drf_yasg',
     'treebeard',
+    'django_countries',
+    'leaflet',
     'prettyjson',
     'markdownfield',
-    'django_countries',
     'start',
     'npl_portfolio',
     'sflp_portfolio',
@@ -77,6 +79,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_htmx.middleware.HtmxMiddleware',
 ]
 
 ROOT_URLCONF = 'openNPL.urls'
@@ -237,7 +240,7 @@ JAZZMIN_SETTINGS = {
 
     # Additional links to include in the user menu on the top right ("app" url type is not allowed)
     "usermenu_links": [
-        {"name": "Support", "url": "https://github.com/open-risk/equinox", "new_window": True},
+        {"name": "Support", "url": "https://github.com/open-risk/openNPL", "new_window": True},
         {"model": "auth.user"}
     ],
 

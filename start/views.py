@@ -31,3 +31,12 @@ class Front(TemplateView):
         request.current_app = 'opennpl'
         context = super(TemplateView, self).get_context_data(**kwargs)
         return self.render_to_response(context)
+
+
+class Test(TemplateView):
+    template_name = 'start/test.html'
+
+    def get(self, request, *args, **kwargs):
+        request.current_app = 'opennpl'
+        context = super(TemplateView, self).get_context_data(**kwargs)
+        return self.render_to_response(context)
