@@ -59,12 +59,11 @@ extensions = [
 autosummary_generate = True  # Turn on sphinx.ext.autosummary
 
 autodoc_default_options = {
-    'show-inheritance': False,
+    'show-inheritance': True,
     'members': True,
     'member-order': 'bysource',
-    'special-members': '__init__',
-    'undoc-members': True,
-    'exclude-members': '__weakref__'
+    'undoc-members': False,
+    'exclude-members': '__weakref__,DoesNotExist,MultipleObjectsReturned,__init__,objects,get_next_by_creation_date,get_next_by_last_change_date,get_previous_by_creation_date,get_previous_by_last_change_date,id'
 }
 autoclass_content = 'both'
 

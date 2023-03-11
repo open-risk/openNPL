@@ -27,7 +27,7 @@ from sflp_portfolio.models.model_choices import *
 
 class PropertyCollateral(models.Model):
     """
-    The PropertyCollateral model object holds Real Estate Property Collateral data
+    The PropertyCollateral model object holds Real Estate Property Collateral data. There is no unique collateral ID, it links to the Loan ID.
 
 
     """
@@ -49,27 +49,41 @@ class PropertyCollateral(models.Model):
     #
     metropolitan_statistical_area = models.TextField(blank=True, null=True,
                                                      help_text='The numeric Metropolitan Statistical Area Code for the property securing the mortgage loan. MSAs are established by the US Office of Management and Budget. An area usually qualifies as an MSA if it is defined by the Bureau of the Census as an urbanized area and has a population of 50,000 or more in a total metropolitan area of at least 100,000. An MSA may consist of one or more counties.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    """"""
 
     number_of_units = models.FloatField(blank=True, null=True,
                                         help_text='The number of units comprising the related mortgaged property (one, two, three, or four).<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    """"""
 
     occupancy_status = models.IntegerField(blank=True, null=True, choices=OCCUPANCY_STATUS_CHOICES,
                                            help_text='The classification describing the property occupancy status at the time the loan was originated.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    """"""
 
     property_state = models.TextField(blank=True, null=True,
                                       help_text='A two-letter abbreviation indicating the state or territory within which the property securing the mortgage loan is located.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    """"""
 
     property_type = models.IntegerField(blank=True, null=True, choices=PROPERTY_TYPE_CHOICES,
                                         help_text='An indicator that denotes whether the property type secured by the mortgage loan is a condominium, co-operative, planned urban development (PUD), manufactured home, or single-family home.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    """"""
 
     zip_code_short = models.TextField(blank=True, null=True,
                                       help_text='Limited to the first three digits of the code designated by the U.S. Postal Service where the subject property is located.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    """"""
 
     # Bookkeeping fields
     creation_date = models.DateTimeField(auto_now_add=True)
+    """The first insertion date of the data point"""
+
     last_change_date = models.DateTimeField(auto_now=True)
+    """The last change date of the data point"""
+
+    def __str__(self):
+        """String representing the data object"""
+        return "Collateral of " + str(self.loan_id)
 
     def get_absolute_url(self):
+        """Absolute URL where the data point can be edited"""
         return reverse('sflp_portfolio:property_collateral_edit', kwargs={'pk': self.pk})
 
     class Meta:

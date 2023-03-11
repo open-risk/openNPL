@@ -28,7 +28,7 @@ from sflp_portfolio.models.models import PortfolioSnapshot
 
 class PropertyCollateralState(models.Model):
     """
-    The PropertyCollateralState model object holds Property Collateral state data
+    The PropertyCollateralState model object holds Property Collateral state data. There is no unique state ID. Links to Property Collateral
 
 
 
@@ -41,10 +41,12 @@ class PropertyCollateralState(models.Model):
     # Portfolio Snapshot ID Foreign Key
     portfolio_snapshot_id = models.ForeignKey(PortfolioSnapshot, on_delete=models.CASCADE, blank=True, null=True,
                                               help_text="The portfolio snapshot ID to which the Property Collateral State belongs")
+    """"""
 
     # Portfolio ID Foreign Key
     property_collateral_id = models.ForeignKey(PropertyCollateral, on_delete=models.CASCADE, blank=True, null=True,
                                 help_text="The loan ID to which the Property Collateral corresponds.")
+    """"""
 
 
     #
@@ -52,21 +54,34 @@ class PropertyCollateralState(models.Model):
     #
     associated_taxes_for_holding_property = models.FloatField(blank=True, null=True,
                                                               help_text='Payment of taxes associated with holding the property.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    """"""
 
     miscellaneous_holding_expenses_and_credits = models.FloatField(blank=True, null=True,
                                                                    help_text='Expenses and credits associated with preserving the property, including Homeowners Association and other dues; flood, hazard, and MI premiums and refunds; rental income; and title insurance costs.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    """"""
 
     property_preservation_and_repair_costs = models.FloatField(blank=True, null=True,
                                                                help_text='The expenses associated with securing and preserving the property including two major categories:  maintenance and repairs. Maintenance costs are associated with preserving the property through normal upkeep, while repairs are associated with either avoiding deterioration of the asset or a marketing decision to help maximize sales proceeds upon final disposition.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    """"""
 
     property_valuation_method = models.IntegerField(blank=True, null=True, choices=PROPERTY_VALUATION_METHOD_CHOICES,
                                                     help_text='An indicator that denotes the method by which the value of the subject property was obtained. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    """"""
 
     # Bookkeeping fields
     creation_date = models.DateTimeField(auto_now_add=True)
+    """The first insertion date of the data point"""
+
     last_change_date = models.DateTimeField(auto_now=True)
+    """The last change date of the data point"""
+
+    def __str__(self):
+        """String representing the data object"""
+        return "State of " + str(self.property_collateral_id)
+
 
     def get_absolute_url(self):
+        """Absolute URL where the data point can be edited"""
         return reverse('sflp_portfolio:property_collateral_state_edit', kwargs={'pk': self.pk})
 
     class Meta:

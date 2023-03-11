@@ -2,9 +2,6 @@ SFLP Enforcement
 ============================
 
 .. automodule:: sflp_portfolio.models
-   :members:
-   :undoc-members:
    :noindex:
-   :show-inheritance:
 
-   .. automethod:: sflp_portfolio.models.enforcement.Enforcement
+   .. autoclass:: sflp_portfolio.models.enforcement.Enforcement
