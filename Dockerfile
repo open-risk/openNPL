@@ -1,11 +1,20 @@
 FROM python:3.9-slim
-MAINTAINER Open Risk <www.openriskmanagement.com>
+LABEL version="0.6"
+LABEL author="Open Risk <www.openriskmanagement.com>"
+LABEL description="openNPL: Open Source Credit Portfolio Management"
 LABEL maintainer="info@openrisk.eu"
 EXPOSE 8080
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV DJANGO_SETTINGS_MODULE openNPL.settings
 ENV DJANGO_ALLOWED_HOSTS localhost 127.0.0.1 [::1]
+RUN apt-get update && apt-get install -y \
+    gdal-bin \
+    proj-bin \
+    libgdal-dev \
+    libproj-dev \
+    spatialite-bin\
+    libsqlite3-mod-spatialite
 RUN mkdir /opennpl
 WORKDIR /opennpl
 COPY requirements.txt /opennpl/
