@@ -86,6 +86,10 @@ class Forbearance(models.Model):
                                                                 help_text='The loss amount calculated for a mortgage loan resulting from a modification event for the corresponding reporting period.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
     """"""
 
+    current_loan_delinquency_status = models.TextField(blank=True, null=True,
+                                                       help_text='The number of months the obligor is delinquent as determined by the governing mortgage documents.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    """"""
+
     modification_flag = models.BooleanField(blank=True, null=True,
                                                 help_text='An indicator that denotes if the mortgage loan has been modified.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
     """"""

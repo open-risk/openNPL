@@ -21,8 +21,14 @@ COPY requirements.txt /opennpl/
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 COPY . /opennpl/
+RUN rm -f /opennpl/venv
 RUN rm -f /opennpl/db.sqlite3
-RUN python /opennpl/manage.py makemigrations
+RUN rm -rf /opennpl/npl_portfolio/migrations/*
+RUN rm -rf /opennpl/sflp_portfolio/migrations/*
+RUN rm -rf /opennpl/start/migrations/*
+RUN python /opennpl/manage.py makemigrations start
+RUN python /opennpl/manage.py makemigrations npl_portfolio
+RUN python /opennpl/manage.py makemigrations sflp_portfolio
 RUN python /opennpl/manage.py migrate
 RUN python /opennpl/createadmin.py
 RUN python /opennpl/manage.py collectstatic --no-input
