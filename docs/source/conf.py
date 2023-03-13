@@ -16,8 +16,10 @@ import sys
 import os
 sys.path.insert(0, os.path.abspath('../../'))
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'openNPL.settings'
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'openNPL.settings')
+
 import django
+
 django.setup()
 
 
@@ -201,7 +203,7 @@ texinfo_documents = [
 # -- Extension configuration -------------------------------------------------
 
 extensions.append('sphinx.ext.todo')
-todo_include_todos=True
+todo_include_todos = True
 
 # extensions.append('sphinx_automodapi.automodapi')
 # numpydoc_show_class_members = False
