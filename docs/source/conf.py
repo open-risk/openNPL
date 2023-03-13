@@ -57,17 +57,17 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.napoleon',
 ]
-
-autosummary_generate = True  # Turn on sphinx.ext.autosummary
+#
+# autosummary_generate = True  # Turn on sphinx.ext.autosummary
 
 autodoc_default_options = {
-    'show-inheritance': True,
+    # 'show-inheritance': True,
     'members': True,
     'member-order': 'bysource',
-    'undoc-members': False,
+    'undoc-members': True,
     'exclude-members': '__weakref__,DoesNotExist,MultipleObjectsReturned,__init__,objects,get_next_by_creation_date,get_next_by_last_change_date,get_previous_by_creation_date,get_previous_by_last_change_date,id'
 }
-autoclass_content = 'both'
+# autoclass_content = 'both'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
