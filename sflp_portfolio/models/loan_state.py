@@ -40,18 +40,16 @@ class LoanState(models.Model):
     # Portfolio Snapshot ID Foreign Key
     portfolio_snapshot_id = models.ForeignKey(PortfolioSnapshot, on_delete=models.CASCADE, blank=True, null=True,
                                               help_text="The portfolio snapshot ID to which the Loan State belongs")
-    """"""
+    """The snapshot to which the loan state corresponds"""
 
     # Loan ID Foreign Key
-    loan_id = models.ForeignKey(Loan, on_delete=models.CASCADE, blank=True, null=True,
+    loan_identifier = models.ForeignKey(Loan, on_delete=models.CASCADE, blank=True, null=True,
                                 help_text='The loan ID to which the loan state links.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Loan_Identifier">Documentation</a>')
     """The loan ID to which the loan state links."""
 
     #
     # DYNAMIC DATA PROPERTIES
     #
-
-
 
     current_actual_upb = models.FloatField(blank=True, null=True,
                                            help_text='The current actual outstanding unpaid principal balance of a mortgage loan, reflective of payments actually received from the related borrower.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -61,10 +59,6 @@ class LoanState(models.Model):
                                               help_text='The rate of interest in effect for the periodic installment due.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
     """"""
 
-
-
-
-
     high_loan_to_value_refinance_option_indicator = models.BooleanField(blank=True, null=True,
                                                                         help_text='An indicator that denotes if an eligible original reference loan is refinanced under Fannie Mae’s HLTV refinance option, which results in such mortgage loan remaining in the Reference Pool, as further defined in each individual CRT document, if applicable.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
     """"""
@@ -72,7 +66,6 @@ class LoanState(models.Model):
     index = models.TextField(blank=True, null=True,
                              help_text='For adjustable-rate loans, the description of the index on which adjustments to the interest rate are based.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
     """"""
-
 
     interest_only_first_principal_and_interest_payment_date = models.DateField(blank=True, null=True,
                                                                                help_text='For interest-only loans, the month and year that the first monthly scheduled fully amortizing principal and interest payment is due.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -93,8 +86,6 @@ class LoanState(models.Model):
     loan_age = models.FloatField(blank=True, null=True,
                                  help_text='The number of calendar months since the mortgage loans origination date. For purposes of calculating this data element, origination means the date on which the first full month of interest begins to accrue.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
     """"""
-
-
 
     master_servicer = models.TextField(blank=True, null=True,
                                        help_text='Fannie Mae.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -128,7 +119,6 @@ class LoanState(models.Model):
                                                        help_text='An indicator that denotes whether the borrower is subject to a penalty for early payment of principal.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
     """"""
 
-
     """"""
 
     servicer_name = models.TextField(blank=True, null=True,
@@ -137,11 +127,6 @@ class LoanState(models.Model):
 
     servicing_activity_indicator = models.BooleanField(blank=True, null=True,
                                                        help_text='An indicator that denotes a change in servicing activity during the corresponding reporting period.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-    """"""
-
-    special_eligibility_program = models.IntegerField(blank=True, null=True,
-                                                      choices=SPECIAL_ELIGIBILITY_PROGRAM_CHOICES,
-                                                      help_text='A mortgage program with expanded eligibility criteria designed to increase and maintain home ownership.<a class ="risk_manual_url" href="https://www.openriskmanual.org/wiki"> Documentation</a>')
     """"""
 
     upb_at_issuance = models.FloatField(blank=True, null=True,
@@ -192,6 +177,18 @@ class LoanState(models.Model):
                                                   help_text='The due date of the last paid installment that was collected for the mortgage loan.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
     """"""
 
+    loan_holdback_effective_date = models.DateField(blank=True, null=True,
+                                                    help_text='The date of the latest Loan Holdback indicator change.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    """"""
+
+    loan_holdback_indicator = models.IntegerField(blank=True, null=True, choices=LOAN_HOLDBACK_INDICATOR_CHOICES,
+                                                  help_text='An indicator that denotes if a loan has been moved temporarily into a ‘hold’ status to allow Fannie Mae to further evaluate unique situations that may otherwise result in a credit event or loan removal. Such situations may include loans with reported data anomalies, loans currently in forbearance due to a natural disaster or loans refinanced under the High LTV program that will continue to be included in the reference pool.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    """"""
+
+    repayment_history = models.TextField(blank=True, null=True,
+                                     help_text='The coded string of values that describes the payment performance of the loan over the most recent 24 months.  The most recent month is located to the right..<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Loan_Payment_History">Documentation</a>')
+    """The coded string of values that describes the payment performance of the loan over the most recent 24 months"""
+
     #
     # BOOKKEEPING FIELDS
     #
@@ -204,7 +201,7 @@ class LoanState(models.Model):
 
     def __str__(self):
         """String representing the data object"""
-        return "State of " + str(self.loan_id)
+        return "State of Loan " + str(self.loan_identifier)
 
     def get_absolute_url(self):
         """Absolute URL where the data point can be edited"""

@@ -22,6 +22,7 @@ from django.db import models
 from django.urls import reverse
 
 from sflp_portfolio.models.loan import Loan
+from sflp_portfolio.models.models import PortfolioSnapshot
 from sflp_portfolio.models.property_collateral import PropertyCollateral
 
 
@@ -44,9 +45,13 @@ class Enforcement(models.Model):
                                                        blank=True)
 
 
-    loan_id = models.ForeignKey(Loan, on_delete=models.CASCADE, blank=True, null=True,
+    loan_identifier = models.ForeignKey(Loan, on_delete=models.CASCADE, blank=True, null=True,
                                 help_text='The loan ID to which the Enforcement activity links.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Loan_Identifier">Documentation</a>')
     """The loan ID to which the Enforcement activity links."""
+
+    portfolio_snapshot_id = models.ForeignKey(PortfolioSnapshot, on_delete=models.CASCADE, blank=True, null=True,
+                                              help_text="The portfolio snapshot ID to which the Enforcement belongs")
+    """The snapshot to which the enforcement corresponds"""
 
     #
     # DYNAMIC DATA PROPERTIES
@@ -124,7 +129,7 @@ class Enforcement(models.Model):
 
     def __str__(self):
         """String representing the data object"""
-        return "Enforcement of " + str(self.property_collateral_identifier)
+        return "Enforcement of Loan " + str(self.loan_identifier)
 
 
     def get_absolute_url(self):

@@ -44,62 +44,69 @@ class PortfolioAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
     # search_fields = ['name']
-    # list_display = ('name', 'creation_date', 'last_change_date')
+    list_display = ('name', 'creation_date', 'last_change_date')
 
 
 class Portfolio_SnapshotAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
-    # search_fields = ['name']
-    # list_display = ('name', 'creation_date', 'cutoff_date')
+    # search_fields = ['monthly_reporting_period']
+    list_display = ('monthly_reporting_period',)
 
 
 class CounterpartyAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
+    list_display = ('counterparty_identifier', 'loan_identifier', 'debt_to_income', 'number_of_borrowers',
+                    'borrower_credit_score_at_origination')
 
 
 class CounterpartyStateAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
+    # TODO date_hierarchy = ('portfolio_snapshot_id')
+    list_display = ('counterparty_identifier', 'portfolio_snapshot_id')
 
 
 class LoanAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
-    search_fields = ['loan_identifier']
+    list_display = (
+        'loan_identifier', 'channel', 'original_loan_term', 'original_upb', 'original_loan_to_value_ratio',
+        'loan_purpose')
 
 
 class LoanStateAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
-    list_display = ('loan_id', 'portfolio_snapshot_id')
+    list_display = ('loan_identifier', 'portfolio_snapshot_id', 'servicer_name', 'total_principal_current',
+                    'remaining_months_to_legal_maturity')
 
 
 class PropertyCollateralAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
+    list_display = (
+        'property_type', 'number_of_units', 'metropolitan_statistical_area', 'property_state', 'zip_code_short')
 
 
 class PropertyCollateralStateAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
-
-
-class ExternalCollectionAdmin(admin.ModelAdmin):
-    save_as = True
-    view_on_site = False
+    list_display = ('property_collateral_id', 'portfolio_snapshot_id', 'property_valuation_method')
 
 
 class EnforcementAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
-
+    list_display = ('property_collateral_identifier', 'portfolio_snapshot_id',
+                    'net_sales_proceeds', 'asset_recovery_costs', 'foreclosure_costs')
 
 class ForbearanceAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
-
+    list_display = ('loan_identifier', 'portfolio_snapshot_id', 'modification_flag',
+                    'noninterest_bearing_upb', 'principal_forgiveness_amount')
 
 
 admin.site.register(Portfolio, PortfolioAdmin)

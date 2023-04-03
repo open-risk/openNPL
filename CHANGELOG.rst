@@ -2,9 +2,13 @@ ChangeLog
 ===========================
 PLEASE NOTE THIS IS ONLY A BETA RELEASE. THE OPENNPL API IS STILL UNSTABLE
 
+v0.6.1 (03-04-2023)
+-------------------
+* Functionality: Complete SFLP Template Loading
+
 v0.6.0 (13-03-2023)
 -------------------
-* Functionality: Almost complete Single Family Loan Performance Templates (SFLP) (except repayment strings)
+* Functionality: Almost complete Single Family Loan Performance Templates (SFLP) (except forbearance, enforcement and repayment strings)
 * Documentation: SFLP Data Models
 
 v0.5.3 (18-01-2023)

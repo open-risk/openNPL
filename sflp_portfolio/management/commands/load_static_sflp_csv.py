@@ -116,8 +116,8 @@ class Command(BaseCommand):
         if i < LOAN_COUNT:
             counterparty = Counterparty.objects.create(
                 id=i,
-                loan_id=loan_dict[entry[0]],  # loan FK reference
-                counterparty_id=entry[0],  # counterparty ID identical to loan ID
+                loan_identifier=loan_dict[entry[0]],  # loan FK reference
+                counterparty_identifier=entry[0],  # counterparty ID identical to loan ID
                 number_of_borrowers=entry[1],
                 debt_to_income=entry[2],
                 borrower_credit_score_at_origination=entry[3],
@@ -137,7 +137,7 @@ class Command(BaseCommand):
         if i < LOAN_COUNT:
             property_collateral = PropertyCollateral.objects.create(
                 id=i,
-                loan_id=loan_dict[entry[0]],  # loan FK reference
+                loan_identifier=loan_dict[entry[0]],  # loan FK reference
                 property_type=entry[1],
                 number_of_units=entry[2],
                 occupancy_status=entry[3],

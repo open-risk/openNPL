@@ -23,6 +23,7 @@ from django.urls import reverse
 
 from sflp_portfolio.models.loan import Loan
 from sflp_portfolio.models.model_choices import *
+from sflp_portfolio.models.models import PortfolioSnapshot
 
 
 class Forbearance(models.Model):
@@ -41,21 +42,19 @@ class Forbearance(models.Model):
     # FOREIGN KEYS
     #
 
-    loan_id = models.ForeignKey(Loan, on_delete=models.CASCADE, blank=True, null=True,
+    loan_identifier = models.ForeignKey(Loan, on_delete=models.CASCADE, blank=True, null=True,
                                 help_text='The loan ID to which the Forbearance activity links.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Loan_Identifier">Documentation</a>')
     """The loan ID to which the Forbearance activity links."""
+
+    portfolio_snapshot_id = models.ForeignKey(PortfolioSnapshot, on_delete=models.CASCADE, blank=True, null=True,
+                                              help_text="The portfolio snapshot ID to which the Forbearance belongs")
+    """The snapshot to which the forbearance corresponds"""
 
     #
     # DYNAMIC DATA PROPERTIES
     #
 
-    loan_holdback_effective_date = models.DateField(blank=True, null=True,
-                                                    help_text='The date of the latest Loan Holdback indicator change.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-    """"""
 
-    loan_holdback_indicator = models.IntegerField(blank=True, null=True, choices=LOAN_HOLDBACK_INDICATOR_CHOICES,
-                                                  help_text='An indicator that denotes if a loan has been moved temporarily into a ‘hold’ status to allow Fannie Mae to further evaluate unique situations that may otherwise result in a credit event or loan removal. Such situations may include loans with reported data anomalies, loans currently in forbearance due to a natural disaster or loans refinanced under the High LTV program that will continue to be included in the reference pool.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
-    """"""
 
     current_period_credit_event_net_gain_or_loss = models.FloatField(blank=True, null=True,
                                                                      help_text='The net realized gain or loss amount calculated for a mortgage loan resulting from a credit event for the corresponding reporting period.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -118,7 +117,7 @@ class Forbearance(models.Model):
 
     def __str__(self):
         """String representing the data object"""
-        return "Forbearance of " + str(self.loan_id)
+        return "Forbearance of Loan " + str(self.loan_identifier)
 
     def get_absolute_url(self):
         """Absolute URL where the data point can be edited"""

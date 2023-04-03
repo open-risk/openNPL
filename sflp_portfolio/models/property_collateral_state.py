@@ -77,7 +77,7 @@ class PropertyCollateralState(models.Model):
 
     def __str__(self):
         """String representing the data object"""
-        return "State of " + str(self.property_collateral_id)
+        return "State of Collateral " + str(self.property_collateral_id)
 
 
     def get_absolute_url(self):

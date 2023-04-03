@@ -143,6 +143,11 @@ class Loan(models.Model):
                                                   help_text='For an adjustable-rate mortgage loan, the maximum percentage points the interest rate can adjust upward at the initial interest rate change date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Initial_Interest_Rate_Cap">Documentation</a>')
     """"""
 
+    special_eligibility_program = models.IntegerField(blank=True, null=True,
+                                                      choices=SPECIAL_ELIGIBILITY_PROGRAM_CHOICES,
+                                                      help_text='A mortgage program with expanded eligibility criteria designed to increase and maintain home ownership.<a class ="risk_manual_url" href="https://www.openriskmanual.org/wiki"> Documentation</a>')
+    """"""
+
     #
     # BOOKKEEPING FIELDS
     #

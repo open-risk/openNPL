@@ -145,7 +145,7 @@ class Command(BaseCommand):
         # print('LoanState: ', i)
         loan_state = LoanState(
             id=i,
-            loan_id=loan_dict[entry[0]],
+            loan_identifier=loan_dict[entry[0]],
             portfolio_snapshot_id=portfolio_snapshot_dict[entry[1]],
             high_loan_to_value_refinance_option_indicator=entry[2],
             zero_balance_code=entry[3],
@@ -192,8 +192,8 @@ class Command(BaseCommand):
     for index, entry in counterparty_data.iterrows():
         counterparty = Counterparty(
             id=i,
-            loan_id=loan_dict[entry[0]],  # loan FK reference
-            counterparty_id=entry[0],  # counterparty ID is identical to loan ID
+            loan_identifier=loan_dict[entry[0]],  # loan FK reference
+            counterparty_identifier=entry[0],  # counterparty ID is identical to loan ID
             number_of_borrowers=entry[1],
             debt_to_income=entry[2],
             borrower_credit_score_at_origination=entry[3],
@@ -222,7 +222,7 @@ class Command(BaseCommand):
     for index, entry in counterparty_state_data.iterrows():
         counterparty_state = CounterpartyState(
             id=i,
-            counterparty_id=counterparty_dict[entry[0]],
+            counterparty_identifier=counterparty_dict[entry[0]],
             portfolio_snapshot_id=portfolio_snapshot_dict[entry[1]],
             borrower_credit_score_current=entry[2],
             coborrower_credit_score_current=entry[3],
@@ -248,7 +248,7 @@ class Command(BaseCommand):
     for index, entry in property_collateral_data.iterrows():
         property_collateral = PropertyCollateral(
             id=i,
-            loan_id=loan_dict[entry[0]],  # loan FK reference
+            loan_identifier=loan_dict[entry[0]],  # loan FK reference
             property_type=entry[1],
             number_of_units=entry[2],
             occupancy_status=entry[3],

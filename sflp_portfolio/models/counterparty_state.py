@@ -41,7 +41,7 @@ class CounterpartyState(models.Model):
                                               help_text="The portfolio snapshot ID to which the Counterparty State corresponds.")
 
     # counterparty ID Foreign Key
-    counterparty_id = models.ForeignKey(Counterparty, on_delete=models.CASCADE, blank=True, null=True,
+    counterparty_identifier = models.ForeignKey(Counterparty, on_delete=models.CASCADE, blank=True, null=True,
                                         help_text="The counterparty ID to which the Counterparty State corresponds.")
 
 
@@ -68,7 +68,7 @@ class CounterpartyState(models.Model):
 
     def __str__(self):
         """String representing the data object."""
-        return "State of " + str(self.counterparty_id)
+        return "State of Counterparty" + str(self.counterparty_identifier)
 
     def get_absolute_url(self):
         """Absolute URL where the data point can be edited"""

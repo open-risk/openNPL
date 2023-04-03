@@ -40,7 +40,7 @@ class PropertyCollateral(models.Model):
     # FOREIGN KEYS
     #
 
-    loan_id = models.ForeignKey(Loan, on_delete=models.CASCADE, blank=True, null=True,
+    loan_identifier = models.ForeignKey(Loan, on_delete=models.CASCADE, blank=True, null=True,
                                 help_text='The loan ID to which the property collateral links.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Loan_Identifier">Documentation</a>')
     """The loan ID to which the property collateral links."""
 
@@ -80,7 +80,7 @@ class PropertyCollateral(models.Model):
 
     def __str__(self):
         """String representing the data object"""
-        return "Collateral of " + str(self.loan_id)
+        return "Collateral of Loan " + str(self.loan_identifier)
 
     def get_absolute_url(self):
         """Absolute URL where the data point can be edited"""
