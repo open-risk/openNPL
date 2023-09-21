@@ -25,25 +25,16 @@ Django settings for the openNPL platform.
 """
 
 import os
-# import grappelli
 from django.utils.translation import gettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# Quick-start development settings - unsuitable for production
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '@e=)h@ikk@p6an)s-e_wpt57p6%h%g$*ra#*g+xg2xr+9xd9tg'
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '0.0.0.0', '127.0.0.1', 'www.equinoxpoint.org']
 
 INSTALLED_APPS = [
     'jazzmin',
-    # 'grappelli',
-    # 'grappelli.dashboard',
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django.contrib.auth',
@@ -83,20 +74,15 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'openNPL.urls'
-
 ROOT_VIEW = "http://localhost:8001"
-
 SITE_ID = 1
 SITE_URL = "http://127.0.0.1:8001/"
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads/')
 MEDIA_URL = '/uploads/'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # 'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'templates/admin'),
-        #          os.path.dirname(grappelli.__file__)],
         'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'templates/admin')],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -159,24 +145,17 @@ LOCALE_PATHS = (
 )
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
-# Debug-Toolbar
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-# GRAPPELLI_ADMIN_TITLE = 'openNPL'
 
 JAZZMIN_SETTINGS = {
     # Whether to show the UI customizer on the sidebar

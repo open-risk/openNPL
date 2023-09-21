@@ -23,7 +23,7 @@ from codecs import open
 
 from setuptools import setup
 
-__version__ = '0.5'
+__version__ = '0.6.2'
 
 ver = __version__
 
@@ -54,7 +54,7 @@ setup(name='openNPL',
           'License :: OSI Approved :: Apache Software License',
           'Operating System :: OS Independent',
           'Programming Language :: Python :: 3 :: Only',
-          'Programming Language :: Python :: 3.9',
+          'Programming Language :: Python :: 3.10',
           'Topic :: Scientific/Engineering',
           'Topic :: Scientific/Engineering :: Information Analysis'
       ]

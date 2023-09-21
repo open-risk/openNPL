@@ -51,7 +51,7 @@ The openNPL distribution has the following structure:
 +=========+===============+====================+=======================================+
 | openNPL |               |                    | The root directory                    |
 +---------+---------------+--------------------+---------------------------------------+
-|         | npl_portfolio |                    | DIR: The core python files            |
+|         | npl_portfolio |                    | DIR: EBA NPL portfolio app            |
 +---------+---------------+--------------------+---------------------------------------+
 |         |               | models.py          | Portfolio level models                |
 +---------+---------------+--------------------+---------------------------------------+
@@ -60,6 +60,12 @@ The openNPL distribution has the following structure:
 |         |               | loan.py            | The Loan model                        |
 +---------+---------------+--------------------+---------------------------------------+
 |         |               | ...                | The other EBA models                  |
++---------+---------------+--------------------+---------------------------------------+
+|         |               | fixtures           | DIR: Sample data in JSON format       |
++---------+---------------+--------------------+---------------------------------------+
+|         | sflp_portfolio|                    | DIR: US Single Family loan app        |
++---------+---------------+--------------------+---------------------------------------+
+|         |               | models             | DIR: model files                      |
 +---------+---------------+--------------------+---------------------------------------+
 |         |               | fixtures           | DIR: Sample data in JSON format       |
 +---------+---------------+--------------------+---------------------------------------+
@@ -81,10 +87,18 @@ Core Data Models
 ----------------
 The core data models currently implemented are:
 
+EBA NPL Portfolio
+~~~~~~~~~~~~~~~~~~
+
 - **Portfolio** (Segments the loan level data into distinct portfolios)
 - **Portfolio_Snapshot** (Segments the loan level data into temporal snapshots / cutoff dates)
 - **8 NPL Tables** (Implementing the core European Banking Authority NPL template specification)
 - **User** (Inheriting from Django User model)
+
+US Single Family Portfolio
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. TODO::
 
 Installation Options
 --------------------

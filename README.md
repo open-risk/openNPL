@@ -69,7 +69,7 @@ Manual installation from the repository source files requires some familiarity w
 
 ### Prerequisites
 - openNPL requires a working Python 3 installation (including pip)
-- Python >= 3.9
+- Python >= 3.10
 - Django >= 4.0
 - The precise python library dependencies are listed in the :doc:`requirements`.txt file.
 - Note: The current User Interface (UI) is desktop oriented and might not work properly in smaller mobile screens

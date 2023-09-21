@@ -2,6 +2,10 @@ ChangeLog
 ===========================
 PLEASE NOTE THIS IS ONLY A BETA RELEASE. THE OPENNPL API IS STILL UNSTABLE
 
+v0.6.2 (21-09-2023)
+-------------------
+* Dependencies: Upgrade to Python 3.10
+
 v0.6.1 (03-04-2023)
 -------------------
 * Functionality: Complete SFLP Template Loading
