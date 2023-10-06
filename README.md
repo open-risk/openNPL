@@ -1,5 +1,8 @@
 [![Documentation Status](https://readthedocs.org/projects/opennpl/badge/?version=latest)](https://opennpl.readthedocs.io/en/latest/?badge=latest)
 
+![Docker Pulls](https://hub.docker.com/r/openrisk/opennpl_web)
+
+
 # openNPL overview
 ![openNPL Logo](/docs/source/opennpl-logo.png) openNPL is an open source platform for the management of loan portfolio data with a particular focus on credit portfolios / non-performing loans. 
 
