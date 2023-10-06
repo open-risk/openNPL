@@ -31,8 +31,11 @@ from openNPL.sflp_serializers import SFLP_EnforcementSerializer, SFLP_Enforcemen
 from openNPL.sflp_serializers import SFLP_ForbearanceSerializer, SFLP_ForbearanceDetailSerializer
 from openNPL.sflp_serializers import SFLP_LoanSerializer, SFLP_LoanDetailSerializer
 from openNPL.sflp_serializers import SFLP_PropertyCollateralSerializer, SFLP_PropertyCollateralDetailSerializer
-from sflp_portfolio.models.models import Counterparty, Loan, \
-    Enforcement, Forbearance, PropertyCollateral
+from sflp_portfolio.models.counterparty import Counterparty
+from sflp_portfolio.models.loan import Loan
+from sflp_portfolio.models.enforcement import Enforcement
+from sflp_portfolio.models.forbearance import Forbearance
+from sflp_portfolio.models.property_collateral import PropertyCollateral
 
 
 @api_view(['GET'])

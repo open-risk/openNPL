@@ -21,8 +21,11 @@
 from rest_framework import serializers
 
 from openNPL.settings import ROOT_VIEW
-from sflp_portfolio.models.models import Counterparty, Loan, \
-    Enforcement, Forbearance, PropertyCollateral
+from sflp_portfolio.models.counterparty import Counterparty
+from sflp_portfolio.models.loan import Loan
+from sflp_portfolio.models.enforcement import Enforcement
+from sflp_portfolio.models.forbearance import Forbearance
+from sflp_portfolio.models.property_collateral import PropertyCollateral
 
 
 #
