@@ -22,3 +22,5 @@ tablib
 django-debug-toolbar
 setuptools
 django-extensions
+Sphinx
+sphinx-rtd-theme
