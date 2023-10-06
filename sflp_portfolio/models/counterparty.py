@@ -40,16 +40,15 @@ class Counterparty(models.Model):
     #
 
     counterparty_identifier = models.TextField(blank=True, null=True,
-                                         help_text='A unique identifier for the counterparty.')
+                                               help_text='A unique identifier for the counterparty.')
     """A unique identifier for the counterparty."""
 
     #
     # FOREIGN KEYS
     #
 
-
     loan_identifier = models.ForeignKey(Loan, on_delete=models.CASCADE, blank=True, null=True,
-                                help_text='The loan ID to which the Counterparty links.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Loan_Identifier">Documentation</a>')
+                                        help_text='The loan ID to which the Counterparty links.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Loan_Identifier">Documentation</a>')
     """The loan ID to which the Counterparty links."""
 
     #

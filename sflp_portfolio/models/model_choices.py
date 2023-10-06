@@ -17,7 +17,6 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-import pandas as pd
 
 AMORTIZATION_TYPE_CHOICES = [(0, '(ARM) Adjustable Rate Mortgage'), (1, '(FRM) Fixed Rate Mortgages')]
 CHANNEL_CHOICES = [(0, '(R) Retail'), (1, '(C) Correspondent'), (2, '(B) Broker')]

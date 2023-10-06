@@ -22,8 +22,8 @@
 from django.db import models
 from django.urls import reverse
 
-from npl_portfolio.property_collateral_choices import *
 from npl_portfolio.loan import Loan
+from npl_portfolio.property_collateral_choices import *
 
 
 class PropertyCollateral(models.Model):

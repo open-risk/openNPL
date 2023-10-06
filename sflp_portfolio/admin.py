@@ -102,6 +102,7 @@ class EnforcementAdmin(admin.ModelAdmin):
     list_display = ('property_collateral_identifier', 'portfolio_snapshot_id',
                     'net_sales_proceeds', 'asset_recovery_costs', 'foreclosure_costs')
 
+
 class ForbearanceAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False

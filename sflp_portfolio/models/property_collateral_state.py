@@ -21,9 +21,9 @@
 from django.db import models
 from django.urls import reverse
 
-from sflp_portfolio.models.property_collateral import PropertyCollateral
 from sflp_portfolio.models.model_choices import *
 from sflp_portfolio.models.models import PortfolioSnapshot
+from sflp_portfolio.models.property_collateral import PropertyCollateral
 
 
 class PropertyCollateralState(models.Model):
@@ -45,9 +45,8 @@ class PropertyCollateralState(models.Model):
 
     # Portfolio ID Foreign Key
     property_collateral_id = models.ForeignKey(PropertyCollateral, on_delete=models.CASCADE, blank=True, null=True,
-                                help_text="The loan ID to which the Property Collateral corresponds.")
+                                               help_text="The loan ID to which the Property Collateral corresponds.")
     """"""
-
 
     #
     # DYNAMIC DATA PROPERTIES
@@ -78,7 +77,6 @@ class PropertyCollateralState(models.Model):
     def __str__(self):
         """String representing the data object"""
         return "State of Collateral " + str(self.property_collateral_id)
-
 
     def get_absolute_url(self):
         """Absolute URL where the data point can be edited"""

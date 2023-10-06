@@ -42,8 +42,7 @@ class CounterpartyState(models.Model):
 
     # counterparty ID Foreign Key
     counterparty_identifier = models.ForeignKey(Counterparty, on_delete=models.CASCADE, blank=True, null=True,
-                                        help_text="The counterparty ID to which the Counterparty State corresponds.")
-
+                                                help_text="The counterparty ID to which the Counterparty State corresponds.")
 
     #
     # DYNAMIC DATA PROPERTIES

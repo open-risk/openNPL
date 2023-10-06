@@ -101,6 +101,7 @@ class ExternalCollectionAdmin(admin.ModelAdmin):
     view_on_site = False
     list_display = ('counterparty_identifier', 'name_of_external_debt_collection_agent')
 
+
 class EnforcementAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False

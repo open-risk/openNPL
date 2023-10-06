@@ -81,17 +81,7 @@ class PortfolioSnapshot(_PortfolioSnapshot):
     def get_absolute_url(self):
         return reverse('sflp_portfolio:PortfolioSnapshot_edit', kwargs={'pk': self.pk})
 
-
 # ATTN Those imports MUST be placed after loading the Portfolio / PortfolioSnapshot classes
 #
 #   SFLP Models
 #
-
-from sflp_portfolio.models.counterparty import Counterparty
-from sflp_portfolio.models.counterparty_state import CounterpartyState
-from sflp_portfolio.models.loan import Loan
-from sflp_portfolio.models.loan_state import LoanState
-from sflp_portfolio.models.property_collateral import PropertyCollateral
-from sflp_portfolio.models.property_collateral_state import PropertyCollateralState
-from sflp_portfolio.models.forbearance import Forbearance
-from sflp_portfolio.models.enforcement import Enforcement

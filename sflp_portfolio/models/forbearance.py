@@ -37,13 +37,12 @@ class Forbearance(models.Model):
     # IDENTIFICATION FIELDS
     #
 
-
     #
     # FOREIGN KEYS
     #
 
     loan_identifier = models.ForeignKey(Loan, on_delete=models.CASCADE, blank=True, null=True,
-                                help_text='The loan ID to which the Forbearance activity links.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Loan_Identifier">Documentation</a>')
+                                        help_text='The loan ID to which the Forbearance activity links.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Loan_Identifier">Documentation</a>')
     """The loan ID to which the Forbearance activity links."""
 
     portfolio_snapshot_id = models.ForeignKey(PortfolioSnapshot, on_delete=models.CASCADE, blank=True, null=True,
@@ -53,8 +52,6 @@ class Forbearance(models.Model):
     #
     # DYNAMIC DATA PROPERTIES
     #
-
-
 
     current_period_credit_event_net_gain_or_loss = models.FloatField(blank=True, null=True,
                                                                      help_text='The net realized gain or loss amount calculated for a mortgage loan resulting from a credit event for the corresponding reporting period.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
@@ -90,7 +87,7 @@ class Forbearance(models.Model):
     """"""
 
     modification_flag = models.BooleanField(blank=True, null=True,
-                                                help_text='An indicator that denotes if the mortgage loan has been modified.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                            help_text='An indicator that denotes if the mortgage loan has been modified.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
     """"""
 
     noninterest_bearing_upb = models.FloatField(blank=True, null=True,

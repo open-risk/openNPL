@@ -39,6 +39,7 @@ column_datatypes = {
     'counterparty_identifier': str
 }
 
+
 class Command(BaseCommand):
     help = 'Imports Segmented SFLP data (All Models)'
 
@@ -129,7 +130,6 @@ class Command(BaseCommand):
     #
     # Dynamic Loan Data
     #
-
 
     loan_state_data = pd.read_csv("./sflp_portfolio/fixtures/loan_state.csv", sep='|', index_col=None, na_values=None,
                                   true_values=['Y'], false_values=['N'], dtype=column_datatypes)

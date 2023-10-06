@@ -21,9 +21,10 @@
 from django.db import models
 from django.urls import reverse
 
+from npl_portfolio.counterparty import Counterparty
 from npl_portfolio.forbearance_choices import *
 from npl_portfolio.loan import Loan
-from npl_portfolio.counterparty import Counterparty
+
 
 class Forbearance(models.Model):
     """
@@ -65,7 +66,7 @@ class Forbearance(models.Model):
                                                     help_text='Additional amount that the current agreed forbearance amount is increased by. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Amount_of_Repayment_Step_Up">Documentation</a>')
 
     clause_to_stop_forbearance = models.BooleanField(blank=True, null=True,
-                                                         help_text='Indicator as to whether a clause exists to allow the Institution to stop the current forbearance. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Clause_to_Stop_Forbearance">Documentation</a>')
+                                                     help_text='Indicator as to whether a clause exists to allow the Institution to stop the current forbearance. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Clause_to_Stop_Forbearance">Documentation</a>')
 
     date_of_first_forbearance = models.DateField(blank=True, null=True,
                                                  help_text='Date that the first forbearance happened. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Date_of_First_Forbearance">Documentation</a>')

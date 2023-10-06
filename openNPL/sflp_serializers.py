@@ -18,11 +18,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from sflp_portfolio.models.models import Counterparty, CounterpartyState, Loan, \
-    LoanState, Enforcement, Forbearance, PropertyCollateral, PropertyCollateralState
 from rest_framework import serializers
 
 from openNPL.settings import ROOT_VIEW
+from sflp_portfolio.models.models import Counterparty, Loan, \
+    Enforcement, Forbearance, PropertyCollateral
 
 
 #
@@ -141,5 +141,3 @@ class SFLP_PropertyCollateralDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = PropertyCollateral
         fields = '__all__'
-
-

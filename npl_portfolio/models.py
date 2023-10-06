@@ -37,7 +37,6 @@ Each model is implemented in a separate file using the convention **TABLE_NAME.p
 
 
 class Portfolio(models.Model):
-
     """
     The portfolio data object is useful to aggregate datasets belonging to the same actual credit portfolio. A portfolio may be optionally named to facilitate recognition and a longer description provides further details.
 
@@ -70,14 +69,14 @@ class PortfolioSnapshot(models.Model):
     """
 
     creation_date = models.DateTimeField(auto_now_add=True,
-        help_text="Date at which the snapshot has been created. Different from the cutoff date")
+                                         help_text="Date at which the snapshot has been created. Different from the cutoff date")
     last_change_date = models.DateTimeField(auto_now=True)
 
     cutoff_date = models.DateTimeField(blank=True, null=True,
                                        help_text="Portfolio Cutoff Date (If available). Different from the creation date")
 
-    name = models.CharField(blank=True, null=True, max_length=200, help_text="An assigned name to help identify the snapshot. By convention the name of the portfolio plus the cutoff date")
-
+    name = models.CharField(blank=True, null=True, max_length=200,
+                            help_text="An assigned name to help identify the snapshot. By convention the name of the portfolio plus the cutoff date")
 
     def __str__(self):
         return str(self.name)

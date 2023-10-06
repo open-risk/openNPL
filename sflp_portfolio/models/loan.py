@@ -22,7 +22,7 @@ from django.db import models
 from django.urls import reverse
 
 from sflp_portfolio.models.model_choices import *
-from sflp_portfolio.models.models import PortfolioSnapshot, Portfolio
+from sflp_portfolio.models.models import Portfolio
 
 
 class Loan(models.Model):

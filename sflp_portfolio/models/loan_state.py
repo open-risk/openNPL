@@ -44,7 +44,7 @@ class LoanState(models.Model):
 
     # Loan ID Foreign Key
     loan_identifier = models.ForeignKey(Loan, on_delete=models.CASCADE, blank=True, null=True,
-                                help_text='The loan ID to which the loan state links.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Loan_Identifier">Documentation</a>')
+                                        help_text='The loan ID to which the loan state links.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Loan_Identifier">Documentation</a>')
     """The loan ID to which the loan state links."""
 
     #
@@ -186,7 +186,7 @@ class LoanState(models.Model):
     """"""
 
     repayment_history = models.TextField(blank=True, null=True,
-                                     help_text='The coded string of values that describes the payment performance of the loan over the most recent 24 months.  The most recent month is located to the right..<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Loan_Payment_History">Documentation</a>')
+                                         help_text='The coded string of values that describes the payment performance of the loan over the most recent 24 months.  The most recent month is located to the right..<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Loan_Payment_History">Documentation</a>')
     """The coded string of values that describes the payment performance of the loan over the most recent 24 months"""
 
     #

@@ -18,12 +18,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from rest_framework import serializers
+
 # TODO Lease (non-SME)
 from npl_portfolio.models import CounterpartyGroup, Counterparty, Loan, \
     Enforcement, Forbearance, NonPropertyCollateral, PropertyCollateral, \
     ExternalCollection
-from rest_framework import serializers
-
 from openNPL.settings import ROOT_VIEW
 
 

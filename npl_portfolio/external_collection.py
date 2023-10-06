@@ -21,9 +21,9 @@
 from django.db import models
 from django.urls import reverse
 
+from npl_portfolio.counterparty import Counterparty
 from npl_portfolio.external_collection_choices import *
 from npl_portfolio.loan import Loan
-from npl_portfolio.counterparty import Counterparty
 
 
 class ExternalCollection(models.Model):
@@ -93,7 +93,7 @@ class ExternalCollection(models.Model):
                                            help_text='Company registration number of the external collection agent according to the registration with the country specific registration office. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.External Collection.Registration_number">Documentation</a>')
 
     repayment_plan = models.BooleanField(blank=True, null=True,
-                                             help_text='Indicator as to whether a repayment plan has been agreed with the external collection agency. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.External Collection.Repayment_Plan">Documentation</a>')
+                                         help_text='Indicator as to whether a repayment plan has been agreed with the external collection agency. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.External Collection.Repayment_Plan">Documentation</a>')
 
     repayment_plan_description = models.TextField(blank=True, null=True,
                                                   help_text='Description of the repayment plan which has been agreed with the external collection agency. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.External Collection.Repayment_Plan_Description">Documentation</a>')

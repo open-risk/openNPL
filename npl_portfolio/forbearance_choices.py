@@ -33,4 +33,3 @@ TYPE_OF_FORBEARANCE_CHOICES = [(0, '(a) Loan maturity date extension'), (1, '(b)
 
 REPAYMENT_FREQUENCY_UNDER_FORBEARANCE_CHOICES = [(0, '(a) Monthly'), (1, '(b) Quarterly'), (2, '(c) Semi-Annually'),
                                                  (3, '(d) Annually'), (4, '(e) Daily'), (5, '(f) Other')]
-

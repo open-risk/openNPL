@@ -20,6 +20,7 @@
 
 from django.db import models
 from django.urls import reverse
+
 from npl_portfolio.counterparty_group_choices import *
 
 
