@@ -8,7 +8,7 @@ openNPL implements and builds on public standards around loan-level templates:
 * the detailed European Banking Authority loan templates for NPL data. It thereby enables the collection and easy management of non-performing loan data according to best-practices.
 * US Agency (Fannie Mae) Mortgage Reporting templates (SFLP)
 
-The platform is in active development, parties interested in its further development are encouraged to get involved. The project aims to be driven by community needs. We welcome code contributions and feature requests via github.
+The platform is in active development, parties interested in its further development are encouraged to get involved. The project aims to be driven by community needs. We welcome code contributions and feature requests via GitHub.
 
 ![Landing](/docs/source/screenshots/landing.png)
 

@@ -31,7 +31,7 @@ Each data model is implemented in a separate file using the convention **TABLE_N
 
 Choice lists for categorical attributes are collected in separate files using the convention **TABLE_NAME_CHOICES.py**. 
 
-.. NOTE:: CAS, CIRT and Single-Family (SF) Loan Performance share a common vocabulary with some differences currently not highlighted
+.. NOTE:: CAS, CIRT and Single-Family (SF) Loan Performance share a common vocabulary with some differences currently not highlighted.
 
 '''
 
@@ -41,16 +41,18 @@ from common.models import PortfolioSnapshot as _PortfolioSnapshot
 
 class Portfolio(_Portfolio):
     """
-    The portfolio data object is useful to aggregate datasets belonging to the same actual credit portfolio. A portfolio may be (optionally) named to facilitate recognition and a longer description provides further details.
+    The Portfolio data object is useful to aggregate datasets belonging to the same credit portfolio. A Portfolio may be (optionally) named to facilitate recognition. A longer description may provide further details.
 
-    .. note:: The actual Portfolio data are stored in the various specific data models (with foreign key to Portfolio)
+    .. note:: The actual Portfolio data are stored in various specific data models (with foreign key to Portfolio).
 
     """
-    deal_name = models.TextField(blank=True, null=True,
-                                 help_text='The title of the series issuance.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
 
+    deal_name = models.TextField(blank=True, null=True,
+                                 help_text='The title of the series issuance.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Deal_Name">Documentation</a>')
+
+    # ALPHA-NUMERIC as TEXT
     reference_pool_id = models.TextField(blank=True, null=True,
-                                         help_text='A unique identifier for the reference pool.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                         help_text='A unique identifier for the reference pool.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Reference_Pool_ID">Documentation</a>')
 
     creation_date = models.DateTimeField(auto_now_add=True)
     last_change_date = models.DateTimeField(auto_now=True)
@@ -70,7 +72,7 @@ class PortfolioSnapshot(_PortfolioSnapshot):
 
     """
     monthly_reporting_period = models.TextField(blank=True, null=True,
-                                                help_text='The month and year that pertains to the servicer’s cut-off period for mortgage loan information.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                help_text='The month and year that pertains to the servicer’s cut-off period for mortgage loan information.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Monthly_Reporting_Period">Documentation</a>')
 
     creation_date = models.DateTimeField(auto_now_add=True)
     last_change_date = models.DateTimeField(auto_now=True)

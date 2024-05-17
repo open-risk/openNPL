@@ -28,7 +28,7 @@ from sflp_portfolio.models.property_collateral import PropertyCollateral
 
 class Enforcement(models.Model):
     """
-    The Enforcement model holds Enforcement related data. Enforcement is contingent action linked to a Loan and Collateral. There is no unique enforcement ID. Links to the collateral ID.
+    The Enforcement model holds Enforcement related data. Enforcement is a contingent action linked to both a Loan and Real Enforcement Collateral. There is no unique enforcement ID. Links to the underlying collateral ID.
 
 
     """
@@ -73,7 +73,7 @@ class Enforcement(models.Model):
     """"""
 
     cumulative_credit_event_net_gain_or_loss = models.FloatField(blank=True, null=True,
-                                                                 help_text='The cumulative net realized gain or loss amounts for a mortgage loan resulting from a credit event.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                                 help_text='The cumulative net realized gain or loss amounts for a mortgage loan resulting from a credit event.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Cumulative_Credit_Event_Net_Gain_or_Loss">Documentation</a>')
     """"""
 
     disposition_date = models.DateField(blank=True, null=True,

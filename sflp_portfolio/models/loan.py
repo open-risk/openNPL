@@ -27,9 +27,9 @@ from sflp_portfolio.models.models import Portfolio
 
 class Loan(models.Model):
     """
-    The Loan model holds Static (Acquistion) Loan data
+    The Loan data model holds Static (Acquisition) Loan data
 
-    .. note:: For some fields the static nature might not be entirely respected if historical data overwrite values in the case of modifications
+    .. note:: For some fields the static nature might not be entirely respected if historical data overwrite values in case of loan modifications
 
 
     """
@@ -60,23 +60,22 @@ class Loan(models.Model):
     #
 
     arm_balloon_indicator = models.BooleanField(blank=True, null=True,
-                                                help_text='For an adjustable-rate mortgage loan, a code that denotes if the loan has a balloon feature.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                help_text='For an adjustable-rate mortgage loan, a code that denotes if the loan has a balloon feature.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.ARM_Balloon_Indicator">Documentation</a>')
     """"""
 
     arm_cap_structure = models.TextField(blank=True, null=True,
-                                         help_text='For an adjustable-rate mortgage loan, a numeric string that explains the interest rate caps on the ARM. The first number is the Initial Interest Rate Cap Up Percent (i.e., the maximum percentage points the interest rate can adjust upward at the initial rate change date). The second number is the Periodic Interest Rate Cap Up Percent (i.e., the maximum percentage points the interest rate can adjust upward at each interest rate change date after the initial interest rate change date). The third number is the Lifetime Interest Rate Cap Up Percent (i.e., the maximum percentage points that the interest rate can adjust upward over the life of the loan relative to the initial interest rate).<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                         help_text='For an adjustable-rate mortgage loan, a numeric string that explains the interest rate caps on the ARM. The first number is the Initial Interest Rate Cap Up Percent (i.e., the maximum percentage points the interest rate can adjust upward at the initial rate change date). The second number is the Periodic Interest Rate Cap Up Percent (i.e., the maximum percentage points the interest rate can adjust upward at each interest rate change date after the initial interest rate change date). The third number is the Lifetime Interest Rate Cap Up Percent (i.e., the maximum percentage points that the interest rate can adjust upward over the life of the loan relative to the initial interest rate).<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.ARM_Cap_Structure">Documentation</a>')
     """"""
 
-    arm_initial_fixed_rate_period_less_than_5_yr = models.BooleanField(blank=True, null=True,
-                                                                       help_text='For an adjustable-rate mortgage loan, an indicator that denotes if the Initial Fixed-Rate Period is less than or equal to five years.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+    arm_initial_fixed_rate_period_less_than_5_yr = models.BooleanField(blank=True, null=True, help_text='For an adjustable-rate mortgage loan, an indicator that denotes if the Initial Fixed-Rate Period is less than or equal to five years.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.ARM_Initial_Fixed-Rate_Period_Less_Than_5_YR">Documentation</a>')
     """"""
 
     arm_plan_number = models.FloatField(blank=True, null=True,
-                                        help_text='For an adjustable-rate mortgage loan, a code identifying the standardized plan under which the mortgage loan was delivered to Fannie Mae. The ARM plan outlines the characteristics of the adjustable-rate mortgage loan, including the ARM Index, the Initial Fixed-Rate Period, the Cap Structure, look-back days, assumability, and the option to convert to a fixed-rate mortgage loan..<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                        help_text='For an adjustable-rate mortgage loan, a code identifying the standardized plan under which the mortgage loan was delivered to Fannie Mae. The ARM plan outlines the characteristics of the adjustable-rate mortgage loan, including the ARM Index, the Initial Fixed-Rate Period, the Cap Structure, look-back days, assumability, and the option to convert to a fixed-rate mortgage loan..<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.ARM_Plan_Number">Documentation</a>')
     """"""
 
     arm_product_type = models.TextField(blank=True, null=True,
-                                        help_text='For an adjustable-rate mortgage loan, a string that denotes the Initial Fixed-Rate Period, the subsequent Interest Rate Adjustment Frequency, and the Original Loan Term.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                        help_text='For an adjustable-rate mortgage loan, a string that denotes the Initial Fixed-Rate Period, the subsequent Interest Rate Adjustment Frequency, and the Original Loan Term.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.ARM_Product_Type">Documentation</a>')
     """"""
 
     channel = models.IntegerField(blank=True, null=True, choices=CHANNEL_CHOICES,
@@ -93,6 +92,7 @@ class Loan(models.Model):
 
     original_upb = models.FloatField(blank=True, null=True,
                                      help_text='The dollar amount of the loan as stated on the note at the time the loan was originated.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Original_UPB">Documentation</a>')
+
     """The dollar amount of the loan as stated on the note at the time the loan was originated"""
 
     origination_date = models.DateField(blank=True, null=True,
@@ -107,8 +107,7 @@ class Loan(models.Model):
                                                      help_text='The ratio, expressed as a percentage, obtained by dividing the amount of the loan at origination by the value of the property.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Original_Loan_to_Value_Ratio">Documentation</a>')
     """The ratio, expressed as a percentage, obtained by dividing the amount of the loan at origination by the value of the property"""
 
-    original_combined_loan_to_value_ratio = models.FloatField(blank=True, null=True,
-                                                              help_text='The ratio, expressed as a percentage, obtained by dividing the amount of all known outstanding loans at origination by the value of the property.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Original_Combined_Loan_to_Value_Ratio">Documentation</a>')
+    original_combined_loan_to_value_ratio = models.FloatField(blank=True, null=True, help_text='The ratio, expressed as a percentage, obtained by dividing the amount of all known outstanding loans at origination by the value of the property.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Original_Combined_Loan_to_Value_Ratio">Documentation</a>')
     """"""
 
     loan_purpose = models.IntegerField(blank=True, null=True, choices=LOAN_PURPOSE_CHOICES,
@@ -143,9 +142,20 @@ class Loan(models.Model):
                                                   help_text='For an adjustable-rate mortgage loan, the maximum percentage points the interest rate can adjust upward at the initial interest rate change date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Initial_Interest_Rate_Cap">Documentation</a>')
     """"""
 
+    lifetime_interest_rate_cap = models.FloatField(blank=True, null=True,
+                                                   help_text='For an adjustable-rate mortgage loan, the maximum percentage points that the interest rate can adjust upward over the life of the loan relative to the initial interest rate.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Lifetime_Interest_Rate_Cap">Documentation</a>')
+    """"""
+
     special_eligibility_program = models.IntegerField(blank=True, null=True,
-                                                      choices=SPECIAL_ELIGIBILITY_PROGRAM_CHOICES,
-                                                      help_text='A mortgage program with expanded eligibility criteria designed to increase and maintain home ownership.<a class ="risk_manual_url" href="https://www.openriskmanual.org/wiki"> Documentation</a>')
+                                                      choices=SPECIAL_ELIGIBILITY_PROGRAM_CHOICES, help_text='A mortgage program with expanded eligibility criteria designed to increase and maintain home ownership.<a class ="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Special_Eligibility_Program">Documentation</a>')
+    """"""
+
+    prepayment_penalty_indicator = models.BooleanField(blank=True, null=True,
+                                                       help_text='An indicator that denotes whether the borrower is subject to a penalty for early payment of principal.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Prepayment_Penalty_Indicator">Documentation</a>')
+    """"""
+
+    upb_at_issuance = models.FloatField(blank=True, null=True,
+                                        help_text='The unpaid principal balance of the loan as of the cut-off date of the reference pool.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.UPB_at_Issuance">Documentation</a>')
     """"""
 
     #

@@ -28,7 +28,7 @@ from sflp_portfolio.models.models import PortfolioSnapshot
 
 class Forbearance(models.Model):
     """
-    The Forbearance model holds Forbearance related data. Forbearance is contingent action linked to a Loan.
+    The Forbearance model holds Forbearance related data. Forbearance is contingent action linked to a Loan. There is no unique forbearance ID. Links to the underlying Loan ID.
 
 
     """
@@ -58,48 +58,56 @@ class Forbearance(models.Model):
     """"""
 
     delinquent_accrued_interest = models.FloatField(blank=True, null=True,
-                                                    help_text='The lost accrued interest amount calculated for a mortgage loan that becomes subject to a credit event for the corresponding reporting period.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                    help_text='The lost accrued interest amount calculated for a mortgage loan that becomes subject to a credit event for the corresponding reporting period.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Delinquent_Accrued_Interest">Documentation</a>')
     """"""
 
     alternative_delinquency_resolution = models.IntegerField(blank=True, null=True,
                                                              choices=ALTERNATIVE_DELINQUENCY_RESOLUTION_CHOICES,
-                                                             help_text='An indicator that denotes the loss mitigation solution designed to resolve delinquencies and help homeowners remain in their homes in accordance with the servicer’s contractual obligation, while allowing the loan to remain in the security.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                             help_text='An indicator that denotes the loss mitigation solution designed to resolve delinquencies and help homeowners remain in their homes in accordance with the servicer’s contractual obligation, while allowing the loan to remain in the security.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Alternative_Delinquency_Resolution">Documentation</a>')
     """"""
 
     alternative_delinquency_resolution_count = models.FloatField(blank=True, null=True,
-                                                                 help_text='The total number of Alternative Delinquency Resolutions as reported by the servicer for a specific loan.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                                 help_text='The total number of Alternative Delinquency Resolutions as reported by the servicer for a specific loan.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Alternative_Delinquency_Resolution_Count">Documentation</a>')
     """"""
 
     borrower_assistance_plan = models.IntegerField(blank=True, null=True, choices=BORROWER_ASSISTANCE_PLAN_CHOICES,
-                                                   help_text='An indicator that denotes the type of assistance plan that the borrower is enrolled in that provides temporary mortgage payment relief or an opportunity for the borrower to cure a mortgage delinquency over a defined period.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                   help_text='An indicator that denotes the type of assistance plan that the borrower is enrolled in that provides temporary mortgage payment relief or an opportunity for the borrower to cure a mortgage delinquency over a defined period.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Borrower_Assistance_Plan">Documentation</a>')
     """"""
 
     cumulative_modification_loss_amount = models.FloatField(blank=True, null=True,
-                                                            help_text='The cumulative loss amount calculated for a mortgage loan resulting from a modification event.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                            help_text='The cumulative loss amount calculated for a mortgage loan resulting from a modification event.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Cumulative_Modification_Loss_Amount">Documentation</a>')
     """"""
 
     current_period_modification_loss_amount = models.FloatField(blank=True, null=True,
-                                                                help_text='The loss amount calculated for a mortgage loan resulting from a modification event for the corresponding reporting period.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                                help_text='The loss amount calculated for a mortgage loan resulting from a modification event for the corresponding reporting period.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Current_Period_Modification_Loss_Amount">Documentation</a>')
     """"""
 
     current_loan_delinquency_status = models.TextField(blank=True, null=True,
-                                                       help_text='The number of months the obligor is delinquent as determined by the governing mortgage documents.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                       help_text='The number of months the obligor is delinquent as determined by the governing mortgage documents.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Current_Loan_Delinquency_Status">Documentation</a>')
     """"""
 
     modification_flag = models.BooleanField(blank=True, null=True,
-                                            help_text='An indicator that denotes if the mortgage loan has been modified.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                            help_text='An indicator that denotes if the mortgage loan has been modified.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Modification_Flag">Documentation</a>')
     """"""
 
     noninterest_bearing_upb = models.FloatField(blank=True, null=True,
-                                                help_text='A portion of the UPB, as a result of an eligible loan modification, that will not accrue interest.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                help_text='A portion of the UPB, as a result of an eligible loan modification, that will not accrue interest.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Non-Interest_Bearing_UPB">Documentation</a>')
     """"""
 
     principal_forgiveness_amount = models.FloatField(blank=True, null=True,
-                                                     help_text='A reduction of the UPB owed on a mortgage by a borrower that is formally agreed to by the lender and the borrower, usually in conjunction with a loan modification.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                     help_text='A reduction of the UPB owed on a mortgage by a borrower that is formally agreed to by the lender and the borrower, usually in conjunction with a loan modification.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Principal_Forgiveness_Amount">Documentation</a>')
     """"""
 
     total_deferral_amount = models.FloatField(blank=True, null=True,
-                                              help_text='The total non-interest-bearing deferral amount related to one or more Alternative Delinquency Resolutions.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                              help_text='The total non-interest-bearing deferral amount related to one or more Alternative Delinquency Resolutions.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Total_Deferral_Amount">Documentation</a>')
+    """"""
+
+    payment_deferral = models.TextField(blank=True, null=True,
+                                                       help_text='An indicator that denotes if a payment deferral is contributing to a modification event.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Payment_Deferral_Modification_Event_Indicator">Documentation</a>')
+    """"""
+
+    interest_upb = models.FloatField(blank=True, null=True,
+                                              help_text='The current actual outstanding UPB of the mortgage loan less any non-interest bearing UPB resulting from an eligible modification event.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Interest_Bearing_UPB">Documentation</a>')
     """"""
 
     #

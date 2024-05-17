@@ -22,8 +22,8 @@
 from django.contrib import admin
 
 '''
-Portfolio is used to group borrower / loan data into portfolios
-Portfolio_Snapshot is used to group data into time snapshots
+The Portfolio model is used to group borrower / loan data into portfolios
+The Portfolio_Snapshot model is used to group data into time snapshots
 
 
 '''

@@ -28,7 +28,7 @@ from sflp_portfolio.models.property_collateral import PropertyCollateral
 
 class PropertyCollateralState(models.Model):
     """
-    The PropertyCollateralState model object holds Property Collateral state data. There is no unique state ID. Links to Property Collateral
+    The PropertyCollateralState model object holds dynamic (temporally varying) Property Collateral state data. There is no unique collateral state ID. Links to the underlying Property Collateral
 
 
 
@@ -52,19 +52,19 @@ class PropertyCollateralState(models.Model):
     # DYNAMIC DATA PROPERTIES
     #
     associated_taxes_for_holding_property = models.FloatField(blank=True, null=True,
-                                                              help_text='Payment of taxes associated with holding the property.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                              help_text='Payment of taxes associated with holding the property.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Associated_Taxes_for_Holding_Property">Documentation</a>')
     """"""
 
     miscellaneous_holding_expenses_and_credits = models.FloatField(blank=True, null=True,
-                                                                   help_text='Expenses and credits associated with preserving the property, including Homeowners Association and other dues; flood, hazard, and MI premiums and refunds; rental income; and title insurance costs.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                                   help_text='Expenses and credits associated with preserving the property, including Homeowners Association and other dues; flood, hazard, and MI premiums and refunds; rental income; and title insurance costs.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Miscellaneous_Holding_Expenses_and_Credits">Documentation</a>')
     """"""
 
     property_preservation_and_repair_costs = models.FloatField(blank=True, null=True,
-                                                               help_text='The expenses associated with securing and preserving the property including two major categories:  maintenance and repairs. Maintenance costs are associated with preserving the property through normal upkeep, while repairs are associated with either avoiding deterioration of the asset or a marketing decision to help maximize sales proceeds upon final disposition.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                               help_text='The expenses associated with securing and preserving the property including two major categories:  maintenance and repairs. Maintenance costs are associated with preserving the property through normal upkeep, while repairs are associated with either avoiding deterioration of the asset or a marketing decision to help maximize sales proceeds upon final disposition.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Property_Preservation_and_Repair_Costs">Documentation</a>')
     """"""
 
     property_valuation_method = models.IntegerField(blank=True, null=True, choices=PROPERTY_VALUATION_METHOD_CHOICES,
-                                                    help_text='An indicator that denotes the method by which the value of the subject property was obtained. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
+                                                    help_text='An indicator that denotes the method by which the value of the subject property was obtained.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki">Documentation</a>')
     """"""
 
     # Bookkeeping fields

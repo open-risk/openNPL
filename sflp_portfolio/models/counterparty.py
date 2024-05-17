@@ -29,8 +29,7 @@ class Counterparty(models.Model):
     """
     The Counterparty model holds static Counterparty data.
 
-    .. note:: There is no separate counterparty ID in the FM SFLP dataset, despite the
-     name, what we are using is simply the loan id
+    .. note:: There is no separate counterparty ID in the FM SFLP dataset, despite the name, what we are using is simply the Loan ID
 
 
     """
@@ -69,19 +68,19 @@ class Counterparty(models.Model):
     """The number of individuals obligated to repay the mortgage loan"""
 
     borrower_credit_score_at_issuance = models.FloatField(blank=True, null=True,
-                                                          help_text='A numerical value used by the financial services industry to evaluate the quality of borrower credit. Credit scores are typically based on a proprietary statistical model that is developed for use by credit data repositories. These credit repositories apply the model to borrower credit information to arrive at a credit score. When this term is used by Fannie Mae, it is referring to FICO Score developed by Fair Isaac Corporation and provided by Equifax Inc. and is distinct from the FICO Score referenced in Fannie Mae Selling Guide, which may be provided by any of the three major credit repositories.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Borrower_Credit_Score_At_Issuance">Documentation</a>')
+                                                          help_text='A numerical value used by the financial services industry to evaluate the quality of borrower credit. Credit scores are typically based on a proprietary statistical model that is developed for use by credit data repositories.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Borrower_Credit_Score_At_Issuance">Documentation</a>')
     """A numerical value used by the financial services industry to evaluate the quality of borrower credit. The current credit score is tracked in the Counterparty State model"""
 
     borrower_credit_score_at_origination = models.FloatField(blank=True, null=True,
-                                                             help_text='A numerical value used by the financial services industry to evaluate the quality of borrower’s credit. Credit scores are typically based on a proprietary statistical model that is developed for use by credit data repositories. These credit repositories apply the model to borrower credit information to arrive at a credit score. When this term is used by Fannie Mae, it is referring to the "Classic" FICO score developed by Fair Isaac Corporation.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Borrower_Credit_Score_at_Origination">Documentation</a>')
+                                                             help_text='A numerical value used by the financial services industry to evaluate the quality of borrower’s credit. Credit scores are typically based on a proprietary statistical model that is developed for use by credit data repositories.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Borrower_Credit_Score_at_Origination">Documentation</a>')
     """A numerical value used by the financial services industry to evaluate the quality of borrower credit. The current credit score is tracked in the Counterparty State model"""
 
     coborrower_credit_score_at_issuance = models.TextField(blank=True, null=True,
-                                                           help_text='A numerical value used by the financial services industry to evaluate the quality of coborrower credit. Credit scores are typically based on a proprietary statistical model that is developed for use by credit data repositories. These credit repositories apply the model to borrower credit information to arrive at a credit score. When this term is used by Fannie Mae, it is referring to FICO Score developed by Fair Isaac Corporation and provided by Equifax Inc and is distinct from the FICO Score referenced in Fannie Mae Selling Guide.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Co-Borrower_Credit_Score_At_Issuance">Documentation</a>')
+                                                           help_text='A numerical value used by the financial services industry to evaluate the quality of coborrower credit. Credit scores are typically based on a proprietary statistical model that is developed for use by credit data repositories.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Co-Borrower_Credit_Score_At_Issuance">Documentation</a>')
     """A numerical value used by the financial services industry to evaluate the quality of coborrower credit. The current credit score is tracked in the Counterparty State model"""
 
     coborrower_credit_score_at_origination = models.FloatField(blank=True, null=True,
-                                                               help_text='A numerical value used by the financial services industry to evaluate the quality of borrower’s credit. Credit scores are typically based on a proprietary statistical model that is developed for use by credit data repositories. These credit repositories apply the model to borrower credit information to arrive at a credit score. When this term is used by Fannie Mae, it is referring to the "Classic" FICO score developed by Fair Isaac Corporation.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Co-Borrower_Credit_Score_at_Origination">Documentation</a>')
+                                                               help_text='A numerical value used by the financial services industry to evaluate the quality of borrower’s credit. Credit scores are typically based on a proprietary statistical model that is developed for use by credit data repositories.<a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/FM_SFLP.Co-Borrower_Credit_Score_at_Origination">Documentation</a>')
     """A numerical value used by the financial services industry to evaluate the quality of coborrower credit. The current credit score is tracked in the Counterparty State model"""
 
     #

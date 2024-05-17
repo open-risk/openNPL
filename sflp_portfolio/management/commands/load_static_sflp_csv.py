@@ -149,4 +149,4 @@ class Command(BaseCommand):
             i += 1
 
     def handle(self, *args, **options):
-        self.stdout.write(self.style.SUCCESS('Successfully inserted Core SFLP data into db'))
+        self.stdout.write(self.style.SUCCESS('Successfully inserted Static SFLP data into db'))

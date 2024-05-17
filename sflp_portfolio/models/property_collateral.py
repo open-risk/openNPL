@@ -27,7 +27,7 @@ from sflp_portfolio.models.model_choices import *
 
 class PropertyCollateral(models.Model):
     """
-    The PropertyCollateral model object holds Real Estate Property Collateral data. There is no unique collateral ID, it links to the Loan ID.
+    The PropertyCollateral model object holds static Real Estate Property Collateral data. There is no unique collateral ID, it links to the related Loan ID.
 
 
     """

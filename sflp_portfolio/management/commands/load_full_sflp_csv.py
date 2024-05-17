@@ -368,4 +368,4 @@ class Command(BaseCommand):
     print("Created Enforcement Data")
 
     def handle(self, *args, **options):
-        self.stdout.write(self.style.SUCCESS('Successfully inserted full SFLP data into db'))
+        self.stdout.write(self.style.SUCCESS('Successfully inserted Full SFLP data into db'))
