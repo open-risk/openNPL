@@ -46,10 +46,11 @@ def npl_api_root(request, format=None):
     Returns a list of all active API endpoints in the OpenNPL installation, grouped by functionality:
 
     - **NPL Data Endpoints** implements a REST CRUD interface to EBA Templated NPL Data
-    - **SFLP Data Endpoints** implements a REST CRUD interface to US Agency Single Family Loan Performance Data
-
 
     """
+    #
+    # API ENDPOINTS
+    #
 
     data = [
         {'NPL Template Endpoints':
@@ -69,34 +70,6 @@ def npl_api_root(request, format=None):
             ]},
     ]
 
-    return Response(data)
-
-
-#
-# API ENDPOINTS
-#
-
-@api_view(['GET'])
-def api_root(request, format=None):
-    """
-    Returns a list of all active API endpoints for EBA NPL Template Data
-
-    """
-
-    data = [
-        {'EBA Template Endpoints':
-            [
-                {'npl_counterparty_group': reverse('npl_counterparty_group_api', request=request, format=format)},
-                {'npl_counterparty': reverse('npl_counterparty_api', request=request, format=format)},
-                {'npl_loan': reverse('npl_loan_api', request=request, format=format)},
-                {'npl_enforcement': reverse('npl_enforcement_api', request=request, format=format)},
-                {'npl_forbearance': reverse('npl_forbearance_api', request=request, format=format)},
-                {'npl_nonproperty_collateral': reverse('npl_nonproperty_collateral_api', request=request,
-                                                       format=format)},
-                {'npl_property_collateral': reverse('npl_property_collateral_api', request=request, format=format)},
-                {'npl_external_collection': reverse('npl_external_collection_api', request=request, format=format)},
-            ]}
-    ]
     return Response(data)
 
 

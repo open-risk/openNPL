@@ -37,41 +37,28 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
-from drf_yasg import openapi
-from drf_yasg.views import get_schema_view
-from rest_framework import permissions
 
-from . import npl_views, settings
+from openNPL.settings import DEBUG, MEDIA_URL, MEDIA_ROOT
+from openNPL.views import schema_view, api_root
 
-schema_view = get_schema_view(
-    openapi.Info(
-        title="openNPL API",
-        default_version='v1',
-        description="openNPL is an open source platform for the management of credit risk and non-performing loans. It implements detailed European Banking Authority loan templates for NPL data and US Agency Single Family Loan Performance Data",
-        terms_of_service="https://www.openriskmanagement.com/",
-        contact=openapi.Contact(email="info@openrisk.eu"),
-        license=openapi.License(name="MIT License"),
-    ),
-    public=True,
-    permission_classes=(permissions.AllowAny,),
-)
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('admin/doc/', include('django.contrib.admindocs.urls')),  #
                   path('', include('start.urls')),  # start URLS
-                  path(r'api/', npl_views.api_root, name='api_root'),  # Overall API root
+                  path(r'api/', api_root, name='api_root'),  # Overall API root
+                  # NPL Data URL's
                   path(r'api/npl_data/', include(('npl_portfolio.urls', 'npl_portfolio'), namespace='npl_portfolio')),
-                  # NPL data
+                  # SFLP Data URL's
                   path(r'api/sflp_data/',
-                       include(('sflp_portfolio.urls', 'sflp_portfolio'), namespace='sflp_portfolio')),  # SFLP data
+                       include(('sflp_portfolio.urls', 'sflp_portfolio'), namespace='sflp_portfolio')),
                   re_path(r'^api/swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0),
                           name='schema-json'),
                   re_path(r'^api/swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
                   re_path(r'^api/redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+              ] + static(MEDIA_URL, document_root=MEDIA_ROOT)
 
-if settings.DEBUG:
+if DEBUG:
     import debug_toolbar
 
     urlpatterns = [
