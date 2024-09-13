@@ -1,6 +1,10 @@
 ChangeLog
 ===========================
 
+v0.6.4
+------------------
+* Redesign REST API
+
 v0.6.3
 ------------------
 * Added two new attributes as per 2023 SFLP template update

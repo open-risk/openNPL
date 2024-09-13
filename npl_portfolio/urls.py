@@ -20,30 +20,30 @@
 
 from django.urls import re_path
 
-from openNPL import npl_views as views
+from . import views as api_views
 
 app_name = 'npl_portfolio'
 
 urlpatterns = [
-    # re_path(r'^$', views.npl_api_root, name='npl_api_root'),
-    re_path(r'^counterparty_groups$', views.npl_counterparty_group_api, name='npl_counterparty_group_api'),
-    re_path(r'^counterparty_groups/(?P<pk>[0-9]+)/$', views.npl_counterparty_group_detail,
+    re_path(r'^', api_views.npl_api_root, name='npl_api_root'),
+    re_path(r'^counterparty_groups$', api_views.npl_counterparty_group_api, name='npl_counterparty_group_api'),
+    re_path(r'^counterparty_groups/(?P<pk>[0-9]+)/$', api_views.npl_counterparty_group_detail,
             name='npl_counterparty_group_detail'),
-    re_path(r'^counterparties$', views.npl_counterparty_api, name='npl_counterparty_api'),
-    re_path(r'^counterparties/(?P<pk>[0-9]+)/$', views.npl_counterparty_detail, name='npl_counterparty_detail'),
-    re_path(r'^property_collateral$', views.npl_property_collateral_api, name='npl_property_collateral_api'),
-    re_path(r'^property_collateral/(?P<pk>[0-9]+)/$', views.npl_property_collateral_detail,
+    re_path(r'^counterparties$', api_views.npl_counterparty_api, name='npl_counterparty_api'),
+    re_path(r'^counterparties/(?P<pk>[0-9]+)/$', api_views.npl_counterparty_detail, name='npl_counterparty_detail'),
+    re_path(r'^property_collateral$', api_views.npl_property_collateral_api, name='npl_property_collateral_api'),
+    re_path(r'^property_collateral/(?P<pk>[0-9]+)/$', api_views.npl_property_collateral_detail,
             name='npl_property_collateral_detail'),
-    re_path(r'^loans$', views.npl_loan_api, name='npl_loan_api'),
-    re_path(r'^loans/(?P<pk>[0-9]+)/$', views.npl_loan_detail, name='npl_loan_detail'),
-    re_path(r'^enforcement$', views.npl_enforcement_api, name='npl_enforcement_api'),
-    re_path(r'^enforcement/(?P<pk>[0-9]+)/$', views.npl_enforcement_detail, name='npl_enforcement_detail'),
-    re_path(r'^forbearance$', views.npl_forbearance_api, name='npl_forbearance_api'),
-    re_path(r'^forbearance/(?P<pk>[0-9]+)/$', views.npl_forbearance_detail, name='npl_forbearance_detail'),
-    re_path(r'^nonproperty_collateral$', views.npl_nonproperty_collateral_api, name='npl_nonproperty_collateral_api'),
-    re_path(r'^nonproperty_collateral/(?P<pk>[0-9]+)/$', views.npl_nonproperty_collateral_detail,
+    re_path(r'^loans$', api_views.npl_loan_api, name='npl_loan_api'),
+    re_path(r'^loans/(?P<pk>[0-9]+)/$', api_views.npl_loan_detail, name='npl_loan_detail'),
+    re_path(r'^enforcement$', api_views.npl_enforcement_api, name='npl_enforcement_api'),
+    re_path(r'^enforcement/(?P<pk>[0-9]+)/$', api_views.npl_enforcement_detail, name='npl_enforcement_detail'),
+    re_path(r'^forbearance$', api_views.npl_forbearance_api, name='npl_forbearance_api'),
+    re_path(r'^forbearance/(?P<pk>[0-9]+)/$', api_views.npl_forbearance_detail, name='npl_forbearance_detail'),
+    re_path(r'^nonproperty_collateral$', api_views.npl_nonproperty_collateral_api, name='npl_nonproperty_collateral_api'),
+    re_path(r'^nonproperty_collateral/(?P<pk>[0-9]+)/$', api_views.npl_nonproperty_collateral_detail,
             name='npl_nonproperty_collateral_detail'),
-    re_path(r'^external_collection$', views.npl_external_collection_api, name='npl_external_collection_api'),
-    re_path(r'^external_collection/(?P<pk>[0-9]+)/$', views.npl_external_collection_detail,
+    re_path(r'^external_collection$', api_views.npl_external_collection_api, name='npl_external_collection_api'),
+    re_path(r'^external_collection/(?P<pk>[0-9]+)/$', api_views.npl_external_collection_detail,
             name='npl_external_collection_detail'),
 ]

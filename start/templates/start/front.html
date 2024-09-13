@@ -22,95 +22,112 @@
 
 {% block content %}
 
-    <h1>Welcome to openNPL</h1>
+    <div class="card card-info">
+        <div class="card-header">
+            <h3>Welcome to openNPL</h3>
+        </div>
+        <div class="card-body">
+            <p>
+                openNPL is an open source platform for the management of non-performing loans. It implements detailed European Banking Authority and US Fannie Mae (Data Dynamics) loan templates for NPL data. Click on <a href="/admin">Home</a>to get started!
+            </p>
 
-    <p>
-        openNPL is an open source platform for the management of non-performing loans.
-        It implements detailed European Banking Authority loan templates for NPL data. Click on <a
-            href="/admin">Home</a>
-        to get started!
-    </p>
+        </div>
+    </div>
 
-    <h2 style="margin-top:20px">The challenge of Non-Performing Loans</h2>
-    <p>Non-Performing loans is a serious and ongoing issue that affects many economies. Developing
-        tools and methodologies that will reduce the burden and improve the ability to manage problem
-        loans is thus an important objective. For more background and previous work
-        see the <a href="https://www.openriskmanagement.com/opennpl-open-source-npl-platform-first-release/">Open
-            Risk Blog Post</a>.
-    </p>
+    <div class="card card-info">
+        <div class="card-header">
+            <h3>The challenge of Non-Performing Loans</h3>
+        </div>
+        <div class="card-body">
+            <p>Non-Performing loans is a serious and ongoing issue that affects many economies. Developing tools and methodologies that will reduce the burden and improve the ability to manage problem loans is thus an important objective. For more background and previous work see the <a href="https://www.openriskmanagement.com/opennpl-open-source-npl-platform-first-release/">Open Risk Blog Post</a>.</p>
+        </div>
+    </div>
 
-    <h2 style="margin-top:20px">What exactly is openNPL?</h2>
-    <p>openNPL is a <i>web application</i> that works together with a tailored data schema to provide easy access
-        to NPL data adhering to the regulatory recommendation. Running the application creates a <i>server</i> that
-        can then be accessed via any regular browser. For easy installation and testing the current release uses
-        an sqlite database instead of a production database.
-    </p>
 
-    <p style="margin-top:20px">Once the platform is up and running a wealth of functionality is available. Just
-        as a sample:</p>
+    <div class="card card-info">
+        <div class="card-header">
+            <h2>What exactly is openNPL?</h2>
+        </div>
+        <div class="card-body">
+            <p>openNPL is a <i>web application</i> that works together with a tailored data schema to provide easy
+                access to NPL data adhering to the regulatory recommendation. Running the application creates a <i>server</i>that can then be accessed via any regular browser. For easy installation and testing the current release uses an sqlite database instead of a production database.
+            </p>
 
-    <table class="grp-table grp-full-width" style="margin-top:20px">
-        <thead>
-        <tr>
-            <th>User Functionality</th>
-        </tr>
-        </thead>
+            <p>Once the platform is up and running a wealth of functionality is available. Just
+                as a sample:</p>
 
-        <tbody>
-        <tr class="grp-row-even">
-            <td>A user can log-in into the application with their credentials</td>
-        </tr>
-        <tr class="grp-row-odd">
-            <td>Inspect the available data sets (tables or relations) that capture the EBA Template recommendations</td>
-        </tr>
-        <tr class="grp-row-even">
-            <td>Insert, Update or Delete records (e.g. new counterparty or loan data)</td>
-        </tr>
-        <tr class="grp-row-odd">
-            <td>Consult the documentation as to the meaning and requirements of each data element</td>
-        </tr>
-        </tbody>
-    </table>
+            <table>
+                <thead>
+                <tr>
+                    <th>User Functionality</th>
+                </tr>
+                </thead>
 
-    <table class="grp-table grp-full-width" style="margin-top:20px">
-        <thead>
-        <tr>
-            <th>Administrator Functionality</th>
-        </tr>
-        </thead>
+                <tbody>
+                <tr>
+                    <td>A user can log-in into the application with their credentials</td>
+                </tr>
+                <tr>
+                    <td>Inspect the available data sets (tables or relations) that capture the EBA Template
+                        recommendations
+                    </td>
+                </tr>
+                <tr>
+                    <td>Insert, Update or Delete records (e.g. new counterparty or loan data)</td>
+                </tr>
+                <tr>
+                    <td>Consult the documentation as to the meaning and requirements of each data element</td>
+                </tr>
+                </tbody>
+            </table>
 
-        <tbody>
-        <tr class="grp-row-even">
-            <td>An administrator can create users and user groups and assign permissions</td>
-        </tr>
-        <tr class="grp-row-odd">
-            <td>Perform bulk insertion or deletion of data sets</td>
-        </tr>
-        </tbody>
-    </table>
+            <table>
+                <thead>
+                <tr>
+                    <th>Administrator Functionality</th>
+                </tr>
+                </thead>
 
-    <table class="grp-table grp-full-width" style="margin-top:20px">
-        <thead>
-        <tr>
-            <th>Developer Functionality</th>
-        </tr>
-        </thead>
+                <tbody>
+                <tr>
+                    <td>An administrator can create users and user groups and assign permissions</td>
+                </tr>
+                <tr>
+                    <td>Perform bulk insertion or deletion of data sets</td>
+                </tr>
+                </tbody>
+            </table>
 
-        <tbody>
-        <tr class="grp-row-even">
-            <td>openNPL is based on the well known and loved Python web framework Django</td>
-        </tr>
-        <tr class="grp-row-odd">
-            <td>Developers can customize and adapt the platform in unlimited ways</td>
-        </tr>
-        </tbody>
-    </table>
+            <table>
+                <thead>
+                <tr>
+                    <th>Developer Functionality</th>
+                </tr>
+                </thead>
 
-    <h2 style="margin-top:20px">Join the openNPL community</h2>
-    <p>
-        The project aims to be driven by community needs. We welcome code contributions and feature
-        requests via <a href="https://github.com/open-risk/openNPL">github</a>.
-    </p>
+                <tbody>
+                <tr>
+                    <td>openNPL is based on the well known and loved Python web framework Django</td>
+                </tr>
+                <tr>
+                    <td>Developers can customize and adapt the platform in unlimited ways</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
+    <div class="card card-info">
+        <div class="card-header">
+            <h2>Join the openNPL community</h2>
+        </div>
+        <div class="card-body">
+            <p>
+                The project aims to be driven by community needs. We welcome code contributions and feature
+                requests via <a href="https://github.com/open-risk/openNPL">GitHub</a>.
+            </p>
+        </div>
+    </div>
+    
 
 {% endblock %}

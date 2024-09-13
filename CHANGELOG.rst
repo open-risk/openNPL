@@ -2,7 +2,11 @@ ChangeLog
 ===========================
 PLEASE NOTE THIS IS ONLY A BETA RELEASE. THE OPENNPL API IS STILL UNSTABLE
 
-v0.6.3 (17-05-2025)
+v0.6.4 (20-06-2024)
+-------------------
+* Bugs: REST API for both NPL and SFLP templates
+
+v0.6.3 (17-05-2024)
 -------------------
 * Functionality: Update to 2023 SFLP Template
 

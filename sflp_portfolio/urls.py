@@ -20,11 +20,12 @@
 
 from django.urls import re_path
 
-from openNPL import sflp_views as api_views
+from . import views as api_views
 
 app_name = 'sflp_portfolio'
 
 urlpatterns = [
+    re_path(r'^', api_views.sflp_api_root, name='sflp_api_root'),
     re_path(r'^counterparties$',
             api_views.sflp_counterparty_api,
             name='sflp_counterparty_api'),
