@@ -1,5 +1,5 @@
 FROM python:3.10-slim
-LABEL version="0.6.1"
+LABEL version="0.6.4"
 LABEL author="Open Risk <www.openriskmanagement.com>"
 LABEL description="openNPL: Open Source Credit Portfolio Management"
 LABEL maintainer="info@openrisk.eu"
@@ -20,12 +20,19 @@ WORKDIR /opennpl
 COPY requirements.txt /opennpl/
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-COPY . /opennpl/
-RUN rm -f /opennpl/venv
-RUN rm -f /opennpl/db.sqlite3
-RUN rm -rf /opennpl/npl_portfolio/migrations/*
-RUN rm -rf /opennpl/sflp_portfolio/migrations/*
-RUN rm -rf /opennpl/start/migrations/*
+
+COPY locale/ /opennpl/locale/
+COPY openNPL/ /opennpl/openNPL/
+COPY start/ /opennpl/start/
+COPY common/ /opennpl/common/
+COPY templates/ /opennpl/templates/
+COPY sflp_portfolio/ /opennpl/sflp_portfolio/
+COPY npl_portfolio/ /opennpl/npl_portfolio/
+COPY static/ /opennpl/static/
+
+COPY manage.py /opennpl/
+COPY createadmin.py /opennpl/
+
 RUN python /opennpl/manage.py makemigrations start
 RUN python /opennpl/manage.py makemigrations npl_portfolio
 RUN python /opennpl/manage.py makemigrations sflp_portfolio

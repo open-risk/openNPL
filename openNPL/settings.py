@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.humanize',
     'django.contrib.staticfiles',
+    'django_json_widget',
+    'django_extensions',
     'import_export',
     'rest_framework',
     'django_htmx',
@@ -51,13 +53,11 @@ INSTALLED_APPS = [
     'treebeard',
     'django_countries',
     'leaflet',
-    'prettyjson',
     'markdownfield',
     'start',
     'npl_portfolio',
     'sflp_portfolio',
     'debug_toolbar',
-    'django_extensions',
     'behave_django'
 ]
 
