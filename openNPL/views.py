@@ -32,7 +32,7 @@ schema_view = get_schema_view(
         default_version='v1',
         description="openNPL is an open source platform for the management of credit risk and non-performing loans. It implements detailed European Banking Authority loan templates for NPL data and US Agency Single Family Loan Performance Data",
         terms_of_service="https://www.openriskmanagement.com/",
-        contact=openapi.Contact(email="info@openrisk.eu"),
+        contact=openapi.Contact(email="info@openriskmanagement.com"),
         license=openapi.License(name="MIT License"),
     ),
     public=True,

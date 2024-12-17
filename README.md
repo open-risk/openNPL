@@ -115,7 +115,7 @@ We welcome your feedback and support, raise a GitHub issue if you want to report
 
 - [Contribute on Issues](<https://github.com/open-risk/openNPL/issues>)
 - Chat with the community at the [Open Risk Commons](<https://www.openriskcommons.org/c/open-source/opennpl/13>)
-- For customisations, support or any other collaboration, email us as <info@openrisk.eu>
+- For customisations, support or any other collaboration, email us as <info@openriskmanagement.com>
 - Need commercial support for projects using openNPL? [Contact](https://www.openriskmanagement.com/contact/)
 
 ## Credits

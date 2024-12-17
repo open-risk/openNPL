@@ -2,7 +2,7 @@ FROM python:3.10-slim
 LABEL version="0.6.4"
 LABEL author="Open Risk <www.openriskmanagement.com>"
 LABEL description="openNPL: Open Source Credit Portfolio Management"
-LABEL maintainer="info@openrisk.eu"
+LABEL maintainer="info@openriskmanagement.com"
 EXPOSE 8080
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1

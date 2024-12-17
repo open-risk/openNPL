@@ -12,7 +12,7 @@ This isn’t an exhaustive list of things that you can’t do. Rather, take it i
 
 This code of conduct applies to all spaces managed by the openNPL project. This includes mailing lists, the issue tracker, any other forums created by the project team which the community uses for communication. In addition, violations of this code outside these spaces may affect a person's ability to participate within them.
 
-If you believe someone is violating the code of conduct, we ask that you report it by emailing info@openrisk.eu. 
+If you believe someone is violating the code of conduct, we ask that you report it by emailing info@openriskmanagement.com.
 
 Be friendly and patient.
 

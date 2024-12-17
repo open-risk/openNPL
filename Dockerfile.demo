@@ -1,6 +1,6 @@
 FROM python:3.7-slim
 MAINTAINER Open Risk <www.openriskmanagement.com>
-LABEL maintainer="info@openrisk.eu"
+LABEL maintainer="info@openriskmanagement.com"
 EXPOSE 8080
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
