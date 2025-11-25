@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # Configuration file for the Sphinx documentation builder.
 #
 # This file does only contain a selection of the most common options. For a
@@ -14,6 +12,7 @@
 #
 import sys
 import os
+
 sys.path.insert(0, os.path.abspath('../../'))
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'openNPL.settings')
@@ -22,21 +21,18 @@ import django
 
 django.setup()
 
-
-
-__version__ = '0.6'
+__version__ = '0.7'
 
 # -- Project information -----------------------------------------------------
 
 project = 'openNPL'
-copyright = '2020 - 2024, Open Risk'
+copyright = '2020 - 2025, Open Risk'
 author = 'Open Risk'
 
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
 release = __version__
-
 
 # -- General configuration ---------------------------------------------------
 
@@ -55,6 +51,7 @@ extensions = [
     'sphinx.ext.autosectionlabel',
     'sphinx.ext.githubpages',
     'sphinx.ext.todo',
+    'sphinx_toolbox.github',
     'sphinx.ext.napoleon',
 ]
 #
@@ -96,7 +93,6 @@ exclude_patterns = []
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
-
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -115,7 +111,7 @@ html_theme_options = {
     'canonical_url': '',
     'analytics_id': '',
     'logo_only': False,
-    'display_version': True,
+    # 'display_version': True,
     'prev_next_buttons_location': 'bottom',
     'style_external_links': False,
     # Toc options
@@ -125,7 +121,6 @@ html_theme_options = {
     'includehidden': True,
     'titles_only': False
 }
-
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -147,7 +142,6 @@ html_static_path = ['_static']
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'openNPLdoc'
-
 
 # -- Options for LaTeX output ------------------------------------------------
 
@@ -177,7 +171,6 @@ latex_documents = [
      'Open Risk', 'manual'),
 ]
 
-
 # -- Options for manual page output ------------------------------------------
 
 # One entry per manual page. List of tuples
@@ -186,7 +179,6 @@ man_pages = [
     (master_doc, 'opennpl', 'openNPL Documentation',
      [author], 1)
 ]
-
 
 # -- Options for Texinfo output ----------------------------------------------
 
@@ -199,7 +191,6 @@ texinfo_documents = [
      'Miscellaneous'),
 ]
 
-
 # -- Extension configuration -------------------------------------------------
 
 extensions.append('sphinx.ext.todo')
@@ -207,3 +198,6 @@ todo_include_todos = True
 
 # extensions.append('sphinx_automodapi.automodapi')
 # numpydoc_show_class_members = False
+
+github_username = 'open-risk'
+github_repository = 'openNPL'

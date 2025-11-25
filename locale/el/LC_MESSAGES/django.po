@@ -1,9 +1,23 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Copyright (c) 2020 - 2025 Open Risk (https://www.openriskmanagement.com)
 #
-#, fuzzy
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -18,70 +32,80 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: dashboard.py:25
-msgid "Group: Administration & Applications"
-msgstr ""
-
-#: dashboard.py:30
-msgid "Administration"
-msgstr ""
-
-#: dashboard.py:36
-msgid "Applications"
-msgstr ""
-
-#: dashboard.py:46
-msgid "AppList: Applications"
-msgstr ""
-
-#: dashboard.py:55
-msgid "ModelList: Administration"
-msgstr ""
-
-#: dashboard.py:63
-msgid "Media Management"
-msgstr ""
-
-#: dashboard.py:67
-msgid "FileBrowser"
-msgstr ""
-
-#: dashboard.py:76
-msgid "Support"
-msgstr ""
-
-#: dashboard.py:80
-msgid "Django Documentation"
-msgstr ""
-
-#: dashboard.py:85
-msgid "Grappelli Documentation"
-msgstr ""
-
-#: dashboard.py:90
-msgid "Grappelli Google-Code"
-msgstr ""
-
-#: dashboard.py:99
-msgid "Latest Django News"
-msgstr ""
-
-#: dashboard.py:107
-msgid "Recent actions"
-msgstr ""
-
-#: openNPL/settings.py:129
 msgid "Dutch"
-msgstr ""
+msgstr "Ολλανδικά"
 
-#: openNPL/settings.py:130
 msgid "English"
-msgstr ""
+msgstr "Αγγλικά"
 
-#: openNPL/settings.py:131
 msgid "Spanish"
-msgstr ""
+msgstr "Ισπανικά"
 
-#: openNPL/settings.py:132
 msgid "Greek"
-msgstr ""
+msgstr "Ελληνικά"
+
+msgid "Loan"
+msgstr "Δάνειο"
+
+msgid "Loans"
+msgstr "Δάνεια"
+
+msgid "Portfolio"
+msgstr "Χαρτοφυλάκιο"
+
+msgid "Reference"
+msgstr "Παραπομπές"
+
+msgid "Reporting"
+msgstr "Αναφορές"
+
+msgid "Risk Analysis"
+msgstr "Ανάλυση Ρίσκου"
+
+msgid "Starting Page"
+msgstr "Σελίδα Εκκίνησης"
+
+msgid "Search"
+msgstr "Ψάξιμο"
+
+msgid "Account"
+msgstr "Λογαριασμός"
+
+msgid "Change password"
+msgstr "Άλλαξε Σύνθημα"
+
+msgid "Log out"
+msgstr "Αποσύνδεση"
+
+msgid "See Profile"
+msgstr "Δες το Προφίλ"
+
+msgid "Dashboard"
+msgstr "Επιφάνεια Εργασίας"
+
+msgid "Jazzmin version"
+msgstr "Eκδοση Jazmin"
+
+msgid "Copyright"
+msgstr "Πνευματικά Δικαιώματα"
+
+msgid "All rights reserved."
+msgstr "Με επιφύλαξη παντός δικαιώματος"
+
+msgid "UI Configuration"
+msgstr "Ρύθμιση παραμέτρων διεπαφής χρήστη"
+
+msgid "Copy this info your settings file to persist these UI changes"
+msgstr "Αντιγράψτε αυτές τις πληροφορίες στο αρχείο ρυθμίσεων για να διατηρήσετε αυτές τις αλλαγές στο περιβάλλον χρήστη"
+
+msgid "Close"
+msgstr "Κλείσιμο"
+
+msgid ""
+"openNPL is an open source platform that supports the holistic risk "
+"management of porfolios"
+msgstr "Το openNPL είναι μια πλατφόρμα ανοιχτού λογισμικού που υποστηρίζει"
+"την ολιστική διαχείριση ρίσκου χαρτοφυλακίων"
+
+msgid "Welcome to openNPL"
+msgstr "Καλώς ήρθατε στην πλατφόρμα openNPL"

@@ -1,4 +1,4 @@
-# Copyright (c) 2020 - 2024 Open Risk (https://www.openriskmanagement.com)
+# Copyright (c) 2020 - 2025 Open Risk (https://www.openriskmanagement.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,7 @@
 from django.db import models
 
 '''
-common abstract openNPL models
+common (abstract) openNPL models
 
 Entity
     PrivatePerson
@@ -43,7 +43,7 @@ Collateral
 
 class Portfolio(models.Model):
     """
-    The portfolio data object is useful to aggregate datasets belonging to the same actual credit portfolio. A portfolio may be optionally named to facilitate recognition and a longer description provides further details.
+    The portfolio data object aggregates datasets belonging to the same actual credit portfolio. A portfolio may be optionally named to facilitate recognition. A longer description provides further details.
 
     .. note:: The actual Portfolio data are stored in the various NPL models (with foreign key to Portfolio)
 

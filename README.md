@@ -17,6 +17,7 @@ The platform is in active development, parties interested in its further develop
 ![Landing](/docs/source/screenshots/landing.png)
 
 ## Motivation
+
 Non-Performing loans pose a serious and ongoing challenge that affects many economies. Developing tools and methodologies that reduce the burden and improve the ability to manage problem loans is thus an important objective. For more background and previous work and references see the [blog post and links therein](https://www.openriskmanagement.com/opennpl-open-source-npl-platform-first-release/).
 
 ## Summary of Structure and Functionality
@@ -36,6 +37,7 @@ Once the openNPL platform is up and running:
 ![Filter](/docs/source/screenshots/filter.png)
 
 ### Machine Oriented Functionality
+
 openNPL aims to be at the same time easy to integrate into automated (computer driven) workflows. For this reason it exposes a *REST API* that offers both overviews and granular access to individual loan records.
 
 ![API](/docs/source/API.png)
@@ -54,6 +56,7 @@ openNPL includes two broad categories of documentation:
 particular the relevant counterparty and loan data that are important for the management of NPL portfolios
 
 ## Code and User Documentation
+
 The technical / user documentation is included in this distribution and is hosted online at [readthedocs](http://opennpl.readthedocs.io) 
 
 ## Data Documentation
@@ -66,6 +69,7 @@ The domain knowledge and detailed data documentation is provided via the **Open 
 The Open Risk Manual articles further connect specific NPL knowledge bases to more general *credit portfolio* and *risk management* concepts, procedures and overall knowledge bases.
 
 # Installation 
+
 There are several options to install openNPL, check out the details below
 
 ## Manual Installation from Source 
@@ -73,14 +77,15 @@ Manual installation from the repository source files requires some familiarity w
 
 ### Prerequisites
 - openNPL requires a working Python 3 installation (including pip)
-- Python >= 3.10
-- Django >= 4.0
+- Python >= 3.14
+- Django >= 5.2
 - The precise python library dependencies are listed in the :doc:`requirements`.txt file.
 - Note: The current User Interface (UI) is desktop oriented and might not work properly in smaller mobile screens
 - openNPL may work with earlier versions of these packages but this has not been tested
-- A linux based system is recommended. Some tweaks are required for Windows but is in principle also possible to deploy there
+- A Linux based system is recommended. Some tweaks are required for Windows but is in principle also possible to deploy there
 
 ### Summary of Steps
+
 Conceptually the required steps are as follows:
 * Step 1. Clone the openNPL repository from GitHub
 * Step 2. Create a virtual environment
@@ -90,7 +95,8 @@ Conceptually the required steps are as follows:
 * Step 6. Load some dummy data
 * Step 7. Have fun exploring openNPL!
 
-In summary the required commands are as follows (more details in the documentation)
+In summary the required commands are as follows (more details in the documentation):
+
 ``` python
  git clone https://github.com/open-risk/openNPL
  virtualenv -p python3 venv

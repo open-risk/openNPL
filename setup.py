@@ -1,4 +1,4 @@
-# Copyright (c) 2020 - 2024 Open Risk (https://www.openriskmanagement.com)
+# Copyright (c) 2020 - 2025 Open Risk (https://www.openriskmanagement.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,7 @@ from codecs import open
 
 from setuptools import setup
 
-__version__ = '0.6.2'
+__version__ = '0.7.0'
 
 ver = __version__
 
@@ -54,7 +54,7 @@ setup(name='openNPL',
           'License :: OSI Approved :: Apache Software License',
           'Operating System :: OS Independent',
           'Programming Language :: Python :: 3 :: Only',
-          'Programming Language :: Python :: 3.10',
+          'Programming Language :: Python :: 3.14',
           'Topic :: Scientific/Engineering',
           'Topic :: Scientific/Engineering :: Information Analysis'
       ]

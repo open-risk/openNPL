@@ -20,6 +20,7 @@ django-debug-toolbar
 django-model-utils
 Sphinx
 sphinx-rtd-theme
+sphinx-toolbox
 behave-django
 tablib
 setuptools

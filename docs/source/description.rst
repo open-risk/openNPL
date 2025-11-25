@@ -98,7 +98,6 @@ EBA NPL Portfolio
 US Single Family Portfolio
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. TODO::
 
 Installation Options
 --------------------

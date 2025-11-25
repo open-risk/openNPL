@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.14-slim
 LABEL version="0.6.4"
 LABEL author="Open Risk <www.openriskmanagement.com>"
 LABEL description="openNPL: Open Source Credit Portfolio Management"

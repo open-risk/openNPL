@@ -1,4 +1,4 @@
-# Copyright (c) 2020 - 2024 Open Risk (https://www.openriskmanagement.com)
+# Copyright (c) 2020 - 2025 Open Risk (https://www.openriskmanagement.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -22,12 +22,11 @@
 from django.contrib import admin
 
 '''
-The 8 Relations (Tables) of the EBA Portfolio Template currently implemented
+The 8 Relations (Tables) of the EBA Portfolio Templates that are currently implemented
 
-Portfolio is used to group obligor data into portfolios
-Portfolio_Snapshot is used to group data into time snapshots
+The Portfolio table is used to group obligor data into portfolios. The Portfolio_Snapshot table is used to group data into time snapshots.
 
-.. note:: Lease, Swap and History Tables not implemented (TODO). Relation tables between entities implemented differently (not normalized)
+.. note:: Lease, Swap and History Tables not implemented :github:issue:`21`. Relation tables between entities implemented differently (not normalized)
 
 '''
 

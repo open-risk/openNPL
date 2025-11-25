@@ -1,4 +1,4 @@
-# Copyright (c) 2020 - 2024 Open Risk (https://www.openriskmanagement.com)
+# Copyright (c) 2020 - 2025 Open Risk (https://www.openriskmanagement.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -38,8 +38,6 @@ from sflp_portfolio.models.forbearance import Forbearance
 from sflp_portfolio.models.property_collateral import PropertyCollateral
 
 
-
-
 #
 # API ENDPOINTS
 #
@@ -58,7 +56,8 @@ def sflp_api_root(request, format=None):
                 {'sflp_loan': reverse('sflp_portfolio:sflp_loan_api', request=request, format=format)},
                 {'sflp_enforcement': reverse('sflp_portfolio:sflp_enforcement_api', request=request, format=format)},
                 {'sflp_forbearance': reverse('sflp_portfolio:sflp_forbearance_api', request=request, format=format)},
-                {'sflp_property_collateral': reverse('sflp_portfolio:sflp_property_collateral_api', request=request, format=format)},
+                {'sflp_property_collateral': reverse('sflp_portfolio:sflp_property_collateral_api', request=request,
+                                                     format=format)},
                 # {'sflp_repayment_schedule': reverse('sflp_portfolio:sflp_repayment_schedule_api', request=request, format=format)},
             ]}
     ]

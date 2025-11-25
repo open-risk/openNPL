@@ -1,4 +1,4 @@
-# Copyright (c) 2020 - 2024 Open Risk (https://www.openriskmanagement.com)
+# Copyright (c) 2020 - 2025 Open Risk (https://www.openriskmanagement.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -22,10 +22,10 @@ from django.db import models
 from django.urls import reverse
 
 '''
-The openNPL models implement the core relations (Tables) of the EBA Portfolio Template
+The NPL_Portfolio models implement the core relations (Tables) of the EBA Portfolio Template
 `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
 
-Each model is implemented in a separate file using the convention **TABLE_NAME.py** in the npl_portfolio directory. In addition there is a Portfolio model and a Portfolio_Snapshot model in this (models.py) file. Choice lists for categorical attributes are collected in separate fiels using the convention **TABLE_NAME_CHOICES.py**. 
+Each model is implemented in a separate file using the convention **TABLE_NAME.py** in the npl_portfolio directory. In addition there is a Portfolio model and a Portfolio_Snapshot model in this (models.py) file. Choice lists for categorical attributes are collected in separate fields using the convention **TABLE_NAME_CHOICES.py**. 
 
 .. TODO:: Missing are the following: the Lease Table and schedule tables (swap cashflows and repayments)
 

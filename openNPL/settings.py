@@ -1,4 +1,4 @@
-# Copyright (c) 2020 - 2024 Open Risk (https://www.openriskmanagement.com)
+# Copyright (c) 2020 - 2025 Open Risk (https://www.openriskmanagement.com)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '@e=)h@ikk@p6an)s-e_wpt57p6%h%g$*ra#*g+xg2xr+9xd9tg'
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '0.0.0.0', '127.0.0.1', 'www.equinoxpoint.org']
+ALLOWED_HOSTS = ['localhost', '0.0.0.0', '127.0.0.1']
 
 INSTALLED_APPS = [
     'jazzmin',
