@@ -43,8 +43,8 @@ from openNPL.views import schema_view, api_root
 
 
 urlpatterns = [
-                  path('admin/', admin.site.urls),
                   path('admin/doc/', include('django.contrib.admindocs.urls')),  #
+                  path('admin/', admin.site.urls),
                   path('', include('start.urls')),  # start URLS
                   path(r'api/', api_root, name='api_root'),  # Overall API root
                   # NPL Data URL's

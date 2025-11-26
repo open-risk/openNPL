@@ -13,10 +13,13 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-    <ul>
-        <li><a href="/admin">Home</a></li>
-        <li>FrontPage</li>
-    </ul>
+    <div class="breadcrumb">
+        <ul>
+            <li><a href="/admin">Home</a></li>
+            <li>FrontPage</li>
+        </ul>
+    </div>
+
 {% endblock %}
 
 
@@ -28,9 +31,8 @@
         </div>
         <div class="card-body">
             <p>
-                openNPL is an open source platform for the management of non-performing loans. It implements detailed European Banking Authority and US Fannie Mae (Data Dynamics) loan templates for NPL data. Click on <a href="/admin">Home</a>to get started!
+                <b>openNPL</b> is an open source platform for the management of non-performing loans. It implements both detailed European Banking Authority and US Fannie Mae (Data Dynamics) loan templates for NPL data. Click on <a href="/admin">Home</a> to get started!
             </p>
-
         </div>
     </div>
 
@@ -39,7 +41,8 @@
             <h3>The challenge of Non-Performing Loans</h3>
         </div>
         <div class="card-body">
-            <p>Non-Performing loans is a serious and ongoing issue that affects many economies. Developing tools and methodologies that will reduce the burden and improve the ability to manage problem loans is thus an important objective. For more background and previous work see the <a href="https://www.openriskmanagement.com/opennpl-open-source-npl-platform-first-release/">Open Risk Blog Post</a>.</p>
+            <p>Non-Performing loans is a serious and ongoing issue that affects many economies. Developing open source tools and methodologies that will reduce the burden and improve the ability to manage problem loans is thus an important objective. For more background and previous work see the <a href="https://www.openriskmanagement.com/opennpl-open-source-npl-platform-first-release/">Open
+                    Risk Blog Post</a>.</p>
         </div>
     </div>
 
@@ -65,18 +68,18 @@
 
                 <tbody>
                 <tr>
-                    <td>A user can log-in into the application with their credentials</td>
+                    <td>A user can log-in into the application with their credentials.</td>
                 </tr>
                 <tr>
                     <td>Inspect the available data sets (tables or relations) that capture the EBA Template
-                        recommendations
+                        recommendations.
                     </td>
                 </tr>
                 <tr>
-                    <td>Insert, Update or Delete records (e.g. new counterparty or loan data)</td>
+                    <td>Insert, Update or Delete records (e.g. new counterparty or loan data).</td>
                 </tr>
                 <tr>
-                    <td>Consult the documentation as to the meaning and requirements of each data element</td>
+                    <td>Consult the documentation as to the meaning and requirements of each data element.</td>
                 </tr>
                 </tbody>
             </table>
@@ -90,10 +93,10 @@
 
                 <tbody>
                 <tr>
-                    <td>An administrator can create users and user groups and assign permissions</td>
+                    <td>An administrator can create users and user groups and assign permissions.</td>
                 </tr>
                 <tr>
-                    <td>Perform bulk insertion or deletion of data sets</td>
+                    <td>Perform bulk insertion or deletion of data sets.</td>
                 </tr>
                 </tbody>
             </table>
@@ -107,10 +110,10 @@
 
                 <tbody>
                 <tr>
-                    <td>openNPL is based on the well known and loved Python web framework Django</td>
+                    <td>openNPL is based on the well known and loved Python web framework Django.</td>
                 </tr>
                 <tr>
-                    <td>Developers can customize and adapt the platform in unlimited ways</td>
+                    <td>Developers can customize and adapt the platform in unlimited ways.</td>
                 </tr>
                 </tbody>
             </table>
@@ -128,6 +131,6 @@
             </p>
         </div>
     </div>
-    
+
 
 {% endblock %}

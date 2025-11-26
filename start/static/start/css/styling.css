@@ -12,3 +12,35 @@ div#grp-branding {
 #grp-navigation {
     background-image: linear-gradient(#7d7d7d, #222);
 }
+
+.breadcrumb {
+    padding: 0.5rem;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+.breadcrumb ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.breadcrumb li {
+    margin-right: 0.5rem;
+}
+
+.breadcrumb li:not(:last-child)::after {
+    content: ">";
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}

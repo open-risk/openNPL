@@ -2,7 +2,7 @@ ChangeLog
 ===========================
 PLEASE NOTE THIS IS ONLY A BETA RELEASE. THE OPENNPL API IS STILL UNSTABLE
 
-v0.7.0 (09-06-2025)
+v0.7.0 (XXX)
 -------------------
 * Avro Schemas
 
