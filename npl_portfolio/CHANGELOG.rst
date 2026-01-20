@@ -7,5 +7,5 @@ v0.6.1
 
 
 v0.6.0 (Starting App ChangeLog)
-------------------
+----------------------------------------
 * First commit of changelog / readme
