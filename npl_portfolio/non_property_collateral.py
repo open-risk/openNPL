@@ -165,7 +165,7 @@ class NonPropertyCollateral(models.Model):
     last_change_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.protection_identifier
+        return str(self.protection_identifier)
 
     def get_absolute_url(self):
         return reverse('npl_portfolio:non_property_collateral_edit', kwargs={'pk': self.pk})

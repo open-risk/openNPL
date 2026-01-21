@@ -52,6 +52,7 @@ urlpatterns = [
                   # SFLP Data URL's
                   path(r'api/sflp_data/',
                        include(('sflp_portfolio.urls', 'sflp_portfolio'), namespace='sflp_portfolio')),
+                  # API Documentation
                   re_path(r'^api/swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0),
                           name='schema-json'),
                   re_path(r'^api/swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

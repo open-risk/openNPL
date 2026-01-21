@@ -57,7 +57,7 @@ particular the relevant counterparty and loan data that are important for the ma
 
 ## Code and User Documentation
 
-The technical / user documentation is included in this distribution and is hosted online at [readthedocs](http://opennpl.readthedocs.io) 
+The technical / user documentation is included in this distribution and is hosted online at [readthedocs](https://opennpl.readthedocs.io/en/latest/) 
 
 ## Data Documentation
 

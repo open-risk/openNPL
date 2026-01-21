@@ -26,7 +26,7 @@ __version__ = '0.7'
 # -- Project information -----------------------------------------------------
 
 project = 'openNPL'
-copyright = '2020 - 2025, Open Risk'
+copyright = '2020 - 2026, Open Risk'
 author = 'Open Risk'
 
 # The short X.Y version

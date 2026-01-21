@@ -65,8 +65,8 @@ Dependencies / Requirements
 .. note:: A Linux based system is recommended but with minor tweaks it is in principle also possible to deploy in Windows systems
 
 - openNPL requires a working Python 3 installation (including pip)
-- Python >= 3.10
-- Django >= 4.0
+- Python >= 3.14
+- Django >= 5.2
 - The precise python library dependencies are listed in the :doc:`requirements`.txt file.
 - openNPL may work with earlier versions of these packages but this has not been tested
 - A linux based system is recommended. Some tweaks are required for Windows but is in principle also possible to deploy there
@@ -100,7 +100,8 @@ Step 4. Make the required django migrations. The project is setup to use sqlite3
 .. code:: bash
 
     cd openNPL
-    python manage.py makemigrations
+    python manage.py makemigrations npl_portfolio
+    python manage.py makemigrations sflp_portfolio
     python manage.py migrate
 
 Step 5. Create a superuser. Suggestion: Use admin/admin as login/password as a reminder that this instance of openNPL should NOT be used for anything remotely sensitive!
@@ -127,7 +128,7 @@ Step 8. Run the server. The default port is 8000 but if (by any chance) this por
 
     python3 manage.py runserver
 
-Step 9. Login with your browser. Finally in your favorite browser (e.g. Firefox from Mozilla), enter the url ``http://localhost:8001`` and login with admin/admin credentials.
+Step 9. Login with your browser. Finally in your favorite browser (e.g. Firefox from Mozilla), enter the url ``http://localhost:8000`` and login with admin/admin credentials.
 
 .. note:: 8000 is the default port, if that is already in use, you can select an alternative one as follows:
 

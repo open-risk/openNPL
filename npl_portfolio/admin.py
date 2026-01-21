@@ -111,6 +111,7 @@ class NonPropertyCollateralAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
     search_fields = ['protection_identifier']
+
     list_display = ('protection_identifier', 'loan_identifier', 'collateral_type')
 
     list_filter = ('collateral_type',)
