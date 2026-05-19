@@ -9,7 +9,8 @@ The source code is available in the Open Risk Repository `Link <https://github.c
 * Author: `Open Risk <http://www.openriskmanagement.com>`_
 * License: MIT
 * Online Code Documentation: `Read The Docs <https://opennpl.readthedocs.io/en/latest/>`_
-* NPL Data Documentation: `Open Risk Manual Loan Data <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
+* EBA NPL Data Documentation: `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_Template>`_
+* Fannie Mae SFLP Documentation: `SFLP Templates <https://www.openriskmanual.org/wiki/FM_SFLP_Template>`_
 * Development Website: `Github <https://github.com/open-risk/openNPL>`_
 * Project Discussion: `Open Risk Commons <https://www.openriskcommons.org/c/open-source/opennpl/13>`_
 * Docker Image: `Docker <https://hub.docker.com/repository/docker/openrisk/opennpl_web>`_
@@ -18,7 +19,7 @@ The source code is available in the Open Risk Repository `Link <https://github.c
 
 Functionality
 -------------
-The openNPL platform may be useful to financial industry users (portfolio managers, business analysts), data engineers and/or risk model developers. The loan data templates currently covered are in particular relevant for EU countries and the US.
+The openNPL platform may be useful to financial industry users (portfolio managers, risk managers, business analysts), data engineers and/or risk model developers. The loan data templates currently covered are in particular relevant for EU countries and the US.
 
 Users can use openNPL to:
 
@@ -35,9 +36,9 @@ Architecture
 The current *architecture* of openNPL is summarized as follows:
 
 * openNPL is built on top of the **Python Django framework**
-* The non-performing loan template recommendations of the EBA are implemented as distinct **models** in the database
-* A similar but distinct model structure is implemented for US Agency mortgage data
-* The backend database is currently **sqlite3**
+* The non-performing loan template recommendations of the EBA are implemented as distinct **models** in the database (npl_portfolio)
+* The Fannie-Mae SFLP template are implemented as distinct **models** in the database (sflp_portfolio)
+* The backend database is currently either **sqlite3** or **postgres**
 * Additional models are introduced to bind the data together in relations (e.g. portfolio snapshot)
 * The user interface uses built-in Django forms as those are rendered by the **Jazzmin** skin
 
@@ -95,9 +96,13 @@ EBA NPL Portfolio
 - **8 NPL Tables** (Implementing the core European Banking Authority NPL template specification)
 - **User** (Inheriting from Django User model)
 
-US Single Family Portfolio
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+US Single Family Mortgage Portfolio
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+- **Portfolio** (Segments the loan level data into distinct portfolios)
+- **Portfolio_Snapshot** (Segments the loan level data into temporal snapshots / cutoff dates)
+- **6 SFLP Tables** (Implementing the core European Banking Authority NPL template specification)
+- **User** (Inheriting from Django User model)
 
 Installation Options
 --------------------

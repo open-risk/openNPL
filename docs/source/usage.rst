@@ -2,10 +2,10 @@
 Usage
 ==============================
 
-The openNPL platform offers a lot of functionality. Here we break down some of the main workflows for those just getting started with the platform. More will detailed tutorials will follow as the platform develops!
+The openNPL platform offers a lot of functionality. Here we break down some of the main workflows for those just getting started with the platform. More detailed tutorials will follow as the platform develops!
 
 
-.. seealso:: For more in-depth studies on using python for credit portfolio management check-out: `Open Risk Academy <https://www.openriskacademy.com/login/index.php>`_. For Non-performing loan data domain knowledge check out the relevant entries at the: `Open Risk Manual <https://www.openriskmanual.org/wiki/Category:NPL>`_
+.. seealso:: For more in-depth studies on using Python for credit portfolio management check-out: `Open Risk Academy <https://www.openriskacademy.com/login/index.php>`_. For Non-performing loan data domain knowledge check out the relevant entries at the: `Open Risk Manual <https://www.openriskmanual.org/wiki/Category:NPL>`_
 
 
 The landing page
@@ -96,5 +96,4 @@ Click on the add data button on the upper right side of the page. You should see
 
 .. image:: ./screenshots/adding.png
 
-Depending on the nature of the field you can either enter text, numbers or select entries from drop-down
-menus. Whenever there is doubt, the documentation link is as before one click away!
+Depending on the nature of the field you can either enter text, numbers or select entries from drop-down menus. Whenever there is doubt, the documentation link is as before one click away!

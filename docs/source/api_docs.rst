@@ -2,7 +2,9 @@
 REST API Documentation
 ============================
 
-This page documents the current views implementing the REST endpoints of the openNPL server. The overall structure is as follows:
+This page documents the current views implementing the REST endpoints of the openNPL server.
+
+The overall structure is as follows:
 
 * api_root (overall API root)
 * npl_api_root (npl data API root)

@@ -11,7 +11,10 @@ openNPL Documentation
 
 **openNPL** is a Python / Django powered platform for working with detailed (*loan level*) data with a particular emphasis on capturing *non-performing loan* information.
 
-openNPL implements closely 1) the recommended European Banking Authority templates for such data, contributing towards the standardization and simplification of exchanging NPL portfolio information, 2) US Agency templates for mortgage data
+openNPL implements closely
+
+- the recommended European Banking Authority templates for such data, contributing towards the standardization and simplification of exchanging NPL portfolio information
+- US Agency templates for mortgage data
 
 
 * Author: `Open Risk <http://www.openriskmanagement.com>`_

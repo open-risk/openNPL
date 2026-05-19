@@ -4,7 +4,7 @@ Requirements
 
 List of the openNPL Python package requirements.
 
-At this point the main dependencies are related to Django (as frontend to the NPL database), sphinx (for documentation) and the Python numerical stack (numpy, pandas, scipy) for quantitative analysis.
+The main dependencies are related to Django (as frontend to the NPL/SFLP databases), Sphinx (for documentation) and the Python numerical stack (Numpy, Pandas, Scipy) for quantitative analysis.
 
 ::
 

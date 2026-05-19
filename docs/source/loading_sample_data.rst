@@ -2,7 +2,7 @@
 Loading Sample Data
 ==============================
 
-A new openNPL instance will have no data. To get a feel for the platform it is advisable to load some of the datasets included in the distribution. Here is how to do this for a local installation from sources and docker respectively:
+A new openNPL instance will have no data. To get a feel for the platform it is advisable to load some of the datasets included in the distribution. Here is how to do this for a local installation from sources and Docker respectively:
 
 
 Loading EBA NPL Data into local instance
@@ -24,7 +24,7 @@ This will load a basic dummy dataset. At present this script is very basic.
 
 Loading Data into a Docker instance
 ------------------------------------
-In a docker based installation simply execute the above inside your container. For example:
+In a Docker based installation simply execute the above inside your container. For example:
 
 .. code:: bash
 

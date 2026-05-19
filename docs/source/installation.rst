@@ -2,23 +2,23 @@
 Installation
 ==============================
 
-You can install and use the openNPL package in any system that supports *python* **or** *docker*
+You can install and use the openNPL package in any system that supports *Python* **or** *Docker*
 
 Installation via Docker
 -----------------------
-Installation via docker is recommended as it provides a streamlined and fast setup of an openNPL instance. If you do not want to use docker scroll further down for :ref:`Manual installation from sources`
+Installation via Docker is recommended as it provides a streamlined and fast setup of an openNPL instance. If you do not want to use Docker scroll further down for :ref:`Manual installation from sources`
 
 Install Docker
 ~~~~~~~~~~~~~~
 
-.. note:: A working docker installation is required! Docker is available for many operating systems and platforms (Windows, MacOS, Linux, running on Intel/AMD or ARM chipsets among others). Follow the installation instructions `here <https://docs.docker.com/engine/install/>`_.
+.. note:: A working Docker installation is required! Docker is available for many operating systems and platforms (Windows, MacOS, Linux, running on Intel/AMD or ARM chipsets among others). Follow the installation instructions `here <https://docs.Docker.com/engine/install/>`_.
 
-Once the installation is complete, make sure the docker service is running by testing that you can run the docker *'hello-world'* application.
+Once the installation is complete, make sure the Docker service is running by testing that you can run the Docker *'hello-world'* application.
 
 .. code:: bash
 
-    sudo service docker start
-    sudo docker run hello-world
+    sudo service Docker start
+    sudo Docker run hello-world
 
 Now we are ready for the next step. You can either pull an image from Docker Hub or build a local image:
 
@@ -27,30 +27,30 @@ Pull the openNPL image from Docker Hub
 
 You can pull and run the latest image from Docker Hub (This method is recommended if you do not want to mess at all with the source distribution).
 
-.. note:: We are also providing images also for the ARM/v7 architecture (Raspberry Pi). Check the root of our docker hub for what is `currently available <https://hub.docker.com/u/openrisk>`_
+.. note:: We are also providing images also for the ARM/v7 architecture (Raspberry Pi). Check the root of our Docker hub for what is `currently available <https://hub.Docker.com/u/openrisk>`_
 
-Start by issuing a docker pull command:
+Start by issuing a Docker pull command:
 
 .. code:: bash
 
-    docker pull openrisk/opennpl_web:latest
-    docker run -p 8001:8080 openrisk/opennpl_web:latest
+    Docker pull openrisk/opennpl_web:latest
+    Docker run -p 8001:8080 openrisk/opennpl_web:latest
 
 If all went well you have now a running instance of openNPL in your local machine. Access it by pointing your browser to ``http://localhost:8001`` and login with admin/admin credentials.
 
 The API endpoints are accessible at ``http://localhost:8001/api``
 
-.. note:: If you want to work with a different image check what is available at our `docker hub list <https://hub.docker.com/repository/docker/openrisk/opennpl_web>`_
+.. note:: If you want to work with a different image check what is available at our `Docker hub list <https://hub.Docker.com/repository/Docker/openrisk/opennpl_web>`_
 
-Building a local docker image
+Building a local Docker image
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Alternatively you can build your own *local* docker image. After you fetch the distribution from the `github repository <https://github.com/open-risk/openNPL>`_ (as per manual installation instructions below), in the root directory of the distribution issue:
+Alternatively you can build your own *local* Docker image. After you fetch the distribution from the `github repository <https://github.com/open-risk/openNPL>`_ (as per manual installation instructions below), in the root directory of the distribution issue:
 
 .. code:: bash
 
     cd openNPL
-    docker build -t opennpl_web:latest .
-    docker run -p 8001:8080 opennpl_web:latest
+    Docker build -t opennpl_web:latest .
+    Docker run -p 8001:8080 opennpl_web:latest
 
 Again, access the running instance of openNPL by pointing your browser to ``http://localhost:8001`` and login with the default admin/admin credentials
 
