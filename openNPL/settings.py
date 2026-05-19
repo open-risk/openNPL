@@ -110,10 +110,10 @@ TEMPLATE_LOADERS = (
 WSGI_APPLICATION = 'openNPL.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
     # 'default': {
     #     'ENGINE': 'django.contrib.gis.db.backends.postgis',
     #     'NAME': 'opennpl',
@@ -122,6 +122,14 @@ DATABASES = {
     #     'HOST': 'localhost',
     #     'PORT': '5433',
     # }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'opennpl',  # Replace with your database name
+        'USER': 'opennpluser',  # Replace with your database username
+        'PASSWORD': 'opennpluser',  # Replace with your database password
+        'HOST': 'localhost',  # Database host
+        'PORT': '5432',  # Default PostgreSQL port
+    }
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
