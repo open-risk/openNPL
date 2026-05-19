@@ -46,6 +46,7 @@ urlpatterns = [
                   path('admin/doc/', include('django.contrib.admindocs.urls')),  #
                   path('admin/', admin.site.urls),
                   path('', include('start.urls')),  # start URLS
+                  path('markdownfield/', include('markdownfield.urls')),
                   path(r'api/', api_root, name='api_root'),  # Overall API root
                   # NPL Data URL's
                   path(r'api/npl_data/', include(('npl_portfolio.urls', 'npl_portfolio'), namespace='npl_portfolio')),

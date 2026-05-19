@@ -6,7 +6,7 @@ services:
     working_dir: /opennpl
     command: python manage.py runserver 0.0.0.0:8080
     ports:
-      - 8080:8080
+      - "8080:8080"
     env_file:
       - ./.env.dev
   postgres:
@@ -14,6 +14,6 @@ services:
     working_dir: /opennpl
     command: python manage.py runserver 0.0.0.0:8081
     ports:
-      - 8081:8081
+      - "8081:8081"
     env_file:
       - ./.env.dev

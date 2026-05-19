@@ -112,7 +112,7 @@ class SFLP_LoanSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Loan
-        fields = ('id', 'contract_identifier', 'link')
+        fields = ('id', 'loan_identifier', 'link')
 
     def get_link(self, obj):
         link = ROOT_VIEW + "/api/SFLP_data/loans/" + str(obj.pk)
@@ -133,7 +133,7 @@ class SFLP_PropertyCollateralSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PropertyCollateral
-        fields = ('id', 'protection_identifier', 'link')
+        fields = ('id', 'loan_identifier', 'link')
 
     def get_link(self, obj):
         link = ROOT_VIEW + "/api/SFLP_data/property_collateral/" + str(obj.pk)

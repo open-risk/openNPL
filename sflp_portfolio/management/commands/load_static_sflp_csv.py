@@ -80,7 +80,7 @@ class Command(BaseCommand):
 
     loan_dict = {}
     for index, entry in loan_data.iterrows():
-        if (i < LOAN_COUNT):
+        if i < LOAN_COUNT:
             loan = Loan.objects.create(
                 id=i,
                 loan_identifier=entry[0],

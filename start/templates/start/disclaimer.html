@@ -13,7 +13,7 @@
 
 {% block extrastyle %}
     {{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% static 'policy/css/policy.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'start/css/policy.css' %}"/>
 {% endblock %}
 
 {% block messages %}
@@ -24,7 +24,6 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-    {% include "policy/root_breadcrumb.html" %}
 {% endblock %}
 
 
@@ -63,7 +62,7 @@
             </div>
             <div class="col-sm-3">
                 <h3><i class="fa fa-hand-o-right"></i> Getting Started</h3>
-                {% include "policy/starter_links.html" %}
+                {% include "start/concepts.html" %}
             </div>
         </div>
     </div>

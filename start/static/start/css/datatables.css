@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
  * This combined file was created by the DataTables downloader builder:
  *   https://datatables.net/download
@@ -10,7 +11,6 @@
  *   DataTables 1.11.5, Responsive 2.2.9
  */
 
-@charset "UTF-8";
 table.dataTable th.dt-left,
 table.dataTable td.dt-left {
   text-align: left;
@@ -118,7 +118,6 @@ table.dataTable {
 }
 table.dataTable td,
 table.dataTable th {
-  -webkit-box-sizing: content-box;
   box-sizing: content-box;
 }
 table.dataTable td.dataTables_empty,
@@ -460,7 +459,6 @@ div.dtr-modal div.dtr-modal-display {
   overflow: auto;
   margin: auto;
   z-index: 102;
-  overflow: auto;
   background-color: #f5f5f7;
   border: 1px solid black;
   border-radius: 0.5em;

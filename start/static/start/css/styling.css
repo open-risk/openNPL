@@ -3,10 +3,7 @@ h1#grp-admin-title {
 }
 
 div#grp-branding {
-    margin-top: 6px;
-    margin-right: 10px;
-    margin-bottom: 0px;
-    margin-left: -10px;
+    margin: 6px 10px 0 -10px;
 }
 
 #grp-navigation {
