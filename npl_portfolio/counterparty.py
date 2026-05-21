@@ -334,10 +334,11 @@ class Counterparty(models.Model):
     last_change_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.counterparty_identifier
+         return self.counterparty_identifier
 
-    def get_absolute_url(self):
-        return reverse('npl_portfolio:Counterparty_edit', kwargs={'pk': self.pk})
+
+    # def get_absolute_url(self):
+    #     return reverse('npl_portfolio:Counterparty_edit', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = "Counterparty"

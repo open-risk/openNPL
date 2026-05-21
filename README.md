@@ -57,9 +57,10 @@ particular the relevant counterparty and loan data that are important for the ma
 
 ## Code and User Documentation
 
-The technical / user documentation is included in this distribution and is hosted online at [readthedocs](https://opennpl.readthedocs.io/en/latest/) 
+* Technical documentation is included in this distribution and is hosted online at [readthedocs](https://opennpl.readthedocs.io/en/latest/)
+* User documentation is available [here](https://www.openriskmanagement.com/documentation/opennpl/)
 
-## Data Documentation
+## Domain Knowledge and Data Schemas
 
 The domain knowledge and detailed data documentation is provided via the **Open Risk Manual**. The following links are good starting points:
 

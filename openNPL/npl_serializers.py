@@ -28,7 +28,7 @@ from openNPL.settings import ROOT_VIEW
 
 
 #
-#  NPL TEMPLATE ENDPOINTS
+#  NPL TEMPLATE SERIALIZERS
 #
 
 class NPL_ExternalCollectionSerializer(serializers.ModelSerializer):
@@ -48,7 +48,7 @@ class NPL_ExternalCollectionSerializer(serializers.ModelSerializer):
 
 class NPL_ExternalCollectionDetailSerializer(serializers.ModelSerializer):
     """
-    Serialize NPL ExternalCollection Data
+    Serialize NPL ExternalCollection Data (Detail)
     """
 
     class Meta:
@@ -131,21 +131,6 @@ class NPL_EnforcementDetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class NPL_CounterpartyGroupSerializer(serializers.ModelSerializer):
-    """
-    Serialize NPL Counterparty Group Data (List)
-    """
-    link = serializers.SerializerMethodField()
-
-    class Meta:
-        model = CounterpartyGroup
-        fields = ('id', 'link')
-
-    def get_link(self, obj):
-        link = ROOT_VIEW + "/api/npl_data/counterparty_groups/" + str(obj.pk)
-        return link
-
-
 class NPL_CounterpartyGroupDetailSerializer(serializers.ModelSerializer):
     """
     Serialize NPL CounterpartyGroups Data (Detail)
@@ -156,15 +141,30 @@ class NPL_CounterpartyGroupDetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class NPL_CounterpartyGroupSerializer(serializers.ModelSerializer):
+    """
+    Serialize NPL Counterparty Group Data (List)
+    """
+    link = serializers.SerializerMethodField()
+
+    class Meta:
+        model = CounterpartyGroup
+        fields = ['id', 'link']
+
+    def get_link(self, obj):
+        link = ROOT_VIEW + "/api/npl_data/counterparty_groups/" + str(obj.pk)
+        return link
+
+
 class NPL_CounterpartySerializer(serializers.ModelSerializer):
     """
-    Serialize NPL Counterparty Data
+    Serialize NPL Counterparty Data (List)
     """
     link = serializers.SerializerMethodField()
 
     class Meta:
         model = Counterparty
-        fields = ('id', 'counterparty_identifier', 'link')
+        fields = ['id', 'counterparty_identifier', 'link']
 
     def get_link(self, obj):
         link = ROOT_VIEW + "/api/npl_data/counterparties/" + str(obj.pk)
@@ -172,6 +172,10 @@ class NPL_CounterpartySerializer(serializers.ModelSerializer):
 
 
 class NPL_CounterpartyDetailSerializer(serializers.ModelSerializer):
+    """
+    Serialize NPL Counterparty Data (Detail)
+    """
+
     class Meta:
         model = Counterparty
         fields = '__all__'
@@ -179,7 +183,7 @@ class NPL_CounterpartyDetailSerializer(serializers.ModelSerializer):
 
 class NPL_LoanSerializer(serializers.ModelSerializer):
     """
-    Serialize NPL Loan Data
+    Serialize NPL Loan Data (List)
     """
     link = serializers.SerializerMethodField()
 
@@ -193,6 +197,10 @@ class NPL_LoanSerializer(serializers.ModelSerializer):
 
 
 class NPL_LoanDetailSerializer(serializers.ModelSerializer):
+    """
+    Serialize NPL Loan Data (Detail)
+    """
+
     class Meta:
         model = Loan
         fields = '__all__'
@@ -200,7 +208,7 @@ class NPL_LoanDetailSerializer(serializers.ModelSerializer):
 
 class NPL_PropertyCollateralSerializer(serializers.ModelSerializer):
     """
-    Serialize NPL Property Collateral Data
+    Serialize NPL Property Collateral Data (List)
     """
     link = serializers.SerializerMethodField()
 
@@ -214,6 +222,10 @@ class NPL_PropertyCollateralSerializer(serializers.ModelSerializer):
 
 
 class NPL_PropertyCollateralDetailSerializer(serializers.ModelSerializer):
+    """
+    Serialize NPL Property Collateral Data (Detail)
+    """
+
     class Meta:
         model = PropertyCollateral
         fields = '__all__'

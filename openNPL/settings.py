@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'django_extensions',
     'import_export',
     'rest_framework',
-    'django_htmx',
     'drf_yasg',
     'treebeard',
     'django_countries',
@@ -72,14 +71,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_htmx.middleware.HtmxMiddleware',
 ]
 
 ROOT_URLCONF = 'openNPL.urls'
 ROOT_VIEW = "http://localhost:8001"
+# ROOT_VIEW = ''
 SITE_ID = 1
-# SITE_URL = "http://127.0.0.1:8001/"
-SITE_URL = "http://localhost:8080/"
+SITE_URL = "http://localhost:8001/"
+# SITE_URL = "http://localhost:8080/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads/')
 MEDIA_URL = '/uploads/'
@@ -148,6 +147,20 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
+    ],
+    'DEFAULT_FILTER_BACKENDS': [
+        'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.OrderingFilter',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+}
 
 LANGUAGE_CODE = 'en-us'
 # LANGUAGE_CODE = 'nl'

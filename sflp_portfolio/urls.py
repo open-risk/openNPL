@@ -19,64 +19,70 @@
 # SOFTWARE.
 
 from django.urls import re_path
+from django.urls import path, include
+from django.urls import re_path
+from rest_framework.routers import DefaultRouter
 
 from . import views as api_views
 
 app_name = 'sflp_portfolio'
 
+router = DefaultRouter()
+
 urlpatterns = [
-    re_path(r'^', api_views.sflp_api_root, name='sflp_api_root'),
-    re_path(r'^counterparties$',
-            api_views.sflp_counterparty_api,
-            name='sflp_counterparty_api'),
-    re_path(r'^counterparties/(?P<pk>[0-9]+)/$',
-            api_views.sflp_counterparty_detail,
-            name='sflp_counterparty_detail'),
-    re_path(r'^property_collateral$',
-            api_views.sflp_property_collateral_api,
-            name='sflp_property_collateral_api'),
-    re_path(r'^property_collateral/(?P<pk>[0-9]+)/$',
-            api_views.sflp_property_collateral_detail,
-            name='sflp_property_collateral_detail'),
-    re_path(r'^loans$',
-            api_views.sflp_loan_api,
-            name='sflp_loan_api'),
-    re_path(r'^loans/(?P<pk>[0-9]+)/$',
-            api_views.sflp_loan_detail,
-            name='sflp_loan_detail'),
-    re_path(r'^enforcement$',
-            api_views.sflp_enforcement_api,
-            name='sflp_enforcement_api'),
-    re_path(r'^enforcement/(?P<pk>[0-9]+)/$',
-            api_views.sflp_enforcement_detail,
-            name='sflp_enforcement_detail'),
-    re_path(r'^forbearance$',
-            api_views.sflp_forbearance_api,
-            name='sflp_forbearance_api'),
-    re_path(r'^forbearance/(?P<pk>[0-9]+)/$',
-            api_views.sflp_forbearance_detail,
-            name='sflp_forbearance_detail'),
-    #
-    #  DATA IMPORT URL's
-    #
-    # re_path(
-    #     r"^import/",
-    #     CreateImportView.as_view(),
-    #     name="import_create"
-    # ),
-    # re_path(
-    #     r"^import/<str:uuid>/setup/",
-    #     SetupImportView.as_view(),
-    #     name="import_setup",
-    # ),
-    # re_path(
-    #     r"^import/<str:uuid>/dry-run/",
-    #     DryRunImportView.as_view(),
-    #     name="import_dry_run",
-    # ),
-    # re_path(
-    #     r"^import/<str:uuid>/run/",
-    #     ExecuteImportView.as_view(),
-    #     name="import_execute",
-    # ),
+    path('', include(router.urls)),
 ]
+
+# urlpatterns = [
+#     re_path(r'^', api_views.sflp_api_root, name='sflp_api_root'),
+#     re_path(r'^counterparties$', api_views.sflp_counterparty_api, name='sflp_counterparty_api'),
+#     re_path(r'^counterparties/(?P<pk>[0-9]+)/$', api_views.sflp_counterparty_detail,
+#             name='sflp_counterparty_detail'),
+#     re_path(r'^property_collateral$',
+#             api_views.sflp_property_collateral_api,
+#             name='sflp_property_collateral_api'),
+#     re_path(r'^property_collateral/(?P<pk>[0-9]+)/$',
+#             api_views.sflp_property_collateral_detail,
+#             name='sflp_property_collateral_detail'),
+#     re_path(r'^loans$',
+#             api_views.sflp_loan_api,
+#             name='sflp_loan_api'),
+#     re_path(r'^loans/(?P<pk>[0-9]+)/$',
+#             api_views.sflp_loan_detail,
+#             name='sflp_loan_detail'),
+#     re_path(r'^enforcement$',
+#             api_views.sflp_enforcement_api,
+#             name='sflp_enforcement_api'),
+#     re_path(r'^enforcement/(?P<pk>[0-9]+)/$',
+#             api_views.sflp_enforcement_detail,
+#             name='sflp_enforcement_detail'),
+#     re_path(r'^forbearance$',
+#             api_views.sflp_forbearance_api,
+#             name='sflp_forbearance_api'),
+#     re_path(r'^forbearance/(?P<pk>[0-9]+)/$',
+#             api_views.sflp_forbearance_detail,
+#             name='sflp_forbearance_detail'),
+#     #
+#     #  DATA IMPORT URL's
+#     #
+#     # re_path(
+#     #     r"^import/",
+#     #     CreateImportView.as_view(),
+#     #     name="import_create"
+#     # ),
+#     # re_path(
+#     #     r"^import/<str:uuid>/setup/",
+#     #     SetupImportView.as_view(),
+#     #     name="import_setup",
+#     # ),
+#     # re_path(
+#     #     r"^import/<str:uuid>/dry-run/",
+#     #     DryRunImportView.as_view(),
+#     #     name="import_dry_run",
+#     # ),
+#     # re_path(
+#     #     r"^import/<str:uuid>/run/",
+#     #     ExecuteImportView.as_view(),
+#     #     name="import_execute",
+#     # ),
+# ]

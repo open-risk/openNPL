@@ -41,23 +41,22 @@ from django.urls import path, include, re_path
 from openNPL.settings import DEBUG, MEDIA_URL, MEDIA_ROOT
 from openNPL.views import schema_view, api_root
 
-
 urlpatterns = [
                   path('admin/doc/', include('django.contrib.admindocs.urls')),  #
                   path('admin/', admin.site.urls),
                   path('', include('start.urls')),  # start URLS
                   path('markdownfield/', include('markdownfield.urls')),
-                  path(r'api/', api_root, name='api_root'),  # Overall API root
-                  # NPL Data URL's
+                  # API URL's
+                  # path(r'api/auth/', include("rest_framework.urls")),
+                  # path(r'api/', api_root, name='api_root'),
+                  # Hack to pass namespaces
                   path(r'api/npl_data/', include(('npl_portfolio.urls', 'npl_portfolio'), namespace='npl_portfolio')),
-                  # SFLP Data URL's
                   path(r'api/sflp_data/',
                        include(('sflp_portfolio.urls', 'sflp_portfolio'), namespace='sflp_portfolio')),
-                  # API Documentation
-                  re_path(r'^api/swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0),
-                          name='schema-json'),
-                  re_path(r'^api/swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-                  re_path(r'^api/redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+                  # re_path(r'^api/swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0),
+                  #         name='schema-json'),
+                  # re_path(r'^api/swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+                  # re_path(r'^api/redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
               ] + static(MEDIA_URL, document_root=MEDIA_ROOT)
 
 if DEBUG:

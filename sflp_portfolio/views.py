@@ -31,6 +31,7 @@ from openNPL.sflp_serializers import SFLP_EnforcementSerializer, SFLP_Enforcemen
 from openNPL.sflp_serializers import SFLP_ForbearanceSerializer, SFLP_ForbearanceDetailSerializer
 from openNPL.sflp_serializers import SFLP_LoanSerializer, SFLP_LoanDetailSerializer
 from openNPL.sflp_serializers import SFLP_PropertyCollateralSerializer, SFLP_PropertyCollateralDetailSerializer
+
 from sflp_portfolio.models.counterparty import Counterparty
 from sflp_portfolio.models.loan import Loan
 from sflp_portfolio.models.enforcement import Enforcement
@@ -43,9 +44,10 @@ from sflp_portfolio.models.property_collateral import PropertyCollateral
 #
 
 @api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
 def sflp_api_root(request, format=None):
     """
-    Returns a list of all active API endpoints for SFLP Template Data
+    SFLP API endpoints
 
     """
 
