@@ -47,17 +47,17 @@ urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('', include('start.urls')),  # start URLS
                   path('markdownfield/', include('markdownfield.urls')),
-                  # API URL's
-                  # path(r'api/auth/', include("rest_framework.urls")),
+                  # REST API URL's
+                  path(r'api/auth/', include("rest_framework.urls")),
                   path(r'api/', opennpl_api_root),
-                  # Hack to pass namespaces
                   path(r'api/npl_data/', include(('npl_portfolio.urls', 'npl_portfolio'), namespace='npl_portfolio')),
                   path(r'api/sflp_data/',
                        include(('sflp_portfolio.urls', 'sflp_portfolio'), namespace='sflp_portfolio')),
-                  # re_path(r'^api/swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0),
-                  #         name='schema-json'),
-                  # re_path(r'^api/swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-                  # re_path(r'^api/redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+                  # REST API Documentation
+                  re_path(r'^api/swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0),
+                           name='schema-json'),
+                  re_path(r'^api/swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+                  re_path(r'^api/redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
               ] + static(MEDIA_URL, document_root=MEDIA_ROOT)
 
 if DEBUG:

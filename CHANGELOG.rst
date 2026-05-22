@@ -2,8 +2,9 @@ ChangeLog
 ===========================
 PLEASE NOTE THIS IS ONLY A BETA RELEASE. THE OPENNPL API IS STILL UNSTABLE
 
-v0.7.0 (XXX)
+v0.7.0 (22-05-2026)
 -------------------
+* Detailed REST API for both portfolio models
 * Avro Schemas
 
 v0.6.4 (20-06-2024)
