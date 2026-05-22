@@ -19,10 +19,11 @@
 # SOFTWARE.
 
 from django.urls import path, include
-from django.urls import re_path
+from html5lib.constants import namespaces
 from rest_framework.routers import DefaultRouter
 
-from . import views as api_views
+app_name = 'npl_portfolio'
+
 from .views import npl_counterparty_api, npl_counterpartygroup_api, npl_property_collateral_api, npl_loan_api, \
     npl_enforcement_api, npl_forbearance_api, npl_nonproperty_collateral_api, npl_external_collection_api
 
@@ -35,8 +36,6 @@ router.register(r'enforcement', npl_enforcement_api, basename='enforcement')
 router.register(r'forbearance', npl_forbearance_api, basename='forbearance')
 router.register(r'nonpropertycollateral', npl_nonproperty_collateral_api, basename='nonpropertycollateral')
 router.register(r'externalcollection', npl_external_collection_api, basename='externalcollection')
-
-app_name = 'npl_portfolio'
 
 urlpatterns = [
     path('', include(router.urls)),

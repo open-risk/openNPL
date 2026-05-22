@@ -42,7 +42,7 @@ schema_view = get_schema_view(
 
 @api_view(['GET'])
 @permission_classes((permissions.AllowAny,))
-def api_root(request, format=None):
+def opennpl_api_root(request, format=None):
     """
     Returns a list of all active API endpoints in an OpenNPL instance, grouped by functionality:
 
@@ -53,8 +53,8 @@ def api_root(request, format=None):
 
     data = [
         {'openNPL API Endpoints':
-             [{'SFLP API': reverse('sflp_portfolio:api_root', request=request, format=format)},
-              {'NPL API': reverse('npl_portfolio:api_root', request=request, format=format)},
+             [{'SFLP API': reverse('sflp_portfolio:api-root', request=request, format=format)},
+              {'NPL API': reverse('npl_portfolio:api-root', request=request, format=format)},
               ]},
     ]
 

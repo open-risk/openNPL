@@ -39,7 +39,8 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 
 from openNPL.settings import DEBUG, MEDIA_URL, MEDIA_ROOT
-from openNPL.views import schema_view, api_root
+from openNPL.views import schema_view
+from openNPL.views import opennpl_api_root
 
 urlpatterns = [
                   path('admin/doc/', include('django.contrib.admindocs.urls')),  #
@@ -48,7 +49,7 @@ urlpatterns = [
                   path('markdownfield/', include('markdownfield.urls')),
                   # API URL's
                   # path(r'api/auth/', include("rest_framework.urls")),
-                  # path(r'api/', api_root, name='api_root'),
+                  path(r'api/', opennpl_api_root),
                   # Hack to pass namespaces
                   path(r'api/npl_data/', include(('npl_portfolio.urls', 'npl_portfolio'), namespace='npl_portfolio')),
                   path(r'api/sflp_data/',

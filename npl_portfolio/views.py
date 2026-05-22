@@ -19,17 +19,11 @@
 # SOFTWARE.
 
 
-from rest_framework import permissions, generics, viewsets
-from rest_framework import status
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.parsers import JSONParser
-from rest_framework.response import Response
-from rest_framework.reverse import reverse
+from rest_framework import viewsets
 
 from npl_portfolio.models import CounterpartyGroup, Counterparty, Loan, \
     Enforcement, Forbearance, NonPropertyCollateral, PropertyCollateral, \
     ExternalCollection
-
 from openNPL.npl_serializers import NPL_CounterpartyGroupSerializer, NPL_CounterpartyGroupDetailSerializer
 from openNPL.npl_serializers import NPL_CounterpartySerializer, NPL_CounterpartyDetailSerializer
 from openNPL.npl_serializers import NPL_EnforcementSerializer, NPL_EnforcementDetailSerializer
@@ -41,7 +35,7 @@ from openNPL.npl_serializers import NPL_PropertyCollateralSerializer, NPL_Proper
 
 
 class npl_counterparty_api(viewsets.ModelViewSet):
-    queryset = Counterparty.objects.all()
+    queryset = Counterparty.objects.all().order_by('pk')
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
@@ -52,7 +46,7 @@ class npl_counterparty_api(viewsets.ModelViewSet):
 
 
 class npl_counterpartygroup_api(viewsets.ModelViewSet):
-    queryset = CounterpartyGroup.objects.all()
+    queryset = CounterpartyGroup.objects.all().order_by('pk')
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
@@ -63,7 +57,7 @@ class npl_counterpartygroup_api(viewsets.ModelViewSet):
 
 
 class npl_loan_api(viewsets.ModelViewSet):
-    queryset = Loan.objects.all()
+    queryset = Loan.objects.all().order_by('pk')
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
@@ -74,7 +68,7 @@ class npl_loan_api(viewsets.ModelViewSet):
 
 
 class npl_property_collateral_api(viewsets.ModelViewSet):
-    queryset = PropertyCollateral.objects.all()
+    queryset = PropertyCollateral.objects.all().order_by('pk')
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
@@ -85,7 +79,7 @@ class npl_property_collateral_api(viewsets.ModelViewSet):
 
 
 class npl_enforcement_api(viewsets.ModelViewSet):
-    queryset = Enforcement.objects.all()
+    queryset = Enforcement.objects.all().order_by('pk')
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
@@ -96,7 +90,7 @@ class npl_enforcement_api(viewsets.ModelViewSet):
 
 
 class npl_forbearance_api(viewsets.ModelViewSet):
-    queryset = Forbearance.objects.all()
+    queryset = Forbearance.objects.all().order_by('pk')
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
@@ -107,7 +101,7 @@ class npl_forbearance_api(viewsets.ModelViewSet):
 
 
 class npl_nonproperty_collateral_api(viewsets.ModelViewSet):
-    queryset = NonPropertyCollateral.objects.all()
+    queryset = NonPropertyCollateral.objects.all().order_by('pk')
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
@@ -118,7 +112,7 @@ class npl_nonproperty_collateral_api(viewsets.ModelViewSet):
 
 
 class npl_external_collection_api(viewsets.ModelViewSet):
-    queryset = ExternalCollection.objects.all()
+    queryset = ExternalCollection.objects.all().order_by('pk')
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
