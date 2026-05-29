@@ -343,3 +343,4 @@ class Counterparty(models.Model):
     class Meta:
         verbose_name = "Counterparty"
         verbose_name_plural = "Counterparties"
+        unique_together = [['portfolio_id', 'counterparty_identifier']]
