@@ -31,15 +31,10 @@ BORROWER_TYPE_CHOICES = [(0, '(a) Private Individual'), (1, '(b) Corporate')]
 COUNTERPARTY_ROLE_CHOICES = [(0, '(a) Protection Provider'), (1, '(b) Borrower')]
 
 LEGAL_TYPE_OF_COUNTERPARTY_CHOICES = [
-    (0, '(a) Listed Corporate is a Corporate entity whose shares are quoted and traded on a Stock Exchange'),
-    (1, '(b) Unlisted Corporate is a Corporate entity whose shares are not quoted and traded on a stock exchange, '
-        'however an unlisted corporate may have an unlimited number of shareholders to raise capital for any '
-        'commercial venture'),
-    (2, '(c) Listed Fund is a fund whose shares are quoted and traded on a Stock exchange'),
-    (3, '(d) Unlisted Fund is a fund whose shares are not quoted and traded on a Stock exchange'),
-    (4, '(e) Partnership is where the Sponsor constitutes a group of individuals who form a legal partnership, '
-        'where profits and liabilities are shared; or,'),
-    (5, '(f) Private Individual')]
+    (0, '(a) Non-financial corporations-SMEs'),
+    (1, '(b) Non-financial corporations-other than SMEs'),
+    (2, '(c) Households'),
+]
 
 TYPE_OF_PERSONAL_IDENTITY_NUMBER_CHOICES = [(0, '(a) Passport Number'), (1, '(b) National Insurance Number'),
                                             (2, '(c) National tax number'), (3, '(d) Other')]
