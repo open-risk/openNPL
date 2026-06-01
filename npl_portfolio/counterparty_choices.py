@@ -28,7 +28,7 @@ BORROWER_TYPE_CHOICES = [(0, '(a) Private Individual'), (1, '(b) Corporate')]
 # EBA CHOICE DICTIONARIES COUNTERPARTY
 #
 
-COUNTERPARTY_ROLE_CHOICES = [(0, '(a) Guarantor'), (1, '(b) Borrower'), (2, '(c) Tenant')]
+COUNTERPARTY_ROLE_CHOICES = [(0, '(a) Protection Provider'), (1, '(b) Borrower')]
 
 LEGAL_TYPE_OF_COUNTERPARTY_CHOICES = [
     (0, '(a) Listed Corporate is a Corporate entity whose shares are quoted and traded on a Stock Exchange'),

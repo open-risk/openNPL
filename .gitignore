@@ -6,8 +6,6 @@
 /sflp_portfolio/migrations/
 /docs/build/
 /.idea/
-/openNPL/__pycache__/
-/npl_portfolio/__pycache__/
-/sflp_portfolio/__pycache__/
-/start/__pycache__/
+**/__pycache__/
+**/*.pyc
 /.venv/
