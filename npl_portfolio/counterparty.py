@@ -42,6 +42,15 @@ class Counterparty(models.Model):
     counterparty_identifier = models.TextField(blank=True, null=True,
                                                help_text='Unique internal identifier for the Counterparty. One or multiple Counterparties can be part of a Counterparty. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Counterparty_Identifier">Documentation</a>')
 
+    # EBA NPL ITS 1.10 — National Identifier
+    national_identifier = models.TextField(blank=True, null=True,
+                                           help_text='Unique identifier of the counterparty in the country of residence (e.g. tax code, national ID number). EBA NPL ITS field 1.10.')
+
+    # EBA NPL ITS 1.11 — Source of National Identifier
+    source_of_national_identifier = models.IntegerField(blank=True, null=True,
+                                                        choices=TYPE_OF_PERSONAL_IDENTITY_NUMBER_CHOICES,
+                                                        help_text='Type/source of the national identifier provided in field 1.10. EBA NPL ITS field 1.11.')
+
     # counterparty_group_identifier = models.TextField(blank=True, null=True, help_text='Institutions internal identifier for the Counterparty Group. Where Counterparty Group is defined as a group of related Counterparties. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Counterparty_Group_Identifier">Documentation</a>')
 
     #
