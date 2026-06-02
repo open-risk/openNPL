@@ -21,6 +21,7 @@
 from django.db import models
 from django.urls import reverse
 
+from npl_portfolio.eba_field_helpers import eba_help, legacy_help, deprecated_help
 from npl_portfolio.loan import Loan
 from npl_portfolio.non_property_collateral_choices import *
 
@@ -160,8 +161,13 @@ class NonPropertyCollateral(models.Model):
     year_of_registration = models.DateField(blank=True, null=True,
                                             help_text='Year that the Collateral was registered. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Year_of_Registration">Documentation</a>')
 
-    isin = models.TextField(blank=True, null=True,
-                            help_text='ISIN of security collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty_Collateral.ISIN">Documentation</a>')
+    isin = models.TextField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '4.28',
+            "International Securities Identification Number (ISIN) of the collateral."
+        )
+    )
 
     # Bookkeeping fields
     creation_date = models.DateTimeField(auto_now_add=True)

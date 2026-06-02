@@ -22,6 +22,7 @@ from django.db import models
 from django.urls import reverse
 
 from npl_portfolio.counterparty import Counterparty
+from npl_portfolio.eba_field_helpers import eba_help, legacy_help, deprecated_help
 from npl_portfolio.loan_choices import *
 
 
@@ -376,22 +377,118 @@ class Loan(models.Model):
     #
     # EBA TEMPLATE 3 ADDITIONAL FIELDS
     #
-    joint_counterparties = models.IntegerField(blank=True, null=True, choices=JOINT_COUNTERPARTIES_CHOICES, help_text='Number of counterparties who jointly owe under the loan. They are jointly responsible for payments to the lender arising under the loan agreement. EBA NPL ITS field 3.04.')
-    reference_rate = models.TextField(blank=True, null=True, help_text='Reference rate used for the calculation of the actual interest rate. Combination of the reference rate value and maturity value, applicable at the cut-off date when "Variable" is selected in the field "Interest Rate Type". This data field is required only when the field "Days in Past-Due" is less than or equal to 365 days in past-due. EBA NPL ITS field 3.18.')
-    interest_rate_reset_frequency = models.IntegerField(blank=True, null=True, choices=INTEREST_RATE_RESET_FREQUENCY_CHOICES, help_text='Frequency at which the interest rate is reset after the initial fixed-rate period, if any. It\'s applicable at the cut-off date, which takes into account any current forbearance measure. This data field is required only when the field "Days in Past-Due" is less than or equal to 365 days in past-due. EBA NPL ITS field 3.19.')
-    payment_frequency = models.IntegerField(blank=True, null=True, choices=PAYMENT_FREQUENCY_CHOICES, help_text='Frequency of payments due, either of principal or interest, i.e. number of months between payments. It is based on the current loan agreement as at the cut-off date, which takes into account any current forbearance measure. This data field is required only when the field "Days in Past-Due" is less than or equal to 365 days in past-due. EBA NPL ITS field 3.20.')
-    loan_legal_status = models.IntegerField(blank=True, null=True, choices=LOAN_LEGAL_STATUS_CHOICES, help_text='Indication of the loan legal status as at the cut-off date. EBA NPL ITS field 3.24.')
-    date_of_initiation_of_legal_proceedings = models.DateField(blank=True, null=True, help_text='The date on which the legal proceedings were initiated. This date must be the most recent relevant date prior to the cut-off date and must only be reported if the field "Loan legal status" has the value "legal proceedings". EBA NPL ITS field 3.25.')
-    stage_reached_in_legal_proceedings = models.TextField(blank=True, null=True, help_text='It is an indication of how advanced the relevant legal procedure has become as a result of various legal steps in the legal procedure having been completed for each secured or unsecured loan. The generic, standardised legal actions across countries are identified below. This is not an exhaustive list of legal actions and therefore the institution should make a value judgement as to whether they should add any additional legal actions to the generic standardised legal actions. Multiple selections of stages are allowed to be entered if applicable: (a) Initial stage; (b) A proof of claim has been filed by the seller; (c) A notice of intention to sell secured assets has been given; (d) A distribution has been made to the seller; (e) A notice of the end of the procedure has been given. This data field must only be reported if the field "Loan legal status" has the value "legal proceedings". EBA NPL ITS field 3.26.')
-    jurisdiction_of_court = models.TextField(blank=True, null=True, help_text='Location of the court where the court case is being heard. This field is required only when a court case has been initiated. EBA NPL ITS field 3.27.')
-    date_of_obtaining_order_for_possession = models.DateField(blank=True, null=True, help_text='Date that the order for possession is granted by the court. This field is required only when an order for possession has been granted by the court. EBA NPL ITS field 3.28.')
-    statute_of_limitations_date = models.DateField(blank=True, null=True, help_text='Date when the loan expires and legal proceedings cannot be undertaken. This field is required only when it is applicable under the governing law of the loan agreement and the legal status of the loan. EBA NPL ITS field 3.29.')
-    lease_agreement = models.BooleanField(blank=True, null=True, help_text='Indicator as to whether the credit agreement contains a lease. EBA NPL ITS field 3.33.')
-    start_date_of_lease = models.DateField(blank=True, null=True, help_text='Date that the current lease starts if \'yes\' is selected in the field \'Lease agreement\'. EBA NPL ITS field 3.34.')
-    end_date_of_lease = models.DateField(blank=True, null=True, help_text='Date that the current lease ends if \'yes\' is selected in the field \'Lease agreement\'. EBA NPL ITS field 3.35.')
-    lease_break_option = models.TextField(blank=True, null=True, help_text='Details of any lease break clause(s) if \'yes\' is selected in the field \'Lease agreement\'. EBA NPL ITS field 3.36.')
-    type_of_lease = models.IntegerField(blank=True, null=True, choices=TYPE_OF_LEASE_CHOICES, help_text='Type of the lease agreement with the counterparty if \'yes\' is selected in the field \'Lease agreement\'. EBA NPL ITS field 3.37.')
-    forbearance_measure = models.BooleanField(blank=True, null=True, help_text='Indicator as to whether forbearance measures are currently applied to the loan at the cut-off date. EBA NPL ITS field 3.38.')
+    joint_counterparties = models.IntegerField(
+        blank=True, null=True, choices=JOINT_COUNTERPARTIES_CHOICES,
+        help_text=eba_help(
+            '3.04',
+            "Number of counterparties who jointly owe under the loan. They are jointly responsible for payments to the lender arising under the loan agreement."
+        )
+    )
+    reference_rate = models.TextField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '3.18',
+            "Reference rate used for the calculation of the actual interest rate. Combination of the reference rate value and maturity value, applicable at the cut-off date when 'Variable' is selected in the field 'Interest Rate Type'. This data field is required only when the field 'Days in Past-Due' is less than or equal to 365 days in past-due."
+        )
+    )
+    interest_rate_reset_frequency = models.IntegerField(
+        blank=True, null=True, choices=INTEREST_RATE_RESET_FREQUENCY_CHOICES,
+        help_text=eba_help(
+            '3.19',
+            "Frequency at which the interest rate is reset after the initial fixed-rate period, if any. It's applicable at the cut-off date, which takes into account any current forbearance measure. This data field is required only when the field 'Days in Past-Due' is less than or equal to 365 days in past-due."
+        )
+    )
+    payment_frequency = models.IntegerField(
+        blank=True, null=True, choices=PAYMENT_FREQUENCY_CHOICES,
+        help_text=eba_help(
+            '3.20',
+            "Frequency of payments due, either of principal or interest, i.e. number of months between payments. It is based on the current loan agreement as at the cut-off date, which takes into account any current forbearance measure. This data field is required only when the field 'Days in Past-Due' is less than or equal to 365 days in past-due."
+        )
+    )
+    loan_legal_status = models.IntegerField(
+        blank=True, null=True, choices=LOAN_LEGAL_STATUS_CHOICES,
+        help_text=eba_help(
+            '3.24',
+            "Indication of the loan legal status as at the cut-off date."
+        )
+    )
+    date_of_initiation_of_legal_proceedings = models.DateField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '3.25',
+            "The date on which the legal proceedings were initiated. This date must be the most recent relevant date prior to the cut-off date and must only be reported if the field 'Loan legal status' has the value 'legal proceedings'."
+        )
+    )
+    stage_reached_in_legal_proceedings = models.TextField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '3.26',
+            "It is an indication of how advanced the relevant legal procedure has become as a result of various legal steps in the legal procedure having been completed for each secured or unsecured loan. The generic, standardised legal actions across countries are identified below. This is not an exhaustive list of legal actions and therefore the institution should make a value judgement as to whether they should add any additional legal actions to the generic standardised legal actions. Multiple selections of stages are allowed to be entered if applicable: (a) Initial stage; (b) A proof of claim has been filed by the seller; (c) A notice of intention to sell secured assets has been given; (d) A distribution has been made to the seller; (e) A notice of the end of the procedure has been given. This data field must only be reported if the field 'Loan legal status' has the value 'legal proceedings'."
+        )
+    )
+    jurisdiction_of_court = models.TextField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '3.27',
+            "Location of the court where the court case is being heard. This field is required only when a court case has been initiated."
+        )
+    )
+    date_of_obtaining_order_for_possession = models.DateField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '3.28',
+            "Date that the order for possession is granted by the court. This field is required only when an order for possession has been granted by the court."
+        )
+    )
+    statute_of_limitations_date = models.DateField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '3.29',
+            "Date when the loan expires and legal proceedings cannot be undertaken. This field is required only when it is applicable under the governing law of the loan agreement and the legal status of the loan."
+        )
+    )
+    lease_agreement = models.BooleanField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '3.33',
+            "Indicator as to whether the credit agreement contains a lease."
+        )
+    )
+    start_date_of_lease = models.DateField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '3.34',
+            "Date that the current lease starts if 'yes' is selected in the field 'Lease agreement'."
+        )
+    )
+    end_date_of_lease = models.DateField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '3.35',
+            "Date that the current lease ends if 'yes' is selected in the field 'Lease agreement'."
+        )
+    )
+    lease_break_option = models.TextField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '3.36',
+            "Details of any lease break clause(s) if 'yes' is selected in the field 'Lease agreement'."
+        )
+    )
+    type_of_lease = models.IntegerField(
+        blank=True, null=True, choices=TYPE_OF_LEASE_CHOICES,
+        help_text=eba_help(
+            '3.37',
+            "Type of the lease agreement with the counterparty if 'yes' is selected in the field 'Lease agreement'."
+        )
+    )
+    forbearance_measure = models.BooleanField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '3.38',
+            "Indicator as to whether forbearance measures are currently applied to the loan at the cut-off date."
+        )
+    )
 
     #
     # BOOKKEEPING FIELDS

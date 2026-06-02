@@ -21,6 +21,7 @@
 from django.db import models
 from django.urls import reverse
 
+from npl_portfolio.eba_field_helpers import eba_help, legacy_help, deprecated_help
 from npl_portfolio.loan import Loan
 
 
@@ -36,11 +37,21 @@ class Mortgage(models.Model):
     # IDENTIFICATION FIELDS
     #
 
-    mortgage_identifier = models.TextField(blank=True, null=True,
-                                           help_text='Institution\'s internal identifier to uniquely identify the mortgage. EBA NPL ITS field 4.43.')
+    mortgage_identifier = models.TextField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '4.43',
+            "Institution's internal identifier of the mortgage agreement."
+        )
+    )
 
-    protection_identifier = models.TextField(blank=True, null=True,
-                                             help_text='Institution\'s internal identifier to uniquely identify the protection (collateral/guarantee). EBA NPL ITS field 4.00.')
+    protection_identifier = models.TextField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '4.00',
+            "Institution's internal identifier to uniquely identify each protection used to secure the loan (collateral or guarantee)."
+        )
+    )
 
     #
     # FOREIGN KEYS
@@ -53,17 +64,37 @@ class Mortgage(models.Model):
     # DATA PROPERTIES
     #
 
-    mortgage_amount = models.FloatField(blank=True, null=True,
-                                        help_text='Maximum amount that the institution is entitled to receive in respect of the mortgaged property. EBA NPL ITS field 4.44.')
+    mortgage_amount = models.FloatField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '4.44',
+            "Maximum amount the institution is entitled to receive in case of enforcement."
+        )
+    )
 
-    lien_position = models.IntegerField(blank=True, null=True,
-                                         help_text='The highest ranking lien position of the mortgage held by the institution. EBA NPL ITS field 4.45.')
+    lien_position = models.IntegerField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '4.45',
+            "Highest lien position held by the institution on the immovable property based on this mortgage."
+        )
+    )
 
-    higher_ranking_loan = models.FloatField(blank=True, null=True,
-                                            help_text='The amount of higher ranking loans that must be repaid before the institution. EBA NPL ITS field 4.46.')
+    higher_ranking_loan = models.FloatField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '4.46',
+            "Amount that higher-ranking mortgage creditors will receive before the institution."
+        )
+    )
 
-    register_of_deeds_number = models.TextField(blank=True, null=True,
-                                                help_text='The registration number of the mortgage in the register of deeds. EBA NPL ITS field 4.47.')
+    register_of_deeds_number = models.TextField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '4.47',
+            "Registration number of the mortgage in the official register of deeds."
+        )
+    )
 
     #
     # BOOKKEEPING FIELDS

@@ -21,6 +21,7 @@
 from django.db import models
 from django.urls import reverse
 
+from npl_portfolio.eba_field_helpers import eba_help, legacy_help, deprecated_help
 from npl_portfolio.historical_repayment_choices import *
 from npl_portfolio.loan import Loan
 from npl_portfolio.models import PortfolioSnapshot, Portfolio
@@ -51,8 +52,13 @@ class HistoricalRepayment(models.Model):
     #
 
     # EBA NPL ITS 5.00 — Loan Identifier
-    loan_identifier = models.ForeignKey(Loan, on_delete=models.CASCADE, null=True, blank=True,
-                                        help_text='Institution internal identifier of the loan. Join key with the Loan table (Template 3). EBA NPL ITS field 5.00.')
+    loan_identifier = models.ForeignKey(
+        Loan, on_delete=models.CASCADE, null=True, blank=True,
+        help_text=eba_help(
+            '5.00',
+            "Institution internal identifier of the loan. Join key with the Loan table (Template 3)."
+        )
+    )
 
     # Portfolio ID Foreign Key
     portfolio_id = models.ForeignKey(Portfolio, on_delete=models.CASCADE, blank=True, null=True,
@@ -70,12 +76,22 @@ class HistoricalRepayment(models.Model):
                                           help_text='Month index of the monthly repayment history, counted backwards from the NPL Portfolio Cut-Off Date (1 = most recent month before the cut-off date, minimum 36 months). Identifies the monthly column of EBA Template 5.')
 
     # EBA NPL ITS 5.01 — Type of Collection
-    type_of_collection = models.IntegerField(blank=True, null=True, choices=TYPE_OF_COLLECTION_CHOICES,
-                                             help_text='Indication whether the collection of repayments occurred internally or via external collection agencies. EBA NPL ITS field 5.01.')
+    type_of_collection = models.IntegerField(
+        blank=True, null=True, choices=TYPE_OF_COLLECTION_CHOICES,
+        help_text=eba_help(
+            '5.01',
+            "Indication whether the collection of repayments occurred internally or via external collection agencies."
+        )
+    )
 
     # EBA NPL ITS 5.02 — Name of External Collection Agent
-    name_of_external_collection_agent = models.TextField(blank=True, null=True,
-                                                         help_text='Name of the external collection agent. Required only when Type of Collection (5.01) is External. EBA NPL ITS field 5.02.')
+    name_of_external_collection_agent = models.TextField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '5.02',
+            "Name of the external collection agent. Required only when Type of Collection (5.01) is External."
+        )
+    )
 
     # EBA NPL ITS 5.03 — History of Total Repayments
     # NOTE: EBA field type is 'Number', which per Annex III, Part 1, Section 3 (Conventions)
@@ -83,15 +99,25 @@ class HistoricalRepayment(models.Model):
     # the rest of openNPL, where every monetary 'Number' field is modelled as an integer
     # amount (e.g. balance_at_default, origination_amount). Switch to
     # DecimalField(decimal_places=2) only if strict EBA decimal precision is required.
-    history_of_total_repayments = models.BigIntegerField(blank=True, null=True,
-                                                         help_text='Total repayment amount received by the institution in the reference month, irrespective of the source of repayment (including collections by external collection agencies). Aggregated per month for a minimum of 36 months before the cut-off date. EBA NPL ITS field 5.03.')
+    history_of_total_repayments = models.BigIntegerField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '5.03',
+            "Total repayment amount received by the institution in the reference month, irrespective of the source of repayment (including collections by external collection agencies). Aggregated per month for a minimum of 36 months before the cut-off date."
+        )
+    )
 
     # EBA NPL ITS 5.04 — History of Repayments - From Collateral Sales
     # NOTE: EBA field type is 'Number' (two decimal places per Annex III conventions).
     # Modelled as BigIntegerField for consistency with the openNPL monetary field convention;
     # use DecimalField(decimal_places=2) if strict EBA decimal precision is required.
-    history_of_repayments_from_collateral_sales = models.BigIntegerField(blank=True, null=True,
-                                                                         help_text='Repayment amount derived from collateral disposal in the reference month. Applicable to secured loans. Aggregated per month for a minimum of 36 months before the cut-off date. EBA NPL ITS field 5.04.')
+    history_of_repayments_from_collateral_sales = models.BigIntegerField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '5.04',
+            "Repayment amount derived from collateral disposal in the reference month. Applicable to secured loans. Aggregated per month for a minimum of 36 months before the cut-off date."
+        )
+    )
 
     #
     # BOOKKEEPING FIELDS
