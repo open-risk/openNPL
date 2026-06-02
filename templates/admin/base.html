@@ -8,5 +8,34 @@
     <link rel="shortcut icon" type="image/png" href="{% static 'start/img/favicon.ico' %}"/>
 {% endblock %}
 
-
-
+{% block extrahead %}
+    {{ block.super }}
+    <script>
+    (function(){
+      function run(){
+        document.querySelectorAll('.help-block').forEach(function(el){
+          var text = el.innerHTML;
+          var row = el.closest('.row');
+          if (!row) return;
+          var label = row.querySelector('label');
+          if (!label) return;
+          if (text.indexOf('§') !== -1) {
+            label.style.color = '#1a7a4a';
+            label.style.fontWeight = '600';
+          } else if (text.indexOf('LEGACY') !== -1) {
+            label.style.color = '#a07000';
+            label.style.fontWeight = '600';
+          } else if (text.indexOf('DEPRECATED') !== -1) {
+            label.style.color = '#b03000';
+            label.style.fontWeight = '600';
+          }
+        });
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', run);
+      } else {
+        run();
+      }
+    }());
+    </script>
+{% endblock %}
