@@ -102,3 +102,4 @@ from npl_portfolio.property_collateral import PropertyCollateral
 from npl_portfolio.external_collection import ExternalCollection
 from npl_portfolio.forbearance import Forbearance
 from npl_portfolio.enforcement import Enforcement
+from npl_portfolio.historical_repayment import HistoricalRepayment

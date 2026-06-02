@@ -23,7 +23,7 @@ from rest_framework import viewsets
 
 from npl_portfolio.models import CounterpartyGroup, Counterparty, Loan, \
     Enforcement, Forbearance, NonPropertyCollateral, PropertyCollateral, \
-    ExternalCollection
+    ExternalCollection, HistoricalRepayment
 from openNPL.npl_serializers import NPL_CounterpartyGroupSerializer, NPL_CounterpartyGroupDetailSerializer
 from openNPL.npl_serializers import NPL_CounterpartySerializer, NPL_CounterpartyDetailSerializer
 from openNPL.npl_serializers import NPL_EnforcementSerializer, NPL_EnforcementDetailSerializer
@@ -32,6 +32,7 @@ from openNPL.npl_serializers import NPL_ForbearanceSerializer, NPL_ForbearanceDe
 from openNPL.npl_serializers import NPL_LoanSerializer, NPL_LoanDetailSerializer
 from openNPL.npl_serializers import NPL_NonPropertyCollateralSerializer, NPL_NonPropertyCollateralDetailSerializer
 from openNPL.npl_serializers import NPL_PropertyCollateralSerializer, NPL_PropertyCollateralDetailSerializer
+from openNPL.npl_serializers import NPL_HistoricalRepaymentSerializer, NPL_HistoricalRepaymentDetailSerializer
 
 
 class npl_counterparty_api(viewsets.ModelViewSet):
@@ -120,3 +121,14 @@ class npl_external_collection_api(viewsets.ModelViewSet):
         elif self.action == 'list':
             return NPL_ExternalCollectionSerializer
         return NPL_ExternalCollectionDetailSerializer
+
+
+class npl_historical_repayment_api(viewsets.ModelViewSet):
+    queryset = HistoricalRepayment.objects.all().order_by('pk')
+
+    def get_serializer_class(self):
+        if self.action == 'retrieve':
+            return NPL_HistoricalRepaymentDetailSerializer
+        elif self.action == 'list':
+            return NPL_HistoricalRepaymentSerializer
+        return NPL_HistoricalRepaymentDetailSerializer

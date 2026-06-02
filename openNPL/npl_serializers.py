@@ -23,13 +23,37 @@ from rest_framework import serializers
 # TODO Lease (non-SME)
 from npl_portfolio.models import CounterpartyGroup, Counterparty, Loan, \
     Enforcement, Forbearance, NonPropertyCollateral, PropertyCollateral, \
-    ExternalCollection
+    ExternalCollection, HistoricalRepayment
 from openNPL.settings import ROOT_VIEW
 
 
 #
 #  NPL TEMPLATE SERIALIZERS
 #
+
+class NPL_HistoricalRepaymentSerializer(serializers.ModelSerializer):
+    """
+    Serialize NPL Historical Repayment Data (List)
+    """
+    link = serializers.SerializerMethodField()
+
+    class Meta:
+        model = HistoricalRepayment
+        fields = ('id', 'link')
+
+    def get_link(self, obj):
+        link = ROOT_VIEW + "/api/npl_data/historical_repayment/" + str(obj.pk)
+        return link
+
+
+class NPL_HistoricalRepaymentDetailSerializer(serializers.ModelSerializer):
+    """
+    Serialize NPL HistoricalRepayment Data (Detail)
+    """
+
+    class Meta:
+        model = HistoricalRepayment
+        fields = '__all__'
 
 class NPL_ExternalCollectionSerializer(serializers.ModelSerializer):
     """
