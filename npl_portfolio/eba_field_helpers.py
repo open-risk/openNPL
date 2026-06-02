@@ -49,7 +49,7 @@ def eba_help(ref: str, description: str) -> str:
     """
     Generate help_text for an In Force EBA ITS 2023/2083 field.
 
-    Renders a 💪 icon that deep-links to the exact field in EUR-Lex
+    Renders a § reference that deep-links to the exact field in EUR-Lex
     using a Text Fragment (supported by Chrome, Edge, Safari 16.4+).
 
     Args:
@@ -60,8 +60,9 @@ def eba_help(ref: str, description: str) -> str:
     url = f'{_EURLEX_BASE}#:~:text={fragment}'
     badge = (
         f'<a href="{url}" target="_blank" rel="noopener noreferrer" '
-        f'title="EUR-Lex — EBA ITS field {ref}" '
-        f'style="text-decoration:none; margin-left:4px;">💪</a>'
+        f'title="EU 2023/2083 — EBA NPL ITS field {ref}" '
+        f'style="color:#1a5276; font-weight:600; margin-left:6px; '
+        f'text-decoration:none; font-size:12px;">§ {ref}</a>'
     )
     return f'{description}{badge}'
 
