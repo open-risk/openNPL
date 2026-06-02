@@ -39,10 +39,10 @@ class NPL_HistoricalRepaymentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = HistoricalRepayment
-        fields = ('id', 'link')
+        fields = ('id', 'loan_identifier', 'reference_month', 'link')
 
     def get_link(self, obj):
-        link = ROOT_VIEW + "/api/npl_data/historical_repayment/" + str(obj.pk)
+        link = ROOT_VIEW + "/api/npl_data/historicalrepayment/" + str(obj.pk)
         return link
 
 
