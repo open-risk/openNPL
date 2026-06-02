@@ -188,6 +188,9 @@ class Enforcement(models.Model):
     sold_date = models.DateField(blank=True, null=True,
                                  help_text='Sold date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Sold_Date">Documentation</a>')
 
+    cash_in_court = models.FloatField(blank=True, null=True,
+                                      help_text='Cash in court. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Enforcement.Cash_in_Court">Documentation</a>')
+
     # Bookkeeping fields
     creation_date = models.DateTimeField(auto_now_add=True)
     last_change_date = models.DateTimeField(auto_now=True)

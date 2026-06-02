@@ -225,6 +225,33 @@ class PropertyCollateral(models.Model):
     year_of_refurbishment = models.DateField(blank=True, null=True,
                                              help_text='Year in which the last significantly refurbished was completed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Year_of_Refurbishment">Documentation</a>')
 
+    cadaster_id_number = models.TextField(blank=True, null=True,
+                                          help_text='Cataster ID number. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property_Collateral.Cadaster_ID_Number">Documentation</a>')
+
+    cadaster_identification = models.TextField(blank=True, null=True,
+                                               help_text='Cadaster identification. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property_Collateral.Cadaster_Identification">Documentation</a>')
+
+    lien_position = models.IntegerField(blank=True, null=True,
+                                         help_text='Lien position. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property_Collateral.Lien_Position">Documentation</a>')
+
+    higher_ranking_loan = models.FloatField(blank=True, null=True,
+                                            help_text='Higher ranking loan. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property_Collateral.Higher_Ranking_Loan">Documentation</a>')
+
+    type_of_appraisal_amount_internal = models.IntegerField(blank=True, null=True, choices=TYPE_OF_APPRAISAL_AMOUNT_CHOICES,
+                                                            help_text='Type of appraisal amount for internal valuation. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property_Collateral.Type_of_Appraisal_Amount_Internal">Documentation</a>')
+
+    latest_external_valuation_amount = models.FloatField(blank=True, null=True,
+                                                         help_text='Latest external valuation amount. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property_Collateral.Latest_External_Valuation_Amount">Documentation</a>')
+
+    date_of_latest_external_valuation = models.DateField(blank=True, null=True,
+                                                         help_text='Date of latest external valuation. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property_Collateral.Date_of_Latest_External_Valuation">Documentation</a>')
+
+    type_of_appraisal_amount_external = models.IntegerField(blank=True, null=True, choices=TYPE_OF_APPRAISAL_AMOUNT_CHOICES,
+                                                            help_text='Type of appraisal amount for external valuation. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property_Collateral.Type_of_Appraisal_Amount_External">Documentation</a>')
+
+    type_of_latest_external_valuation = models.IntegerField(blank=True, null=True, choices=TYPE_OF_LATEST_VALUATION_CHOICES,
+                                                            help_text='Type of latest external valuation. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property_Collateral.Type_of_Latest_External_Valuation">Documentation</a>')
+
     # Bookkeeping fields
     creation_date = models.DateTimeField(auto_now_add=True)
     last_change_date = models.DateTimeField(auto_now=True)

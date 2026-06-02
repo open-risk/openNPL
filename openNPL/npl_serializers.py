@@ -23,7 +23,7 @@ from rest_framework import serializers
 # TODO Lease (non-SME)
 from npl_portfolio.models import CounterpartyGroup, Counterparty, Loan, \
     Enforcement, Forbearance, NonPropertyCollateral, PropertyCollateral, \
-    ExternalCollection, HistoricalRepayment
+    ExternalCollection, HistoricalRepayment, Mortgage
 from openNPL.settings import ROOT_VIEW
 
 
@@ -253,3 +253,29 @@ class NPL_PropertyCollateralDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = PropertyCollateral
         fields = '__all__'
+
+
+class NPL_MortgageSerializer(serializers.ModelSerializer):
+    """
+    Serialize NPL Mortgage Data (List)
+    """
+    link = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Mortgage
+        fields = ('id', 'mortgage_identifier', 'link')
+
+    def get_link(self, obj):
+        link = ROOT_VIEW + "/api/npl_data/mortgages/" + str(obj.pk)
+        return link
+
+
+class NPL_MortgageDetailSerializer(serializers.ModelSerializer):
+    """
+    Serialize NPL Mortgage Data (Detail)
+    """
+
+    class Meta:
+        model = Mortgage
+        fields = '__all__'
+

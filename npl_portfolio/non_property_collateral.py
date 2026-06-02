@@ -160,6 +160,9 @@ class NonPropertyCollateral(models.Model):
     year_of_registration = models.DateField(blank=True, null=True,
                                             help_text='Year that the Collateral was registered. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty Collateral.Year_of_Registration">Documentation</a>')
 
+    isin = models.TextField(blank=True, null=True,
+                            help_text='ISIN of security collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.NonProperty_Collateral.ISIN">Documentation</a>')
+
     # Bookkeeping fields
     creation_date = models.DateTimeField(auto_now_add=True)
     last_change_date = models.DateTimeField(auto_now=True)

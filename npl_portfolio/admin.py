@@ -37,6 +37,7 @@ from npl_portfolio.models import ExternalCollection, Enforcement
 from npl_portfolio.models import NonPropertyCollateral, PropertyCollateral
 from npl_portfolio.models import Forbearance
 from npl_portfolio.models import HistoricalRepayment
+from npl_portfolio.models import Mortgage
 
 
 class PortfolioAdmin(admin.ModelAdmin):
@@ -134,6 +135,15 @@ class HistoricalRepaymentAdmin(admin.ModelAdmin):
     list_filter = ('portfolio_id', 'snapshot_id', 'type_of_collection')
 
 
+class MortgageAdmin(admin.ModelAdmin):
+    save_as = True
+    view_on_site = False
+    search_fields = ['mortgage_identifier', 'protection_identifier']
+    list_display = ('mortgage_identifier', 'protection_identifier', 'loan_identifier',
+                    'mortgage_amount', 'lien_position', 'register_of_deeds_number')
+    list_filter = ('lien_position',)
+
+
 admin.site.register(Portfolio, PortfolioAdmin)
 admin.site.register(PortfolioSnapshot, Portfolio_SnapshotAdmin)
 admin.site.register(CounterpartyGroup, CounterpartyGroupAdmin)
@@ -145,3 +155,4 @@ admin.site.register(NonPropertyCollateral, NonPropertyCollateralAdmin)
 admin.site.register(PropertyCollateral, PropertyCollateralAdmin)
 admin.site.register(Forbearance, ForbearanceAdmin)
 admin.site.register(HistoricalRepayment, HistoricalRepaymentAdmin)
+admin.site.register(Mortgage, MortgageAdmin)

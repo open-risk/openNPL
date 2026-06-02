@@ -26,7 +26,7 @@ app_name = 'npl_portfolio'
 
 from .views import npl_counterparty_api, npl_counterpartygroup_api, npl_property_collateral_api, npl_loan_api, \
     npl_enforcement_api, npl_forbearance_api, npl_nonproperty_collateral_api, npl_external_collection_api, \
-    npl_historical_repayment_api
+    npl_historical_repayment_api, npl_mortgage_api
 
 router = DefaultRouter()
 router.register(r'counterparties', npl_counterparty_api, basename='counterparty')
@@ -38,6 +38,7 @@ router.register(r'forbearance', npl_forbearance_api, basename='forbearance')
 router.register(r'nonpropertycollateral', npl_nonproperty_collateral_api, basename='nonpropertycollateral')
 router.register(r'externalcollection', npl_external_collection_api, basename='externalcollection')
 router.register(r'historicalrepayment', npl_historical_repayment_api, basename='historicalrepayment')
+router.register(r'mortgages', npl_mortgage_api, basename='mortgage')
 
 urlpatterns = [
     path('', include(router.urls)),

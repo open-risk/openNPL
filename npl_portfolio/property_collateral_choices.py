@@ -71,3 +71,6 @@ PARTY_LIABLE_FOR_VAT_CHOICES = [(0, '(a) Institution'), (1, '(b) Buyer(s)'), (2,
 
 VALUE_OF_ENERGY_PERFORMANCE_CERTIFICATE_CHOICES = [(0, '(a) A'), (1, '(b) B'), (2, '(c) C'), (3, '(d) D'),
                                                    (4, '(e) E'), (5, '(f) F'), (6, '(g) G')]
+
+TYPE_OF_APPRAISAL_AMOUNT_CHOICES = [(0, '(a) Market value'), (1, '(b) Liquidation value'), (2, '(c) Book value'), (3, '(d) Other')]
+
