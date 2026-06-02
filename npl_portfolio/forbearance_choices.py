@@ -25,11 +25,15 @@
 
 TYPE_OF_IDENTIFIER_CHOICES = [(0, '(a) Counterparty'), (1, '(b) Loan')]
 
-TYPE_OF_FORBEARANCE_CHOICES = [(0, '(a) Loan maturity date extension'), (1, '(b) Amortisation change'),
-                               (2, '(c) Principal write-off'), (3, '(d) Temporary rate reduction'),
-                               (4, '(e) Capitalisation of interest'),
-                               (5, '(f) Capitalisation of costs advanced: which is insurance and ground rent'),
-                               (6, '(g) Combination '), (7, '(h) Other')]
+TYPE_OF_FORBEARANCE_CHOICES = [
+    (0, '(a) grace period/payment moratorium'),
+    (1, '(b) interest rate reduction'),
+    (2, '(c) extension of maturity/term'),
+    (3, '(d) rescheduled payments'),
+    (4, '(e) debt forgiveness'),
+    (5, '(f) debt asset swaps'),
+    (6, '(g) other forbearance measures')
+]
 
 REPAYMENT_FREQUENCY_UNDER_FORBEARANCE_CHOICES = [(0, '(a) Monthly'), (1, '(b) Quarterly'), (2, '(c) Semi-Annually'),
                                                  (3, '(d) Annually'), (4, '(e) Daily'), (5, '(f) Other')]

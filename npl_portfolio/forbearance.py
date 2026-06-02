@@ -22,6 +22,7 @@ from django.db import models
 from django.urls import reverse
 
 from npl_portfolio.counterparty import Counterparty
+from npl_portfolio.eba_field_helpers import eba_help, legacy_help, deprecated_help
 from npl_portfolio.forbearance_choices import *
 from npl_portfolio.loan import Loan
 
@@ -77,23 +78,43 @@ class Forbearance(models.Model):
     date_of_repayment_step_up = models.DateField(blank=True, null=True,
                                                  help_text='Date at which the current agreed forbearance amount is increased. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Date_of_Repayment_Step_Up">Documentation</a>')
 
-    description_of_forbearance = models.TextField(blank=True, null=True,
-                                                  help_text='Further comments / details on the current forbearance. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Description_of_Forbearance">Documentation</a>')
+    description_of_forbearance = models.TextField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '3.41',
+            "Further comments/details on the forbearance measures, including the description of any clause to stop forbearance and multiple forbearance measures applied to the loan. Applicable when 'yes' is selected in the field 'Forbearance measure'."
+        )
+    )
 
     description_of_the_forbearance_clause = models.TextField(blank=True, null=True,
                                                              help_text='Further comments / details on the clause if "Yes" is selected in field "Clause to Stop Forbearance". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Description_of_the_Forbearance_Clause">Documentation</a>')
 
-    end_date_of_forbearance = models.DateField(blank=True, null=True,
-                                               help_text='Date that the current forbearance arrangement ends. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.End_Date_of_Forbearance">Documentation</a>')
+    end_date_of_forbearance = models.DateField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '3.40',
+            "Date that the current applicable forbearance measure ends. Applicable when 'yes' is selected in the field 'Forbearance measure'. In case of multiple forbearance measures, the most recent end date of the forbearance measures is considered."
+        )
+    )
 
     interest_rate_under_forbearance = models.FloatField(blank=True, null=True,
                                                         help_text='Interest rate that the Institution and Counterparty agreed under the current forbearance terms. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Interest_Rate_Under_Forbearance">Documentation</a>')
 
-    number_of_historical_forbearance = models.FloatField(blank=True, null=True,
-                                                         help_text='Number of forbearance(s) that happened in the past. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Number_of_Historical_Forbearance">Documentation</a>')
+    number_of_historical_forbearance = models.FloatField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '3.43',
+            "Number of forbearance(s) that happened in the last two years. Applicable when 'yes' is selected in the field 'Forbearance measure'."
+        )
+    )
 
-    principal_forgiveness = models.FloatField(blank=True, null=True,
-                                              help_text='Amount of the principal that was forgiven as part of current forbearance, including principal forgiveness agreed by external collection agencies. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Principal_Forgiveness">Documentation</a>')
+    principal_forgiveness = models.FloatField(
+        blank=True, null=True,
+        help_text=eba_help(
+            '3.42',
+            "Gross carrying amount of the loan that was partially forgiven as part of current forbearance measure, including principal forgiveness agreed by external collection agencies, as at the cut-off date. Where debt forgiveness refers to a partial cancellation of the loan by the institution through forfeiture of right to legally recover it as specified in paragraph 358 of Part 2 of Annex V to Implementing Regulation (EU) No 2021/451. The gross carrying amount is defined in accordance with paragraph 34.Part 1 of Annex V to Implementing Regulation (EU) No 2021/451. Applicable when the category (e) debt forgiveness is selected in the field 'Type of Forbearance'."
+        )
+    )
 
     repayment_amount_under_forbearance = models.FloatField(blank=True, null=True,
                                                            help_text='Periodic repayment amount that the Institution and Counterparty agreed under the current forbearance terms. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Repayment_Amount_Under_Forbearance">Documentation</a>')
@@ -105,8 +126,13 @@ class Forbearance(models.Model):
     start_date_of_forbearance = models.DateField(blank=True, null=True,
                                                  help_text='Date that the current forbearance arrangement starts. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Start_Date_of_Forbearance">Documentation</a>')
 
-    type_of_forbearance = models.IntegerField(blank=True, null=True, choices=TYPE_OF_FORBEARANCE_CHOICES,
-                                              help_text='Type of current forbearance. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Forbearance.Type_of_Forbearance">Documentation</a>')
+    type_of_forbearance = models.IntegerField(
+        blank=True, null=True, choices=TYPE_OF_FORBEARANCE_CHOICES,
+        help_text=eba_help(
+            '3.39',
+            "Types of forbearance as defined in accordance with the criteria and the definitions specified in paragraphs 357 and 358 of Part 2 of Annex V to Implementing Regulation (EU) No 2021/451. Applicable when 'yes' is selected in the field 'Forbearance measure'. Multiple choices are permitted."
+        )
+    )
 
     #
     # BOOKKEEPING FIELDS
