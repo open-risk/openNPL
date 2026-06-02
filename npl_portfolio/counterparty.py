@@ -55,6 +55,10 @@ class Counterparty(models.Model):
     availability_of_email_address = models.BooleanField(blank=True, null=True,
                                                         help_text='Indicator whether the institution has an e-mail address for the counterparty. EBA NPL ITS field 1.18.')
 
+    # EBA NPL ITS 1.19 — Availability of telephone number
+    availability_of_telephone_number = models.BooleanField(blank=True, null=True,
+                                                           help_text='Indicator whether the institution has a telephone number (mobile or landline) for the counterparty. EBA NPL ITS field 1.19.')
+
     # counterparty_group_identifier = models.TextField(blank=True, null=True, help_text='Institutions internal identifier for the Counterparty Group. Where Counterparty Group is defined as a group of related Counterparties. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty.Counterparty_Group_Identifier">Documentation</a>')
 
     #
