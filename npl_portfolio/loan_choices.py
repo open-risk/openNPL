@@ -93,3 +93,42 @@ MARP_STATUS_CHOICES = [(0, '(a) Not in MARP'), (1, '(b) Exited MARP'), (2, '(c) 
                        (7, '(h) Provision 45 - Restructure declined by seller'),
                        (8, '(i) Provision 47 - Restructure declined by borrower'), (9, '(j) Self-Cure'),
                        (10, '(k) Alternative Repayment Arrangement (ARA)')]
+
+JOINT_COUNTERPARTIES_CHOICES = [
+    (0, '(a) no joint counterparties'),
+    (1, '(b) two counterparties'),
+    (2, '(c) more than two counterparties')
+]
+
+INTEREST_RATE_RESET_FREQUENCY_CHOICES = [
+    (0, '(a) Not resettable'),
+    (1, '(b) Overnight'),
+    (2, '(c) Monthly'),
+    (3, '(d) Quarterly'),
+    (4, '(e) Semi-annually'),
+    (5, '(f) Annually'),
+    (6, '(g) At creditor discretion'),
+    (7, '(h) Other frequency')
+]
+
+PAYMENT_FREQUENCY_CHOICES = [
+    (0, '(a) Monthly'),
+    (1, '(b) Quarterly'),
+    (2, '(c) Semi-annually'),
+    (3, '(d) Annually'),
+    (4, '(e) Bullet'),
+    (5, '(f) Zero coupon'),
+    (6, '(g) Other')
+]
+
+LOAN_LEGAL_STATUS_CHOICES = [
+    (0, '(a) out of court settlement'),
+    (1, '(b) legal proceedings'),
+    (2, '(c) no legal or \'out of court\' action taken')
+]
+
+TYPE_OF_LEASE_CHOICES = [
+    (0, '(a) Triple Net (Tenant pays the base rental amount plus operating costs, including real estate taxes, insurance, maintenance, and repairs)'),
+    (1, '(b) Net-Net Lease (Tenant pays the base rental amount, real estate taxes, and insurance premiums)')
+]
+
