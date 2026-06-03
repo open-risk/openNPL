@@ -25,8 +25,16 @@
 
 CHANNEL_OF_ORIGINATION_CHOICES = [(0, '(a) Branch'), (1, '(b) Internet'), (2, '(c) Broker'), (3, '(d) Other')]
 
-ASSET_CLASS_CHOICES = [(0, 'Resi'), (1, 'CRE'), (2, 'SME/Corp'), (3, 'Unsecured'), (4, 'Auto'),
-                       (5, 'Leasing / ABF'), (6, 'Specialised')]
+ASSET_CLASS_CHOICES = [
+    (0, '(a) Residential real estate'),
+    (1, '(b) Commercial real estate'),
+    (2, '(c) Corporate'),
+    (3, '(d) Automobile'),
+    (4, '(e) Consumer'),
+    (5, '(f) Credit card'),
+    (6, '(g) Leasing'),
+    (7, '(h) Other'),
+]
 
 LOAN_PURPOSE_CHOICES = [(0, '(a) Residential real estate - owner occupied'),
                         (1, '(b) Residential real estate investment'),
@@ -41,7 +49,17 @@ LOAN_PURPOSE_CHOICES = [(0, '(a) Residential real estate - owner occupied'),
                         (9, '(j) Consumer lending'),
                         (10, '(k) Asset finance')]
 
-PRODUCT_TYPE_CHOICES = [(0, '(a) Term Loans'), (1, '(b) Revolving Credit Facility'), (2, '(c) Overdraft')]
+PRODUCT_TYPE_CHOICES = [
+    (0, '(a) Deposits other than reverse repos'),
+    (1, '(b) Overdraft'),
+    (2, '(c) Credit card debt'),
+    (3, '(d) Revolving credit'),
+    (4, '(e) Credit lines'),
+    (5, '(f) Reverse repos'),
+    (6, '(g) Trade receivables'),
+    (7, '(h) Financial leases'),
+    (8, '(i) Other loans'),
+]
 
 AMORTISATION_TYPE_CHOICES = [(0, '(a) Linear (L)'), (1, '(b) Annuity (A)'),
                              (2, '(c) Interest Only (IO) i.e. no amortisation with a bullet'),

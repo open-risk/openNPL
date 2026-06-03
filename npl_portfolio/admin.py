@@ -90,14 +90,14 @@ class CounterpartyAdmin(admin.ModelAdmin):
                 'date_of_latest_annual_financial_statements', 'currency_of_financial_statements',
                 'fixed_assets', 'current_assets', 'cash_and_cash_equivalent_items',
                 'total_assets', 'total_liabilities', 'total_debt',
-                'annual_revenue', 'annual_ebit',
+                'annual_turnover', 'annual_ebit',
             ),
         }),
         ('Legal Status — EBA Mandatory', {
             'fields': (
                 'name_of_insolvency_or_restructuring_proceedings',
-                'stage_reached_in_insolvency_or_restructuring_procedure',
-                'additional_stage_reached_in_insolvency_procedure',
+                'status_of_legal_proceedings',
+                'description_of_other_legal_measures',
             ),
         }),
         ('Legacy Data', {
@@ -165,8 +165,8 @@ class CounterpartyGroupAdmin(admin.ModelAdmin):
 class LoanAdmin(admin.ModelAdmin):
     save_as = True
     view_on_site = False
-    search_fields = ['contract_identifier']
-    list_display = ('contract_identifier', 'counterparty_identifier', 'asset_class',
+    search_fields = ['loan_identifier']
+    list_display = ('loan_identifier', 'counterparty_identifier', 'asset_class',
                     'product_type', 'loan_currency', 'principal_balance',
                     'days_in_pastdue', 'date_of_default')
     list_filter = ('asset_class', 'product_type', 'loan_legal_status', 'forbearance_measure')
@@ -176,7 +176,7 @@ class LoanAdmin(admin.ModelAdmin):
         }),
         ('Identification — EBA Mandatory', {
             'fields': (
-                'contract_identifier',
+                'loan_identifier',
                 'date_of_origination', 'governing_law_of_loan_agreement',
                 'joint_counterparties', 'asset_class', 'product_type', 'loan_currency',
             ),
@@ -364,7 +364,7 @@ class ExternalCollectionAdmin(admin.ModelAdmin):
                 'balance_amount_sent_to_agent', 'cash_recoveries', 'costs_accrued',
                 'date_returned_from_agent', 'date_sent_to_agent',
                 'legal_entity_identifier', 'name_of_external_debt_collection_agent',
-                'principal_forgiveness', 'quantity_returned_from_agent',
+                'debt_forgiveness', 'quantity_returned_from_agent',
                 'registration_number', 'repayment_plan', 'repayment_plan_description',
             ),
         }),
@@ -490,7 +490,7 @@ class ForbearanceAdmin(admin.ModelAdmin):
         ('Details — EBA Recommended', {
             'classes': ('collapse',),
             'fields': (
-                'description_of_forbearance', 'principal_forgiveness',
+                'description_of_forbearance', 'debt_forgiveness',
                 'number_of_historical_forbearance',
             ),
         }),

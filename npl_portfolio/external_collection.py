@@ -85,7 +85,7 @@ class ExternalCollection(models.Model):
     name_of_external_debt_collection_agent = models.TextField(blank=True, null=True,
                                                               help_text=legacy_help('Name of the external collection agent.'))
 
-    principal_forgiveness = models.FloatField(blank=True, null=True,
+    debt_forgiveness = models.FloatField(blank=True, null=True,
                                               help_text=legacy_help('Amount of principal forgiven by the external collection agent as part of recovery negotiations.'))
 
     quantity_returned_from_agent = models.FloatField(blank=True, null=True,

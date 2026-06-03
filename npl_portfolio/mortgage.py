@@ -42,8 +42,8 @@ class Mortgage(models.Model):
         help_text=mandatory_help('4.43', "Institution's internal identifier of the mortgage agreement.")
     )
 
-    protection_identifier = models.TextField(
-        blank=True, null=True,
+    protection_identifier = models.ForeignKey(
+        'PropertyCollateral', on_delete=models.CASCADE, blank=True, null=True,
         help_text=mandatory_help('4.00', "Institution's internal identifier to uniquely identify each protection (collateral or guarantee) used to secure the loan.")
     )
 
@@ -52,7 +52,7 @@ class Mortgage(models.Model):
     #
 
     loan_identifier = models.ForeignKey(Loan, on_delete=models.CASCADE, null=True, blank=True,
-                                        help_text=mandatory_help('2.02', "Institution's internal identifier of the loan secured by this mortgage."))
+                                        help_text=mandatory_help('2.01', "Institution's internal identifier of the loan secured by this mortgage."))
 
     #
     # DATA PROPERTIES

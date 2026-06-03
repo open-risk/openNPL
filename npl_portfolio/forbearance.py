@@ -84,7 +84,7 @@ class Forbearance(models.Model):
         )
     )
 
-    principal_forgiveness = models.FloatField(
+    debt_forgiveness = models.FloatField(
         blank=True, null=True,
         help_text=recommended_help(
             '3.42',

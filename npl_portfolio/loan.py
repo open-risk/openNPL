@@ -39,8 +39,8 @@ class Loan(models.Model):
     # IDENTIFICATION FIELDS
     #
 
-    contract_identifier = models.TextField(blank=True, null=True,
-                                           help_text=mandatory_help('3.01', 'Institution internal identifier for the loan. Cannot be reused for any other loan under the same or different loan agreement.'))
+    loan_identifier = models.TextField(blank=True, null=True,
+                                       help_text=mandatory_help('3.01', 'Institution internal identifier for the loan. Cannot be reused for any other loan under the same or different loan agreement.'))
 
     instrument_identifier = models.TextField(blank=True, null=True,
                                              help_text=legacy_help('Institution internal identifier for the Loan part (sub-instrument level).'))
@@ -51,6 +51,9 @@ class Loan(models.Model):
 
     counterparty_identifier = models.ForeignKey(Counterparty, on_delete=models.CASCADE, null=True, blank=True,
                                                 help_text=mandatory_help('2.00', "Institution's internal identifier to uniquely identify each counterparty linked to this loan."))
+
+    snapshot_id = models.ForeignKey('PortfolioSnapshot', on_delete=models.CASCADE, null=True, blank=True,
+                                    help_text=mandatory_help('3.00', 'Reference date of the data included in the EBA NPL templates.'))
 
     #
     # LEGACY DATA PROPERTIES (pre-2023 EBA draft — not in EU 2023/2083)
@@ -363,11 +366,11 @@ class Loan(models.Model):
                                                 help_text=recommended_help('3.17', 'Margin or spread (percentage) above the reference rate used for interest calculation in basis points. Applicable at Cut-Off Date. Required only when Days in Past-Due ≤ 365.'))
 
     current_interest_base_rate = models.FloatField(blank=True, null=True,
-                                                   help_text=recommended_help('3.18', 'Reference rate used for the calculation of the actual interest rate. Applicable at Cut-Off Date when "Variable" is selected. Required only when Days in Past-Due ≤ 365.'))
+                                                   help_text=legacy_help('Reference rate used for the calculation of the actual interest rate. Applicable at Cut-Off Date when "Variable" is selected. Required only when Days in Past-Due ≤ 365.'))
 
     current_interest_rate_reference = models.IntegerField(blank=True, null=True,
                                                           choices=CURRENT_INTEREST_RATE_REFERENCE_CHOICES,
-                                                          help_text=recommended_help('3.18', 'Current interest rate base/reference of the loan per Loan Agreement at Cut-Off Date when "Variable" is selected in "Interest Rate Type".'))
+                                                          help_text=legacy_help('Current interest rate base/reference of the loan per Loan Agreement at Cut-Off Date when "Variable" is selected in "Interest Rate Type".'))
 
     last_payment_date = models.DateField(blank=True, null=True,
                                          help_text=recommended_help('3.21', 'Date that the last payment was made.'))
@@ -375,14 +378,14 @@ class Loan(models.Model):
     last_payment_amount = models.BigIntegerField(blank=True, null=True,
                                                  help_text=recommended_help('3.22', 'Amount of last payment.'))
 
-    syndicated_loan = models.TextField(blank=True, null=True,
-                                       help_text=recommended_help('3.30', 'Indicator as to whether the loan is provided by a syndicate or consortium of two or more credit institutions (institution holds <100% of total loan).'))
+    syndicated_loan = models.BooleanField(blank=True, null=True,
+                                          help_text=recommended_help('3.30', 'Indicator as to whether the loan is provided by a syndicate or consortium of two or more credit institutions (institution holds <100% of total loan).'))
 
     syndicated_portion = models.FloatField(blank=True, null=True,
                                            help_text=recommended_help('3.31', 'Percentage of the portion held by the institution. Applicable when "Yes" is selected in "Syndicated Loan".'))
 
-    securitised = models.TextField(blank=True, null=True,
-                                   help_text=recommended_help('3.32', 'Indicator as to whether the loan has been securitised or is within a covered bond pool.'))
+    securitised = models.BooleanField(blank=True, null=True,
+                                      help_text=recommended_help('3.32', 'Indicator as to whether the loan has been securitised or is within a covered bond pool.'))
 
     #
     # EBA TEMPLATE 3 ADDITIONAL FIELDS
@@ -430,8 +433,8 @@ class Loan(models.Model):
             "Date on which legal proceedings were initiated. Must be the most recent relevant date prior to Cut-Off Date. Required only when 'Loan legal status' = 'legal proceedings'."
         )
     )
-    stage_reached_in_legal_proceedings = models.TextField(
-        blank=True, null=True,
+    stage_reached_in_legal_proceedings = models.JSONField(
+        blank=True, null=True, default=list,
         help_text=mandatory_help(
             '3.26',
             "Indication of how advanced the legal procedure has become. Multiple selections allowed: (a) Initial stage; (b) Proof of claim filed; (c) Notice of intention to sell secured assets; (d) Distribution made to seller; (e) Notice of end of procedure. Required only when 'Loan legal status' = 'legal proceedings'."
@@ -509,7 +512,7 @@ class Loan(models.Model):
     last_change_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.contract_identifier
+        return self.loan_identifier
 
     def get_absolute_url(self):
         return reverse('npl_portfolio:loan_edit', kwargs={'pk': self.pk})

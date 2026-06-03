@@ -48,9 +48,8 @@ class Counterparty(models.Model):
                                            help_text=mandatory_help('1.10', 'Unique identifier of the counterparty in the country of residence (e.g. tax code, national ID number). Mandatory for Corporate (1.10), recommended for Private Individual (1.11).'))
 
     # EBA NPL ITS 1.12 — Source of National Identifier
-    source_of_national_identifier = models.IntegerField(blank=True, null=True,
-                                                        choices=TYPE_OF_PERSONAL_IDENTITY_NUMBER_CHOICES,
-                                                        help_text=mandatory_help('1.12', 'Type/source of the national identifier provided in field 1.10.'))
+    source_of_national_identifier = models.TextField(blank=True, null=True,
+                                                     help_text=mandatory_help('1.12', 'Type/source of the national identifier provided in field 1.10.'))
 
     # EBA NPL ITS 1.18 — Availability of e-mail address
     availability_of_email_address = models.BooleanField(blank=True, null=True,
@@ -84,6 +83,12 @@ class Counterparty(models.Model):
     counterparty_group_identifier = models.ForeignKey(CounterpartyGroup, on_delete=models.CASCADE, null=True,
                                                       blank=True)
 
+    property_collaterals = models.ManyToManyField('PropertyCollateral', blank=True,
+                                                  help_text="Template 2.4: Link from Guarantor to Property Protection")
+
+    non_property_collaterals = models.ManyToManyField('NonPropertyCollateral', blank=True,
+                                                      help_text="Template 2.4: Link from Guarantor to Non-Property Protection")
+
     # Portfolio ID Foreign Key
     portfolio_id = models.ForeignKey(Portfolio, on_delete=models.CASCADE, blank=True, null=True,
                                      help_text="The portfolio ID to which the Counterparty belongs (can be more than one)")
@@ -112,8 +117,8 @@ class Counterparty(models.Model):
     annual_ebit = models.BigIntegerField(blank=True, null=True,
                                          help_text=recommended_help('1.30', 'Annual Earnings Before Interest and Tax (EBIT) of the corporate counterparty per latest financial statements.'))
 
-    annual_revenue = models.BigIntegerField(blank=True, null=True,
-                                            help_text=recommended_help('1.29', 'Annual sales volume net of all discounts and sales taxes (Annual Turnover) per Recommendation 2003/361/EC.'))
+    annual_turnover = models.BigIntegerField(blank=True, null=True,
+                                             help_text=recommended_help('1.29', 'Annual sales volume net of all discounts and sales taxes (Annual Turnover) per Recommendation 2003/361/EC.'))
 
     basis_of_financial_statements = models.IntegerField(blank=True, null=True,
                                                         choices=BASIS_OF_FINANCIAL_STATEMENTS_CHOICES,
@@ -329,12 +334,12 @@ class Counterparty(models.Model):
     source_of_external_credit_rating_at_origination = models.TextField(blank=True, null=True,
                                                                        help_text=legacy_help('Agency which provided the external credit rating at origination.'))
 
-    stage_reached_in_insolvency_or_restructuring_procedure = models.IntegerField(blank=True, null=True,
-                                                                                 choices=STAGE_REACHED_IN_INSOLVENCY_OR_RESTRUCTURING_PROCEDURE_CHOICES,
-                                                                                 help_text=mandatory_help('1.32', 'Categories describing the counterparty legal status in relation to solvency per national legal framework.'))
+    status_of_legal_proceedings = models.IntegerField(blank=True, null=True,
+                                                      choices=STATUS_OF_LEGAL_PROCEEDINGS_CHOICES,
+                                                      help_text=mandatory_help('1.32', 'Categories describing the counterparty legal status in relation to solvency per national legal framework.'))
 
-    additional_stage_reached_in_insolvency_procedure = models.TextField(blank=True, null=True,
-                                                                        help_text=recommended_help('1.33', 'Description of the status of legal proceedings when Other legal measures is selected in field 1.32.'))
+    description_of_other_legal_measures = models.TextField(blank=True, null=True,
+                                                           help_text=recommended_help('1.33', 'Description of the status of legal proceedings when Other legal measures is selected in field 1.32.'))
 
     total_assets = models.BigIntegerField(blank=True, null=True,
                                           help_text=recommended_help('1.26', 'Carrying amount of total assets per latest financial statements (IAS 1.9(a)).'))
