@@ -46086,7 +46086,7 @@
       "type_of_property": 11,
       "value_of_energy_performance_certificate": 3,
       "vat_payable": true,
-      "year_of_construction": "2014-10-08",
+      "year_of_construction": 2014,
       "year_of_refurbishment": "2020-05-16",
       "creation_date": "2021-03-15T11:23:35.807",
       "last_change_date": "2021-03-15T11:23:35.807"
@@ -46153,7 +46153,7 @@
       "type_of_property": 20,
       "value_of_energy_performance_certificate": 3,
       "vat_payable": false,
-      "year_of_construction": "2012-07-25",
+      "year_of_construction": 2012,
       "year_of_refurbishment": "2018-02-14",
       "creation_date": "2021-03-15T11:23:35.818",
       "last_change_date": "2021-03-15T11:23:35.818"
@@ -46220,7 +46220,7 @@
       "type_of_property": 16,
       "value_of_energy_performance_certificate": 4,
       "vat_payable": false,
-      "year_of_construction": "2004-10-22",
+      "year_of_construction": 2004,
       "year_of_refurbishment": "2001-06-26",
       "creation_date": "2021-03-15T11:23:35.827",
       "last_change_date": "2021-03-15T11:23:35.827"
@@ -46287,7 +46287,7 @@
       "type_of_property": 12,
       "value_of_energy_performance_certificate": 4,
       "vat_payable": true,
-      "year_of_construction": "2009-11-20",
+      "year_of_construction": 2009,
       "year_of_refurbishment": "2003-09-03",
       "creation_date": "2021-03-15T11:23:35.834",
       "last_change_date": "2021-03-15T11:23:35.834"
@@ -46354,7 +46354,7 @@
       "type_of_property": 19,
       "value_of_energy_performance_certificate": 5,
       "vat_payable": false,
-      "year_of_construction": "2011-01-30",
+      "year_of_construction": 2011,
       "year_of_refurbishment": "2009-09-06",
       "creation_date": "2021-03-15T11:23:35.843",
       "last_change_date": "2021-03-15T11:23:35.843"
@@ -46421,7 +46421,7 @@
       "type_of_property": 19,
       "value_of_energy_performance_certificate": 5,
       "vat_payable": false,
-      "year_of_construction": "2015-01-08",
+      "year_of_construction": 2015,
       "year_of_refurbishment": "2018-10-26",
       "creation_date": "2021-03-15T11:23:35.851",
       "last_change_date": "2021-03-15T11:23:35.851"
@@ -46488,7 +46488,7 @@
       "type_of_property": 12,
       "value_of_energy_performance_certificate": 3,
       "vat_payable": false,
-      "year_of_construction": "2019-05-20",
+      "year_of_construction": 2019,
       "year_of_refurbishment": "2013-02-06",
       "creation_date": "2021-03-15T11:23:35.859",
       "last_change_date": "2021-03-15T11:23:35.859"
@@ -46555,7 +46555,7 @@
       "type_of_property": 13,
       "value_of_energy_performance_certificate": 3,
       "vat_payable": true,
-      "year_of_construction": "2019-01-10",
+      "year_of_construction": 2019,
       "year_of_refurbishment": "2010-10-25",
       "creation_date": "2021-03-15T11:23:35.868",
       "last_change_date": "2021-03-15T11:23:35.868"
@@ -46622,7 +46622,7 @@
       "type_of_property": 0,
       "value_of_energy_performance_certificate": 2,
       "vat_payable": true,
-      "year_of_construction": "2008-07-05",
+      "year_of_construction": 2008,
       "year_of_refurbishment": "2017-07-18",
       "creation_date": "2021-03-15T11:23:35.876",
       "last_change_date": "2021-03-15T11:23:35.876"
@@ -46689,7 +46689,7 @@
       "type_of_property": 15,
       "value_of_energy_performance_certificate": 4,
       "vat_payable": true,
-      "year_of_construction": "2016-08-19",
+      "year_of_construction": 2016,
       "year_of_refurbishment": "2019-02-18",
       "creation_date": "2021-03-15T11:23:35.884",
       "last_change_date": "2021-03-15T11:23:35.884"
@@ -46756,7 +46756,7 @@
       "type_of_property": 16,
       "value_of_energy_performance_certificate": 6,
       "vat_payable": true,
-      "year_of_construction": "2002-10-14",
+      "year_of_construction": 2002,
       "year_of_refurbishment": "2005-03-01",
       "creation_date": "2021-03-15T11:23:35.893",
       "last_change_date": "2021-03-15T11:23:35.893"
@@ -46823,7 +46823,7 @@
       "type_of_property": 17,
       "value_of_energy_performance_certificate": 1,
       "vat_payable": true,
-      "year_of_construction": "2020-09-28",
+      "year_of_construction": 2020,
       "year_of_refurbishment": "2017-01-29",
       "creation_date": "2021-03-15T11:23:35.901",
       "last_change_date": "2021-03-15T11:23:35.901"
@@ -46890,7 +46890,7 @@
       "type_of_property": 21,
       "value_of_energy_performance_certificate": 2,
       "vat_payable": true,
-      "year_of_construction": "2013-01-16",
+      "year_of_construction": 2013,
       "year_of_refurbishment": "2005-01-14",
       "creation_date": "2021-03-15T11:23:35.909",
       "last_change_date": "2021-03-15T11:23:35.909"
@@ -46957,7 +46957,7 @@
       "type_of_property": 20,
       "value_of_energy_performance_certificate": 5,
       "vat_payable": true,
-      "year_of_construction": "2020-07-08",
+      "year_of_construction": 2020,
       "year_of_refurbishment": "2007-06-07",
       "creation_date": "2021-03-15T11:23:35.918",
       "last_change_date": "2021-03-15T11:23:35.918"
@@ -47024,7 +47024,7 @@
       "type_of_property": 0,
       "value_of_energy_performance_certificate": 6,
       "vat_payable": true,
-      "year_of_construction": "2012-01-16",
+      "year_of_construction": 2012,
       "year_of_refurbishment": "2007-03-25",
       "creation_date": "2021-03-15T11:23:35.927",
       "last_change_date": "2021-03-15T11:23:35.927"
@@ -47091,7 +47091,7 @@
       "type_of_property": 5,
       "value_of_energy_performance_certificate": 1,
       "vat_payable": true,
-      "year_of_construction": "2019-06-21",
+      "year_of_construction": 2019,
       "year_of_refurbishment": "2002-08-22",
       "creation_date": "2021-03-15T11:23:35.935",
       "last_change_date": "2021-03-15T11:23:35.935"
@@ -47158,7 +47158,7 @@
       "type_of_property": 1,
       "value_of_energy_performance_certificate": 2,
       "vat_payable": false,
-      "year_of_construction": "2017-09-01",
+      "year_of_construction": 2017,
       "year_of_refurbishment": "2020-07-25",
       "creation_date": "2021-03-15T11:23:35.943",
       "last_change_date": "2021-03-15T11:23:35.943"
@@ -47225,7 +47225,7 @@
       "type_of_property": 16,
       "value_of_energy_performance_certificate": 2,
       "vat_payable": true,
-      "year_of_construction": "2015-04-10",
+      "year_of_construction": 2015,
       "year_of_refurbishment": "2004-04-29",
       "creation_date": "2021-03-15T11:23:35.952",
       "last_change_date": "2021-03-15T11:23:35.952"
@@ -47292,7 +47292,7 @@
       "type_of_property": 8,
       "value_of_energy_performance_certificate": 3,
       "vat_payable": true,
-      "year_of_construction": "2014-03-28",
+      "year_of_construction": 2014,
       "year_of_refurbishment": "2014-01-07",
       "creation_date": "2021-03-15T11:23:35.969",
       "last_change_date": "2021-03-15T11:23:35.969"
@@ -47359,7 +47359,7 @@
       "type_of_property": 20,
       "value_of_energy_performance_certificate": 6,
       "vat_payable": false,
-      "year_of_construction": "2013-12-12",
+      "year_of_construction": 2013,
       "year_of_refurbishment": "2001-04-03",
       "creation_date": "2021-03-15T11:23:35.986",
       "last_change_date": "2021-03-15T11:23:35.986"
@@ -47426,7 +47426,7 @@
       "type_of_property": 12,
       "value_of_energy_performance_certificate": 3,
       "vat_payable": false,
-      "year_of_construction": "2008-10-08",
+      "year_of_construction": 2008,
       "year_of_refurbishment": "2012-01-15",
       "creation_date": "2021-03-15T11:23:36.003",
       "last_change_date": "2021-03-15T11:23:36.003"
@@ -47493,7 +47493,7 @@
       "type_of_property": 12,
       "value_of_energy_performance_certificate": 4,
       "vat_payable": false,
-      "year_of_construction": "2013-01-25",
+      "year_of_construction": 2013,
       "year_of_refurbishment": "2015-12-10",
       "creation_date": "2021-03-15T11:23:36.020",
       "last_change_date": "2021-03-15T11:23:36.020"
@@ -47560,7 +47560,7 @@
       "type_of_property": 5,
       "value_of_energy_performance_certificate": 0,
       "vat_payable": false,
-      "year_of_construction": "2003-09-03",
+      "year_of_construction": 2003,
       "year_of_refurbishment": "2003-07-02",
       "creation_date": "2021-03-15T11:23:36.037",
       "last_change_date": "2021-03-15T11:23:36.037"
@@ -47627,7 +47627,7 @@
       "type_of_property": 8,
       "value_of_energy_performance_certificate": 1,
       "vat_payable": true,
-      "year_of_construction": "2001-08-09",
+      "year_of_construction": 2001,
       "year_of_refurbishment": "2006-06-27",
       "creation_date": "2021-03-15T11:23:36.054",
       "last_change_date": "2021-03-15T11:23:36.054"
@@ -47694,7 +47694,7 @@
       "type_of_property": 22,
       "value_of_energy_performance_certificate": 0,
       "vat_payable": true,
-      "year_of_construction": "2020-01-04",
+      "year_of_construction": 2020,
       "year_of_refurbishment": "2008-04-18",
       "creation_date": "2021-03-15T11:23:36.069",
       "last_change_date": "2021-03-15T11:23:36.069"
@@ -47761,7 +47761,7 @@
       "type_of_property": 8,
       "value_of_energy_performance_certificate": 5,
       "vat_payable": true,
-      "year_of_construction": "2015-10-09",
+      "year_of_construction": 2015,
       "year_of_refurbishment": "2013-02-22",
       "creation_date": "2021-03-15T11:23:36.087",
       "last_change_date": "2021-03-15T11:23:36.087"
@@ -47828,7 +47828,7 @@
       "type_of_property": 2,
       "value_of_energy_performance_certificate": 1,
       "vat_payable": true,
-      "year_of_construction": "2012-07-17",
+      "year_of_construction": 2012,
       "year_of_refurbishment": "2000-11-18",
       "creation_date": "2021-03-15T11:23:36.103",
       "last_change_date": "2021-03-15T11:23:36.103"
@@ -47895,7 +47895,7 @@
       "type_of_property": 7,
       "value_of_energy_performance_certificate": 6,
       "vat_payable": false,
-      "year_of_construction": "2001-12-18",
+      "year_of_construction": 2001,
       "year_of_refurbishment": "2003-10-28",
       "creation_date": "2021-03-15T11:23:36.120",
       "last_change_date": "2021-03-15T11:23:36.120"
@@ -47962,7 +47962,7 @@
       "type_of_property": 11,
       "value_of_energy_performance_certificate": 0,
       "vat_payable": false,
-      "year_of_construction": "2020-04-23",
+      "year_of_construction": 2020,
       "year_of_refurbishment": "2008-12-04",
       "creation_date": "2021-03-15T11:23:36.137",
       "last_change_date": "2021-03-15T11:23:36.137"
@@ -48029,7 +48029,7 @@
       "type_of_property": 23,
       "value_of_energy_performance_certificate": 5,
       "vat_payable": true,
-      "year_of_construction": "2008-03-03",
+      "year_of_construction": 2008,
       "year_of_refurbishment": "2019-04-13",
       "creation_date": "2021-03-15T11:23:36.154",
       "last_change_date": "2021-03-15T11:23:36.154"
@@ -48096,7 +48096,7 @@
       "type_of_property": 23,
       "value_of_energy_performance_certificate": 5,
       "vat_payable": false,
-      "year_of_construction": "2011-09-24",
+      "year_of_construction": 2011,
       "year_of_refurbishment": "2014-08-17",
       "creation_date": "2021-03-15T11:23:36.170",
       "last_change_date": "2021-03-15T11:23:36.170"
@@ -48163,7 +48163,7 @@
       "type_of_property": 16,
       "value_of_energy_performance_certificate": 6,
       "vat_payable": true,
-      "year_of_construction": "2011-02-24",
+      "year_of_construction": 2011,
       "year_of_refurbishment": "2016-04-27",
       "creation_date": "2021-03-15T11:23:36.186",
       "last_change_date": "2021-03-15T11:23:36.186"
@@ -48230,7 +48230,7 @@
       "type_of_property": 15,
       "value_of_energy_performance_certificate": 5,
       "vat_payable": true,
-      "year_of_construction": "2011-06-14",
+      "year_of_construction": 2011,
       "year_of_refurbishment": "2007-03-24",
       "creation_date": "2021-03-15T11:23:36.203",
       "last_change_date": "2021-03-15T11:23:36.203"
@@ -48297,7 +48297,7 @@
       "type_of_property": 4,
       "value_of_energy_performance_certificate": 6,
       "vat_payable": false,
-      "year_of_construction": "2017-06-11",
+      "year_of_construction": 2017,
       "year_of_refurbishment": "2015-07-07",
       "creation_date": "2021-03-15T11:23:36.220",
       "last_change_date": "2021-03-15T11:23:36.220"
@@ -48364,7 +48364,7 @@
       "type_of_property": 15,
       "value_of_energy_performance_certificate": 5,
       "vat_payable": false,
-      "year_of_construction": "2017-04-02",
+      "year_of_construction": 2017,
       "year_of_refurbishment": "2010-08-31",
       "creation_date": "2021-03-15T11:23:36.237",
       "last_change_date": "2021-03-15T11:23:36.237"
@@ -48431,7 +48431,7 @@
       "type_of_property": 10,
       "value_of_energy_performance_certificate": 1,
       "vat_payable": false,
-      "year_of_construction": "2001-01-21",
+      "year_of_construction": 2001,
       "year_of_refurbishment": "2016-07-13",
       "creation_date": "2021-03-15T11:23:36.254",
       "last_change_date": "2021-03-15T11:23:36.254"
@@ -48498,7 +48498,7 @@
       "type_of_property": 16,
       "value_of_energy_performance_certificate": 0,
       "vat_payable": true,
-      "year_of_construction": "2015-09-14",
+      "year_of_construction": 2015,
       "year_of_refurbishment": "2016-04-16",
       "creation_date": "2021-03-15T11:23:36.270",
       "last_change_date": "2021-03-15T11:23:36.270"
@@ -48565,7 +48565,7 @@
       "type_of_property": 11,
       "value_of_energy_performance_certificate": 5,
       "vat_payable": true,
-      "year_of_construction": "2019-04-14",
+      "year_of_construction": 2019,
       "year_of_refurbishment": "2001-02-03",
       "creation_date": "2021-03-15T11:23:36.286",
       "last_change_date": "2021-03-15T11:23:36.286"
@@ -48632,7 +48632,7 @@
       "type_of_property": 23,
       "value_of_energy_performance_certificate": 1,
       "vat_payable": true,
-      "year_of_construction": "2013-03-19",
+      "year_of_construction": 2013,
       "year_of_refurbishment": "2014-07-10",
       "creation_date": "2021-03-15T11:23:36.303",
       "last_change_date": "2021-03-15T11:23:36.303"
@@ -48699,7 +48699,7 @@
       "type_of_property": 4,
       "value_of_energy_performance_certificate": 3,
       "vat_payable": false,
-      "year_of_construction": "2014-04-23",
+      "year_of_construction": 2014,
       "year_of_refurbishment": "2018-01-08",
       "creation_date": "2021-03-15T11:23:36.320",
       "last_change_date": "2021-03-15T11:23:36.320"
@@ -48766,7 +48766,7 @@
       "type_of_property": 6,
       "value_of_energy_performance_certificate": 0,
       "vat_payable": false,
-      "year_of_construction": "2020-03-24",
+      "year_of_construction": 2020,
       "year_of_refurbishment": "2019-12-11",
       "creation_date": "2021-03-15T11:23:36.337",
       "last_change_date": "2021-03-15T11:23:36.337"
@@ -48833,7 +48833,7 @@
       "type_of_property": 1,
       "value_of_energy_performance_certificate": 4,
       "vat_payable": true,
-      "year_of_construction": "2002-02-18",
+      "year_of_construction": 2002,
       "year_of_refurbishment": "2010-02-20",
       "creation_date": "2021-03-15T11:23:36.353",
       "last_change_date": "2021-03-15T11:23:36.353"
@@ -48900,7 +48900,7 @@
       "type_of_property": 5,
       "value_of_energy_performance_certificate": 2,
       "vat_payable": true,
-      "year_of_construction": "2002-10-10",
+      "year_of_construction": 2002,
       "year_of_refurbishment": "2018-04-30",
       "creation_date": "2021-03-15T11:23:36.370",
       "last_change_date": "2021-03-15T11:23:36.370"
@@ -48967,7 +48967,7 @@
       "type_of_property": 22,
       "value_of_energy_performance_certificate": 3,
       "vat_payable": true,
-      "year_of_construction": "2007-01-23",
+      "year_of_construction": 2007,
       "year_of_refurbishment": "2007-07-09",
       "creation_date": "2021-03-15T11:23:36.386",
       "last_change_date": "2021-03-15T11:23:36.386"
@@ -49034,7 +49034,7 @@
       "type_of_property": 9,
       "value_of_energy_performance_certificate": 2,
       "vat_payable": true,
-      "year_of_construction": "2014-01-12",
+      "year_of_construction": 2014,
       "year_of_refurbishment": "2012-08-16",
       "creation_date": "2021-03-15T11:23:36.403",
       "last_change_date": "2021-03-15T11:23:36.403"
@@ -49101,7 +49101,7 @@
       "type_of_property": 8,
       "value_of_energy_performance_certificate": 3,
       "vat_payable": true,
-      "year_of_construction": "2002-07-06",
+      "year_of_construction": 2002,
       "year_of_refurbishment": "2005-12-06",
       "creation_date": "2021-03-15T11:23:36.420",
       "last_change_date": "2021-03-15T11:23:36.420"
@@ -49168,7 +49168,7 @@
       "type_of_property": 18,
       "value_of_energy_performance_certificate": 0,
       "vat_payable": true,
-      "year_of_construction": "2009-06-06",
+      "year_of_construction": 2009,
       "year_of_refurbishment": "2013-09-15",
       "creation_date": "2021-03-15T11:23:36.437",
       "last_change_date": "2021-03-15T11:23:36.437"
@@ -49235,7 +49235,7 @@
       "type_of_property": 17,
       "value_of_energy_performance_certificate": 2,
       "vat_payable": false,
-      "year_of_construction": "2003-07-14",
+      "year_of_construction": 2003,
       "year_of_refurbishment": "2013-05-18",
       "creation_date": "2021-03-15T11:23:36.453",
       "last_change_date": "2021-03-15T11:23:36.453"
@@ -49302,7 +49302,7 @@
       "type_of_property": 16,
       "value_of_energy_performance_certificate": 0,
       "vat_payable": true,
-      "year_of_construction": "2013-05-02",
+      "year_of_construction": 2013,
       "year_of_refurbishment": "2013-06-15",
       "creation_date": "2021-03-15T11:23:36.470",
       "last_change_date": "2021-03-15T11:23:36.470"
@@ -49369,7 +49369,7 @@
       "type_of_property": 10,
       "value_of_energy_performance_certificate": 1,
       "vat_payable": true,
-      "year_of_construction": "2004-03-15",
+      "year_of_construction": 2004,
       "year_of_refurbishment": "2018-12-20",
       "creation_date": "2021-03-15T11:23:36.486",
       "last_change_date": "2021-03-15T11:23:36.486"
@@ -49436,7 +49436,7 @@
       "type_of_property": 7,
       "value_of_energy_performance_certificate": 0,
       "vat_payable": false,
-      "year_of_construction": "2015-02-09",
+      "year_of_construction": 2015,
       "year_of_refurbishment": "2016-08-19",
       "creation_date": "2021-03-15T11:23:36.503",
       "last_change_date": "2021-03-15T11:23:36.503"
@@ -49503,7 +49503,7 @@
       "type_of_property": 14,
       "value_of_energy_performance_certificate": 5,
       "vat_payable": true,
-      "year_of_construction": "2003-10-15",
+      "year_of_construction": 2003,
       "year_of_refurbishment": "2002-10-20",
       "creation_date": "2021-03-15T11:23:36.521",
       "last_change_date": "2021-03-15T11:23:36.521"
@@ -49570,7 +49570,7 @@
       "type_of_property": 6,
       "value_of_energy_performance_certificate": 4,
       "vat_payable": true,
-      "year_of_construction": "2006-06-17",
+      "year_of_construction": 2006,
       "year_of_refurbishment": "2004-03-07",
       "creation_date": "2021-03-15T11:23:36.537",
       "last_change_date": "2021-03-15T11:23:36.537"
@@ -49637,7 +49637,7 @@
       "type_of_property": 6,
       "value_of_energy_performance_certificate": 6,
       "vat_payable": true,
-      "year_of_construction": "2003-12-11",
+      "year_of_construction": 2003,
       "year_of_refurbishment": "2011-08-26",
       "creation_date": "2021-03-15T11:23:36.553",
       "last_change_date": "2021-03-15T11:23:36.553"
@@ -49704,7 +49704,7 @@
       "type_of_property": 7,
       "value_of_energy_performance_certificate": 3,
       "vat_payable": true,
-      "year_of_construction": "2011-09-01",
+      "year_of_construction": 2011,
       "year_of_refurbishment": "2014-07-18",
       "creation_date": "2021-03-15T11:23:36.570",
       "last_change_date": "2021-03-15T11:23:36.570"
@@ -49771,7 +49771,7 @@
       "type_of_property": 2,
       "value_of_energy_performance_certificate": 4,
       "vat_payable": false,
-      "year_of_construction": "2009-12-29",
+      "year_of_construction": 2009,
       "year_of_refurbishment": "2004-11-13",
       "creation_date": "2021-03-15T11:23:36.586",
       "last_change_date": "2021-03-15T11:23:36.586"
@@ -49838,7 +49838,7 @@
       "type_of_property": 13,
       "value_of_energy_performance_certificate": 6,
       "vat_payable": false,
-      "year_of_construction": "2013-01-16",
+      "year_of_construction": 2013,
       "year_of_refurbishment": "2007-01-29",
       "creation_date": "2021-03-15T11:23:36.604",
       "last_change_date": "2021-03-15T11:23:36.604"
@@ -49905,7 +49905,7 @@
       "type_of_property": 5,
       "value_of_energy_performance_certificate": 4,
       "vat_payable": false,
-      "year_of_construction": "2020-11-02",
+      "year_of_construction": 2020,
       "year_of_refurbishment": "2018-08-18",
       "creation_date": "2021-03-15T11:23:36.621",
       "last_change_date": "2021-03-15T11:23:36.621"
@@ -49972,7 +49972,7 @@
       "type_of_property": 23,
       "value_of_energy_performance_certificate": 6,
       "vat_payable": true,
-      "year_of_construction": "2013-12-11",
+      "year_of_construction": 2013,
       "year_of_refurbishment": "2014-12-24",
       "creation_date": "2021-03-15T11:23:36.637",
       "last_change_date": "2021-03-15T11:23:36.637"
@@ -50039,7 +50039,7 @@
       "type_of_property": 17,
       "value_of_energy_performance_certificate": 2,
       "vat_payable": true,
-      "year_of_construction": "2020-06-18",
+      "year_of_construction": 2020,
       "year_of_refurbishment": "2011-02-01",
       "creation_date": "2021-03-15T11:23:36.653",
       "last_change_date": "2021-03-15T11:23:36.653"
@@ -50106,7 +50106,7 @@
       "type_of_property": 2,
       "value_of_energy_performance_certificate": 3,
       "vat_payable": true,
-      "year_of_construction": "2016-06-10",
+      "year_of_construction": 2016,
       "year_of_refurbishment": "2018-11-28",
       "creation_date": "2021-03-15T11:23:36.671",
       "last_change_date": "2021-03-15T11:23:36.671"
@@ -50173,7 +50173,7 @@
       "type_of_property": 0,
       "value_of_energy_performance_certificate": 0,
       "vat_payable": true,
-      "year_of_construction": "2011-03-26",
+      "year_of_construction": 2011,
       "year_of_refurbishment": "2005-11-05",
       "creation_date": "2021-03-15T11:23:36.686",
       "last_change_date": "2021-03-15T11:23:36.686"
@@ -50240,7 +50240,7 @@
       "type_of_property": 16,
       "value_of_energy_performance_certificate": 0,
       "vat_payable": true,
-      "year_of_construction": "2013-03-02",
+      "year_of_construction": 2013,
       "year_of_refurbishment": "2008-07-26",
       "creation_date": "2021-03-15T11:23:36.703",
       "last_change_date": "2021-03-15T11:23:36.703"
@@ -50307,7 +50307,7 @@
       "type_of_property": 15,
       "value_of_energy_performance_certificate": 4,
       "vat_payable": true,
-      "year_of_construction": "2012-01-16",
+      "year_of_construction": 2012,
       "year_of_refurbishment": "2004-11-22",
       "creation_date": "2021-03-15T11:23:36.722",
       "last_change_date": "2021-03-15T11:23:36.722"
@@ -50374,7 +50374,7 @@
       "type_of_property": 20,
       "value_of_energy_performance_certificate": 5,
       "vat_payable": false,
-      "year_of_construction": "2013-05-31",
+      "year_of_construction": 2013,
       "year_of_refurbishment": "2014-05-09",
       "creation_date": "2021-03-15T11:23:36.735",
       "last_change_date": "2021-03-15T11:23:36.735"
@@ -50441,7 +50441,7 @@
       "type_of_property": 12,
       "value_of_energy_performance_certificate": 5,
       "vat_payable": true,
-      "year_of_construction": "2002-02-25",
+      "year_of_construction": 2002,
       "year_of_refurbishment": "2017-10-07",
       "creation_date": "2021-03-15T11:23:36.744",
       "last_change_date": "2021-03-15T11:23:36.744"
@@ -50508,7 +50508,7 @@
       "type_of_property": 19,
       "value_of_energy_performance_certificate": 5,
       "vat_payable": true,
-      "year_of_construction": "2006-10-20",
+      "year_of_construction": 2006,
       "year_of_refurbishment": "2010-11-20",
       "creation_date": "2021-03-15T11:23:36.762",
       "last_change_date": "2021-03-15T11:23:36.762"
@@ -50575,7 +50575,7 @@
       "type_of_property": 19,
       "value_of_energy_performance_certificate": 3,
       "vat_payable": true,
-      "year_of_construction": "2012-10-18",
+      "year_of_construction": 2012,
       "year_of_refurbishment": "2010-11-19",
       "creation_date": "2021-03-15T11:23:36.779",
       "last_change_date": "2021-03-15T11:23:36.779"
@@ -50642,7 +50642,7 @@
       "type_of_property": 12,
       "value_of_energy_performance_certificate": 3,
       "vat_payable": false,
-      "year_of_construction": "2020-05-28",
+      "year_of_construction": 2020,
       "year_of_refurbishment": "2007-06-13",
       "creation_date": "2021-03-15T11:23:36.794",
       "last_change_date": "2021-03-15T11:23:36.794"
@@ -50709,7 +50709,7 @@
       "type_of_property": 8,
       "value_of_energy_performance_certificate": 0,
       "vat_payable": false,
-      "year_of_construction": "2010-05-10",
+      "year_of_construction": 2010,
       "year_of_refurbishment": "2014-11-08",
       "creation_date": "2021-03-15T11:23:36.811",
       "last_change_date": "2021-03-15T11:23:36.811"
@@ -50776,7 +50776,7 @@
       "type_of_property": 16,
       "value_of_energy_performance_certificate": 3,
       "vat_payable": false,
-      "year_of_construction": "2019-05-27",
+      "year_of_construction": 2019,
       "year_of_refurbishment": "2013-04-27",
       "creation_date": "2021-03-15T11:23:36.829",
       "last_change_date": "2021-03-15T11:23:36.829"
@@ -50843,7 +50843,7 @@
       "type_of_property": 11,
       "value_of_energy_performance_certificate": 1,
       "vat_payable": false,
-      "year_of_construction": "2014-10-29",
+      "year_of_construction": 2014,
       "year_of_refurbishment": "2012-04-17",
       "creation_date": "2021-03-15T11:23:36.846",
       "last_change_date": "2021-03-15T11:23:36.846"
@@ -50910,7 +50910,7 @@
       "type_of_property": 4,
       "value_of_energy_performance_certificate": 4,
       "vat_payable": false,
-      "year_of_construction": "2002-03-25",
+      "year_of_construction": 2002,
       "year_of_refurbishment": "2005-09-09",
       "creation_date": "2021-03-15T11:23:36.862",
       "last_change_date": "2021-03-15T11:23:36.862"
@@ -50977,7 +50977,7 @@
       "type_of_property": 1,
       "value_of_energy_performance_certificate": 3,
       "vat_payable": false,
-      "year_of_construction": "2011-10-20",
+      "year_of_construction": 2011,
       "year_of_refurbishment": "2015-10-24",
       "creation_date": "2021-03-15T11:23:36.879",
       "last_change_date": "2021-03-15T11:23:36.879"
@@ -51044,7 +51044,7 @@
       "type_of_property": 18,
       "value_of_energy_performance_certificate": 4,
       "vat_payable": false,
-      "year_of_construction": "2004-02-06",
+      "year_of_construction": 2004,
       "year_of_refurbishment": "2010-07-16",
       "creation_date": "2021-03-15T11:23:36.894",
       "last_change_date": "2021-03-15T11:23:36.894"
@@ -51111,7 +51111,7 @@
       "type_of_property": 7,
       "value_of_energy_performance_certificate": 1,
       "vat_payable": false,
-      "year_of_construction": "2008-12-13",
+      "year_of_construction": 2008,
       "year_of_refurbishment": "2013-10-13",
       "creation_date": "2021-03-15T11:23:36.911",
       "last_change_date": "2021-03-15T11:23:36.911"
@@ -51178,7 +51178,7 @@
       "type_of_property": 0,
       "value_of_energy_performance_certificate": 2,
       "vat_payable": true,
-      "year_of_construction": "2016-01-03",
+      "year_of_construction": 2016,
       "year_of_refurbishment": "2019-09-23",
       "creation_date": "2021-03-15T11:23:36.929",
       "last_change_date": "2021-03-15T11:23:36.929"
@@ -51245,7 +51245,7 @@
       "type_of_property": 6,
       "value_of_energy_performance_certificate": 1,
       "vat_payable": false,
-      "year_of_construction": "2002-03-16",
+      "year_of_construction": 2002,
       "year_of_refurbishment": "2006-12-26",
       "creation_date": "2021-03-15T11:23:36.945",
       "last_change_date": "2021-03-15T11:23:36.946"
@@ -51312,7 +51312,7 @@
       "type_of_property": 22,
       "value_of_energy_performance_certificate": 0,
       "vat_payable": false,
-      "year_of_construction": "2016-12-25",
+      "year_of_construction": 2016,
       "year_of_refurbishment": "2009-01-13",
       "creation_date": "2021-03-15T11:23:36.963",
       "last_change_date": "2021-03-15T11:23:36.963"
@@ -51379,7 +51379,7 @@
       "type_of_property": 13,
       "value_of_energy_performance_certificate": 0,
       "vat_payable": true,
-      "year_of_construction": "2011-02-10",
+      "year_of_construction": 2011,
       "year_of_refurbishment": "2017-08-10",
       "creation_date": "2021-03-15T11:23:36.978",
       "last_change_date": "2021-03-15T11:23:36.978"
@@ -51446,7 +51446,7 @@
       "type_of_property": 10,
       "value_of_energy_performance_certificate": 0,
       "vat_payable": false,
-      "year_of_construction": "2016-04-12",
+      "year_of_construction": 2016,
       "year_of_refurbishment": "2003-04-16",
       "creation_date": "2021-03-15T11:23:36.995",
       "last_change_date": "2021-03-15T11:23:36.995"
@@ -51513,7 +51513,7 @@
       "type_of_property": 18,
       "value_of_energy_performance_certificate": 0,
       "vat_payable": true,
-      "year_of_construction": "2020-06-09",
+      "year_of_construction": 2020,
       "year_of_refurbishment": "2013-07-27",
       "creation_date": "2021-03-15T11:23:37.012",
       "last_change_date": "2021-03-15T11:23:37.012"
@@ -51580,7 +51580,7 @@
       "type_of_property": 1,
       "value_of_energy_performance_certificate": 0,
       "vat_payable": true,
-      "year_of_construction": "2013-01-27",
+      "year_of_construction": 2013,
       "year_of_refurbishment": "2009-12-28",
       "creation_date": "2021-03-15T11:23:37.028",
       "last_change_date": "2021-03-15T11:23:37.028"
@@ -51647,7 +51647,7 @@
       "type_of_property": 13,
       "value_of_energy_performance_certificate": 2,
       "vat_payable": false,
-      "year_of_construction": "2018-08-12",
+      "year_of_construction": 2018,
       "year_of_refurbishment": "2017-03-09",
       "creation_date": "2021-03-15T11:23:37.046",
       "last_change_date": "2021-03-15T11:23:37.046"
@@ -51714,7 +51714,7 @@
       "type_of_property": 7,
       "value_of_energy_performance_certificate": 1,
       "vat_payable": false,
-      "year_of_construction": "2019-05-01",
+      "year_of_construction": 2019,
       "year_of_refurbishment": "2001-01-27",
       "creation_date": "2021-03-15T11:23:37.062",
       "last_change_date": "2021-03-15T11:23:37.062"
@@ -51781,7 +51781,7 @@
       "type_of_property": 20,
       "value_of_energy_performance_certificate": 2,
       "vat_payable": false,
-      "year_of_construction": "2018-09-24",
+      "year_of_construction": 2018,
       "year_of_refurbishment": "2015-11-20",
       "creation_date": "2021-03-15T11:23:37.079",
       "last_change_date": "2021-03-15T11:23:37.079"
@@ -51848,7 +51848,7 @@
       "type_of_property": 18,
       "value_of_energy_performance_certificate": 2,
       "vat_payable": false,
-      "year_of_construction": "2014-12-28",
+      "year_of_construction": 2014,
       "year_of_refurbishment": "2004-07-25",
       "creation_date": "2021-03-15T11:23:37.094",
       "last_change_date": "2021-03-15T11:23:37.094"
@@ -51915,7 +51915,7 @@
       "type_of_property": 1,
       "value_of_energy_performance_certificate": 0,
       "vat_payable": false,
-      "year_of_construction": "2017-10-01",
+      "year_of_construction": 2017,
       "year_of_refurbishment": "2003-11-27",
       "creation_date": "2021-03-15T11:23:37.112",
       "last_change_date": "2021-03-15T11:23:37.112"
@@ -51982,7 +51982,7 @@
       "type_of_property": 10,
       "value_of_energy_performance_certificate": 3,
       "vat_payable": true,
-      "year_of_construction": "2003-12-14",
+      "year_of_construction": 2003,
       "year_of_refurbishment": "2017-08-01",
       "creation_date": "2021-03-15T11:23:37.129",
       "last_change_date": "2021-03-15T11:23:37.129"
@@ -52049,7 +52049,7 @@
       "type_of_property": 23,
       "value_of_energy_performance_certificate": 6,
       "vat_payable": false,
-      "year_of_construction": "2006-10-24",
+      "year_of_construction": 2006,
       "year_of_refurbishment": "2015-12-16",
       "creation_date": "2021-03-15T11:23:37.146",
       "last_change_date": "2021-03-15T11:23:37.146"
@@ -52116,7 +52116,7 @@
       "type_of_property": 7,
       "value_of_energy_performance_certificate": 5,
       "vat_payable": true,
-      "year_of_construction": "2006-11-24",
+      "year_of_construction": 2006,
       "year_of_refurbishment": "2009-06-09",
       "creation_date": "2021-03-15T11:23:37.163",
       "last_change_date": "2021-03-15T11:23:37.163"
@@ -52183,7 +52183,7 @@
       "type_of_property": 19,
       "value_of_energy_performance_certificate": 1,
       "vat_payable": true,
-      "year_of_construction": "2010-09-18",
+      "year_of_construction": 2010,
       "year_of_refurbishment": "2012-09-29",
       "creation_date": "2021-03-15T11:23:37.178",
       "last_change_date": "2021-03-15T11:23:37.178"
@@ -52250,7 +52250,7 @@
       "type_of_property": 3,
       "value_of_energy_performance_certificate": 6,
       "vat_payable": false,
-      "year_of_construction": "2012-12-24",
+      "year_of_construction": 2012,
       "year_of_refurbishment": "2002-07-21",
       "creation_date": "2021-03-15T11:23:37.194",
       "last_change_date": "2021-03-15T11:23:37.194"
@@ -52317,7 +52317,7 @@
       "type_of_property": 18,
       "value_of_energy_performance_certificate": 0,
       "vat_payable": true,
-      "year_of_construction": "2016-07-10",
+      "year_of_construction": 2016,
       "year_of_refurbishment": "2005-02-07",
       "creation_date": "2021-03-15T11:23:37.212",
       "last_change_date": "2021-03-15T11:23:37.212"
@@ -52384,7 +52384,7 @@
       "type_of_property": 13,
       "value_of_energy_performance_certificate": 3,
       "vat_payable": false,
-      "year_of_construction": "2010-10-15",
+      "year_of_construction": 2010,
       "year_of_refurbishment": "2007-09-19",
       "creation_date": "2021-03-15T11:23:37.229",
       "last_change_date": "2021-03-15T11:23:37.229"
@@ -52451,7 +52451,7 @@
       "type_of_property": 7,
       "value_of_energy_performance_certificate": 2,
       "vat_payable": true,
-      "year_of_construction": "2017-10-18",
+      "year_of_construction": 2017,
       "year_of_refurbishment": "2015-10-05",
       "creation_date": "2021-03-15T11:23:37.246",
       "last_change_date": "2021-03-15T11:23:37.246"
@@ -52518,7 +52518,7 @@
       "type_of_property": 6,
       "value_of_energy_performance_certificate": 6,
       "vat_payable": false,
-      "year_of_construction": "2006-03-01",
+      "year_of_construction": 2006,
       "year_of_refurbishment": "2015-12-02",
       "creation_date": "2021-03-15T11:23:37.261",
       "last_change_date": "2021-03-15T11:23:37.261"
@@ -52585,7 +52585,7 @@
       "type_of_property": 20,
       "value_of_energy_performance_certificate": 6,
       "vat_payable": true,
-      "year_of_construction": "2005-03-28",
+      "year_of_construction": 2005,
       "year_of_refurbishment": "2001-04-15",
       "creation_date": "2021-03-15T11:23:37.278",
       "last_change_date": "2021-03-15T11:23:37.278"
@@ -52652,7 +52652,7 @@
       "type_of_property": 20,
       "value_of_energy_performance_certificate": 6,
       "vat_payable": false,
-      "year_of_construction": "2012-06-15",
+      "year_of_construction": 2012,
       "year_of_refurbishment": "2016-04-07",
       "creation_date": "2021-03-15T11:23:37.295",
       "last_change_date": "2021-03-15T11:23:37.295"
@@ -52719,7 +52719,7 @@
       "type_of_property": 22,
       "value_of_energy_performance_certificate": 1,
       "vat_payable": false,
-      "year_of_construction": "2017-01-09",
+      "year_of_construction": 2017,
       "year_of_refurbishment": "2002-12-20",
       "creation_date": "2021-03-15T11:23:37.330",
       "last_change_date": "2021-03-15T11:23:37.330"
@@ -52786,7 +52786,7 @@
       "type_of_property": 22,
       "value_of_energy_performance_certificate": 2,
       "vat_payable": false,
-      "year_of_construction": "2018-07-16",
+      "year_of_construction": 2018,
       "year_of_refurbishment": "2002-07-08",
       "creation_date": "2021-03-15T11:23:37.345",
       "last_change_date": "2021-03-15T11:23:37.345"
@@ -52853,7 +52853,7 @@
       "type_of_property": 9,
       "value_of_energy_performance_certificate": 6,
       "vat_payable": true,
-      "year_of_construction": "2004-08-27",
+      "year_of_construction": 2004,
       "year_of_refurbishment": "2011-07-21",
       "creation_date": "2021-03-15T11:23:37.362",
       "last_change_date": "2021-03-15T11:23:37.362"
@@ -61122,7 +61122,9 @@
       "type_of_collection": 1,
       "name_of_external_collection_agent": "Debt Recovery Ltd",
       "history_of_total_repayments": 13476,
-      "history_of_repayments_from_collateral_sales": 956
+      "history_of_repayments_from_collateral_sales": 956,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61137,7 +61139,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 3409,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61152,7 +61156,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 7506,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61167,7 +61173,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 7012,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61182,7 +61190,9 @@
       "type_of_collection": 1,
       "name_of_external_collection_agent": "Debt Recovery Ltd",
       "history_of_total_repayments": 6657,
-      "history_of_repayments_from_collateral_sales": 1071
+      "history_of_repayments_from_collateral_sales": 1071,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61197,7 +61207,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 4679,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61212,7 +61224,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 14087,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61227,7 +61241,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 11935,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61242,7 +61258,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 4424,
-      "history_of_repayments_from_collateral_sales": 2918
+      "history_of_repayments_from_collateral_sales": 2918,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61257,7 +61275,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 9912,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61272,7 +61292,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 3520,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61287,7 +61309,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 3488,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61302,7 +61326,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 4535,
-      "history_of_repayments_from_collateral_sales": 1395
+      "history_of_repayments_from_collateral_sales": 1395,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61317,7 +61343,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 6811,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61332,7 +61360,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 11279,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61347,7 +61377,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 12863,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61362,7 +61394,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 3434,
-      "history_of_repayments_from_collateral_sales": 2798
+      "history_of_repayments_from_collateral_sales": 2798,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61377,7 +61411,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 6257,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61392,7 +61428,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 14731,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61407,7 +61445,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 13647,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61422,7 +61462,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 14490,
-      "history_of_repayments_from_collateral_sales": 2732
+      "history_of_repayments_from_collateral_sales": 2732,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61437,7 +61479,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 9873,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61452,7 +61496,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 6611,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61467,7 +61513,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 10359,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61482,7 +61530,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 12654,
-      "history_of_repayments_from_collateral_sales": 1639
+      "history_of_repayments_from_collateral_sales": 1639,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61497,7 +61547,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 3106,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61512,7 +61564,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 5615,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61527,7 +61581,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 14438,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61542,7 +61598,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 9924,
-      "history_of_repayments_from_collateral_sales": 1893
+      "history_of_repayments_from_collateral_sales": 1893,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61557,7 +61615,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 7552,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61572,7 +61632,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 5547,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61587,7 +61649,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 6527,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61602,7 +61666,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 8514,
-      "history_of_repayments_from_collateral_sales": 918
+      "history_of_repayments_from_collateral_sales": 918,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61617,7 +61683,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 4519,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61632,7 +61700,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 9224,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   },
   {
@@ -61647,7 +61717,9 @@
       "type_of_collection": 0,
       "name_of_external_collection_agent": null,
       "history_of_total_repayments": 4584,
-      "history_of_repayments_from_collateral_sales": 0
+      "history_of_repayments_from_collateral_sales": 0,
+      "creation_date": "2026-06-03T12:00:00Z",
+      "last_change_date": "2026-06-03T12:00:00Z"
     }
   }
 ]
