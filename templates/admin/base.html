@@ -19,14 +19,14 @@
           if (!row) return;
           var label = row.querySelector('label');
           if (!label) return;
-          if (text.indexOf('§') !== -1) {
-            label.style.color = '#1a7a4a';
+          if (text.indexOf('MANDATORY') !== -1) {
+            label.style.color = '#b03000';
+            label.style.fontWeight = '700';
+          } else if (text.indexOf('RECOMMENDED') !== -1) {
+            label.style.color = '#a05000';
             label.style.fontWeight = '600';
           } else if (text.indexOf('LEGACY') !== -1) {
-            label.style.color = '#a07000';
-            label.style.fontWeight = '600';
-          } else if (text.indexOf('DEPRECATED') !== -1) {
-            label.style.color = '#b03000';
+            label.style.color = '#1a7a4a';
             label.style.fontWeight = '600';
           }
         });

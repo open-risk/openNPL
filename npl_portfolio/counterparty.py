@@ -23,7 +23,7 @@ from django.urls import reverse
 
 from npl_portfolio.counterparty_choices import *
 from npl_portfolio.counterparty_group import CounterpartyGroup
-from npl_portfolio.eba_field_helpers import eba_help, legacy_help, deprecated_help
+from npl_portfolio.eba_field_helpers import mandatory_help, recommended_help, legacy_help, deprecated_help
 from npl_portfolio.models import PortfolioSnapshot, Portfolio
 
 
@@ -41,24 +41,24 @@ class Counterparty(models.Model):
     #
 
     counterparty_identifier = models.TextField(blank=True, null=True,
-                                               help_text=eba_help('1.02', 'Unique internal identifier for each counterparty. Cannot be reused for any other counterparty.'))
+                                               help_text=mandatory_help('1.02', 'Unique internal identifier for each counterparty. Cannot be reused for any other counterparty.'))
 
     # EBA NPL ITS 1.10 / 1.11 — National Identifier
     national_identifier = models.TextField(blank=True, null=True,
-                                           help_text=eba_help('1.10', 'Unique identifier of the counterparty in the country of residence (e.g. tax code, national ID number).'))
+                                           help_text=mandatory_help('1.10', 'Unique identifier of the counterparty in the country of residence (e.g. tax code, national ID number). Mandatory for Corporate (1.10), recommended for Private Individual (1.11).'))
 
     # EBA NPL ITS 1.12 — Source of National Identifier
     source_of_national_identifier = models.IntegerField(blank=True, null=True,
                                                         choices=TYPE_OF_PERSONAL_IDENTITY_NUMBER_CHOICES,
-                                                        help_text=eba_help('1.12', 'Type/source of the national identifier provided in field 1.10.'))
+                                                        help_text=mandatory_help('1.12', 'Type/source of the national identifier provided in field 1.10.'))
 
     # EBA NPL ITS 1.18 — Availability of e-mail address
     availability_of_email_address = models.BooleanField(blank=True, null=True,
-                                                        help_text=eba_help('1.18', 'Indicator whether the institution has an e-mail address for the counterparty.'))
+                                                        help_text=recommended_help('1.18', 'Indicator whether the institution has an e-mail address for the counterparty.'))
 
     # EBA NPL ITS 1.19 — Availability of telephone number
     availability_of_telephone_number = models.BooleanField(blank=True, null=True,
-                                                           help_text=eba_help('1.19', 'Indicator whether the institution has a telephone number (mobile or landline) for the counterparty.'))
+                                                           help_text=recommended_help('1.19', 'Indicator whether the institution has a telephone number (mobile or landline) for the counterparty.'))
 
     #
     # FOREIGN KEYS
@@ -91,13 +91,13 @@ class Counterparty(models.Model):
     #
 
     address_of_registered_location = models.TextField(blank=True, null=True,
-                                                      help_text=eba_help('1.14', "Counterparty's street address, including the street number."))
+                                                      help_text=mandatory_help('1.14', "Counterparty's street address, including the street number."))
 
     annual_ebit = models.BigIntegerField(blank=True, null=True,
-                                         help_text=eba_help('1.30', 'Annual Earnings Before Interest and Tax (EBIT) of the corporate counterparty per latest financial statements.'))
+                                         help_text=recommended_help('1.30', 'Annual Earnings Before Interest and Tax (EBIT) of the corporate counterparty per latest financial statements.'))
 
     annual_revenue = models.BigIntegerField(blank=True, null=True,
-                                            help_text=eba_help('1.29', 'Annual sales volume net of all discounts and sales taxes (Annual Turnover) per Recommendation 2003/361/EC.'))
+                                            help_text=recommended_help('1.29', 'Annual sales volume net of all discounts and sales taxes (Annual Turnover) per Recommendation 2003/361/EC.'))
 
     basis_of_financial_statements = models.IntegerField(blank=True, null=True,
                                                         choices=BASIS_OF_FINANCIAL_STATEMENTS_CHOICES,
@@ -107,10 +107,10 @@ class Counterparty(models.Model):
                                             help_text=legacy_help('Description of the business operations of the Corporate Counterparty, providing more detail for field Industry Segment.'))
 
     cash_and_cash_equivalent_items = models.BigIntegerField(blank=True, null=True,
-                                                            help_text=eba_help('1.25', 'Carrying amount of cash and cash equivalent items per latest financial statements (IAS 7).'))
+                                                            help_text=recommended_help('1.25', 'Carrying amount of cash and cash equivalent items per latest financial statements (IAS 7).'))
 
     city_of_registered_location = models.TextField(blank=True, null=True,
-                                                   help_text=eba_help('1.15', "Counterparty's city, town or village."))
+                                                   help_text=mandatory_help('1.15', "Counterparty's city, town or village."))
 
     comments_on_other_litigation_related_process = models.TextField(blank=True, null=True,
                                                                     help_text=legacy_help('Further comments / details if there is other litigation processes in place.'))
@@ -122,10 +122,10 @@ class Counterparty(models.Model):
                                               help_text=legacy_help('Indicator as to whether the Corporate Counterparty has contingent obligations which will be part of the sale.'))
 
     counterparty_role = models.IntegerField(blank=True, null=True, choices=COUNTERPARTY_ROLE_CHOICES,
-                                            help_text=eba_help('1.05', 'Role of the counterparty: Protection Provider or Borrower.'))
+                                            help_text=mandatory_help('1.05', 'Role of the counterparty: Protection Provider or Borrower.'))
 
     country_of_registered_location = models.TextField(blank=True, null=True,
-                                                      help_text=eba_help('1.17', "Counterparty's country, per ISO 3166-1 alpha-2."))
+                                                      help_text=mandatory_help('1.17', "Counterparty's country, per ISO 3166-1 alpha-2."))
 
     correspondence_address_of_appointed_insolvency_practitioner = models.TextField(blank=True, null=True,
                                                                                    help_text=legacy_help('Correspondence address of the appointed insolvency practitioner.'))
@@ -154,10 +154,10 @@ class Counterparty(models.Model):
                                            help_text=legacy_help('Currency of the deposit held with the Institution.'))
 
     currency_of_financial_statements = models.TextField(blank=True, null=True,
-                                                        help_text=eba_help('1.22', 'Currency of the latest available financial statements, per ISO 4217.'))
+                                                        help_text=recommended_help('1.22', 'Currency of the latest available financial statements, per ISO 4217.'))
 
     current_assets = models.BigIntegerField(blank=True, null=True,
-                                            help_text=eba_help('1.24', 'Carrying amount of current assets (excluding cash) per latest financial statements (IAS 1.60).'))
+                                            help_text=recommended_help('1.24', 'Carrying amount of current assets (excluding cash) per latest financial statements (IAS 1.60).'))
 
     current_external_credit_rating = models.TextField(blank=True, null=True,
                                                       help_text=legacy_help('External credit rating issued to the Corporate Counterparty at NPL Portfolio Cut-Off Date.'))
@@ -178,10 +178,10 @@ class Counterparty(models.Model):
                                                         help_text=legacy_help('Date that a demand notice was sent by the Institution itself.'))
 
     date_of_last_contact = models.DateField(blank=True, null=True,
-                                            help_text=eba_help('1.20', 'Most recent date of contact with the counterparty where a reply was received.'))
+                                            help_text=recommended_help('1.20', 'Most recent date of contact with the counterparty where a reply was received.'))
 
     date_of_latest_annual_financial_statements = models.DateField(blank=True, null=True,
-                                                                  help_text=eba_help('1.21', 'Date of the latest available financial statements.'))
+                                                                  help_text=recommended_help('1.21', 'Date of the latest available financial statements.'))
 
     date_of_obtaining_order_for_possession = models.DateField(blank=True, null=True,
                                                               help_text=legacy_help('Date that the Order for Possession was granted by the court.'))
@@ -223,7 +223,7 @@ class Counterparty(models.Model):
                                           help_text=legacy_help('Indicator whether the financial statements have been audited.'))
 
     fixed_assets = models.BigIntegerField(blank=True, null=True,
-                                          help_text=eba_help('1.23', 'Carrying amount of fixed assets per latest financial statements (IAS 16).'))
+                                          help_text=recommended_help('1.23', 'Carrying amount of fixed assets per latest financial statements (IAS 16).'))
 
     geographic_region_classification = models.IntegerField(blank=True, null=True,
                                                            choices=GEOGRAPHIC_REGION_CLASSIFICATION_CHOICES,
@@ -236,7 +236,7 @@ class Counterparty(models.Model):
                                                              help_text=legacy_help('Indicator whether the Corporate or Private Individual Counterparty is cooperative.'))
 
     industry_segment = models.TextField(blank=True, null=True,
-                                        help_text=eba_help('1.04', 'Economic activity of the corporate counterparty per NACE rev.2 classification (Reg. EC 1893/2006).'))
+                                        help_text=mandatory_help('1.04', 'Economic activity of the corporate counterparty per NACE rev.2 classification (Reg. EC 1893/2006).'))
 
     insolvency_practitioner_appointed = models.TextField(blank=True, null=True,
                                                          help_text=legacy_help('Indicator whether an insolvency practitioner has been appointed.'))
@@ -248,7 +248,7 @@ class Counterparty(models.Model):
                                              help_text=legacy_help('Location of the court where the case is being heard.'))
 
     legal_entity_identifier = models.TextField(blank=True, null=True,
-                                               help_text=eba_help('1.13', 'Legal entity identifier of the counterparty assigned per ISO 17442.'))
+                                               help_text=recommended_help('1.13', 'Legal entity identifier of the counterparty assigned per ISO 17442.'))
 
     legal_fees_accrued = models.BigIntegerField(blank=True, null=True,
                                                 help_text=legacy_help('Total amount of legal fees accrued at the NPL Portfolio Cut-Off Date.'))
@@ -260,19 +260,19 @@ class Counterparty(models.Model):
                                                            help_text=legacy_help('Description of the insolvency process type when Other is selected.'))
 
     legal_type_of_counterparty = models.IntegerField(blank=True, null=True, choices=LEGAL_TYPE_OF_COUNTERPARTY_CHOICES,
-                                                     help_text=eba_help('1.06', 'Counterparty sector type: Non-financial corporations SMEs, Non-financial corporations other, or Households (per Annex V Reg. 2021/451).'))
+                                                     help_text=mandatory_help('1.06', 'Counterparty sector type: Non-financial corporations SMEs, Non-financial corporations other, or Households (per Annex V Reg. 2021/451).'))
 
     market_capitalisation = models.BigIntegerField(blank=True, null=True,
                                                    help_text=legacy_help('Market capitalisation of a listed Corporate Counterparty.'))
 
     name_of_counterparty = models.TextField(blank=True, null=True,
-                                            help_text=eba_help('1.03', 'Full legal name of the counterparty.'))
+                                            help_text=mandatory_help('1.03', 'Full legal name of the counterparty.'))
 
     name_of_insolvency_practitioner = models.TextField(blank=True, null=True,
                                                        help_text=legacy_help('Name of the insolvency practitioner.'))
 
     name_of_insolvency_or_restructuring_proceedings = models.TextField(blank=True, null=True,
-                                                                       help_text=eba_help('1.31', 'Name of any insolvency or restructuring proceedings to which the counterparty is subject.'))
+                                                                       help_text=mandatory_help('1.31', 'Name of any insolvency or restructuring proceedings to which the counterparty is subject.'))
 
     additional_name_of_insolvency_or_restructuring_proceedings = models.TextField(blank=True, null=True,
                                                                                   help_text=legacy_help('Additional name of insolvency or restructuring proceedings.'))
@@ -296,7 +296,7 @@ class Counterparty(models.Model):
                                                        help_text=legacy_help('Other products the Counterparty holds with the Institution not included in the NPL Portfolio.'))
 
     postcode_of_registered_location = models.TextField(blank=True, null=True,
-                                                       help_text=eba_help('1.16', "Counterparty's postal code."))
+                                                       help_text=mandatory_help('1.16', "Counterparty's postal code."))
 
     registration_number = models.TextField(blank=True, null=True,
                                            help_text=legacy_help('Company registration number per the country-specific registration office.'))
@@ -315,19 +315,19 @@ class Counterparty(models.Model):
 
     stage_reached_in_insolvency_or_restructuring_procedure = models.IntegerField(blank=True, null=True,
                                                                                  choices=STAGE_REACHED_IN_INSOLVENCY_OR_RESTRUCTURING_PROCEDURE_CHOICES,
-                                                                                 help_text=eba_help('1.32', 'Categories describing the counterparty legal status in relation to solvency per national legal framework.'))
+                                                                                 help_text=mandatory_help('1.32', 'Categories describing the counterparty legal status in relation to solvency per national legal framework.'))
 
     additional_stage_reached_in_insolvency_procedure = models.TextField(blank=True, null=True,
-                                                                        help_text=eba_help('1.33', 'Description of the status of legal proceedings when Other legal measures is selected in field 1.32.'))
+                                                                        help_text=recommended_help('1.33', 'Description of the status of legal proceedings when Other legal measures is selected in field 1.32.'))
 
     total_assets = models.BigIntegerField(blank=True, null=True,
-                                          help_text=eba_help('1.26', 'Carrying amount of total assets per latest financial statements (IAS 1.9(a)).'))
+                                          help_text=recommended_help('1.26', 'Carrying amount of total assets per latest financial statements (IAS 1.9(a)).'))
 
     total_debt = models.BigIntegerField(blank=True, null=True,
-                                        help_text=eba_help('1.28', 'Carrying amount of total debt per latest financial statements (IAS 32.11).'))
+                                        help_text=recommended_help('1.28', 'Carrying amount of total debt per latest financial statements (IAS 32.11).'))
 
     total_liabilities = models.BigIntegerField(blank=True, null=True,
-                                               help_text=eba_help('1.27', 'Carrying amount of total liabilities per latest financial statements (IAS 1.9(b)).'))
+                                               help_text=recommended_help('1.27', 'Carrying amount of total liabilities per latest financial statements (IAS 1.9(b)).'))
 
     #
     # BOOKKEEPING FIELDS

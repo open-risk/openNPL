@@ -18,24 +18,30 @@
 """
 EBA field help-text helpers.
 
-Usage in model field definitions:
+Field classification (EU 2023/2083 — EBA NPL ITS):
 
-    from npl_portfolio.eba_field_helpers import eba_help, deprecated_help
+    MANDATORY    (~76 fields)  — EBA ITS mandatory fields. Red label.
+    RECOMMENDED  (~64 fields)  — EBA ITS recommended fields. Orange label.
+    LEGACY       (remaining)   — Pre-2023 EBA draft fields, not in final ITS.
+                                 Kept for internal portfolio management. Green label.
 
-    # In Force field — links to the exact point in EUR-Lex via Text Fragment
+Usage:
+
+    from npl_portfolio.eba_field_helpers import mandatory_help, recommended_help, legacy_help
+
     counterparty_identifier = models.TextField(
         blank=True, null=True,
-        help_text=eba_help('1.02', 'Unique internal identifier for each counterparty.'),
+        help_text=mandatory_help('1.02', 'Unique internal identifier for each counterparty.'),
     )
 
-    # Deprecated field — no EBA ITS reference, openNPL-specific addition
-    borrower_type = models.IntegerField(
+    some_field = models.TextField(
         blank=True, null=True,
-        help_text=deprecated_help(
-            'Classification of the borrower as Private Individual or Corporate.',
-            reason='No direct EBA ITS 2023/2083 field. Borrower type is derived from '
-                   'Legal Type of Counterparty (field 1.06).',
-        ),
+        help_text=recommended_help('1.05', 'Description of the field.'),
+    )
+
+    old_field = models.TextField(
+        blank=True, null=True,
+        help_text=legacy_help('Description of the legacy field.'),
     )
 """
 
@@ -45,64 +51,77 @@ _EURLEX_BASE = (
 )
 
 
-def eba_help(ref: str, description: str) -> str:
+def mandatory_help(ref: str, description: str) -> str:
     """
-    Generate help_text for an In Force EBA ITS 2023/2083 field.
-
-    Renders a § reference that deep-links to the exact field in EUR-Lex
-    using a Text Fragment (supported by Chrome, Edge, Safari 16.4+).
+    Help text for a Mandatory EBA ITS 2023/2083 field (~76 fields).
+    Renders a red § badge linking to EUR-Lex. Admin label → red.
 
     Args:
-        ref:         EBA field reference, dot-notation (e.g. '1.02', '4.43').
-        description: Plain-text field description shown below the input.
+        ref:         EBA field reference, dot-notation (e.g. '1.02').
+        description: Plain-text field description.
     """
     fragment = ref.replace('.', '%2C')
     url = f'{_EURLEX_BASE}#:~:text={fragment}'
     badge = (
         f'<a href="{url}" target="_blank" rel="noopener noreferrer" '
-        f'title="EU 2023/2083 — EBA NPL ITS field {ref}" '
-        f'style="color:#1a5276; font-weight:600; margin-left:6px; '
-        f'text-decoration:none; font-size:12px;">§ {ref}</a>'
+        f'title="EU 2023/2083 — EBA NPL ITS mandatory field {ref}" '
+        f'style="color:#b03000; font-weight:700; margin-left:6px; '
+        f'text-decoration:none; font-size:12px;">MANDATORY § {ref}</a>'
+    )
+    return f'{description}{badge}'
+
+
+def recommended_help(ref: str, description: str) -> str:
+    """
+    Help text for a Recommended EBA ITS 2023/2083 field (~64 fields).
+    Renders an orange § badge linking to EUR-Lex. Admin label → orange.
+
+    Args:
+        ref:         EBA field reference, dot-notation (e.g. '1.05').
+        description: Plain-text field description.
+    """
+    fragment = ref.replace('.', '%2C')
+    url = f'{_EURLEX_BASE}#:~:text={fragment}'
+    badge = (
+        f'<a href="{url}" target="_blank" rel="noopener noreferrer" '
+        f'title="EU 2023/2083 — EBA NPL ITS recommended field {ref}" '
+        f'style="color:#a05000; font-weight:600; margin-left:6px; '
+        f'text-decoration:none; font-size:12px;">RECOMMENDED § {ref}</a>'
     )
     return f'{description}{badge}'
 
 
 def legacy_help(description: str, prior_ref: str = '') -> str:
     """
-    Generate help_text for a Legacy field.
-
-    Legacy fields existed in a pre-2023 EBA NPL draft template but were
-    not included in the adopted Commission Implementing Regulation (EU) 2023/2083.
-    They are retained in openNPL for historical data compatibility.
+    Help text for a Legacy field (pre-2023 EBA draft, not in EU 2023/2083).
+    Kept for internal portfolio management. Admin label → green.
 
     Args:
         description: Original field description.
-        prior_ref:   Optional reference to the prior EBA draft (e.g. 'EBA draft 2018 T1.xx').
+        prior_ref:   Optional reference to the prior EBA draft.
     """
     note = f' Prior ref: {prior_ref}.' if prior_ref else ''
     return (
-        f'<span style="color:#a0a000;">'
-        f'📦 <strong>LEGACY</strong> — Not in EU 2023/2083.{note}'
+        f'<span style="color:#1a7a4a; font-weight:600;">'
+        f'LEGACY — Not in EU 2023/2083.{note}'
         f'</span>'
         f'<br><span style="color:#888;">{description}</span>'
     )
 
 
+# backward-compat alias — migrate to mandatory_help() or recommended_help()
+def eba_help(ref: str, description: str) -> str:
+    return recommended_help(ref, description)
+
+
 def deprecated_help(description: str, reason: str) -> str:
     """
-    Generate help_text for a Deprecated field.
-
-    Deprecated fields exist in the openNPL model but have no EBA origin —
-    they were added by openNPL for implementation convenience and have no
-    counterpart in any version of the EBA NPL ITS.
-
-    Args:
-        description: Original field description.
-        reason:      Why the field is deprecated (e.g. no EBA ref, superseded by).
+    Help text for openNPL-specific fields with no EBA origin.
+    Admin label → grey.
     """
     return (
-        f'<span style="color:#e07b39;">'
-        f'🚫 <strong>DEPRECATED</strong> — {reason}'
+        f'<span style="color:#888; font-weight:600;">'
+        f'DEPRECATED — {reason}'
         f'</span>'
-        f'<br><span style="color:#888;">{description}</span>'
+        f'<br><span style="color:#aaa;">{description}</span>'
     )

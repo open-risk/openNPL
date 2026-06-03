@@ -21,7 +21,7 @@
 from django.db import models
 from django.urls import reverse
 
-from npl_portfolio.eba_field_helpers import eba_help, legacy_help, deprecated_help
+from npl_portfolio.eba_field_helpers import mandatory_help, recommended_help, legacy_help, deprecated_help
 from npl_portfolio.loan import Loan
 
 
@@ -39,18 +39,12 @@ class Mortgage(models.Model):
 
     mortgage_identifier = models.TextField(
         blank=True, null=True,
-        help_text=eba_help(
-            '4.43',
-            "Institution's internal identifier of the mortgage agreement."
-        )
+        help_text=mandatory_help('4.43', "Institution's internal identifier of the mortgage agreement.")
     )
 
     protection_identifier = models.TextField(
         blank=True, null=True,
-        help_text=eba_help(
-            '4.00',
-            "Institution's internal identifier to uniquely identify each protection used to secure the loan (collateral or guarantee)."
-        )
+        help_text=mandatory_help('4.00', "Institution's internal identifier to uniquely identify each protection (collateral or guarantee) used to secure the loan.")
     )
 
     #
@@ -58,7 +52,7 @@ class Mortgage(models.Model):
     #
 
     loan_identifier = models.ForeignKey(Loan, on_delete=models.CASCADE, null=True, blank=True,
-                                        help_text='Institution\'s internal identifier of the loan. EBA NPL ITS field 3.00.')
+                                        help_text=mandatory_help('2.02', "Institution's internal identifier of the loan secured by this mortgage."))
 
     #
     # DATA PROPERTIES
@@ -66,34 +60,22 @@ class Mortgage(models.Model):
 
     mortgage_amount = models.FloatField(
         blank=True, null=True,
-        help_text=eba_help(
-            '4.44',
-            "Maximum amount the institution is entitled to receive in case of enforcement."
-        )
+        help_text=mandatory_help('4.44', "Maximum amount (including fees, expenses and liens) the institution is entitled to receive in a foreclosure, as registered in the official deed register.")
     )
 
     lien_position = models.IntegerField(
         blank=True, null=True,
-        help_text=eba_help(
-            '4.45',
-            "Highest lien position held by the institution on the immovable property based on this mortgage."
-        )
+        help_text=mandatory_help('4.45', "Highest lien position held by the institution on the immovable property collateral. Applicable if a mortgage lien is recorded in the official deed records.")
     )
 
     higher_ranking_loan = models.FloatField(
         blank=True, null=True,
-        help_text=eba_help(
-            '4.46',
-            "Amount that higher-ranking mortgage creditors will receive before the institution."
-        )
+        help_text=mandatory_help('4.46', "Amount that higher-ranking creditors/first-position lien holders are entitled to receive before the institution in a foreclosure. Applicable if the institution does not hold the first mortgage lien.")
     )
 
     register_of_deeds_number = models.TextField(
         blank=True, null=True,
-        help_text=eba_help(
-            '4.47',
-            "Registration number of the mortgage in the official register of deeds."
-        )
+        help_text=recommended_help('4.47', "Registration number under which the institution's mortgage lien is recorded in the official deed records. Applicable if the institution has a mortgage lien on the collateral.")
     )
 
     #
