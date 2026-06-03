@@ -21,7 +21,7 @@
 from django.db import models
 from django.urls import reverse
 
-from npl_portfolio.eba_field_helpers import eba_help, legacy_help, deprecated_help
+from npl_portfolio.eba_field_helpers import mandatory_help, recommended_help
 from npl_portfolio.historical_repayment_choices import *
 from npl_portfolio.loan import Loan
 from npl_portfolio.models import PortfolioSnapshot, Portfolio
@@ -54,7 +54,7 @@ class HistoricalRepayment(models.Model):
     # EBA NPL ITS 5.00 — Loan Identifier
     loan_identifier = models.ForeignKey(
         Loan, on_delete=models.CASCADE, null=True, blank=True,
-        help_text=eba_help(
+        help_text=mandatory_help(
             '5.00',
             "Institution internal identifier of the loan. Join key with the Loan table (Template 3)."
         )
@@ -72,13 +72,16 @@ class HistoricalRepayment(models.Model):
     # EBA DATA PROPERTIES
     #
 
+    reference_year = models.IntegerField(blank=True, null=True,
+                                         help_text='Year of the reference month for this repayment record (e.g. 2023).')
+
     reference_month = models.IntegerField(blank=True, null=True,
-                                          help_text='Month index of the monthly repayment history, counted backwards from the NPL Portfolio Cut-Off Date (1 = most recent month before the cut-off date, minimum 36 months). Identifies the monthly column of EBA Template 5.')
+                                          help_text='Month of the reference month for this repayment record (1–12, e.g. 9 = September). EBA Template 5 requires a minimum of 36 months before the Cut-Off Date.')
 
     # EBA NPL ITS 5.01 — Type of Collection
     type_of_collection = models.IntegerField(
         blank=True, null=True, choices=TYPE_OF_COLLECTION_CHOICES,
-        help_text=eba_help(
+        help_text=recommended_help(
             '5.01',
             "Indication whether the collection of repayments occurred internally or via external collection agencies."
         )
@@ -87,7 +90,7 @@ class HistoricalRepayment(models.Model):
     # EBA NPL ITS 5.02 — Name of External Collection Agent
     name_of_external_collection_agent = models.TextField(
         blank=True, null=True,
-        help_text=eba_help(
+        help_text=recommended_help(
             '5.02',
             "Name of the external collection agent. Required only when Type of Collection (5.01) is External."
         )
@@ -101,7 +104,7 @@ class HistoricalRepayment(models.Model):
     # DecimalField(decimal_places=2) only if strict EBA decimal precision is required.
     history_of_total_repayments = models.BigIntegerField(
         blank=True, null=True,
-        help_text=eba_help(
+        help_text=mandatory_help(
             '5.03',
             "Total repayment amount received by the institution in the reference month, irrespective of the source of repayment (including collections by external collection agencies). Aggregated per month for a minimum of 36 months before the cut-off date."
         )
@@ -113,7 +116,7 @@ class HistoricalRepayment(models.Model):
     # use DecimalField(decimal_places=2) if strict EBA decimal precision is required.
     history_of_repayments_from_collateral_sales = models.BigIntegerField(
         blank=True, null=True,
-        help_text=eba_help(
+        help_text=recommended_help(
             '5.04',
             "Repayment amount derived from collateral disposal in the reference month. Applicable to secured loans. Aggregated per month for a minimum of 36 months before the cut-off date."
         )
@@ -127,7 +130,7 @@ class HistoricalRepayment(models.Model):
     last_change_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return '%s / month %s' % (self.loan_identifier, self.reference_month)
+        return '%s / %s-%02d' % (self.loan_identifier, self.reference_year, self.reference_month or 0)
 
     def get_absolute_url(self):
         return reverse('npl_portfolio:historical_repayment_edit', kwargs={'pk': self.pk})
@@ -135,4 +138,4 @@ class HistoricalRepayment(models.Model):
     class Meta:
         verbose_name = "Historical Repayment"
         verbose_name_plural = "Historical Repayments"
-        unique_together = [['snapshot_id', 'loan_identifier', 'reference_month']]
+        unique_together = [['snapshot_id', 'loan_identifier', 'reference_year', 'reference_month']]

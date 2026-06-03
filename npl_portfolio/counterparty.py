@@ -61,6 +61,22 @@ class Counterparty(models.Model):
                                                            help_text=recommended_help('1.19', 'Indicator whether the institution has a telephone number (mobile or landline) for the counterparty.'))
 
     #
+    # EBA ITS 2023/2083 — PRIVATE INDIVIDUAL FIELDS
+    #
+
+    # EBA NPL ITS 1.07 — Date of Birth (Private Individual only)
+    date_of_birth = models.DateField(blank=True, null=True,
+                                     help_text=recommended_help('1.07', 'Date of birth of the private individual counterparty. Applicable to private individuals only.'))
+
+    # EBA NPL ITS 1.08 — Residency of Counterparty (Private Individual, MANDATORY)
+    residency_same_country_as_institution = models.BooleanField(blank=True, null=True,
+                                                                help_text=mandatory_help('1.08', 'Indication whether the residency of the private individual counterparty is in the same country as the institution. Applicable to private individuals only.'))
+
+    # EBA NPL ITS 1.09 — Counterparty Deceased (Private Individual only)
+    counterparty_deceased = models.BooleanField(blank=True, null=True,
+                                                help_text=recommended_help('1.09', 'Indication as to whether the private individual counterparty has passed away. Applicable to private individuals only.'))
+
+    #
     # FOREIGN KEYS
     #
 

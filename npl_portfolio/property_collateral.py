@@ -135,6 +135,9 @@ class PropertyCollateral(models.Model):
     enforcement_status_third_parties = models.BooleanField(blank=True, null=True,
                                                            help_text=recommended_help('4.30', "Indicator as to whether any other secured creditors have taken steps to enforce security over the collateral at Cut-Off Date."))
 
+    year_of_construction = models.IntegerField(blank=True, null=True,
+                                              help_text=recommended_help('4.12', 'Year that the immovable property was built/completed. Applicable to all immovable collateral.'))
+
     #
     # LEGACY DATA PROPERTIES (pre-2023 EBA draft — not in EU 2023/2083)
     #
@@ -255,9 +258,6 @@ class PropertyCollateral(models.Model):
 
     vat_payable = models.BooleanField(blank=True, null=True,
                                       help_text=legacy_help('Indicator as to whether VAT is payable on the disposal of the unit.'))
-
-    year_of_construction = models.DateField(blank=True, null=True,
-                                            help_text=legacy_help('Year that the property was completed and refurbished.'))
 
     year_of_refurbishment = models.DateField(blank=True, null=True,
                                              help_text=legacy_help('Year in which the last significant refurbishment was completed.'))

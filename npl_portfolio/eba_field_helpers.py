@@ -109,11 +109,6 @@ def legacy_help(description: str, prior_ref: str = '') -> str:
     )
 
 
-# backward-compat alias — migrate to mandatory_help() or recommended_help()
-def eba_help(ref: str, description: str) -> str:
-    return recommended_help(ref, description)
-
-
 def deprecated_help(description: str, reason: str) -> str:
     """
     Help text for openNPL-specific fields with no EBA origin.
