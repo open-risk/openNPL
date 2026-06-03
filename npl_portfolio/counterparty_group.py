@@ -22,6 +22,7 @@ from django.db import models
 from django.urls import reverse
 
 from npl_portfolio.counterparty_group_choices import *
+from npl_portfolio.eba_field_helpers import mandatory_help, legacy_help
 
 
 class CounterpartyGroup(models.Model):
@@ -35,40 +36,45 @@ class CounterpartyGroup(models.Model):
     # IDENTIFICATION FIELDS
     #
 
-    counterparty_group_identifier = models.TextField(blank=True, null=True)
+    counterparty_group_identifier = models.TextField(blank=True, null=True,
+                                                     help_text=mandatory_help('1.00', "Institution's internal identifier to uniquely identify each counterparty group. Each counterparty group should have one Counterparty Group Identifier."))
 
     #
-    # DATA PROPERTIES
+    # EBA ITS 2023/2083 — MANDATORY FIELDS (Template 1)
+    #
+
+    name_of_counterparty_group = models.TextField(blank=True, null=True,
+                                                  help_text=mandatory_help('1.01', "Name used to refer to the counterparty group."))
+
+    #
+    # LEGACY DATA PROPERTIES (pre-2023 EBA draft — not in EU 2023/2083)
     #
 
     cross_collateralisation_in_counterparty_group = models.IntegerField(blank=True, null=True,
                                                                         choices=CROSS_COLLATERALISATION_IN_COUNTERPARTY_GROUP_CHOICES,
-                                                                        help_text='Indicator as to whether all / some of the loans in the Counterparty Group are secured by all / some of the collaterals within the Counterparty Group ("Full", "Partial", "none"). <a target="_blank" class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty Group.Cross_Collateralisation_in_Counterparty_Group">Documentation</a>')
+                                                                        help_text=legacy_help('Indicator as to whether all/some of the loans in the Counterparty Group are secured by all/some of the collaterals within the Counterparty Group.'))
 
     cross_default_in_counterparty_group = models.IntegerField(blank=True, null=True,
                                                               choices=CROSS_DEFAULT_IN_COUNTERPARTY_GROUP_CHOICES,
-                                                              help_text='The indicator as to whether Contractual breach of any loans in the Counterparty Group would trigger the contractual default event of the other loans. ("Full", "Partial", "none"). <a target="_blank" class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty Group.Cross_Default_in_Counterparty_Group">Documentation</a>')
+                                                              help_text=legacy_help('Indicator as to whether contractual breach of any loans in the Counterparty Group would trigger the contractual default event of the other loans.'))
 
     description_of_cross_collateralisation = models.TextField(blank=True, null=True,
-                                                              help_text='Description of cross collateralisation when "Partial" is selected in field "Cross Collateralisation in Borrower Group". <a target="_blank" class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty Group.Description_of_Cross_Collateralisation">Documentation</a>')
+                                                              help_text=legacy_help('Description of cross collateralisation when "Partial" is selected in "Cross Collateralisation in Counterparty Group".'))
 
     description_of_cross_default = models.TextField(blank=True, null=True,
-                                                    help_text='Description of cross default when "Partial" is selected in field "Cross Default in Borrower Group". <a target="_blank" class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty Group.Description_of_Cross_Default">Documentation</a>')
+                                                    help_text=legacy_help('Description of cross default when "Partial" is selected in "Cross Default in Counterparty Group".'))
 
     description_of_sponsor = models.TextField(blank=True, null=True,
-                                              help_text='Description and related narrative on the Sponsor, e.g. the Sponsor is a high net worth individual and owns the Borrower via a fund. <a target="_blank" class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty Group.Description_of_Sponsor">Documentation</a>')
+                                              help_text=legacy_help('Description and related narrative on the Sponsor.'))
 
     industry_segment_of_counterparty_group = models.TextField(blank=True, null=True,
-                                                              help_text='Industry in which the Counterparty Group mainly operates. <a target="_blank" class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty Group.Industry_Segment_of_Counterparty_Group">Documentation</a>')
-
-    name_of_counterparty_group = models.TextField(blank=True, null=True,
-                                                  help_text='Name used to refer to the Counterparty Group. <a target="_blank" class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty Group.Name_of_Counterparty_Group">Documentation</a>')
+                                                              help_text=legacy_help('Industry in which the Counterparty Group mainly operates.'))
 
     name_of_sponsor = models.TextField(blank=True, null=True,
-                                       help_text='Name used to refer to the main decision maker / key individual in relation to the Counterparty Group. <a target="_blank" class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty Group.Name_of_Sponsor">Documentation</a>')
+                                       help_text=legacy_help('Name used to refer to the main decision maker / key individual in relation to the Counterparty Group.'))
 
     type_of_sponsor = models.IntegerField(blank=True, null=True, choices=TYPE_OF_SPONSOR_CHOICES,
-                                          help_text='Type of entity the sponsor is i.e. Listed Corporate, Unlisted Corporate, Listed Fund, Unlisted Fund and High Net Worth Individual. <a target="_blank" class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Counterparty Group.Type_of_Sponsor">Documentation</a>')
+                                          help_text=legacy_help('Type of entity the sponsor is (Listed Corporate, Unlisted Corporate, Listed Fund, Unlisted Fund, High Net Worth Individual).'))
 
     #
     # BOOKKEEPING FIELDS

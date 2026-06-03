@@ -22,17 +22,17 @@ from django.db import models
 from django.urls import reverse
 
 from npl_portfolio.counterparty import Counterparty
+from npl_portfolio.eba_field_helpers import mandatory_help, legacy_help
 from npl_portfolio.external_collection_choices import *
 from npl_portfolio.loan import Loan
 
 
 class ExternalCollection(models.Model):
     """
-    The ExternalCollection model holds External Collection data conforming to the EBA NPL Template specification
-    `EBA Templates <https://www.openriskmanual.org/wiki/EBA_NPL_External_Collection_Table>`_
+    The ExternalCollection model holds External Collection data conforming to the pre-2023 EBA NPL Template.
 
-    .. note:: The EBA Templates make a distinction between collections at loan and counterparty level. At present this is not implemented
-
+    .. note:: This model is Legacy — external collection data was folded into Template 5
+              (Historical Repayments, fields 5.01–5.02) in the final EU 2023/2083 regulation.
     """
 
     #
@@ -42,61 +42,63 @@ class ExternalCollection(models.Model):
     external_collection_identifier = models.TextField(blank=True, null=True)
 
     institutions_internal_identifier_for_the_loan_or_counterparty = models.TextField(blank=True, null=True,
-                                                                                     help_text='Institutions internal identifier for the Counterparty or the Loan.<a class ="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.External Collection.Institutions_internal_identifier_for_the_Loan_or_Counterparty" >Documentation</a>')
+                                                                                     help_text=legacy_help('Institution internal identifier for the counterparty or the loan.'))
 
     instrument_identifier = models.TextField(blank=True, null=True,
-                                             help_text='Institutions internal identifier for the Loan part. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.External Collection.Instrument_Identifier">Documentation</a>')
+                                             help_text=legacy_help('Institution internal identifier for the loan part (sub-instrument level).'))
 
     type_of_identifier = models.IntegerField(blank=True, null=True, choices=TYPE_OF_IDENTIFIER_CHOICES,
-                                             help_text='Indicator as to whether the external collections have been prepares on a Counterparty level or on a Loan Level. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.External Collection.Type_of_Identifier">Documentation</a>')
+                                             help_text=legacy_help('Indicator as to whether the external collections have been prepared on a counterparty level or on a loan level.'))
 
     #
-    # FOREIGN KEYS
+    # FOREIGN KEYS (Template 2 — Relationship)
     #
 
-    loan_identifier = models.ForeignKey(Loan, on_delete=models.CASCADE, null=True, blank=True)
+    loan_identifier = models.ForeignKey(Loan, on_delete=models.CASCADE, null=True, blank=True,
+                                        help_text=mandatory_help('2.01', "Institution's internal identifier of the loan to which this external collection applies."))
 
-    counterparty_identifier = models.ForeignKey(Counterparty, on_delete=models.CASCADE, null=True, blank=True)
+    counterparty_identifier = models.ForeignKey(Counterparty, on_delete=models.CASCADE, null=True, blank=True,
+                                                help_text=mandatory_help('2.00', "Institution's internal identifier of the counterparty linked to this external collection."))
 
     #
-    # DATA PROPERTIES
+    # LEGACY DATA PROPERTIES (pre-2023 EBA draft — not in EU 2023/2083)
     #
 
     balance_amount_sent_to_agent = models.FloatField(blank=True, null=True,
-                                                     help_text='The Balance that was sent to the External Debt Collection Agent. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.External Collection.Balance_Amount_Sent_to_Agent">Documentation</a>')
+                                                     help_text=legacy_help('The balance that was sent to the external debt collection agent.'))
 
     cash_recoveries = models.FloatField(blank=True, null=True,
-                                        help_text='Total cash recoveries collected by the external collection agent. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.External Collection.Cash_Recoveries">Documentation</a>')
+                                        help_text=legacy_help('Total cash recoveries collected by the external collection agent.'))
 
     costs_accrued = models.FloatField(blank=True, null=True,
-                                      help_text='Total amount of costs accrued for external collection as at the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.External Collection.Costs_Accrued">Documentation</a>')
+                                      help_text=legacy_help('Total amount of costs accrued for external collection at Cut-Off Date.'))
 
     date_returned_from_agent = models.DateField(blank=True, null=True,
-                                                help_text='Date that the Loan was received back from the external collection agent, i.e. when the agent stopped recovery efforts and passed the Loan back to the Institution. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.External Collection.Date_Returned_From_Agent">Documentation</a>')
+                                                help_text=legacy_help('Date that the loan was received back from the external collection agent (when the agent stopped recovery efforts).'))
 
     date_sent_to_agent = models.DateField(blank=True, null=True,
-                                          help_text='Date that the Loan was sent to the external collection agent. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.External Collection.Date_Sent_to_Agent">Documentation</a>')
+                                          help_text=legacy_help('Date that the loan was sent to the external collection agent.'))
 
     legal_entity_identifier = models.TextField(blank=True, null=True,
-                                               help_text='Global standard 20-character corporate identifier of the external collection agent. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.External Collection.Legal_entity_identifier">Documentation</a>')
+                                               help_text=legacy_help('Global standard 20-character LEI of the external collection agent.'))
 
     name_of_external_debt_collection_agent = models.TextField(blank=True, null=True,
-                                                              help_text='Name of the external collection agent. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.External Collection.Name_of_External_Debt_Collection_Agent">Documentation</a>')
+                                                              help_text=legacy_help('Name of the external collection agent.'))
 
-    principal_forgiveness = models.FloatField(blank=True, null=True,
-                                              help_text='Amount of the principal that was forgiven by the external collection agent as part of recovery negotiations. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.External Collection.Principal_Forgiveness">Documentation</a>')
+    debt_forgiveness = models.FloatField(blank=True, null=True,
+                                              help_text=legacy_help('Amount of principal forgiven by the external collection agent as part of recovery negotiations.'))
 
     quantity_returned_from_agent = models.FloatField(blank=True, null=True,
-                                                     help_text='Amount of times the at the Loan was received back from the external debt collection agent. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.External Collection.Quantity_Returned_From_Agent">Documentation</a>')
+                                                     help_text=legacy_help('Number of times the loan was received back from the external debt collection agent.'))
 
     registration_number = models.TextField(blank=True, null=True,
-                                           help_text='Company registration number of the external collection agent according to the registration with the country specific registration office. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.External Collection.Registration_number">Documentation</a>')
+                                           help_text=legacy_help('Company registration number of the external collection agent per the country-specific registration office.'))
 
     repayment_plan = models.BooleanField(blank=True, null=True,
-                                         help_text='Indicator as to whether a repayment plan has been agreed with the external collection agency. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.External Collection.Repayment_Plan">Documentation</a>')
+                                         help_text=legacy_help('Indicator as to whether a repayment plan has been agreed with the external collection agency.'))
 
     repayment_plan_description = models.TextField(blank=True, null=True,
-                                                  help_text='Description of the repayment plan which has been agreed with the external collection agency. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.External Collection.Repayment_Plan_Description">Documentation</a>')
+                                                  help_text=legacy_help('Description of the repayment plan agreed with the external collection agency.'))
 
     #
     # BOOKKEEPING FIELDS

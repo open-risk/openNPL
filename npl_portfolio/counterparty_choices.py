@@ -36,9 +36,6 @@ LEGAL_TYPE_OF_COUNTERPARTY_CHOICES = [
     (2, '(c) Households'),
 ]
 
-TYPE_OF_PERSONAL_IDENTITY_NUMBER_CHOICES = [(0, '(a) Passport Number'), (1, '(b) National Insurance Number'),
-                                            (2, '(c) National tax number'), (3, '(d) Other')]
-
 GEOGRAPHIC_REGION_CLASSIFICATION_CHOICES = [(0, '(a) NUTS3 2013'), (1, '(b) NUTS3 2010'), (2, '(c) NUTS3 2006'),
                                             (3, '(d) NUTS3 2003'), (4, '(e) Other')]
 
@@ -77,15 +74,9 @@ LEGAL_PROCEDURE_TYPE_CHOICES = [(0, '(a) Corporate Restructuring Procedures, whi
 
 LEGAL_PROCEDURE_NAME_CHOICES = [(0, 'Country Specific: Annex I')]
 
-STAGE_REACHED_IN_INSOLVENCY_OR_RESTRUCTURING_PROCEDURE_CHOICES = [(0, '(a) A creditors committee has been formed'), (
-1, '(b) A moratorium against enforcement is in place'), (2, '(c) A restructuring plan has been proposed'),
-                                                                  (3, '(d) A restructuring plan has been approved'),
-                                                                  (4, '(e) A proof of claim has been filed'),
-                                                                  (5, '(f) A bar date for claims has been issued'), (6,
-                                                                                                                     '(g) A notice of intention to sell secured assets has been given'),
-                                                                  (7,
-                                                                   '(h) A distribution has been made to secured creditors'),
-                                                                  (8,
-                                                                   '(i) A distribution has been made to unsecured creditors'),
-                                                                  (9,
-                                                                   '(j) A notice of the end of the procedure has been given')]
+STATUS_OF_LEGAL_PROCEEDINGS_CHOICES = [
+    (0, '(a) No legal action taken'),
+    (1, '(b) Under judicial administration, receivership or similar measures'),
+    (2, '(c) Bankruptcy/insolvency'),
+    (3, '(d) Other legal measures'),
+]

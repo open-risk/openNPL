@@ -22,6 +22,7 @@ from django.db import models
 from django.urls import reverse
 
 from npl_portfolio.counterparty import Counterparty
+from npl_portfolio.eba_field_helpers import mandatory_help, recommended_help, legacy_help
 from npl_portfolio.loan_choices import *
 
 
@@ -38,340 +39,470 @@ class Loan(models.Model):
     # IDENTIFICATION FIELDS
     #
 
-    contract_identifier = models.TextField(blank=True, null=True)
+    loan_identifier = models.TextField(blank=True, null=True,
+                                       help_text=mandatory_help('3.01', 'Institution internal identifier for the loan. Cannot be reused for any other loan under the same or different loan agreement.'))
 
     instrument_identifier = models.TextField(blank=True, null=True,
-                                             help_text='Institution internal identifier for the Loan part. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Instrument_Identifier">Documentation</a>')
+                                             help_text=legacy_help('Institution internal identifier for the Loan part (sub-instrument level).'))
 
     #
     # FOREIGN KEYS
     #
 
-    counterparty_identifier = models.ForeignKey(Counterparty, on_delete=models.CASCADE, null=True, blank=True)
+    counterparty_identifier = models.ForeignKey(Counterparty, on_delete=models.CASCADE, null=True, blank=True,
+                                                help_text=mandatory_help('2.00', "Institution's internal identifier to uniquely identify each counterparty linked to this loan."))
+
+    snapshot_id = models.ForeignKey('PortfolioSnapshot', on_delete=models.CASCADE, null=True, blank=True,
+                                    help_text=mandatory_help('3.00', 'Reference date of the data included in the EBA NPL templates.'))
 
     #
-    # DATA PROPERTIES
+    # LEGACY DATA PROPERTIES (pre-2023 EBA draft — not in EU 2023/2083)
     #
 
     accounting_stages_of_asset_quality = models.IntegerField(blank=True, null=True,
                                                              choices=ACCOUNTING_STAGES_OF_ASSET_QUALITY_CHOICES,
-                                                             help_text='Accounting stages of asset quality, i.e. IFRS Stage 1, IFRS Stage 2, IFRS Stage 3 (impaired), Fair Value Through P&L, Other Accounting Standard - impaired asset, Other Accounting Standard - Not impaired. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Accounting_stages_of_Asset_Quality">Documentation</a>')
+                                                             help_text=legacy_help('Accounting stages of asset quality: IFRS Stage 1, IFRS Stage 2, IFRS Stage 3 (impaired), Fair Value Through P&L, Other Accounting Standard.'))
 
     accrued_interest_balance_off_book = models.BigIntegerField(blank=True, null=True,
-                                                               help_text='Amount of interest that has been accrued but not capitalised to the Loan,  as not recognised on the balance sheet. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Accrued_Interest_Balance_Off_book">Documentation</a>')
-
-    accrued_interest_balance_on_book = models.BigIntegerField(blank=True, null=True,
-                                                              help_text='Current amount of outstanding interest as recognised on the balance sheet at the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Accrued_Interest_Balance_On_book">Documentation</a>')
+                                                               help_text=legacy_help('Amount of interest accrued but not capitalised to the Loan, not recognised on the balance sheet.'))
 
     amortisation_type = models.IntegerField(blank=True, null=True, choices=AMORTISATION_TYPE_CHOICES,
-                                            help_text='Description of the Amortisation type of the loan as per the latest Loan Agreement e.g. Full amortisation, part amortisation, final bullet, bespoke repayment. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Amortisation_Type">Documentation</a>')
-
-    asset_class = models.IntegerField(blank=True, null=True, choices=ASSET_CLASS_CHOICES,
-                                      help_text='Asset class of the Loan, i.e. Resi, CRE, SME/Corp, etc.. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Asset_Class">Documentation</a>')
+                                            help_text=legacy_help('Amortisation type of the loan per the latest Loan Agreement (e.g. Full amortisation, part amortisation, final bullet, bespoke repayment).'))
 
     balance_at_default = models.BigIntegerField(blank=True, null=True,
-                                                help_text='Balance of the Loan when the Loan has defaulted (CRR Art.178). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Balance_at_default">Documentation</a>')
+                                                help_text=legacy_help('Balance of the Loan when it defaulted (CRR Art.178).'))
 
     capitalised_pastdue_amount = models.BigIntegerField(blank=True, null=True,
-                                                        help_text='Total capitalised past-due balance as recognised on balance sheet at NPL Portfolio Cut-Off Date i.e. Interest and Legal Fees. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Capitalised_PastDue_Amount">Documentation</a>')
+                                                        help_text=legacy_help('Total capitalised past-due balance as recognised on balance sheet at Cut-Off Date (interest and legal fees).'))
 
     channel_of_origination = models.IntegerField(blank=True, null=True, choices=CHANNEL_OF_ORIGINATION_CHOICES,
-                                                 help_text='Channel through which the Loan was originated, i.e. Branch, Internet and Broker. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Channel_of_Origination">Documentation</a>')
+                                                 help_text=legacy_help('Channel through which the Loan was originated (e.g. Branch, Internet, Broker).'))
 
     chargeoff_date = models.DateField(blank=True, null=True,
-                                      help_text='Date when the Loan went into charge-off. A charge-off is the declaration by the Institution commonly on Unsecured Retail when the Borrower is severely delinquent, and the Institution starts the recovery process officially.. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Chargeoff_Date">Documentation</a>')
+                                      help_text=legacy_help('Date when the Loan went into charge-off.'))
 
     code_of_conduct = models.TextField(blank=True, null=True,
-                                       help_text='Indicator as to whether the Loan is subject to certain Code of Conduct. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Code_of_Conduct">Documentation</a>')
+                                       help_text=legacy_help('Indicator as to whether the Loan is subject to a Code of Conduct.'))
 
     comments_on_code_of_conduct = models.TextField(blank=True, null=True,
-                                                   help_text='Further comments / details on Code of Conduct. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Comments_on_Code_of_Conduct">Documentation</a>')
+                                                   help_text=legacy_help('Further comments / details on Code of Conduct.'))
 
     comments_on_covenant_waiver = models.TextField(blank=True, null=True,
-                                                   help_text='Further comments / details on the covenant waiver if "Yes" is selected in field "Covenant Waiver". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Comments_on_Covenant_Waiver">Documentation</a>')
+                                                   help_text=legacy_help('Further comments / details on the covenant waiver.'))
 
     country_of_origination = models.TextField(blank=True, null=True,
-                                              help_text='Country where the Loan was originated. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Country_of_Origination">Documentation</a>')
+                                              help_text=legacy_help('Country where the Loan was originated.'))
 
     covenant_waiver = models.TextField(blank=True, null=True,
-                                       help_text='Indicator as to whether there has been a covenant waiver sent out for any breaches of the Loan Agreement. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Covenant_Waiver">Documentation</a>')
+                                       help_text=legacy_help('Indicator as to whether there has been a covenant waiver for any breaches of the Loan Agreement.'))
 
     current_covenant_levels = models.BigIntegerField(blank=True, null=True,
-                                                     help_text='Current levels of covenants as at NPL Portfolio Cut-Off date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Current_Covenant_Levels">Documentation</a>')
+                                                     help_text=legacy_help('Current levels of covenants as at NPL Portfolio Cut-Off date.'))
 
     current_external_credit_rating = models.TextField(blank=True, null=True,
-                                                      help_text='External credit rating issued for the Loan at NPL Portfolio Cut-Off Date. In case several ratings are assigned, the approach described in Art. 138 of the CRR applies.. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Current_External_Credit_Rating">Documentation</a>')
-
-    current_interest_base_rate = models.FloatField(blank=True, null=True,
-                                                   help_text='Current base rate of the Loan as at NPL Portfolio Cut-Off Date when "Variable" is selected in field "Current Interest Rate Type". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Current_Interest_Base_Rate">Documentation</a>')
-
-    current_interest_margin = models.FloatField(blank=True, null=True,
-                                                help_text='is the current margin above the base rate as stated in the Loan Agreement and applicable at the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Current_Interest_Margin">Documentation</a>')
-
-    current_interest_rate = models.FloatField(blank=True, null=True,
-                                              help_text='is the current total interest rate of the loan as stated in the Loan Agreement on and applicable at the NPL Portfolio Cut-Off Date.. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Current_Interest_Rate">Documentation</a>')
-
-    current_interest_rate_reference = models.IntegerField(blank=True, null=True,
-                                                          choices=CURRENT_INTEREST_RATE_REFERENCE_CHOICES,
-                                                          help_text='Current interest rate base or reference of the loan as stated in the Loan Agreement and applicable at the NPL Portfolio Cut-Off Date when Variable is selected in field Current Interest Rate Type. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Current_Interest_Rate_Reference">Documentation</a>')
-
-    current_interest_rate_type = models.IntegerField(blank=True, null=True, choices=CURRENT_INTEREST_RATE_TYPE_CHOICES,
-                                                     help_text='is the current interest rate type as per Loan Agreement and applicable at the NPL Portfolio Cut-Off Date, i.e. Fixed / Variable / Mixed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Current_Interest_Rate_Type">Documentation</a>')
+                                                      help_text=legacy_help('External credit rating issued for the Loan at Cut-Off Date.'))
 
     current_internal_credit_rating = models.TextField(blank=True, null=True,
-                                                      help_text='Internal credit rating issued to the Loan at NPL Portfolio Cut-Off Date and please provide the internal methodology used to decide the rating as a part of the transaction documents. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Current_Internal_Credit_Rating">Documentation</a>')
-
-    current_maturity_date = models.DateField(blank=True, null=True,
-                                             help_text='Contractual maturity date of the Loan as at NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Current_Maturity_Date">Documentation</a>')
+                                                      help_text=legacy_help('Internal credit rating issued to the Loan at Cut-Off Date.'))
 
     current_reversion_interest_rate = models.FloatField(blank=True, null=True,
-                                                        help_text='Current level of reversion interest rate according to the Loan Agreement and applicable as at NPL Portfolio Cut-Off Date, reversion means that after the interest fixed period the Institution would revert the rate to a different type, e.g. the Institutions Standard Variable Rate. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Current_Reversion_Interest_Rate">Documentation</a>')
-
-    date_of_default = models.DateField(blank=True, null=True,
-                                       help_text='Date that the Loan defaulted. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Date_of_Default">Documentation</a>')
-
-    date_of_origination = models.DateField(blank=True, null=True,
-                                           help_text='Date that the Loan originated as per the Loan Agreement. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Date_of_Origination">Documentation</a>')
-
-    days_in_pastdue = models.BigIntegerField(blank=True, null=True,
-                                             help_text='Number of days that the Loan is currently past-due as at the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Days_in_PastDue">Documentation</a>')
+                                                        help_text=legacy_help('Current level of reversion interest rate per the Loan Agreement at Cut-Off Date.'))
 
     default_penalty_interest_margin = models.FloatField(blank=True, null=True,
-                                                        help_text='Additional margin charged on the balance of the Loan in default according to the Loan Agreement and applicable as of the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Default_Penalty_Interest_Margin">Documentation</a>')
+                                                        help_text=legacy_help('Additional margin charged on the balance of the Loan in default per the Loan Agreement at Cut-Off Date.'))
 
     description_of_bespoke_repayment = models.TextField(blank=True, null=True,
-                                                        help_text='Description of the bespoke repayment profile when "Bespoke Repayment" is selected in field "Amortisation Type". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Description_of_Bespoke_Repayment">Documentation</a>')
-
-    description_of_current_interest_rate_type = models.TextField(blank=True, null=True,
-                                                                 help_text='Description of current interest rate type when "Mixed" is selected in field "Current Interest Rate Type". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Description_of_Current_Interest_Rate_Type">Documentation</a>')
+                                                        help_text=legacy_help('Description of the bespoke repayment profile when "Bespoke Repayment" is selected in "Amortisation Type".'))
 
     description_of_original_interest_rate_type = models.TextField(blank=True, null=True,
-                                                                  help_text='Description of original interest rate type when "Mixed" is selected in field "Original Interest Rate Type". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Description_of_Original_Interest_Rate_Type">Documentation</a>')
+                                                                  help_text=legacy_help('Description of original interest rate type when "Mixed" is selected in "Original Interest Rate Type".'))
 
     description_of_relevant_schemes = models.TextField(blank=True, null=True,
-                                                       help_text='Description of the relevant scheme if YES is selected in the field Relevant Schemes. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Description_of_Relevant_Schemes">Documentation</a>')
+                                                       help_text=legacy_help('Description of the relevant scheme if YES is selected in field "Relevant Schemes".'))
 
     details_of_origination_channel = models.TextField(blank=True, null=True,
-                                                      help_text='Description of the origination channel when "Broker" or "Other" is selected in field "Channel of Origination". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Details_of_Origination_Channel">Documentation</a>')
+                                                      help_text=legacy_help('Description of the origination channel when "Broker" or "Other" is selected in "Channel of Origination".'))
 
     early_redemption_penalty = models.FloatField(blank=True, null=True,
-                                                 help_text='Additional charge on the early redemption made by the Counterparty according to the Loan Agreement and applicable as of the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Early_Redemption_Penalty">Documentation</a>')
+                                                 help_text=legacy_help('Additional charge on early redemption per the Loan Agreement at Cut-Off Date.'))
 
     end_date_of_current_fixed_interest_period = models.DateField(blank=True, null=True,
-                                                                 help_text='Date that the current fixed interest period ends according to the Loan Agreement and applicable as at the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.End_Date_of_Current_Fixed_Interest_Period">Documentation</a>')
+                                                                 help_text=legacy_help('Date that the current fixed interest period ends per the Loan Agreement at Cut-Off Date.'))
 
     end_date_of_interest_grace_period = models.DateField(blank=True, null=True,
-                                                         help_text='Date that the interest payment ends postponement according to the Loan Agreement and applicable as of the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.End_Date_of_Interest_Grace_Period">Documentation</a>')
+                                                         help_text=legacy_help('Date that the interest payment postponement ends per the Loan Agreement at Cut-Off Date.'))
 
     end_date_of_interest_only_period = models.DateField(blank=True, null=True,
-                                                        help_text='Date that the interest repayment only period ends according to the current Loan Agreement and applicable as at the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.End_Date_of_Interest_Only_Period">Documentation</a>')
+                                                        help_text=legacy_help('Date that the interest-only repayment period ends per the current Loan Agreement at Cut-Off Date.'))
 
     end_date_of_principal_grace_period = models.DateField(blank=True, null=True,
-                                                          help_text='Date that the principal payment ends postponement according to the Loan Agreement and applicable as of the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.End_Date_of_Principal_Grace_Period">Documentation</a>')
+                                                          help_text=legacy_help('Date that the principal payment postponement ends per the Loan Agreement at Cut-Off Date.'))
 
     end_date_of_subsidy = models.DateField(blank=True, null=True,
-                                           help_text='Date that the current subsidy ends. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.End_Date_of_Subsidy">Documentation</a>')
+                                           help_text=legacy_help('Date that the current subsidy ends.'))
 
     external_credit_rating_at_origination = models.TextField(blank=True, null=True,
-                                                             help_text='External credit rating issued to the Loan applicable at the point of time when the counterparty became a customer. In case several ratings are assigned, the approach described in Art. 138 of the CRR applies.. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.External_Credit_Rating_at_Origination">Documentation</a>')
+                                                             help_text=legacy_help('External credit rating issued to the Loan at the point of origination.'))
 
     final_bullet_repayment = models.BigIntegerField(blank=True, null=True,
-                                                    help_text='Total amount of principal repayment to be paid at the maturity date of the loan. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Final_Bullet_Repayment">Documentation</a>')
-
-    governing_law_of_loan_agreement = models.TextField(blank=True, null=True,
-                                                       help_text='Governing law is the law of the country in which the Loan Agreement was entered into. This does not necessarily correspond to the country where the loan was originated. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Governing_Law_of_Loan_Agreement">Documentation</a>')
+                                                    help_text=legacy_help('Total amount of principal repayment to be paid at the maturity date of the loan.'))
 
     interest_cap_rate = models.FloatField(blank=True, null=True,
-                                          help_text='Maximum interest rate which can be charged on the Loan as specified in the current Loan Agreement (if applicable). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Interest_Cap_Rate">Documentation</a>')
+                                          help_text=legacy_help('Maximum interest rate chargeable on the Loan as specified in the current Loan Agreement.'))
 
     interest_floor_rate = models.FloatField(blank=True, null=True,
-                                            help_text='Minimum interest rate of a loan which can be charged on the Loan as specified in the current Loan Agreement (if applicable). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Interest_Floor_Rate">Documentation</a>')
+                                            help_text=legacy_help('Minimum interest rate chargeable on the Loan as specified in the current Loan Agreement.'))
 
     interest_payment_frequency = models.IntegerField(blank=True, null=True, choices=INTEREST_PAYMENT_FREQUENCY_CHOICES,
-                                                     help_text='Frequency of interest payments based on the current Loan Agreement as at the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Interest_Payment_Frequency">Documentation</a>')
+                                                     help_text=legacy_help('Frequency of interest payments based on the current Loan Agreement at Cut-Off Date.'))
 
     interest_reset_interval = models.BigIntegerField(blank=True, null=True,
-                                                     help_text='Number of months between two interest reset dates according to the Loan Agreement and applicable as of the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Interest_Reset_Interval">Documentation</a>')
+                                                     help_text=legacy_help('Number of months between two interest reset dates per the Loan Agreement at Cut-Off Date.'))
 
     internal_credit_rating_at_origination = models.TextField(blank=True, null=True,
-                                                             help_text='Internal credit rating issued to the Loan applicable at the point of time when the counterparty became a customer and please provide the internal methodology used to decide the rating as a part of the transaction documents. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Internal_Credit_Rating_at_Origination">Documentation</a>')
+                                                             help_text=legacy_help('Internal credit rating issued to the Loan at the point of origination.'))
 
     last_covenant_test_date = models.DateField(blank=True, null=True,
-                                               help_text='Date that the covenant levels were tested last time by the institution. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Last_Covenant_Test_Date">Documentation</a>')
+                                               help_text=legacy_help('Date that the covenant levels were last tested by the institution.'))
 
     last_interest_reset_date = models.DateField(blank=True, null=True,
-                                                help_text='Date that the last interest reset event happened. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Last_Interest_Reset_Date">Documentation</a>')
-
-    last_payment_amount = models.BigIntegerField(blank=True, null=True,
-                                                 help_text='Amount of last payment. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Last_Payment_Amount">Documentation</a>')
-
-    last_payment_date = models.DateField(blank=True, null=True,
-                                         help_text='Date that the last payment was made. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Last_Payment_Date">Documentation</a>')
-
-    legal_balance = models.BigIntegerField(blank=True, null=True,
-                                           help_text='Total claim amount, i.e. Total Balance + Accrued Interest Balance (Off book). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Legal_Balance">Documentation</a>')
+                                                help_text=legacy_help('Date that the last interest reset event happened.'))
 
     legal_balance_at_chargeoff_date = models.BigIntegerField(blank=True, null=True,
-                                                             help_text='Total claim amount when the Loan went into charge-off. A charge-off is the declaration by the Institution commonly on Unsecured Retail when the Borrower is severely delinquent, and the Institution starts the recovery process officially.. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Legal_Balance_at_Chargeoff_Date">Documentation</a>')
+                                                             help_text=legacy_help('Total claim amount when the Loan went into charge-off.'))
 
     loan_commitment = models.BigIntegerField(blank=True, null=True,
-                                             help_text='Total available credit extended as at the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Loan_Commitment">Documentation</a>')
+                                             help_text=legacy_help('Total available credit extended as at the NPL Portfolio Cut-Off Date.'))
 
     loan_covenants = models.IntegerField(blank=True, null=True, choices=LOAN_COVENANTS_CHOICES,
-                                         help_text='List of the covenants as agreed in the current Loan Agreement as at the NPL Portfolio Cut-Off Date (LTV, ICR, DSCR etc.), each in a separate column. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Loan_Covenants">Documentation</a>')
-
-    loan_currency = models.TextField(blank=True, null=True,
-                                     help_text='Currency which the Loan is expressed in as per latest Loan Agreement. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Loan_Currency">Documentation</a>')
+                                         help_text=legacy_help('Covenants as agreed in the current Loan Agreement at Cut-Off Date (LTV, ICR, DSCR etc.).'))
 
     loan_purpose = models.IntegerField(blank=True, null=True, choices=LOAN_PURPOSE_CHOICES,
-                                       help_text='ultimate financing purpose of the Loan, e.g. Residential real estate purchase for own use, Residential real estate purchase for investment, Commercial real estate purchase, Margin lending, Debt financing, Imports/Exports, Construction investment, and Working capital facility.. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Loan_Purpose">Documentation</a>')
+                                       help_text=legacy_help('Ultimate financing purpose of the Loan (e.g. Residential real estate purchase, Commercial real estate, Working capital).'))
 
     loan_status = models.IntegerField(blank=True, null=True, choices=LOAN_STATUS_CHOICES,
-                                      help_text='Loan status, e.g. performing and non-performing. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Loan_Status">Documentation</a>')
+                                      help_text=legacy_help('Loan status (e.g. performing, non-performing).'))
 
     marp_applicable = models.BooleanField(blank=True, null=True,
-                                          help_text='Indicator as to whether the Institution operates a Mortgage Arrears Resolution Process when dealing with Corporates or Private Individual Counterparties in Mortgage Arrears. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.MARP_Applicable">Documentation</a>')
+                                          help_text=legacy_help('Indicator as to whether the Institution operates a Mortgage Arrears Resolution Process (MARP).'))
 
     marp_entry = models.DateField(blank=True, null=True,
-                                  help_text='Date loan entered current MARP status. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.MARP_Entry">Documentation</a>')
+                                  help_text=legacy_help('Date loan entered current MARP status.'))
 
     marp_status = models.IntegerField(blank=True, null=True, choices=MARP_STATUS_CHOICES,
-                                      help_text='The status of the current Mortgage Arrears Resolution Process; Not in MARP, Exited MARP, Provision 23,24,28,29,42,45,47,Self Cure, Alternative Repayment Arrangement (ARA). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.MARP_Status">Documentation</a>')
+                                      help_text=legacy_help('Status of the current Mortgage Arrears Resolution Process.'))
 
     next_interest_reset_date = models.DateField(blank=True, null=True,
-                                                help_text='Date that the next interest reset event happened. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Next_Interest_Reset_Date">Documentation</a>')
+                                                help_text=legacy_help('Date that the next interest reset event is scheduled.'))
 
     next_interest_scheduled_repayment_amount = models.BigIntegerField(blank=True, null=True,
-                                                                      help_text='Amount of next scheduled interest repayment as at the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Next_Interest_Scheduled_Repayment_Amount">Documentation</a>')
+                                                                      help_text=legacy_help('Amount of next scheduled interest repayment at Cut-Off Date.'))
 
     next_interest_scheduled_repayment_date = models.DateField(blank=True, null=True,
-                                                              help_text='Date that the next interest repayment is made as at the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Next_Interest_Scheduled_Repayment_Date">Documentation</a>')
+                                                              help_text=legacy_help('Date that the next interest repayment is due at Cut-Off Date.'))
 
     next_principal_scheduled_repayment_amount = models.BigIntegerField(blank=True, null=True,
-                                                                       help_text='Amount of next scheduled principal repayment as at the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Next_Principal_Scheduled_Repayment_Amount">Documentation</a>')
+                                                                       help_text=legacy_help('Amount of next scheduled principal repayment at Cut-Off Date.'))
 
     next_principal_scheduled_repayment_date = models.DateField(blank=True, null=True,
-                                                               help_text='Date that the next principal repayment is made as at the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Next_Principal_Scheduled_Repayment_Date">Documentation</a>')
+                                                               help_text=legacy_help('Date that the next principal repayment is due at Cut-Off Date.'))
 
     nonperforming_reason = models.IntegerField(blank=True, null=True, choices=NONPERFORMING_REASON_CHOICES,
-                                               help_text='Main reason why the non-performing status was provided, i.e. impaired (according to the applicable accounting standard), defaulted (CRR Art. 178), more than 90 ,DPD, unlikely to pay. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.NonPerforming_Reason">Documentation</a>')
+                                               help_text=legacy_help('Main reason for non-performing status (impaired, defaulted CRR Art.178, >90 DPD, unlikely to pay).'))
 
     number_of_pastdue_events = models.BigIntegerField(blank=True, null=True,
-                                                      help_text='Number of times that the Loan was previously categorised as past-due. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Number_of_PastDue_Events">Documentation</a>')
+                                                      help_text=legacy_help('Number of times the Loan was previously categorised as past-due.'))
 
     original_interest_base_rate = models.FloatField(blank=True, null=True,
-                                                    help_text='Original base rate of the Loan when "Variable" is selected in field "Original Interest Rate Type". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Original_Interest_Base_Rate">Documentation</a>')
+                                                    help_text=legacy_help('Original base rate of the Loan when "Variable" is selected in "Original Interest Rate Type".'))
 
     original_interest_margin = models.FloatField(blank=True, null=True,
-                                                 help_text='Original margin above the base rate at loan origination. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Original_Interest_Margin">Documentation</a>')
+                                                 help_text=legacy_help('Original margin above the base rate at loan origination.'))
 
     original_interest_rate = models.FloatField(blank=True, null=True,
-                                               help_text='Original total interest rate of the Loan as states in the Loan Agreement and as applicable as of Loan Origination. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Original_Interest_Rate">Documentation</a>')
+                                               help_text=legacy_help('Original total interest rate of the Loan as stated in the Loan Agreement at origination.'))
 
     original_interest_rate_reference = models.IntegerField(blank=True, null=True,
                                                            choices=ORIGINAL_INTEREST_RATE_REFERENCE_CHOICES,
-                                                           help_text='Original interest rate base / reference of the Loan when "Variable" is selected in field "Original Interest Rate Type". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Original_Interest_Rate_Reference">Documentation</a>')
+                                                           help_text=legacy_help('Original interest rate base/reference when "Variable" is selected in "Original Interest Rate Type".'))
 
     original_interest_rate_type = models.IntegerField(blank=True, null=True,
                                                       choices=ORIGINAL_INTEREST_RATE_TYPE_CHOICES,
-                                                      help_text='Original interest rate type as states in the Loan Agreement and as applicable as of Loan origination i.e. Fixed / Variable / Mixed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Original_Interest_Rate_Type">Documentation</a>')
+                                                      help_text=legacy_help('Original interest rate type as per Loan Agreement at origination (Fixed / Variable / Mixed).'))
 
     original_maturity_date = models.DateField(blank=True, null=True,
-                                              help_text='Original contractual maturity date of the Loan. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Original_Maturity_Date">Documentation</a>')
+                                              help_text=legacy_help('Original contractual maturity date of the Loan.'))
 
     origination_amount = models.BigIntegerField(blank=True, null=True,
-                                                help_text='Loan amount advanced to the Borrower / drawn down by the Borrower at the origination date on the loan. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Origination_Amount">Documentation</a>')
-
-    other_balances = models.BigIntegerField(blank=True, null=True,
-                                            help_text='Current amount of other outstanding amounts, e.g. other charges, commissions, fees etc., as recognised on the balance sheet. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Other_Balances">Documentation</a>')
+                                                help_text=legacy_help('Loan amount advanced to the Borrower at origination.'))
 
     other_pastdue_amounts = models.BigIntegerField(blank=True, null=True,
-                                                   help_text='Accumulated amount of other past-due amounts, e.g. fees, as recognised on balance sheet at NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Other_PastDue_Amounts">Documentation</a>')
+                                                   help_text=legacy_help('Accumulated amount of other past-due amounts (e.g. fees) at Cut-Off Date.'))
 
     other_syndicate_counterparties = models.TextField(blank=True, null=True,
-                                                      help_text='Who the other syndicate Counterparties are when "Yes" is selected in field "Syndicated Loan". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Other_Syndicate_Counterparties">Documentation</a>')
+                                                      help_text=legacy_help('Other syndicate counterparties when "Yes" is selected in "Syndicated Loan".'))
 
     pastdue_interest_amount = models.BigIntegerField(blank=True, null=True,
-                                                     help_text='Accumulated amount of past-due interest as recognised on balance sheet as at NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.PastDue_Interest_Amount">Documentation</a>')
+                                                     help_text=legacy_help('Accumulated amount of past-due interest as recognised on balance sheet at Cut-Off Date.'))
 
     pastdue_penalty_interest_margin = models.FloatField(blank=True, null=True,
-                                                        help_text='Additional margin charged on the past-due portion of the Loan according to the Loan Agreement and applicable as of the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.PastDue_Penalty_Interest_Margin">Documentation</a>')
+                                                        help_text=legacy_help('Additional margin charged on the past-due portion of the Loan per the Loan Agreement at Cut-Off Date.'))
 
     pastdue_principal_amount = models.BigIntegerField(blank=True, null=True,
-                                                      help_text='Accumulated amount of past-due principal as recognised on balance sheet at NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.PastDue_Principal_Amount">Documentation</a>')
-
-    principal_balance = models.BigIntegerField(blank=True, null=True,
-                                               help_text='Current amount of outstanding principal as recognised on the balance sheet at Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Principal_Balance">Documentation</a>')
+                                                      help_text=legacy_help('Accumulated amount of past-due principal as recognised on balance sheet at Cut-Off Date.'))
 
     principal_payment_frequency = models.IntegerField(blank=True, null=True,
                                                       choices=PRINCIPAL_PAYMENT_FREQUENCY_CHOICES,
-                                                      help_text='Frequency that the principal payment is currently made based on the current Loan Agreement as at the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Principal_Payment_Frequency">Documentation</a>')
-
-    product_type = models.IntegerField(blank=True, null=True, choices=PRODUCT_TYPE_CHOICES,
-                                       help_text='Product type of the Loan, e.g. Loan and Overdraft. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Product_Type">Documentation</a>')
-
-    relevant_schemes = models.TextField(blank=True, null=True,
-                                        help_text='Indicator as to whether the Loan is involved with any relevant schemes, e.g. Right to Buy Scheme in UK. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Relevant_Schemes">Documentation</a>')
+                                                      help_text=legacy_help('Frequency of principal payments based on the current Loan Agreement at Cut-Off Date.'))
 
     recourse_to_other_assets = models.BooleanField(blank=True, null=True,
-                                                   help_text='Indicator as to whether the Institution has the legal right to access other assets of the Borrower. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Recourse_to_Other_Assets">Documentation</a>')
+                                                   help_text=legacy_help('Indicator as to whether the Institution has the legal right to access other assets of the Borrower.'))
 
-    securitised = models.TextField(blank=True, null=True,
-                                   help_text='Indicator as to whether the Loan has been securitised or within covered bond pool. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Securitised">Documentation</a>')
+    relevant_schemes = models.TextField(blank=True, null=True,
+                                        help_text=legacy_help('Indicator as to whether the Loan is involved with any relevant schemes (e.g. Right to Buy Scheme in UK).'))
 
     source_of_current_external_credit_rating = models.TextField(blank=True, null=True,
-                                                                help_text='From which agency the external credit rating at NPL Portfolio Cut-Off Date was obtained. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Source_of_Current_External_Credit_Rating">Documentation</a>')
+                                                                help_text=legacy_help('Agency which provided the external credit rating at Cut-Off Date.'))
 
     source_of_external_credit_rating_at_origination = models.TextField(blank=True, null=True,
-                                                                       help_text='From which agency the external credit rating at origination was obtained. In case several ratings are assigned, the approach described in Art. 138 of the CRR applies.. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Source_of_External_Credit_Rating_at_Origination">Documentation</a>')
+                                                                       help_text=legacy_help('Agency which provided the external credit rating at origination.'))
 
     specialised_product = models.TextField(blank=True, null=True,
-                                           help_text='Indicator as to whether the Loan is a specialised product, e.g. Fractioned Loans in Italy. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Specialised_Product">Documentation</a>')
+                                           help_text=legacy_help('Indicator as to whether the Loan is a specialised product (e.g. Fractioned Loans in Italy).'))
 
     start_date_of_current_fixed_interest_period = models.DateField(blank=True, null=True,
-                                                                   help_text='Date that the current fixed interest period started according to the Loan Agreement and applicable as at the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Start_Date_of_Current_Fixed_Interest_Period">Documentation</a>')
+                                                                   help_text=legacy_help('Date that the current fixed interest period started per the Loan Agreement at Cut-Off Date.'))
 
     start_date_of_interest_grace_period = models.DateField(blank=True, null=True,
-                                                           help_text='Date that the interest payment starts being postponed according to the Loan Agreement and applicable as of the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Start_Date_of_Interest_Grace_Period">Documentation</a>')
+                                                           help_text=legacy_help('Date that the interest payment postponement started per the Loan Agreement at Cut-Off Date.'))
 
     start_date_of_interest_only_period = models.DateField(blank=True, null=True,
-                                                          help_text='Date that the interest repayment only period starts according to the most recent Loan Agreement and applicable as  the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Start_Date_of_Interest_Only_Period">Documentation</a>')
+                                                          help_text=legacy_help('Date that the interest-only repayment period started per the most recent Loan Agreement at Cut-Off Date.'))
 
     start_date_of_principal_grace_period = models.DateField(blank=True, null=True,
-                                                            help_text='Date that the principal payment starts being postponed according to the Loan Agreement and applicable as of the NPL Portfolio Cut-Off Date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Start_Date_of_Principal_Grace_Period">Documentation</a>')
+                                                            help_text=legacy_help('Date that the principal payment postponement started per the Loan Agreement at Cut-Off Date.'))
 
     start_date_of_subsidy = models.DateField(blank=True, null=True,
-                                             help_text='Date that the current subsidy starts. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Start_Date_of_Subsidy">Documentation</a>')
+                                             help_text=legacy_help('Date that the current subsidy starts.'))
 
     subsidy = models.TextField(blank=True, null=True,
-                               help_text='Indicator where contractual payments are subsidised by an external party. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Subsidy">Documentation</a>')
+                               help_text=legacy_help('Indicator where contractual payments are subsidised by an external party.'))
 
     subsidy_amount = models.BigIntegerField(blank=True, null=True,
-                                            help_text='Amount of the subsidy received. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Subsidy_Amount">Documentation</a>')
+                                            help_text=legacy_help('Amount of the subsidy received.'))
 
     subsidy_provider = models.TextField(blank=True, null=True,
-                                        help_text='Name of the external party who provided the subsidy. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Subsidy_Provider">Documentation</a>')
-
-    syndicated_loan = models.TextField(blank=True, null=True,
-                                       help_text='Indicator as to whether the Loan is provided by a syndicate or consortium of two or more institutions. This means that in the case of a syndicated loan the Institution holds less than 100% of the total loan. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Syndicated_Loan">Documentation</a>')
-
-    syndicated_portion = models.FloatField(blank=True, null=True,
-                                           help_text='Percentage of the portion held by the Institution when "Yes" is selected in field "Syndicated Loan". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Syndicated_Portion">Documentation</a>')
+                                        help_text=legacy_help('Name of the external party who provided the subsidy.'))
 
     time_in_pastdue = models.BigIntegerField(blank=True, null=True,
-                                             help_text='Total number of months that the Loan has been in past-due in the past 12 months. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Time_in_PastDue">Documentation</a>')
+                                             help_text=legacy_help('Total number of months the Loan has been in past-due in the past 12 months.'))
 
     total_balance = models.BigIntegerField(blank=True, null=True,
-                                           help_text='Total unpaid balance, i.e. Principal Balance + Accrued Interest Balance (On book) + Other Balances. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Total_Balance">Documentation</a>')
+                                           help_text=legacy_help('Total unpaid balance: Principal Balance + Accrued Interest (On book) + Other Balances.'))
 
     total_pastdue_amount = models.BigIntegerField(blank=True, null=True,
-                                                  help_text='Total past-due amount, i.e. Past-Due Principal Amount + Past-Due Interest Amount + Other Past-Due Amount. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Total_PastDue_Amount">Documentation</a>')
+                                                  help_text=legacy_help('Total past-due amount: Past-Due Principal + Past-Due Interest + Other Past-Due.'))
 
     trigger_levels_of_loan_covenants = models.BigIntegerField(blank=True, null=True,
-                                                              help_text='Corresponding trigger levels as agreed in the Loan Agreement, as at the NPL Portfolio Cut-Off Date, each in a separate column. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Trigger_Levels_of_Loan_Covenants">Documentation</a>')
+                                                              help_text=legacy_help('Trigger levels of covenants as agreed in the Loan Agreement at Cut-Off Date.'))
 
     type_of_reversion_interest_rate = models.TextField(blank=True, null=True,
-                                                       help_text='Type of reversion interest rate after the fixed interest period according to the Loan Agreement and applicable as of the NPL Portfolio Cur-Off Date, reversion means that after the interest fixed period the Institution would revert the rate to a different type, e.g. the Institutions Standard Variable Rate. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Loan.Type_of_Reversion_Interest_Rate">Documentation</a>')
+                                                       help_text=legacy_help('Type of reversion interest rate after the fixed interest period per the Loan Agreement at Cut-Off Date.'))
+
+    #
+    # EBA ITS 2023/2083 — MANDATORY FIELDS
+    #
+
+    date_of_origination = models.DateField(blank=True, null=True,
+                                           help_text=mandatory_help('3.02', 'Date on which the contractual relationship originated (the date the contract became binding for all parties).'))
+
+    governing_law_of_loan_agreement = models.TextField(blank=True, null=True,
+                                                       help_text=mandatory_help('3.03', 'Jurisdiction governing the loan agreement, per ISO 3166 ALPHA-2. Does not necessarily correspond to the country where the loan was originated.'))
+
+    asset_class = models.IntegerField(blank=True, null=True, choices=ASSET_CLASS_CHOICES,
+                                      help_text=mandatory_help('3.05', 'Asset class of the loan per Article 2(1) of Commission Delegated Regulation (EU) 2020/1224 (e.g. Residential real estate, Commercial real estate, Corporate, Consumer).'))
+
+    product_type = models.IntegerField(blank=True, null=True, choices=PRODUCT_TYPE_CHOICES,
+                                       help_text=mandatory_help('3.06', 'Classification of the loan according to the type of contractual terms agreed between the parties (e.g. Overdraft, Credit card, Revolving credit, Financial lease, Other loans).'))
+
+    loan_currency = models.TextField(blank=True, null=True,
+                                     help_text=mandatory_help('3.08', 'Currency denomination of the Loan per ISO 4217.'))
+
+    principal_balance = models.BigIntegerField(blank=True, null=True,
+                                               help_text=mandatory_help('3.09', 'Outstanding principal amount as recognised on the balance sheet at Cut-Off Date. Excludes accrued interest and other balances.'))
+
+    accrued_interest_balance_on_book = models.BigIntegerField(blank=True, null=True,
+                                                              help_text=mandatory_help('3.10', 'Accrued interest on loans as recognised on the balance sheet at Cut-Off Date, per Reg. (EU) No 1071/2013.'))
+
+    other_balances = models.BigIntegerField(blank=True, null=True,
+                                            help_text=mandatory_help('3.11', 'Total other outstanding amounts on the balance sheet at Cut-Off Date (charges, commissions, fees not in principal or accrued interest).'))
+
+    legal_balance = models.BigIntegerField(blank=True, null=True,
+                                           help_text=mandatory_help('3.12', 'Total claim amount including on-balance sheet exposures, off-balance sheet exposures and penalty interests the lender is entitled to receive at Cut-Off Date.'))
+
+    days_in_pastdue = models.BigIntegerField(blank=True, null=True,
+                                             help_text=mandatory_help('3.13', 'Number of days the loan is currently past-due at Cut-Off Date. Zero for non-performing loans not past-due. Past-due per Annex V paragraph 96 of Reg. (EU) 2021/451.'))
+
+    date_of_default = models.DateField(blank=True, null=True,
+                                       help_text=mandatory_help('3.23', 'Date on which the default status occurred per Article 178 of Regulation (EU) No 575/2013. Not reported for non-performing loans not in default.'))
+
+    #
+    # EBA ITS 2023/2083 — RECOMMENDED FIELDS
+    #
+
+    current_maturity_date = models.DateField(blank=True, null=True,
+                                             help_text=recommended_help('3.07', 'Contractual maturity date of the Loan at Cut-Off Date, including any amendments and forbearance measures. Required only when Days in Past-Due ≤ 365.'))
+
+    current_interest_rate = models.FloatField(blank=True, null=True,
+                                              help_text=recommended_help('3.14', 'Annualised agreed interest rate per Reg. (EU) No 1072/2013 (ECB/2013/34), applicable at Cut-Off Date including any forbearance. Required only when Days in Past-Due ≤ 365.'))
+
+    current_interest_rate_type = models.IntegerField(blank=True, null=True, choices=CURRENT_INTEREST_RATE_TYPE_CHOICES,
+                                                     help_text=recommended_help('3.15', 'Classification of loan by base rate for the interest rate (Fixed, Variable, Mixed). Applicable at Cut-Off Date including forbearance. Required only when Days in Past-Due ≤ 365.'))
+
+    description_of_current_interest_rate_type = models.TextField(blank=True, null=True,
+                                                                 help_text=recommended_help('3.16', 'Description of interest rate type when "Mixed" is selected in "Interest Rate Type". Required only when Days in Past-Due ≤ 365.'))
+
+    current_interest_margin = models.FloatField(blank=True, null=True,
+                                                help_text=recommended_help('3.17', 'Margin or spread (percentage) above the reference rate used for interest calculation in basis points. Applicable at Cut-Off Date. Required only when Days in Past-Due ≤ 365.'))
+
+    current_interest_base_rate = models.FloatField(blank=True, null=True,
+                                                   help_text=legacy_help('Reference rate used for the calculation of the actual interest rate. Applicable at Cut-Off Date when "Variable" is selected. Required only when Days in Past-Due ≤ 365.'))
+
+    current_interest_rate_reference = models.IntegerField(blank=True, null=True,
+                                                          choices=CURRENT_INTEREST_RATE_REFERENCE_CHOICES,
+                                                          help_text=legacy_help('Current interest rate base/reference of the loan per Loan Agreement at Cut-Off Date when "Variable" is selected in "Interest Rate Type".'))
+
+    last_payment_date = models.DateField(blank=True, null=True,
+                                         help_text=recommended_help('3.21', 'Date that the last payment was made.'))
+
+    last_payment_amount = models.BigIntegerField(blank=True, null=True,
+                                                 help_text=recommended_help('3.22', 'Amount of last payment.'))
+
+    syndicated_loan = models.BooleanField(blank=True, null=True,
+                                          help_text=recommended_help('3.30', 'Indicator as to whether the loan is provided by a syndicate or consortium of two or more credit institutions (institution holds <100% of total loan).'))
+
+    syndicated_portion = models.FloatField(blank=True, null=True,
+                                           help_text=recommended_help('3.31', 'Percentage of the portion held by the institution. Applicable when "Yes" is selected in "Syndicated Loan".'))
+
+    securitised = models.BooleanField(blank=True, null=True,
+                                      help_text=recommended_help('3.32', 'Indicator as to whether the loan has been securitised or is within a covered bond pool.'))
+
+    #
+    # EBA TEMPLATE 3 ADDITIONAL FIELDS
+    #
+
+    joint_counterparties = models.IntegerField(
+        blank=True, null=True, choices=JOINT_COUNTERPARTIES_CHOICES,
+        help_text=mandatory_help(
+            '3.04',
+            'Number of counterparties who jointly owe under the loan and are jointly responsible for payments to the lender.'
+        )
+    )
+    reference_rate = models.TextField(
+        blank=True, null=True,
+        help_text=recommended_help(
+            '3.18',
+            "Reference rate used for the calculation of the actual interest rate. Combination of the reference rate value and maturity value, applicable at the cut-off date when 'Variable' is selected in 'Interest Rate Type'. Required only when Days in Past-Due ≤ 365."
+        )
+    )
+    interest_rate_reset_frequency = models.IntegerField(
+        blank=True, null=True, choices=INTEREST_RATE_RESET_FREQUENCY_CHOICES,
+        help_text=recommended_help(
+            '3.19',
+            "Frequency at which the interest rate is reset after the initial fixed-rate period. Applicable at Cut-Off Date including forbearance. Required only when Days in Past-Due ≤ 365."
+        )
+    )
+    payment_frequency = models.IntegerField(
+        blank=True, null=True, choices=PAYMENT_FREQUENCY_CHOICES,
+        help_text=recommended_help(
+            '3.20',
+            "Frequency of payments due (principal or interest), i.e. number of months between payments. Based on the current loan agreement at Cut-Off Date. Required only when Days in Past-Due ≤ 365."
+        )
+    )
+    loan_legal_status = models.IntegerField(
+        blank=True, null=True, choices=LOAN_LEGAL_STATUS_CHOICES,
+        help_text=mandatory_help(
+            '3.24',
+            'Indication of the loan legal status at Cut-Off Date (out of court settlement, legal proceedings, no action taken).'
+        )
+    )
+    date_of_initiation_of_legal_proceedings = models.DateField(
+        blank=True, null=True,
+        help_text=mandatory_help(
+            '3.25',
+            "Date on which legal proceedings were initiated. Must be the most recent relevant date prior to Cut-Off Date. Required only when 'Loan legal status' = 'legal proceedings'."
+        )
+    )
+    stage_reached_in_legal_proceedings = models.JSONField(
+        blank=True, null=True, default=list,
+        help_text=mandatory_help(
+            '3.26',
+            "Indication of how advanced the legal procedure has become. Multiple selections allowed: (a) Initial stage; (b) Proof of claim filed; (c) Notice of intention to sell secured assets; (d) Distribution made to seller; (e) Notice of end of procedure. Required only when 'Loan legal status' = 'legal proceedings'."
+        )
+    )
+    jurisdiction_of_court = models.TextField(
+        blank=True, null=True,
+        help_text=mandatory_help(
+            '3.27',
+            'Location of the court where the court case is being heard, per ISO 3166 ALPHA-2. Required only when a court case has been initiated.'
+        )
+    )
+    date_of_obtaining_order_for_possession = models.DateField(
+        blank=True, null=True,
+        help_text=recommended_help(
+            '3.28',
+            'Date that the order for possession is granted by the court. Required only when an order for possession has been granted.'
+        )
+    )
+    statute_of_limitations_date = models.DateField(
+        blank=True, null=True,
+        help_text=mandatory_help(
+            '3.29',
+            'Date when the loan expires and legal proceedings cannot be undertaken. Required only when applicable under the governing law and legal status of the loan.'
+        )
+    )
+    lease_agreement = models.BooleanField(
+        blank=True, null=True,
+        help_text=mandatory_help(
+            '3.33',
+            'Indicator as to whether the credit agreement contains a lease.'
+        )
+    )
+    start_date_of_lease = models.DateField(
+        blank=True, null=True,
+        help_text=recommended_help(
+            '3.34',
+            "Date that the current lease starts. Required when 'yes' is selected in 'Lease agreement'."
+        )
+    )
+    end_date_of_lease = models.DateField(
+        blank=True, null=True,
+        help_text=recommended_help(
+            '3.35',
+            "Date that the current lease ends. Required when 'yes' is selected in 'Lease agreement'."
+        )
+    )
+    lease_break_option = models.TextField(
+        blank=True, null=True,
+        help_text=recommended_help(
+            '3.36',
+            "Details of any lease break clause(s). Required when 'yes' is selected in 'Lease agreement'."
+        )
+    )
+    type_of_lease = models.IntegerField(
+        blank=True, null=True, choices=TYPE_OF_LEASE_CHOICES,
+        help_text=recommended_help(
+            '3.37',
+            "Type of the lease agreement with the counterparty. Required when 'yes' is selected in 'Lease agreement'."
+        )
+    )
+    forbearance_measure = models.BooleanField(
+        blank=True, null=True,
+        help_text=mandatory_help(
+            '3.38',
+            'Indicator as to whether forbearance measures are currently applied to the loan at Cut-Off Date.'
+        )
+    )
 
     #
     # BOOKKEEPING FIELDS
@@ -381,7 +512,7 @@ class Loan(models.Model):
     last_change_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.contract_identifier
+        return self.loan_identifier
 
     def get_absolute_url(self):
         return reverse('npl_portfolio:loan_edit', kwargs={'pk': self.pk})
