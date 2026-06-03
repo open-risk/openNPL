@@ -13,6 +13,8 @@ openNPL implements and builds on public standards around loan-level templates:
 * the detailed European Banking Authority loan templates for NPL data. It thereby enables the collection and easy management of non-performing loan data according to best-practices.
 * US Agency (Fannie Mae) Mortgage Reporting templates (SFLP)
 
+> The final EBA NPL Templates as adopted in EU REGULATION (EU) 2023/2083 are a drastic reduction of the original specification. The larger original specification is what is currently implemented in openNPL. Future work will enable extracting a required subset that is in conformance with the final specification.     
+
 The platform is in active development, parties interested in its further development are encouraged to get involved. The project aims to be driven by community needs. We welcome code contributions and feature requests via GitHub.
 
 ![Landing](/docs/source/screenshots/landing.png)
