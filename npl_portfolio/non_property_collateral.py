@@ -60,8 +60,54 @@ class NonPropertyCollateral(models.Model):
     latest_valuation_amount = models.FloatField(blank=True, null=True,
                                                 help_text=mandatory_help('4.19', "Value of the collateral as established following the chosen internal valuation approach when last assessed at or prior to Cut-Off Date, without regulatory haircuts."))
 
-    date_of_latest_valuation = models.DateField(blank=True, null=True,
-                                                help_text=mandatory_help('4.20', "Date that the latest internal valuation took place at or prior to Cut-Off Date."))
+    date_of_latest_valuation = models.DateField(
+        blank=True, null=True,
+        help_text=mandatory_help('4.20', "Date that the latest internal valuation took place at or prior to Cut-Off Date.")
+    )
+
+    # --- 4.21: Mandatory ---
+    type_of_appraisal_amount_internal = models.IntegerField(
+        blank=True, null=True,
+        choices=TYPE_OF_APPRAISAL_AMOUNT_CHOICES,
+        help_text=mandatory_help('4.21',
+            "Type of appraisal amount for the latest internal valuation "
+            "(market value, liquidation value, book value, other).")
+    )
+
+    # --- 4.23: Mandatory ---
+    latest_external_valuation_amount = models.FloatField(
+        blank=True, null=True,
+        help_text=mandatory_help('4.23',
+            "Value of the collateral as established following the chosen "
+            "external valuation approach when last assessed at or prior to "
+            "Cut-Off Date, without regulatory haircuts.")
+    )
+
+    # --- 4.24: Mandatory ---
+    date_of_latest_external_valuation = models.DateField(
+        blank=True, null=True,
+        help_text=mandatory_help('4.24',
+            "Date that the latest external valuation took place at or prior "
+            "to Cut-Off Date.")
+    )
+
+    # --- 4.25: Mandatory ---
+    type_of_appraisal_amount_external = models.IntegerField(
+        blank=True, null=True,
+        choices=TYPE_OF_APPRAISAL_AMOUNT_CHOICES,
+        help_text=mandatory_help('4.25',
+            "Type of appraisal amount for the latest external valuation "
+            "(market value, liquidation value, book value, other).")
+    )
+
+    # --- 4.26: Recommended ---
+    type_of_latest_external_valuation = models.IntegerField(
+        blank=True, null=True,
+        choices=TYPE_OF_LATEST_VALUATION_CHOICES,
+        help_text=recommended_help('4.26',
+            "Type of the latest external valuation (e.g. Full Appraisal, "
+            "Drive-by, Automated Valuation Model, Desktop, Purchase Price).")
+    )
 
     type_of_latest_valuation = models.IntegerField(blank=True, null=True, choices=TYPE_OF_LATEST_VALUATION_CHOICES,
                                                    help_text=recommended_help('4.22', "Type of the latest internal valuation (e.g. Full Appraisal, Drive-by, Automated Valuation Model, Desktop, Purchase Price)."))
@@ -74,6 +120,36 @@ class NonPropertyCollateral(models.Model):
 
     enforcement_status_third_parties = models.BooleanField(blank=True, null=True,
                                                            help_text=recommended_help('4.30', "Indicator as to whether any other secured creditors have taken steps to enforce security over the collateral at Cut-Off Date."))
+
+    # --- 4.09: Mandatory — Applicable to all collateral other than mortgage ---
+    lien_position = models.IntegerField(
+        blank=True, null=True,
+        help_text=mandatory_help('4.09',
+            "Highest ranking position held by the institution in relation to "
+            "the collateral (other than mortgage guarantee). Determines the "
+            "order in which claims are recognised in a foreclosure. "
+            "Applicable if the lien is recorded in the official deed records. "
+            "For mortgage guarantees, use Template 4.2 field 4.45."))
+
+    # --- 4.10: Mandatory — Conditional: not first position lien ---
+    higher_ranking_loan = models.FloatField(
+        blank=True, null=True,
+        help_text=mandatory_help('4.10',
+            "Amount that higher ranking claimants/holders of first position "
+            "liens are entitled to receive before the institution in a "
+            "foreclosure of the collateral (other than mortgage guarantee). "
+            "Applicable if the institution does not hold the first position "
+            "lien. For mortgage guarantees, use Template 4.2 field 4.46."))
+
+    # --- 4.11: Recommended ---
+    register_of_deeds_number = models.TextField(
+        blank=True, null=True,
+        help_text=recommended_help('4.11',
+            "Registration number under which the institution's lien against "
+            "the title to the collateral (other than mortgage guarantee) is "
+            "recorded in the official deed records. Applicable if the "
+            "institution has a lien on the collateral. "
+            "For mortgage guarantees, use Template 4.2 field 4.47."))
 
     isin = models.TextField(blank=True, null=True,
                             help_text=recommended_help('4.28', "ISIN number per ISIN Holdings data. Applicable when 'Equity and debt Securities' is selected in 'Collateral Type'."))

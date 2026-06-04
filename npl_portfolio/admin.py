@@ -321,6 +321,7 @@ class PropertyCollateralAdmin(admin.ModelAdmin):
         ('Legacy Data', {
             'classes': ('collapse',),
             'fields': (
+                'type_of_property_legacy_subtype',
                 'amount_of_vat_payable', 'area_type_of_property',
                 'building_area_m2_lettable', 'building_area_m2_occupied',
                 'condition_of_property', 'current_annual_passing_rent',
@@ -437,10 +438,20 @@ class NonPropertyCollateralAdmin(admin.ModelAdmin):
         ('Identification — EBA Mandatory', {
             'fields': ('protection_identifier', 'collateral_type'),
         }),
-        ('Valuation — EBA Mandatory', {
+        ('Lien — EBA Mandatory', {
+            'fields': ('lien_position', 'higher_ranking_loan'),
+        }),
+        ('Valuation (Internal) — EBA Mandatory', {
             'fields': (
                 'currency_of_collateral', 'latest_valuation_amount',
-                'date_of_latest_valuation', 'guarantee_amount',
+                'date_of_latest_valuation', 'type_of_appraisal_amount_internal',
+                'guarantee_amount',
+            ),
+        }),
+        ('Valuation (External) — EBA Mandatory', {
+            'fields': (
+                'latest_external_valuation_amount', 'date_of_latest_external_valuation',
+                'type_of_appraisal_amount_external',
             ),
         }),
         ('Enforcement — EBA Mandatory', {
@@ -448,7 +459,7 @@ class NonPropertyCollateralAdmin(admin.ModelAdmin):
         }),
         ('Details — EBA Recommended', {
             'classes': ('collapse',),
-            'fields': ('type_of_latest_valuation', 'isin', 'enforcement_status_third_parties'),
+            'fields': ('type_of_latest_valuation', 'type_of_latest_external_valuation', 'register_of_deeds_number', 'isin', 'enforcement_status_third_parties'),
         }),
         ('Legacy Data', {
             'classes': ('collapse',),

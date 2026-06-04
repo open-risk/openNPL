@@ -59,19 +59,19 @@ class PropertyCollateral(models.Model):
                                            help_text=mandatory_help('4.03', "Street address where the immovable property is located, including flat/house number or name. Applicable to all immovable collateral."))
 
     city_of_property = models.TextField(blank=True, null=True,
-                                        help_text=mandatory_help('4.04', "City where the immovable property is located, per UN/LOCODE. Applicable to all immovable collateral."))
+                                        help_text=mandatory_help('4.04', "City where the immovable property is located. Value should follow UN/LOCODE standard. Applicable to all immovable collateral."))
 
     property_postcode = models.TextField(blank=True, null=True,
                                          help_text=mandatory_help('4.05', "Postcode where the immovable property is located. Applicable to all immovable collateral, unless there is no postal code for land or alike."))
 
     property_country = models.TextField(blank=True, null=True,
-                                        help_text=mandatory_help('4.06', "Region or country where the immovable property collateral is located, per ISO 3166 ALPHA-2."))
+                                        help_text=mandatory_help('4.06', "Region or country where the immovable property collateral is located. Value should be a 2-letter ISO 3166 ALPHA-2 country code."))
 
     lien_position = models.IntegerField(blank=True, null=True,
-                                        help_text=mandatory_help('4.09', "Highest lien position held by the institution on the immovable property collateral. Applicable if the lien is recorded in the official deed records."))
+                                        help_text=mandatory_help('4.09', "Highest ranking position held by the institution in relation to the collateral (other than mortgage guarantee). Determines the order in which claims are recognised in a foreclosure. Applicable if the lien is recorded in the official deed records. For mortgage guarantees, use Template 4.2 field 4.45."))
 
     higher_ranking_loan = models.FloatField(blank=True, null=True,
-                                            help_text=mandatory_help('4.10', "Amount that higher-ranking lien holders are entitled to receive before the institution in a foreclosure. Applicable if the institution does not hold the first position lien."))
+                                            help_text=mandatory_help('4.10', "Amount that higher ranking claimants/holders of first position liens are entitled to receive before the institution in a foreclosure of the collateral (other than mortgage guarantee). Applicable if the institution does not hold the first position lien. For mortgage guarantees, use Template 4.2 field 4.46."))
 
     currency_of_property = models.TextField(blank=True, null=True,
                                             help_text=mandatory_help('4.18', "Currency that the valuation and cash flows related to the collateral or guarantee are expressed in, per ISO 4217."))
@@ -108,7 +108,7 @@ class PropertyCollateral(models.Model):
                                                help_text=recommended_help('4.08', "Name and/or identification code of the official cadaster showing details of ownership, boundaries and value of the immovable property."))
 
     register_of_deeds_number = models.TextField(blank=True, null=True,
-                                                help_text=recommended_help('4.11', "Registration number under which the institution's lien is recorded in the official deed records. Applicable if the institution has a lien on the collateral."))
+                                                help_text=recommended_help('4.11', "Registration number under which the institution's lien against the title to the collateral (other than mortgage guarantee) is recorded in the official deed records. Applicable if the institution has a lien on the collateral. For mortgage guarantees, use Template 4.2 field 4.47."))
 
     building_area_m2 = models.FloatField(blank=True, null=True,
                                          help_text=recommended_help('4.13', "Building area (square metres) of the immovable property. Applicable to all immovable collateral."))
@@ -141,6 +141,14 @@ class PropertyCollateral(models.Model):
     #
     # LEGACY DATA PROPERTIES (pre-2023 EBA draft — not in EU 2023/2083)
     #
+
+    type_of_property_legacy_subtype = models.IntegerField(
+        blank=True, null=True,
+        choices=TYPE_OF_PROPERTY_LEGACY_SUBTYPE_CHOICES,
+        help_text=legacy_help(
+            'Granular immovable property subtype from pre-2023 EBA draft. '
+            'Use Type of Property (4.01) for EBA-compliant export.')
+    )
 
     amount_of_vat_payable = models.FloatField(blank=True, null=True,
                                               help_text=legacy_help('Amount of VAT payable on the disposal of the unit.'))
