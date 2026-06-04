@@ -121,6 +121,36 @@ class NonPropertyCollateral(models.Model):
     enforcement_status_third_parties = models.BooleanField(blank=True, null=True,
                                                            help_text=recommended_help('4.30', "Indicator as to whether any other secured creditors have taken steps to enforce security over the collateral at Cut-Off Date."))
 
+    # --- 4.09: Mandatory — Applicable to all collateral other than mortgage ---
+    lien_position = models.IntegerField(
+        blank=True, null=True,
+        help_text=mandatory_help('4.09',
+            "Highest ranking position held by the institution in relation to "
+            "the collateral (other than mortgage guarantee). Determines the "
+            "order in which claims are recognised in a foreclosure. "
+            "Applicable if the lien is recorded in the official deed records. "
+            "For mortgage guarantees, use Template 4.2 field 4.45."))
+
+    # --- 4.10: Mandatory — Conditional: not first position lien ---
+    higher_ranking_loan = models.FloatField(
+        blank=True, null=True,
+        help_text=mandatory_help('4.10',
+            "Amount that higher ranking claimants/holders of first position "
+            "liens are entitled to receive before the institution in a "
+            "foreclosure of the collateral (other than mortgage guarantee). "
+            "Applicable if the institution does not hold the first position "
+            "lien. For mortgage guarantees, use Template 4.2 field 4.46."))
+
+    # --- 4.11: Recommended ---
+    register_of_deeds_number = models.TextField(
+        blank=True, null=True,
+        help_text=recommended_help('4.11',
+            "Registration number under which the institution's lien against "
+            "the title to the collateral (other than mortgage guarantee) is "
+            "recorded in the official deed records. Applicable if the "
+            "institution has a lien on the collateral. "
+            "For mortgage guarantees, use Template 4.2 field 4.47."))
+
     isin = models.TextField(blank=True, null=True,
                             help_text=recommended_help('4.28', "ISIN number per ISIN Holdings data. Applicable when 'Equity and debt Securities' is selected in 'Collateral Type'."))
 

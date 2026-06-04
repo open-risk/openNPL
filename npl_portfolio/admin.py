@@ -438,6 +438,9 @@ class NonPropertyCollateralAdmin(admin.ModelAdmin):
         ('Identification — EBA Mandatory', {
             'fields': ('protection_identifier', 'collateral_type'),
         }),
+        ('Lien — EBA Mandatory', {
+            'fields': ('lien_position', 'higher_ranking_loan'),
+        }),
         ('Valuation (Internal) — EBA Mandatory', {
             'fields': (
                 'currency_of_collateral', 'latest_valuation_amount',
@@ -456,7 +459,7 @@ class NonPropertyCollateralAdmin(admin.ModelAdmin):
         }),
         ('Details — EBA Recommended', {
             'classes': ('collapse',),
-            'fields': ('type_of_latest_valuation', 'type_of_latest_external_valuation', 'isin', 'enforcement_status_third_parties'),
+            'fields': ('type_of_latest_valuation', 'type_of_latest_external_valuation', 'register_of_deeds_number', 'isin', 'enforcement_status_third_parties'),
         }),
         ('Legacy Data', {
             'classes': ('collapse',),
