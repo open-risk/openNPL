@@ -142,6 +142,14 @@ class PropertyCollateral(models.Model):
     # LEGACY DATA PROPERTIES (pre-2023 EBA draft — not in EU 2023/2083)
     #
 
+    type_of_property_legacy_subtype = models.IntegerField(
+        blank=True, null=True,
+        choices=TYPE_OF_PROPERTY_LEGACY_SUBTYPE_CHOICES,
+        help_text=legacy_help(
+            'Granular immovable property subtype from pre-2023 EBA draft. '
+            'Use Type of Property (4.01) for EBA-compliant export.')
+    )
+
     amount_of_vat_payable = models.FloatField(blank=True, null=True,
                                               help_text=legacy_help('Amount of VAT payable on the disposal of the unit.'))
 

@@ -100,8 +100,8 @@ class Enforcement(models.Model):
     court_auction_reserve_price_for_last_auction = models.FloatField(blank=True, null=True,
                                                                      help_text=recommended_help('4.41', "Court set reserve price for last auction — minimum price required by the court."))
 
-    number_of_failed_auctions = models.FloatField(blank=True, null=True,
-                                                  help_text=recommended_help('4.42', "Number of failed previous auctions for the collateral. Applicable when 'yes' is selected in 'Enforcement status'."))
+    number_of_failed_auctions = models.IntegerField(blank=True, null=True,
+                                                    help_text=recommended_help('4.42', "Number of failed previous auctions for the collateral. Applicable when 'yes' is selected in 'Enforcement status'."))
 
     #
     # LEGACY DATA PROPERTIES (pre-2023 EBA draft — not in EU 2023/2083)

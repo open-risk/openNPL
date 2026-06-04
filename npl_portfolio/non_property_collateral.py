@@ -60,8 +60,54 @@ class NonPropertyCollateral(models.Model):
     latest_valuation_amount = models.FloatField(blank=True, null=True,
                                                 help_text=mandatory_help('4.19', "Value of the collateral as established following the chosen internal valuation approach when last assessed at or prior to Cut-Off Date, without regulatory haircuts."))
 
-    date_of_latest_valuation = models.DateField(blank=True, null=True,
-                                                help_text=mandatory_help('4.20', "Date that the latest internal valuation took place at or prior to Cut-Off Date."))
+    date_of_latest_valuation = models.DateField(
+        blank=True, null=True,
+        help_text=mandatory_help('4.20', "Date that the latest internal valuation took place at or prior to Cut-Off Date.")
+    )
+
+    # --- 4.21: Mandatory ---
+    type_of_appraisal_amount_internal = models.IntegerField(
+        blank=True, null=True,
+        choices=TYPE_OF_APPRAISAL_AMOUNT_CHOICES,
+        help_text=mandatory_help('4.21',
+            "Type of appraisal amount for the latest internal valuation "
+            "(market value, liquidation value, book value, other).")
+    )
+
+    # --- 4.23: Mandatory ---
+    latest_external_valuation_amount = models.FloatField(
+        blank=True, null=True,
+        help_text=mandatory_help('4.23',
+            "Value of the collateral as established following the chosen "
+            "external valuation approach when last assessed at or prior to "
+            "Cut-Off Date, without regulatory haircuts.")
+    )
+
+    # --- 4.24: Mandatory ---
+    date_of_latest_external_valuation = models.DateField(
+        blank=True, null=True,
+        help_text=mandatory_help('4.24',
+            "Date that the latest external valuation took place at or prior "
+            "to Cut-Off Date.")
+    )
+
+    # --- 4.25: Mandatory ---
+    type_of_appraisal_amount_external = models.IntegerField(
+        blank=True, null=True,
+        choices=TYPE_OF_APPRAISAL_AMOUNT_CHOICES,
+        help_text=mandatory_help('4.25',
+            "Type of appraisal amount for the latest external valuation "
+            "(market value, liquidation value, book value, other).")
+    )
+
+    # --- 4.26: Recommended ---
+    type_of_latest_external_valuation = models.IntegerField(
+        blank=True, null=True,
+        choices=TYPE_OF_LATEST_VALUATION_CHOICES,
+        help_text=recommended_help('4.26',
+            "Type of the latest external valuation (e.g. Full Appraisal, "
+            "Drive-by, Automated Valuation Model, Desktop, Purchase Price).")
+    )
 
     type_of_latest_valuation = models.IntegerField(blank=True, null=True, choices=TYPE_OF_LATEST_VALUATION_CHOICES,
                                                    help_text=recommended_help('4.22', "Type of the latest internal valuation (e.g. Full Appraisal, Drive-by, Automated Valuation Model, Desktop, Purchase Price)."))
