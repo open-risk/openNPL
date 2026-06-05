@@ -67,7 +67,7 @@ AMORTISATION_TYPE_CHOICES = [(0, '(a) Linear (L)'), (1, '(b) Annuity (A)'),
 
 ACCOUNTING_STAGES_OF_ASSET_QUALITY_CHOICES = [(0, '(a) IFRS Stage 1'), (1, '(b) IFRS Stage 2'),
                                               (2, '(c) IFRS Stage 3 (Impaired)'),
-                                              (3, '(d) Fair Value Through P rofit and Loss'),
+                                              (3, '(d) Fair Value Through Profit and Loss'),
                                               (4, '(e) Other Accounting Standard - Impaired Asset'),
                                               (5, '(f) Other Accounting Standard - Not Impaired')]
 

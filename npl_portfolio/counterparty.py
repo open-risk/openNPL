@@ -277,7 +277,7 @@ class Counterparty(models.Model):
     legal_procedure_type = models.IntegerField(blank=True, null=True, choices=LEGAL_PROCEDURE_TYPE_CHOICES,
                                                help_text=legacy_help('Type of the insolvency process the Counterparty is currently in.'))
 
-    description_of_legal_procedure_type = models.TextField(blank=True, null=True, choices=LEGAL_PROCEDURE_TYPE_CHOICES,
+    description_of_legal_procedure_type = models.TextField(blank=True, null=True,
                                                            help_text=legacy_help('Description of the insolvency process type when Other is selected.'))
 
     legal_type_of_counterparty = models.IntegerField(blank=True, null=True, choices=LEGAL_TYPE_OF_COUNTERPARTY_CHOICES,
