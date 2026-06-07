@@ -22,6 +22,7 @@
 from django.db import models
 from django.urls import reverse
 
+from npl_portfolio.eba_field_helpers import mandatory_help, recommended_help, legacy_help
 from npl_portfolio.loan import Loan
 from npl_portfolio.property_collateral_choices import *
 
@@ -38,192 +39,236 @@ class PropertyCollateral(models.Model):
     #
 
     protection_identifier = models.TextField(blank=True, null=True,
-                                             help_text='Institutions internal identifier for the Property Collateral.<a class ="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Protection_identifier" >Documentation</a>')
+                                             help_text=mandatory_help('4.00', "Institution's internal identifier to uniquely identify each protection (collateral or guarantee) used to secure the loan."))
 
     #
-    # FOREIGN KEYS
+    # FOREIGN KEYS (Template 2 — Relationship)
     #
 
-    loan_identifier = models.ForeignKey(Loan, on_delete=models.CASCADE, null=True, blank=True)
+    loan_identifier = models.ForeignKey(Loan, on_delete=models.CASCADE, null=True, blank=True,
+                                        help_text=mandatory_help('2.01', "Institution's internal identifier of the loan secured by this property collateral."))
 
     #
-    # DATA PROPERTIES
+    # EBA ITS 2023/2083 — MANDATORY FIELDS (Template 4)
     #
-
-    address_of_property = models.TextField(blank=True, null=True,
-                                           help_text='Street address where the Property is located at, including flat / house number or name. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Address_of_Property">Documentation</a>')
-
-    amount_of_vat_payable = models.FloatField(blank=True, null=True,
-                                              help_text='Amount of VAT payable on the disposal of the Unit. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.11.05.Amount_of_VAT_Payable">Documentation</a>')
-
-    area_type_of_property = models.IntegerField(blank=True, null=True, choices=AREA_TYPE_OF_PROPERTY_CHOICES,
-                                                help_text='Area type where the Property is located at , i.e. City centre, Suburban and Rural. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Area_Type_of_Property">Documentation</a>')
-
-    building_area_m2 = models.FloatField(blank=True, null=True,
-                                         help_text='Building area (square metres) of the Unit. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Building_Area_M2">Documentation</a>')
-
-    building_area_m2_lettable = models.FloatField(blank=True, null=True,
-                                                  help_text='Building area (square metres) of the Unit that is lettable. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Building_Area_M2_Lettable">Documentation</a>')
-
-    building_area_m2_occupied = models.FloatField(blank=True, null=True,
-                                                  help_text='Building area (square metres) of the Unit that has been occupied by landlord / tenant. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Building_Area_M2_Occupied">Documentation</a>')
-
-    city_of_property = models.TextField(blank=True, null=True,
-                                        help_text='City where the Property is located at. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.City_of_Property">Documentation</a>')
-
-    completion_of_property = models.BooleanField(blank=True, null=True,
-                                                 help_text='Indicator as to whether the construction of the Unit is complete. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Completion_of_Property">Documentation</a>')
-
-    condition_of_property = models.IntegerField(blank=True, null=True, choices=CONDITION_OF_PROPERTY_CHOICES,
-                                                help_text='Quality classification of the property, e.g. Excellent, Good, Fair, Poor. and include explanation of the category, and please provide the internal methodology used to decide the categories as a part of the transaction documents. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Condition_of_Property">Documentation</a>')
-
-    currency_of_property = models.TextField(blank=True, null=True,
-                                            help_text='Currency that the valuation and cash flows related to the Unit are expressed in. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Currency_of_Property">Documentation</a>')
-
-    current_annual_passing_rent = models.FloatField(blank=True, null=True,
-                                                    help_text='Current annual passing rent charged to the Tenants of the Unit as at latest valuation date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Current_Annual_Passing_Rent">Documentation</a>')
-
-    current_net_operating_income = models.FloatField(blank=True, null=True,
-                                                     help_text='Current annual net operating income generated by the Unit as at the latest valuation date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Current_Net_Operating_Income">Documentation</a>')
-
-    current_opex_and_overheads = models.FloatField(blank=True, null=True,
-                                                   help_text='Current annual operational expenses and overheads of the Unit as at latest valuation date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Current_Opex_And_Overheads">Documentation</a>')
-
-    date_of_initial_valuation = models.DateField(blank=True, null=True,
-                                                 help_text='Date that the initial valuation was assessed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Date_of_Initial_Valuation">Documentation</a>')
-
-    date_of_latest_valuation = models.DateField(blank=True, null=True,
-                                                help_text='Date that the latest valuation took place. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Date_of_Latest_Valuation">Documentation</a>')
-
-    enforcement_description = models.TextField(blank=True, null=True,
-                                               help_text='Comments/Description of the stage of Enforcement that the Property Collateral is in as at cut-off date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Enforcement_Description">Documentation</a>')
-
-    enforcement_status = models.BooleanField(blank=True, null=True,
-                                             help_text='Indicator as to whether the property collateral has entered into the enforcement process as at cut-off date. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Enforcement_Status">Documentation</a>')
-
-    enforcement_status_third_parties = models.BooleanField(blank=True, null=True,
-                                                           help_text='Indicator as to whether any other secured creditors have taken steps to enforce security over the asset? (Y/N). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Enforcement_Status_Third_Parties">Documentation</a>')
-
-    estimated_annual_void_cost = models.FloatField(blank=True, null=True,
-                                                   help_text='Additional costs to "Current Opex And Overheads" when the Units are vacant. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Estimated_Annual_Void_Cost">Documentation</a>')
-
-    estimated_rental_void = models.FloatField(blank=True, null=True,
-                                              help_text='Estimated number of months the property is expected to be void. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Estimated_Rental_Void">Documentation</a>')
-
-    geographic_region_classification = models.IntegerField(blank=True, null=True,
-                                                           choices=GEOGRAPHIC_REGION_CLASSIFICATION_CHOICES,
-                                                           help_text='NUTS3 classification used for the field "Geographic Region of Property", i.e. NUTS3 2013 (1), NUTS3 2010 (2), NUTS3 2006 (3), NUTS3 2003 (4), Other (5). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Geographic_Region_Classification">Documentation</a>')
-
-    geographic_region_of_property = models.TextField(blank=True, null=True,
-                                                     help_text='Province / Region where the Property is located at. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.11.01.Property Collateral.Geographic_Region_of_Property">Documentation</a>')
-
-    initial_estimated_rental_value = models.FloatField(blank=True, null=True,
-                                                       help_text='Estimated annual gross rental value of the Unit assessed at loan origination. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Initial_Estimated_Rental_Value">Documentation</a>')
-
-    initial_valuation_amount = models.FloatField(blank=True, null=True,
-                                                 help_text='Value of the Unit assessed at loan origination. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.11.03.Initial_Valuation_Amount">Documentation</a>')
-
-    internal_or_external_initial_valuation = models.IntegerField(blank=True, null=True,
-                                                                 choices=INTERNAL_or_EXTERNAL_INITIAL_VALUATION_CHOICES,
-                                                                 help_text='Indicator as to whether the initial valuation was outsource, or done internally. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Internal_or_External_Initial_Valuation">Documentation</a>')
-
-    internal_or_external_latest_valuation = models.IntegerField(blank=True, null=True,
-                                                                choices=INTERNAL_or_EXTERNAL_LATEST_VALUATION_CHOICES,
-                                                                help_text='Indicator as to whether the latest valuation was performed internally or by an external appraiser. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Internal_or_External_Latest_Valuation">Documentation</a>')
-
-    land_area_m2 = models.FloatField(blank=True, null=True,
-                                     help_text='Land area (square metres) of the Property. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Land_Area_M2">Documentation</a>')
-
-    latest_estimated_rental_value = models.FloatField(blank=True, null=True,
-                                                      help_text='Estimated annual gross rental value of the Unit when last assessed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Latest_Estimated_Rental_Value">Documentation</a>')
-
-    latest_valuation_amount = models.FloatField(blank=True, null=True,
-                                                help_text='Value of the Unit when last assessed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Latest_Valuation_Amount">Documentation</a>')
-
-    legal_owner_of_the_property = models.TextField(blank=True, null=True,
-                                                   help_text='Legal owner of the Property Collateral. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Legal_Owner_of_the_Property">Documentation</a>')
-
-    number_of_bedrooms = models.FloatField(blank=True, null=True,
-                                           help_text='Number of bedrooms that the Unit has. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Bedrooms">Documentation</a>')
-
-    number_of_car_parking_spaces = models.FloatField(blank=True, null=True,
-                                                     help_text='Number of car parking spaces relating to the Unit. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Car_Parking_Spaces">Documentation</a>')
-
-    number_of_lettable_units = models.FloatField(blank=True, null=True,
-                                                 help_text='Number of lettable units that the Property has. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Lettable_Units">Documentation</a>')
-
-    number_of_rooms = models.FloatField(blank=True, null=True,
-                                        help_text='Number of rooms that the Unit has excluding kitchen and bathroom(s). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.11.02.Number_of_Rooms">Documentation</a>')
-
-    number_of_units_occupied = models.FloatField(blank=True, null=True,
-                                                 help_text='Number of occupied lettable units that the Property has. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Units_Occupied">Documentation</a>')
-
-    number_of_units_vacant = models.FloatField(blank=True, null=True,
-                                               help_text='Number of vacant lettable units that the Property has. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Number_of_Units_Vacant">Documentation</a>')
-
-    party_liable_for_vat = models.IntegerField(blank=True, null=True, choices=PARTY_LIABLE_FOR_VAT_CHOICES,
-                                               help_text='Party who is liable to pay the VAT on the disposal of the Unit i.e. the Institution or the buyer(s). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Party_Liable_for_VAT">Documentation</a>')
-
-    percentage_complete = models.FloatField(blank=True, null=True,
-                                            help_text='The percentage of development completed since construction started (applicable to Units in development). <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Percentage_complete">Documentation</a>')
-
-    planned_capex_next_12m = models.FloatField(blank=True, null=True,
-                                               help_text='Current planned CAPEX for the next 12 months. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Planned_Capex_next_12m">Documentation</a>')
-
-    property_country = models.TextField(blank=True, null=True,
-                                        help_text='Country of residence where the Property is located at. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Property_Country">Documentation</a>')
-
-    property_postcode = models.TextField(blank=True, null=True,
-                                         help_text='Postcode where the Property is located at. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Property_Postcode">Documentation</a>')
-
-    provider_of_energy_performance_certificate = models.TextField(blank=True, null=True,
-                                                                  help_text='Name of the provider of the energy performance certificate. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Provider_of_Energy_Performance_Certificate">Documentation</a>')
-
-    provider_of_initial_valuation = models.TextField(blank=True, null=True,
-                                                     help_text='Name of the external appraiser or managing / estate agent is when "Full Appraisal" or "Managing / Estate Agent" is selected in field "Type of Initial Valuation". If the valuation was done internally, please select "Internal". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Provider_of_Initial_Valuation">Documentation</a>')
-
-    provider_of_latest_valuation = models.TextField(blank=True, null=True,
-                                                    help_text='Name of the external appraiser or managing / estate agent when "Full Appraisal" or "Managing / Estate Agent" is selected in field "Type of Latest Valuation". If the valuation was done internally, please select "Internal". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.11.04.Provider_of_Latest_Valuation">Documentation</a>')
-
-    purpose_of_property = models.IntegerField(blank=True, null=True, choices=PURPOSE_OF_PROPERTY_CHOICES,
-                                              help_text='Purpose of the Property, e.g. Investment property, owner occupied, Business Use, etc.. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Purpose_of_Property">Documentation</a>')
-
-    register_of_deeds_number = models.TextField(blank=True, null=True,
-                                                help_text='Registration number of the Property. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Register_of_Deeds_Number">Documentation</a>')
-
-    remaining_term_of_leasehold = models.FloatField(blank=True, null=True,
-                                                    help_text='Remaining term of the leasehold when "Leasehold" is selected in field "Tenure". <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Remaining_Term_of_Leasehold">Documentation</a>')
-
-    sector_of_property = models.IntegerField(blank=True, null=True, choices=SECTOR_OF_PROPERTY_CHOICES,
-                                             help_text='Sector which the property is used for, e.g. commercial real estate, residential real estate, etc.. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Sector_of_Property">Documentation</a>')
-
-    tenure = models.IntegerField(blank=True, null=True, choices=TENURE_CHOICES,
-                                 help_text='Conditions that the Property is held or occupied, e.g. freehold and leasehold. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Tenure">Documentation</a>')
-
-    type_of_initial_valuation = models.IntegerField(blank=True, null=True, choices=TYPE_OF_INITIAL_VALUATION_CHOICES,
-                                                    help_text='Type of the initial valuation for the Unit i.e. Full Appraisal, Drive-by, Automated Valuation Model, Indexed, Desktop, Managing / Estate Agent, Purchase Price, Hair Cut, Mark to market and Borrowers Valuation. <a class ="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Type_of_Initial_Valuation" >Documentation</a>')
-
-    type_of_latest_valuation = models.IntegerField(blank=True, null=True, choices=TYPE_OF_LATEST_VALUATION_CHOICES,
-                                                   help_text='Type of the latest valuation for the Unit i.e. Full Appraisal, Drive-by, Automated Valuation Model, Indexed, Desktop, Managing / Estate Agent, Purchase Price, Hair Cut, Mark to market and Internal Institution Valuation. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Type_of_Latest_Valuation">Documentation</a>')
-
-    type_of_occupancy = models.IntegerField(blank=True, null=True, choices=TYPE_OF_OCCUPANCY_CHOICES,
-                                            help_text='Type of occupancy, i.e. owner occupied, tenanted, not tenanted. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Type_of_Occupancy">Documentation</a>')
 
     type_of_property = models.IntegerField(blank=True, null=True, choices=TYPE_OF_PROPERTY_CHOICES,
-                                           help_text='Type of the Property, e.g. Apartment, Semi Detached House, Terraced House, Land, etc.. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Type_of_Property">Documentation</a>')
+                                           help_text=mandatory_help('4.01', "Type of the immovable property collateral (office, retail, industrial, residential, other). Applicable to all immovable (real estate) collateral."))
+
+    address_of_property = models.TextField(blank=True, null=True,
+                                           help_text=mandatory_help('4.03', "Street address where the immovable property is located, including flat/house number or name. Applicable to all immovable collateral."))
+
+    city_of_property = models.TextField(blank=True, null=True,
+                                        help_text=mandatory_help('4.04', "City where the immovable property is located. Value should follow UN/LOCODE standard. Applicable to all immovable collateral."))
+
+    property_postcode = models.TextField(blank=True, null=True,
+                                         help_text=mandatory_help('4.05', "Postcode where the immovable property is located. Applicable to all immovable collateral, unless there is no postal code for land or alike."))
+
+    property_country = models.TextField(blank=True, null=True,
+                                        help_text=mandatory_help('4.06', "Region or country where the immovable property collateral is located. Value should be a 2-letter ISO 3166 ALPHA-2 country code."))
+
+    lien_position = models.IntegerField(blank=True, null=True,
+                                        help_text=mandatory_help('4.09', "Highest ranking position held by the institution in relation to the collateral (other than mortgage guarantee). Determines the order in which claims are recognised in a foreclosure. Applicable if the lien is recorded in the official deed records. For mortgage guarantees, use Template 4.2 field 4.45."))
+
+    higher_ranking_loan = models.FloatField(blank=True, null=True,
+                                            help_text=mandatory_help('4.10', "Amount that higher ranking claimants/holders of first position liens are entitled to receive before the institution in a foreclosure of the collateral (other than mortgage guarantee). Applicable if the institution does not hold the first position lien. For mortgage guarantees, use Template 4.2 field 4.46."))
+
+    currency_of_property = models.TextField(blank=True, null=True,
+                                            help_text=mandatory_help('4.18', "Currency that the valuation and cash flows related to the collateral or guarantee are expressed in, per ISO 4217."))
+
+    latest_valuation_amount = models.FloatField(blank=True, null=True,
+                                                help_text=mandatory_help('4.19', "Value of the collateral as established following the chosen internal valuation approach when last assessed at or prior to Cut-Off Date, without regulatory haircuts."))
+
+    date_of_latest_valuation = models.DateField(blank=True, null=True,
+                                                help_text=mandatory_help('4.20', "Date that the latest internal valuation took place at or prior to Cut-Off Date."))
+
+    type_of_appraisal_amount_internal = models.IntegerField(blank=True, null=True, choices=TYPE_OF_APPRAISAL_AMOUNT_CHOICES,
+                                                            help_text=mandatory_help('4.21', "Type of appraisal amount for the latest internal valuation (market value, liquidation value, book value, other)."))
+
+    latest_external_valuation_amount = models.FloatField(blank=True, null=True,
+                                                         help_text=mandatory_help('4.23', "Value of the collateral as established following the chosen external valuation approach when last assessed at or prior to Cut-Off Date, without regulatory haircuts."))
+
+    date_of_latest_external_valuation = models.DateField(blank=True, null=True,
+                                                         help_text=mandatory_help('4.24', "Date that the latest external valuation took place at or prior to Cut-Off Date."))
+
+    type_of_appraisal_amount_external = models.IntegerField(blank=True, null=True, choices=TYPE_OF_APPRAISAL_AMOUNT_CHOICES,
+                                                            help_text=mandatory_help('4.25', "Type of appraisal amount for the latest external valuation (market value, liquidation value, book value, other)."))
+
+    enforcement_status = models.BooleanField(blank=True, null=True,
+                                             help_text=mandatory_help('4.29', "Indicator as to whether the collateral has entered into the enforcement process at Cut-Off Date."))
+
+    #
+    # EBA ITS 2023/2083 — RECOMMENDED FIELDS (Template 4)
+    #
+
+    cadaster_id_number = models.TextField(blank=True, null=True,
+                                          help_text=recommended_help('4.07', "Identification number under which the immovable property collateral is recorded in the cadaster."))
+
+    cadaster_identification = models.TextField(blank=True, null=True,
+                                               help_text=recommended_help('4.08', "Name and/or identification code of the official cadaster showing details of ownership, boundaries and value of the immovable property."))
+
+    register_of_deeds_number = models.TextField(blank=True, null=True,
+                                                help_text=recommended_help('4.11', "Registration number under which the institution's lien against the title to the collateral (other than mortgage guarantee) is recorded in the official deed records. Applicable if the institution has a lien on the collateral. For mortgage guarantees, use Template 4.2 field 4.47."))
+
+    building_area_m2 = models.FloatField(blank=True, null=True,
+                                         help_text=recommended_help('4.13', "Building area (square metres) of the immovable property. Applicable to all immovable collateral."))
+
+    land_area_m2 = models.FloatField(blank=True, null=True,
+                                     help_text=recommended_help('4.14', "Land area surrounding the immovable property (square metres). Applicable to all immovable collateral."))
+
+    completion_of_property = models.BooleanField(blank=True, null=True,
+                                                 help_text=recommended_help('4.15', "Indicator as to whether the construction of the immovable property is complete."))
 
     value_of_energy_performance_certificate = models.IntegerField(blank=True, null=True,
                                                                   choices=VALUE_OF_ENERGY_PERFORMANCE_CERTIFICATE_CHOICES,
-                                                                  help_text='Value stated on Energy Performance Certificate, i.e. A,B,C,D,E,F and G. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Value_of_Energy_Performance_Certificate">Documentation</a>')
+                                                                  help_text=recommended_help('4.16', "Value stated on the Energy Performance Certificate per EU Energy Efficiency Directive 2012 (A–G). Applicable to all immovable collateral."))
+
+    type_of_occupancy = models.IntegerField(blank=True, null=True, choices=TYPE_OF_OCCUPANCY_CHOICES,
+                                            help_text=recommended_help('4.17', "Type of occupancy for immovable property collateral (Owner-occupied, Rented, Other). For mixed use, classify by dominant use."))
+
+    type_of_latest_valuation = models.IntegerField(blank=True, null=True, choices=TYPE_OF_LATEST_VALUATION_CHOICES,
+                                                   help_text=recommended_help('4.22', "Type of the latest internal valuation (e.g. Full Appraisal, Drive-by, Automated Valuation Model, Indexed, Desktop, Managing/Estate Agent, Purchase Price)."))
+
+    type_of_latest_external_valuation = models.IntegerField(blank=True, null=True, choices=TYPE_OF_LATEST_VALUATION_CHOICES,
+                                                            help_text=recommended_help('4.26', "Type of the latest external valuation (e.g. Full Appraisal, Drive-by, Automated Valuation Model, Indexed, Desktop, Managing/Estate Agent, Purchase Price)."))
+
+    enforcement_status_third_parties = models.BooleanField(blank=True, null=True,
+                                                           help_text=recommended_help('4.30', "Indicator as to whether any other secured creditors have taken steps to enforce security over the collateral at Cut-Off Date."))
+
+    year_of_construction = models.IntegerField(blank=True, null=True,
+                                              help_text=recommended_help('4.12', 'Year that the immovable property was built/completed. Applicable to all immovable collateral.'))
+
+    #
+    # LEGACY DATA PROPERTIES (pre-2023 EBA draft — not in EU 2023/2083)
+    #
+
+    type_of_property_legacy_subtype = models.IntegerField(
+        blank=True, null=True,
+        choices=TYPE_OF_PROPERTY_LEGACY_SUBTYPE_CHOICES,
+        help_text=legacy_help(
+            'Granular immovable property subtype from pre-2023 EBA draft. '
+            'Use Type of Property (4.01) for EBA-compliant export.')
+    )
+
+    amount_of_vat_payable = models.FloatField(blank=True, null=True,
+                                              help_text=legacy_help('Amount of VAT payable on the disposal of the unit.'))
+
+    area_type_of_property = models.IntegerField(blank=True, null=True, choices=AREA_TYPE_OF_PROPERTY_CHOICES,
+                                                help_text=legacy_help('Area type where the property is located (City centre, Suburban, Rural).'))
+
+    building_area_m2_lettable = models.FloatField(blank=True, null=True,
+                                                  help_text=legacy_help('Building area (square metres) of the unit that is lettable.'))
+
+    building_area_m2_occupied = models.FloatField(blank=True, null=True,
+                                                  help_text=legacy_help('Building area (square metres) of the unit that has been occupied by landlord/tenant.'))
+
+    condition_of_property = models.IntegerField(blank=True, null=True, choices=CONDITION_OF_PROPERTY_CHOICES,
+                                                help_text=legacy_help('Quality classification of the property (Excellent, Good, Fair, Poor).'))
+
+    current_annual_passing_rent = models.FloatField(blank=True, null=True,
+                                                    help_text=legacy_help('Current annual passing rent charged to tenants at latest valuation date.'))
+
+    current_net_operating_income = models.FloatField(blank=True, null=True,
+                                                     help_text=legacy_help('Current annual net operating income generated by the unit at latest valuation date.'))
+
+    current_opex_and_overheads = models.FloatField(blank=True, null=True,
+                                                   help_text=legacy_help('Current annual operational expenses and overheads of the unit at latest valuation date.'))
+
+    date_of_initial_valuation = models.DateField(blank=True, null=True,
+                                                 help_text=legacy_help('Date that the initial valuation was assessed.'))
+
+    enforcement_description = models.TextField(blank=True, null=True,
+                                               help_text=legacy_help('Comments/description of the stage of enforcement that the property collateral is in at cut-off date.'))
+
+    estimated_annual_void_cost = models.FloatField(blank=True, null=True,
+                                                   help_text=legacy_help('Additional costs when the units are vacant, on top of current Opex and overheads.'))
+
+    estimated_rental_void = models.FloatField(blank=True, null=True,
+                                              help_text=legacy_help('Estimated number of months the property is expected to be void.'))
+
+    geographic_region_classification = models.IntegerField(blank=True, null=True,
+                                                           choices=GEOGRAPHIC_REGION_CLASSIFICATION_CHOICES,
+                                                           help_text=legacy_help('NUTS3 classification version used for the geographic region of the property.'))
+
+    geographic_region_of_property = models.TextField(blank=True, null=True,
+                                                     help_text=legacy_help('Province/Region where the property is located.'))
+
+    initial_estimated_rental_value = models.FloatField(blank=True, null=True,
+                                                       help_text=legacy_help('Estimated annual gross rental value of the unit assessed at loan origination.'))
+
+    initial_valuation_amount = models.FloatField(blank=True, null=True,
+                                                 help_text=legacy_help('Value of the unit assessed at loan origination.'))
+
+    internal_or_external_initial_valuation = models.IntegerField(blank=True, null=True,
+                                                                 choices=INTERNAL_or_EXTERNAL_INITIAL_VALUATION_CHOICES,
+                                                                 help_text=legacy_help('Indicator as to whether the initial valuation was outsourced or done internally.'))
+
+    internal_or_external_latest_valuation = models.IntegerField(blank=True, null=True,
+                                                                choices=INTERNAL_or_EXTERNAL_LATEST_VALUATION_CHOICES,
+                                                                help_text=legacy_help('Indicator as to whether the latest valuation was performed internally or by an external appraiser.'))
+
+    latest_estimated_rental_value = models.FloatField(blank=True, null=True,
+                                                      help_text=legacy_help('Estimated annual gross rental value of the unit when last assessed.'))
+
+    legal_owner_of_the_property = models.TextField(blank=True, null=True,
+                                                   help_text=legacy_help('Legal owner of the property collateral.'))
+
+    number_of_bedrooms = models.FloatField(blank=True, null=True,
+                                           help_text=legacy_help('Number of bedrooms that the unit has.'))
+
+    number_of_car_parking_spaces = models.FloatField(blank=True, null=True,
+                                                     help_text=legacy_help('Number of car parking spaces relating to the unit.'))
+
+    number_of_lettable_units = models.FloatField(blank=True, null=True,
+                                                 help_text=legacy_help('Number of lettable units that the property has.'))
+
+    number_of_rooms = models.FloatField(blank=True, null=True,
+                                        help_text=legacy_help('Number of rooms that the unit has, excluding kitchen and bathroom(s).'))
+
+    number_of_units_occupied = models.FloatField(blank=True, null=True,
+                                                 help_text=legacy_help('Number of occupied lettable units that the property has.'))
+
+    number_of_units_vacant = models.FloatField(blank=True, null=True,
+                                               help_text=legacy_help('Number of vacant lettable units that the property has.'))
+
+    party_liable_for_vat = models.IntegerField(blank=True, null=True, choices=PARTY_LIABLE_FOR_VAT_CHOICES,
+                                               help_text=legacy_help('Party liable to pay the VAT on the disposal of the unit (the institution or the buyer).'))
+
+    percentage_complete = models.FloatField(blank=True, null=True,
+                                            help_text=legacy_help('Percentage of development completed since construction started (applicable to units in development).'))
+
+    planned_capex_next_12m = models.FloatField(blank=True, null=True,
+                                               help_text=legacy_help('Current planned CAPEX for the next 12 months.'))
+
+    provider_of_energy_performance_certificate = models.TextField(blank=True, null=True,
+                                                                  help_text=legacy_help('Name of the provider of the energy performance certificate.'))
+
+    provider_of_initial_valuation = models.TextField(blank=True, null=True,
+                                                     help_text=legacy_help('Name of the external appraiser or managing/estate agent for the initial valuation.'))
+
+    provider_of_latest_valuation = models.TextField(blank=True, null=True,
+                                                    help_text=legacy_help('Name of the external appraiser or managing/estate agent for the latest valuation.'))
+
+    purpose_of_property = models.IntegerField(blank=True, null=True, choices=PURPOSE_OF_PROPERTY_CHOICES,
+                                              help_text=legacy_help('Purpose of the property (Investment property, Owner occupied, Business use, etc.).'))
+
+    remaining_term_of_leasehold = models.FloatField(blank=True, null=True,
+                                                    help_text=legacy_help('Remaining term of the leasehold when "Leasehold" is selected in "Tenure".'))
+
+    sector_of_property = models.IntegerField(blank=True, null=True, choices=SECTOR_OF_PROPERTY_CHOICES,
+                                             help_text=legacy_help('Sector for which the property is used (commercial real estate, residential real estate, etc.).'))
+
+    tenure = models.IntegerField(blank=True, null=True, choices=TENURE_CHOICES,
+                                 help_text=legacy_help('Conditions that the property is held or occupied (freehold, leasehold).'))
+
+    type_of_initial_valuation = models.IntegerField(blank=True, null=True, choices=TYPE_OF_INITIAL_VALUATION_CHOICES,
+                                                    help_text=legacy_help('Type of the initial valuation (Full Appraisal, Drive-by, Automated Valuation Model, Indexed, Desktop, etc.).'))
 
     vat_payable = models.BooleanField(blank=True, null=True,
-                                      help_text='Indicator as to whether the VAT is payable on the disposal of the Unit. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.VAT_Payable">Documentation</a>')
-
-    year_of_construction = models.DateField(blank=True, null=True,
-                                            help_text='Year that the Property was completed and refurbished. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Year_of_Construction">Documentation</a>')
+                                      help_text=legacy_help('Indicator as to whether VAT is payable on the disposal of the unit.'))
 
     year_of_refurbishment = models.DateField(blank=True, null=True,
-                                             help_text='Year in which the last significantly refurbished was completed. <a class="risk_manual_url" href="https://www.openriskmanual.org/wiki/EBA_NPL.Property Collateral.Year_of_Refurbishment">Documentation</a>')
+                                             help_text=legacy_help('Year in which the last significant refurbishment was completed.'))
 
     # Bookkeeping fields
     creation_date = models.DateTimeField(auto_now_add=True)

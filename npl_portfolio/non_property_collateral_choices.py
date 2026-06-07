@@ -33,15 +33,29 @@ TYPE_OF_LEGAL_OWNER_CHOICES = [
      '(e) Partnership is where the Sponsor constitutes a group of individuals who form a legal partnership, where profits and liabilities are shared; or,'),
     (5, '(f) Private Individual')]
 
-COLLATERAL_TYPE_CHOICES = [(0, '(a) Auto Mobile Vehicles'), (1, '(b) Industrial Vehicles'),
-                           (2, '(c) Commercial Trucks'), (3, '(d) Rail Vehicles'),
-                           (4, '(e) Nautical Commercial Vehicles'), (5, '(f) Nautical Leisure Vehicles'),
-                           (6, '(g) Aeroplanes'), (7, '(h) Machine Tools'), (8, '(i) Industrial Equipment'),
-                           (9, '(j) Office Equipment'), (10, '(k) Medical Equipment'),
-                           (11, '(l) Energy Related Equipment'), (12, '(m) Other Vehicles'),
-                           (13, '(n) Other Equipment'), (14, '(o) Other goods/inventory '), (15, '(p) Securities'),
-                           (16, '(q) Guarantee'), (17, '(r) Life insurance'), (18, '(s) Deposit'),
-                           (19, '(t) Floating Charge'), (20, '(u) Other financial asset')]
+COLLATERAL_TYPE_CHOICES = [
+    (0, '(a) Auto mobile vehicles'),
+    (1, '(b) Industrial and commercial vehicles (including commercial trucks, rail vehicles etc.)'),
+    (2, '(c) Nautical vehicles and ships (includes Nautical leisure vehicles)'),
+    (3, '(d) Aeroplanes'),
+    (4, '(e) Industrial equipment (includes Machine tools and Energy related equipment and Floating charge)'),
+    (5, '(f) Office equipment'),
+    (6, '(g) Medical equipment'),
+    (7, '(h) Goods and inventory'),
+    (8, '(i) Other physical collateral'),
+    (9, '(j) Equity and debt securities'),
+    (10, '(k) Financial Guarantees'),
+    (11, '(l) Life insurance policies pledged'),
+    (12, '(m) Gold, currency and deposits'),
+    (13, '(n) Other collateral'),
+]
+
+TYPE_OF_APPRAISAL_AMOUNT_CHOICES = [
+    (0, '(a) Market value'),
+    (1, '(b) Liquidation value'),
+    (2, '(c) Book value'),
+    (3, '(d) Other'),
+]
 
 TYPE_OF_INITIAL_VALUATION_CHOICES = [(0, '(a) Full Appraisal'), (1, '(b) Drive-by'),
                                      (2, '(c) Automated Valuation Model'), (3, '(d) Indexed'), (4, '(e) Desktop'),

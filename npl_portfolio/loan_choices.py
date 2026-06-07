@@ -25,8 +25,16 @@
 
 CHANNEL_OF_ORIGINATION_CHOICES = [(0, '(a) Branch'), (1, '(b) Internet'), (2, '(c) Broker'), (3, '(d) Other')]
 
-ASSET_CLASS_CHOICES = [(0, 'Resi'), (1, 'CRE'), (2, 'SME/Corp'), (3, 'Unsecured'), (4, 'Auto'),
-                       (5, 'Leasing / ABF'), (6, 'Specialised')]
+ASSET_CLASS_CHOICES = [
+    (0, '(a) Residential real estate'),
+    (1, '(b) Commercial real estate'),
+    (2, '(c) Corporate'),
+    (3, '(d) Automobile'),
+    (4, '(e) Consumer'),
+    (5, '(f) Credit card'),
+    (6, '(g) Leasing'),
+    (7, '(h) Other'),
+]
 
 LOAN_PURPOSE_CHOICES = [(0, '(a) Residential real estate - owner occupied'),
                         (1, '(b) Residential real estate investment'),
@@ -41,7 +49,17 @@ LOAN_PURPOSE_CHOICES = [(0, '(a) Residential real estate - owner occupied'),
                         (9, '(j) Consumer lending'),
                         (10, '(k) Asset finance')]
 
-PRODUCT_TYPE_CHOICES = [(0, '(a) Term Loans'), (1, '(b) Revolving Credit Facility'), (2, '(c) Overdraft')]
+PRODUCT_TYPE_CHOICES = [
+    (0, '(a) Deposits other than reverse repos'),
+    (1, '(b) Overdraft'),
+    (2, '(c) Credit card debt'),
+    (3, '(d) Revolving credit'),
+    (4, '(e) Credit lines'),
+    (5, '(f) Reverse repos'),
+    (6, '(g) Trade receivables'),
+    (7, '(h) Financial leases'),
+    (8, '(i) Other loans'),
+]
 
 AMORTISATION_TYPE_CHOICES = [(0, '(a) Linear (L)'), (1, '(b) Annuity (A)'),
                              (2, '(c) Interest Only (IO) i.e. no amortisation with a bullet'),
@@ -49,7 +67,7 @@ AMORTISATION_TYPE_CHOICES = [(0, '(a) Linear (L)'), (1, '(b) Annuity (A)'),
 
 ACCOUNTING_STAGES_OF_ASSET_QUALITY_CHOICES = [(0, '(a) IFRS Stage 1'), (1, '(b) IFRS Stage 2'),
                                               (2, '(c) IFRS Stage 3 (Impaired)'),
-                                              (3, '(d) Fair Value Through P rofit and Loss'),
+                                              (3, '(d) Fair Value Through Profit and Loss'),
                                               (4, '(e) Other Accounting Standard - Impaired Asset'),
                                               (5, '(f) Other Accounting Standard - Not Impaired')]
 
@@ -93,3 +111,42 @@ MARP_STATUS_CHOICES = [(0, '(a) Not in MARP'), (1, '(b) Exited MARP'), (2, '(c) 
                        (7, '(h) Provision 45 - Restructure declined by seller'),
                        (8, '(i) Provision 47 - Restructure declined by borrower'), (9, '(j) Self-Cure'),
                        (10, '(k) Alternative Repayment Arrangement (ARA)')]
+
+JOINT_COUNTERPARTIES_CHOICES = [
+    (0, '(a) no joint counterparties'),
+    (1, '(b) two counterparties'),
+    (2, '(c) more than two counterparties')
+]
+
+INTEREST_RATE_RESET_FREQUENCY_CHOICES = [
+    (0, '(a) Not resettable'),
+    (1, '(b) Overnight'),
+    (2, '(c) Monthly'),
+    (3, '(d) Quarterly'),
+    (4, '(e) Semi-annually'),
+    (5, '(f) Annually'),
+    (6, '(g) At creditor discretion'),
+    (7, '(h) Other frequency')
+]
+
+PAYMENT_FREQUENCY_CHOICES = [
+    (0, '(a) Monthly'),
+    (1, '(b) Quarterly'),
+    (2, '(c) Semi-annually'),
+    (3, '(d) Annually'),
+    (4, '(e) Bullet'),
+    (5, '(f) Zero coupon'),
+    (6, '(g) Other')
+]
+
+LOAN_LEGAL_STATUS_CHOICES = [
+    (0, '(a) out of court settlement'),
+    (1, '(b) legal proceedings'),
+    (2, '(c) no legal or \'out of court\' action taken')
+]
+
+TYPE_OF_LEASE_CHOICES = [
+    (0, '(a) Triple Net (Tenant pays the base rental amount plus operating costs, including real estate taxes, insurance, maintenance, and repairs)'),
+    (1, '(b) Net-Net Lease (Tenant pays the base rental amount, real estate taxes, and insurance premiums)')
+]
+

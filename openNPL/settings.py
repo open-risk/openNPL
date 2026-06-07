@@ -33,7 +33,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '@e=)h@ikk@p6an)s-e_wpt57p6%h%g$*ra#*g+xg2xr+9xd9tg'
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '0.0.0.0', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '0.0.0.0', '127.0.0.1', 'backend']
 
 INSTALLED_APPS = [
     'jazzmin',
@@ -109,25 +109,13 @@ TEMPLATE_LOADERS = (
 WSGI_APPLICATION = 'openNPL.wsgi.application'
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
-    # 'default': {
-    #     'ENGINE': 'django.contrib.gis.db.backends.postgis',
-    #     'NAME': 'opennpl',
-    #     'USER': 'opennpluser',
-    #     'PASSWORD': 'opennpluser',
-    #     'HOST': 'localhost',
-    #     'PORT': '5433',
-    # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'opennpl',  # Replace with your database name
-        'USER': 'opennpluser',  # Replace with your database username
-        'PASSWORD': 'opennpluser',  # Replace with your database password
-        'HOST': 'localhost',  # Database host
-        'PORT': '5432',  # Default PostgreSQL port
+        'NAME': os.environ.get('DB_NAME', 'opennpl'),
+        'USER': os.environ.get('DB_USER', 'opennpluser'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', 'opennpluser'),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
     }
 }
 

@@ -20,20 +20,8 @@
 
 
 #
-# CHOICE DICTIONARIES FORBEARANCE
+# CHOICE DICTIONARIES HISTORICAL REPAYMENT
 #
 
-TYPE_OF_IDENTIFIER_CHOICES = [(0, '(a) Counterparty'), (1, '(b) Loan')]
-
-TYPE_OF_FORBEARANCE_CHOICES = [
-    (0, '(a) grace period/payment moratorium'),
-    (1, '(b) interest rate reduction'),
-    (2, '(c) extension of maturity/term'),
-    (3, '(d) rescheduled payments'),
-    (4, '(e) debt forgiveness'),
-    (5, '(f) debt asset swaps'),
-    (6, '(g) other forbearance measures')
-]
-
-REPAYMENT_FREQUENCY_UNDER_FORBEARANCE_CHOICES = [(0, '(a) Monthly'), (1, '(b) Quarterly'), (2, '(c) Semi-Annually'),
-                                                 (3, '(d) Annually'), (4, '(e) Daily'), (5, '(f) Other')]
+# EBA NPL ITS 5.01 — Type of Collection
+TYPE_OF_COLLECTION_CHOICES = [(0, '(a) Internal'), (1, '(b) External')]

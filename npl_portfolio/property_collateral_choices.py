@@ -25,18 +25,30 @@
 
 SECTOR_OF_PROPERTY_CHOICES = [(0, '(a) Commercial Real Estate'), (1, '(b) Residential Real Estate')]
 
-TYPE_OF_PROPERTY_CHOICES = [(0, '(a) Semi-detached house'), (1, '(b) Detached house'), (2, '(c) Apartment'),
-                            (3, '(d) Terrace'), (4, '(e) Caravan Park'), (5, '(f) Car Park'),
-                            (6, '(g) Health Care'), (7, '(h) Hospitality / Hotel'), (8, '(i) Industrial'),
-                            (9, '(j) Land – agriculture'), (10, '(k) Land - zoning'), (11, '(l) Land - permit'),
-                            (12, '(m) Leisure'), (13, '(n) Multifamily '), (14, '(o) Mixed Use'),
-                            (15, '(p) Office'), (16, '(q) Bar / Pub'), (17, '(r) Restaurant'), (18, '(s) Retail'),
-                            (19, '(t) High street retail'), (20, '(u) Commercial centre'), (21, '(v) Self-Storage'),
-                            (22, '(w) Warehouse'), (23, '(x) Other')]
+TYPE_OF_PROPERTY_CHOICES = [
+    (0, '(a) Office'),
+    (1, '(b) Retail'),
+    (2, '(c) Industrial'),
+    (3, '(d) Residential'),
+    (4, '(e) Other'),
+]
 
-TYPE_OF_OCCUPANCY_CHOICES = [(0, '(a) Owner-occupied'),
-                             (1, '(b) Partially owner-occupied, defined as a property that is partly rented'),
-                             (2, '(c) Tenanted'), (3, '(d) Vacant'), (4, '(e) Other')]
+TYPE_OF_PROPERTY_LEGACY_SUBTYPE_CHOICES = [
+    (0, 'Semi-detached house'), (1, 'Detached house'), (2, 'Apartment'),
+    (3, 'Terrace'), (4, 'Caravan Park'), (5, 'Car Park'),
+    (6, 'Health Care'), (7, 'Hospitality / Hotel'),
+    (8, 'Land – agriculture'), (9, 'Land - zoning'), (10, 'Land - permit'),
+    (11, 'Leisure'), (12, 'Multifamily'), (13, 'Mixed Use'),
+    (14, 'Bar / Pub'), (15, 'Restaurant'),
+    (16, 'High street retail'), (17, 'Commercial centre'), (18, 'Self-Storage'),
+    (19, 'Warehouse'), (20, 'Other'),
+]
+
+TYPE_OF_OCCUPANCY_CHOICES = [
+    (0, '(a) Owner-occupied'),
+    (1, '(b) Rented'),
+    (2, '(c) Other'),
+]
 
 PURPOSE_OF_PROPERTY_CHOICES = [(0, '(a) Investment property'), (1, '(b) Owner occupied'), (2, '(c) Buy-to-let'),
                                (3, '(d) Other')]
@@ -71,3 +83,6 @@ PARTY_LIABLE_FOR_VAT_CHOICES = [(0, '(a) Institution'), (1, '(b) Buyer(s)'), (2,
 
 VALUE_OF_ENERGY_PERFORMANCE_CERTIFICATE_CHOICES = [(0, '(a) A'), (1, '(b) B'), (2, '(c) C'), (3, '(d) D'),
                                                    (4, '(e) E'), (5, '(f) F'), (6, '(g) G')]
+
+TYPE_OF_APPRAISAL_AMOUNT_CHOICES = [(0, '(a) Market value'), (1, '(b) Liquidation value'), (2, '(c) Book value'), (3, '(d) Other')]
+

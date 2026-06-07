@@ -59,7 +59,7 @@ class NPLPortfolioModelTests(TestCase):
         self.assertEqual("test", str(instance))
 
     def test_loan_str(self):
-        Loan.objects.create(contract_identifier='test')
+        Loan.objects.create(loan_identifier='test')
         instance = Loan.objects.get()
         self.assertEqual("test", str(instance))
 
