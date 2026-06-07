@@ -27,10 +27,11 @@ jobs:
         pip install -r requirements.txt
     - name: Install Linux Dependencies
       run: |
+        sudo apt-get update
         sudo apt-get -y install gdal-bin
         sudo apt-get -y install libgdal-dev
-        sudo apt-get -y install spatialite-bin
-        sudo apt-get -y install libsqlite3-mod-spatialite
+        sudo apt-get -y install --no-install-recommends spatialite-bin
+        sudo apt-get -y install --no-install-recommends libsqlite3-mod-spatialite
     - name: Run Tests
       run: |
         python manage.py check
