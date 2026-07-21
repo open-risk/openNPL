@@ -5,7 +5,7 @@ numpy
 pandas
 scipy
 Markdown
-Pillow==12.2.0
+Pillow==12.3.0
 django-leaflet
 django-jazzmin
 django-json-widget
